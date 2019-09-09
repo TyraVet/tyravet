@@ -13,10 +13,14 @@ public:
 	std::string getEmail();
 	void setAddress(std::string);
 	std::string getAddress();
+	bool setPet(Pet);
+	std::vector<Pet> getPets();
+	bool payBill(Bill); // Methods
 private:
 	// Attributes
 	std::string name;
 	std::string lastName;
 	std::string email;
 	std::string address;
+	std::vector<Pet> pets;
 };
