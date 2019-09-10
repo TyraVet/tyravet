@@ -1,6 +1,11 @@
+#ifndef _BILL_H_
+#define _BILL_H_
+
 /*
  * Bill class interface
 */
+
+#include "Product.h"
 
 class Bill{
 public:
@@ -13,3 +18,5 @@ private:
 	std::vector<Product> products;
 	double total;
 };
+
+#endif

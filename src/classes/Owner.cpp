@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "Owner.h"
+#include "Pet.h"
 
 // Constructor
 Owner::Owner(std::string oName, std::string oLastName, std::string oEmail, std::string oAddress){
@@ -47,17 +48,13 @@ std::string Owner::getAddress(){
 	return address;
 }
 
-bool Owner::setPet(Pet oPet){
-	bool isOK = false;
-
-	pets.push_back(oPet) ? isOk = true : isOK = false;
-
-	return isOk;
+void Owner::setPet(Pet oPet){
+	pets.push_back(oPet);
 }
 
-std::vector<Pet> getPets(){
+/*std::vector<Pet> getPets(){
 	return pets;
-}
+}*/
 
 // Methods
 bool payBill(Bill oBill){

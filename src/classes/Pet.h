@@ -1,3 +1,6 @@
+#ifndef _PET_H_
+#define _PET_H_
+
 /*
  * Pet class interface
 */
@@ -23,3 +26,5 @@ private:
 	std::string birthday;
 	int age;
 };
+
+#endif

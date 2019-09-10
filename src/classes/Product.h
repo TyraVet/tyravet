@@ -1,3 +1,6 @@
+#ifndef _PRODUCT_H_
+#define _PRODUCT_H_
+
 /*
  * Product class interface
 */
@@ -17,3 +20,5 @@ private:
 	double price;
 	std::string category;
 };
+
+#endif

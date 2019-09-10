@@ -1,6 +1,12 @@
+#ifndef _OWNER_H_
+#define _OWNER_H_
+
 /*
  * Owner class interface
 */
+
+#include "Pet.h"
+#include "Bill.h"
 
 class Owner{
 public:
@@ -13,8 +19,8 @@ public:
 	std::string getEmail();
 	void setAddress(std::string);
 	std::string getAddress();
-	bool setPet(Pet);
-	std::vector<Pet> getPets();
+	void setPet(Pet);
+	//std::vector<Pet> getPets();
 	bool payBill(Bill); // Methods
 private:
 	// Attributes
@@ -24,3 +30,5 @@ private:
 	std::string address;
 	std::vector<Pet> pets;
 };
+
+#endif
