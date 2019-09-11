@@ -52,11 +52,11 @@ void Owner::setPet(Pet oPet){
 	pets.push_back(oPet);
 }
 
-/*std::vector<Pet> getPets(){
+std::vector<Pet> Owner::getPets(){
 	return pets;
-}*/
+}
 
 // Methods
-bool payBill(Bill oBill){
+bool Owner::payBill(Bill oBill){
 	return true;
 }

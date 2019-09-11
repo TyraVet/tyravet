@@ -12,18 +12,18 @@ Bill::Bill(std::vector<Product> bProducts){
 }
 
 // Setters and getters
-void setProducts(std::vector<Product> bProducts){
+void Bill::setProducts(std::vector<Product> bProducts){
 	products = bProducts;
 }
 
-std::vector<Product> getProducts(){
+std::vector<Product> Bill::getProducts(){
 	return products;
 }
 
 // Methods
-double calculateTotal(){
+double Bill::calculateTotal(){
 	for(int i = 0; i < products.size(); i++){
-		total += products[i];
+		total += products[i].getPrice();
 	}
 
 	return total;

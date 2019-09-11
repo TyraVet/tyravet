@@ -20,7 +20,7 @@ public:
 	void setAddress(std::string);
 	std::string getAddress();
 	void setPet(Pet);
-	//std::vector<Pet> getPets();
+	std::vector<Pet> getPets();
 	bool payBill(Bill); // Methods
 private:
 	// Attributes
