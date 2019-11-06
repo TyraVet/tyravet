@@ -6,7 +6,6 @@
 */
 
 #include "Product.h"
-
 class Bill{
 public:
 	Bill(std::vector<Product>); // Constructor
