@@ -8,11 +8,14 @@
 #include "Pet.h"
 
 // Constructor
-Owner::Owner(std::string oName, std::string oLastName, std::string oEmail, std::string oAddress){
+Owner::Owner(std::string oName, std::string oLastName,
+	     std::string oEmail, std::string oAddress,
+	     std::string oPhoneNumber){
 	setName(oName);
 	setLastName(oLastName);
 	setEmail(oEmail);
 	setAddress(oAddress);
+	setPhoneNumber(oPhoneNumber);
 }
 
 // Setters and getters
@@ -46,6 +49,14 @@ void Owner::setAddress(std::string oAddress){
 
 std::string Owner::getAddress(){
 	return address;
+}
+
+void Owner::setPhoneNumber(std::string oPhoneNumber){
+	phoneNumber = oPhoneNumber;
+}
+
+std::string Owner::getPhoneNumber(){
+	return phoneNumber;
 }
 
 void Owner::setPet(Pet oPet){
