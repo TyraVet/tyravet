@@ -52,6 +52,10 @@ int main(){
 }
 
 // Function implementation
+/*! \brief Clear screen in Unix systems.
+ * 
+ * Clear the terminal screen using POSIX for Unix-like systems.
+ */
 void clearScreen(){
 	if(!cur_term){
 		int result;
@@ -62,6 +66,11 @@ void clearScreen(){
 	putp( tigetstr( "clear" ) );
 }
 
+/*! \brief Print message on the screen.
+ *
+ * Prints a welcome message for the user on the terminal screen.
+ * It only display the message once when the program launches.
+ */
 void displayWelcomeMessage(){
 	std::cout << " | ------------------------------------ |\n";
 	std::cout << " | \t\t\t\t\t|\n";
