@@ -1,3 +1,5 @@
+/*! \file */
+
 /*
  * Bill class implementation
 */

@@ -1,7 +1,6 @@
-/*
- * TYRA
- * By Andrés Ruiz
-*/
+/*! \file */
+
+/* TYRA by Andres Ruiz */
 
 #include <iostream> // Input/output
 #include <string>

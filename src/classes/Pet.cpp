@@ -1,3 +1,5 @@
+/*! \file */
+
 /*
  * Pet class implementation
 */

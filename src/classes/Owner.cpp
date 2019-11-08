@@ -1,3 +1,5 @@
+/*! \file */
+
 /*
  * Owner class implementation
 */
