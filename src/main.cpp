@@ -89,7 +89,6 @@ std::vector<Owner> makeOwnerEntry(std::vector<Owner> myOwnerVector){
 	std::cin.ignore();
 	std::getline(std::cin, ownerName);
 	std::cout << "Last Name : ";
-	std::cin.ignore();
 	std::getline(std::cin, ownerLastName);
 	std::cout << "Email : ";
 	std::cin >> ownerEmail;
