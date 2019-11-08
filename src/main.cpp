@@ -3,15 +3,19 @@
  * By Andrés Ruiz
 */
 
-#include <iostream>
+#include <iostream> // Input/output
 #include <string>
 #include <vector>
+#include <unistd.h> // Access to POSIX
+#include <term.h> // ncurses library
+// My header files
 #include "classes/Owner.h"
 #include "classes/Pet.h"
 #include "classes/Bill.h"
 #include "classes/Product.h"
 
 // Function declaration
+void clearScreen();
 void displayWelcomeMessage();
 void displayMenuOptions();
 std::vector<Owner> makeOwnerEntry(std::vector<Owner>);
@@ -25,15 +29,19 @@ int main(){
 	displayWelcomeMessage();
 	while(menu){
 		displayMenuOptions();
+		std::cout << "> ";
 		std::cin >> option;
 		switch(option){
 			case 'q' :
+				clearScreen();
 				menu = false;
 				break;
 			case 'A' :
+				clearScreen();
 				ownerVector = makeOwnerEntry(ownerVector);
 				break;
 			case 'B' :
+				clearScreen();
 				printDataBase(ownerVector);
 				break;
 			default :
@@ -45,6 +53,16 @@ int main(){
 }
 
 // Function implementation
+void clearScreen(){
+	if(!cur_term){
+		int result;
+		setupterm( NULL, STDOUT_FILENO, &result );
+		if (result <= 0) return;
+	}
+
+	putp( tigetstr( "clear" ) );
+}
+
 void displayWelcomeMessage(){
 	std::cout << " | ------------------------------------ |\n";
 	std::cout << " | \t\t\t\t\t|\n";
@@ -55,10 +73,10 @@ void displayWelcomeMessage(){
 }
 
 void displayMenuOptions(){
-	std::cout << "Enter the letter of the option :\n";
+	std::cout << "\nEnter the letter of the option :\n";
 	std::cout << "A : New entry.\n";
 	std::cout << "B : Print database.\n";
-	std::cout << "q : Quit.\n";
+	std::cout << "q : Quit.\n\n";
 }
 
 std::vector<Owner> makeOwnerEntry(std::vector<Owner> myOwnerVector){
