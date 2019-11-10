@@ -1,7 +1,8 @@
 /*! \file */
 
-/*
- * Owner class implementation
+//! Owner class.
+/*!
+ Owner class is meant to stored all the information of every client in the veterinary.
 */
 
 #include <string>
@@ -9,67 +10,127 @@
 #include "Owner.h"
 #include "Pet.h"
 
-// Constructor
-Owner::Owner(std::string oName, std::string oLastName,
-	     std::string oEmail, std::string oAddress,
-	     std::string oPhoneNumber){
-	setName(oName);
-	setLastName(oLastName);
-	setEmail(oEmail);
-	setAddress(oAddress);
-	setPhoneNumber(oPhoneNumber);
+//! Class constructor.
+/*!
+ To initialize every attribute of the class except the pets array.
+*/
+Owner::Owner(std::string ownerName, std::string ownerLastName,
+	     std::string ownerEmail, std::string ownerAddress,
+	     std::string ownerPhoneNumber){
+	setName(ownerName);
+	setLastName(ownerLastName);
+	setEmail(ownerEmail);
+	setAddress(ownerAddress);
+	setPhoneNumber(ownerPhoneNumber);
 }
 
-// Setters and getters
-void Owner::setName(std::string oName){
-	name = oName;
+//! Setter member taking one argument and returning void.
+/*!
+ \param ownerName a string argument.
+ \return void.
+*/
+void Owner::setName(std::string ownerName){
+	name = ownerName;
 }
 
+//! Getter member taking no argument and returning a string value.
+/*!
+ \return Object's string attribute.
+*/
 std::string Owner::getName(){
 	return name;
 }
 
-void Owner::setLastName(std::string oLastName){
-	lastName = oLastName;
+//! Setter member taking one argument and returning void.
+/*!
+ \param ownerLastName a string argument.
+ \return void.
+*/
+void Owner::setLastName(std::string ownerLastName){
+	lastName = ownerLastName;
 }
 
+// Getter member taking no argument and returning a string value.
+/*!
+ \return Object's string attribute.
+*/
 std::string Owner::getLastName(){
 	return lastName;
 }
 
-void Owner::setEmail(std::string oEmail){
-	email = oEmail;
+// Setter member taking one argument and returning void.
+/*!
+ \param ownerEmail a string argument.
+ \return void.
+*/
+void Owner::setEmail(std::string ownerEmail){
+	email = ownerEmail;
 }
 
+// Getter member taking no argument and returning a string value.
+/*!
+ \return Object's string attribute.
+*/
 std::string Owner::getEmail(){
 	return email;
 }
 
-void Owner::setAddress(std::string oAddress){
-	address = oAddress;
+// Setter member taking one argument and returning void.
+/*!
+ \param ownerAddress a string argument.
+ \return void.
+*/
+void Owner::setAddress(std::string ownerAddress){
+	address = ownerAddress;
 }
 
+// Getter member taking no argument and returning a string value.
+/*!
+ \return Object's string attribute.
+*/
 std::string Owner::getAddress(){
 	return address;
 }
 
-void Owner::setPhoneNumber(std::string oPhoneNumber){
-	phoneNumber = oPhoneNumber;
+// Setter member taking one argument and returning void.
+/*!
+ \param ownerPhoneNumber a string argument.
+ \return void.
+*/
+void Owner::setPhoneNumber(std::string ownerPhoneNumber){
+	phoneNumber = ownerPhoneNumber;
 }
 
+// Getter member taking no argument and returning a string value.
+/*!
+ \return Object's string attribute.
+*/
 std::string Owner::getPhoneNumber(){
 	return phoneNumber;
 }
 
-void Owner::setPet(Pet oPet){
-	pets.push_back(oPet);
+// Setter member taking one argument and returning void.
+/*!
+ \param ownerPet a Pet argument.
+ \return void.
+*/
+void Owner::setPet(Pet ownerPet){
+	pets.push_back(ownerPet);
 }
 
+// Getter member taking no argument and returning a string value.
+/*!
+ \return Object's vector attribute.
+*/
 std::vector<Pet> Owner::getPets(){
 	return pets;
 }
 
-// Methods
-bool Owner::payBill(Bill oBill){
+// A normal member taking one argument and returning a boolean value.
+/*!
+ \param ownerBill a Bill argument.
+ \return bool.
+*/
+bool Owner::payBill(Bill ownerBill){
 	return true;
 }
