@@ -1,0 +1,6 @@
+* Tyra
+
+** TODO Make GUI
+*** TODO Learn Qt Framework
+** TODO Database
+*** TODO Learn MongoDB
