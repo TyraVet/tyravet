@@ -6,3 +6,6 @@
 
 # Unignore all dirs
 !*/
+
+# Ignore org~ files
+*.org~
