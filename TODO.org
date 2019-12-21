@@ -1,6 +1,18 @@
 * Tyra
 
-** TODO Make GUI
-*** TODO Learn Qt Framework
-** TODO Database
-*** TODO Learn MongoDB
+** TODO Manage clients and pets.
+*** TODO Save at database.
+*** TODO Pet's medical history.
+**** TODO Create PDF files.
+*** TODO Emails and text messages to clients.
+** TODO Manage inventory.
+*** TODO Products list.
+** TODO Schedule for doctors.
+*** TODO Today's tasks.
+*** TODO Calendar.
+** TODO Forms.
+** TODO Make GUI.
+*** TODO Learn Qt Framework.
+** TODO Database.
+*** TODO Create database server.
+*** TODO Learn MongoDB.
