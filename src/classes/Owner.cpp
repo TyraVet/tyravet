@@ -7,55 +7,18 @@
 
 #include <string>
 #include <vector>
+#include "Person.h"
 #include "Owner.h"
-#include "Pet.h"
 
 //! Class constructor.
 /*!
  To initialize every attribute of the class except the pets array.
 */
-Owner::Owner(std::string ownerName, std::string ownerLastName,
-	     std::string ownerEmail, std::string ownerAddress,
-	     std::string ownerPhoneNumber){
-	setName(ownerName);
-	setLastName(ownerLastName);
+Owner::Owner(std::string ownerEmail, std::string ownerAddress, std::string ownerPhoneNumber)
+	: Person(){
 	setEmail(ownerEmail);
 	setAddress(ownerAddress);
 	setPhoneNumber(ownerPhoneNumber);
-}
-
-//! Setter member taking one argument and returning void.
-/*!
- \param ownerName a string argument.
- \return void.
-*/
-void Owner::setName(std::string ownerName){
-	name = ownerName;
-}
-
-//! Getter member taking no argument and returning a string value.
-/*!
- \return Object's string attribute.
-*/
-std::string Owner::getName(){
-	return name;
-}
-
-//! Setter member taking one argument and returning void.
-/*!
- \param ownerLastName a string argument.
- \return void.
-*/
-void Owner::setLastName(std::string ownerLastName){
-	lastName = ownerLastName;
-}
-
-// Getter member taking no argument and returning a string value.
-/*!
- \return Object's string attribute.
-*/
-std::string Owner::getLastName(){
-	return lastName;
 }
 
 // Setter member taking one argument and returning void.
@@ -107,30 +70,4 @@ void Owner::setPhoneNumber(std::string ownerPhoneNumber){
 */
 std::string Owner::getPhoneNumber(){
 	return phoneNumber;
-}
-
-// Setter member taking one argument and returning void.
-/*!
- \param ownerPet a Pet argument.
- \return void.
-*/
-void Owner::setPet(Pet ownerPet){
-	pets.push_back(ownerPet);
-}
-
-// Getter member taking no argument and returning a string value.
-/*!
- \return Object's vector attribute.
-*/
-std::vector<Pet> Owner::getPets(){
-	return pets;
-}
-
-// A normal member taking one argument and returning a boolean value.
-/*!
- \param ownerBill a Bill argument.
- \return bool.
-*/
-bool Owner::payBill(Bill ownerBill){
-	return true;
 }

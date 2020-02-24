@@ -20,7 +20,7 @@ StartupFrame::StartupFrame(const wxString& title, const wxPoint& pos, const wxSi
 
     wxMenuBar *menuBar = new wxMenuBar;
     menuBar->Append(menuFile, "&File");
-    menuBar->Append(menuFile, "&Help");
+    menuBar->Append(menuHelp, "&Help");
 
     SetMenuBar(menuBar);
 
