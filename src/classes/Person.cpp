@@ -12,6 +12,8 @@
 /*!
  To initialize every attribute of the class.
 */
+Person::Person(){}
+
 Person::Person(std::string personName, std::string personLastName, std::string personGender){
 	setName(personName);
 	setLastName(personLastName);
@@ -57,7 +59,7 @@ std::string Person::getLastName(){
  \param personGender a string argument.
  \return void.
 */
-void Person::personGender(std::string personGender){
+void Person::setGender(std::string personGender){
 	gender = personGender;
 }
 
