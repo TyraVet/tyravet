@@ -8,8 +8,8 @@
 #include <wx/wx.h>
 #endif
 // My wxWidgets
-#include "classes/TyraApp.h"
-#include "classes/StartupFrame.h"
+#include "classes/wxWidgets/TyraApp.h"
+#include "classes/wxWidgets/StartupFrame.h"
 
 enum{ ID_Hello = 1 };
 
