@@ -7,5 +7,8 @@
 # Unignore all dirs
 !*/
 
-# Ignore org~ files
+# Ignore cache org files
 *.org~
+
+# Inore txt files
+*.txt
