@@ -4,8 +4,8 @@
  * TyraApp class implementation
  */
 
-#include "TyraApp.h"
-#include "StartupFrame.h"
+#include "../headers/TyraApp.h"
+#include "../headers/StartupFrame.h"
 
 // Avoid maigc numbers
 const int WIDTH = 600;
@@ -16,16 +16,6 @@ bool TyraApp::OnInit(){
                                            wxPoint(0,0),
                                            wxSize(WIDTH, HEIGHT));
     frame->Show(true);
-
-    wxButton* button = new wxButton;
-    button->Create(frame,
-                   wxID_OK,
-                   wxEmptyString,
-                   wxPoint(50,50),
-                   wxSize(100, 100),
-                   0,
-                   wxDefaultValidator,
-                   "Button");
 
     return true;
 }

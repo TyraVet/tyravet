@@ -8,15 +8,7 @@
 #include <wx/wx.h>
 #endif
 // My wxWidgets
-#include "classes/wxWidgets/TyraApp.h"
-#include "classes/wxWidgets/StartupFrame.h"
-
-enum{ ID_Hello = 1 };
-
-wxBEGIN_EVENT_TABLE(StartupFrame, wxFrame)
-EVT_MENU(ID_Hello, StartupFrame::OnHello)
-EVT_MENU(wxID_EXIT, StartupFrame::OnExit)
-EVT_MENU(wxID_ABOUT, StartupFrame::OnAbout)
-wxEND_EVENT_TABLE()
+#include "classes/wxWidgets/headers/TyraApp.h"
+#include "classes/wxWidgets/headers/StartupFrame.h"
 
 wxIMPLEMENT_APP(TyraApp);
