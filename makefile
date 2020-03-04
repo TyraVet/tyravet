@@ -1,5 +1,5 @@
-tyra: src/main.cpp src/classes/wxWidgets/TyraApp.cpp src/classes/wxWidgets/StartupFrame.cpp
-	g++ src/main.cpp src/classes/wxWidgets/*.cpp `wx-config --libs` `wx-config --cppflags` -o tyra
+tyra: src/main.cpp
+	g++ src/main.cpp `pkg-config --cflags --libs gtkmm-3.0` -o tyra
 
 clean:
 	rm *.o tyra

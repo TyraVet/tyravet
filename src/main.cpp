@@ -2,13 +2,14 @@
 
 /* TYRA by Andres Ruiz */
 
-// wxWidgets
-#include <wx/wxprec.h>
-#ifndef WX_PRECOM
-#include <wx/wx.h>
-#endif
-// My wxWidgets
-#include "classes/wxWidgets/headers/TyraApp.h"
-#include "classes/wxWidgets/headers/StartupFrame.h"
+#include <gtkmm/main.h>
+#include <gtkmm/messagedialog.h>
 
-wxIMPLEMENT_APP(TyraApp);
+int main(int argc, char *argv[]){
+    Gtk::Main kit(argc, argv);
+    Gtk::MessageDialog Hello("Hello, world", false, Gtk::MESSAGE_INFO, Gtk::BUTTONS_OK);
+    Hello.set_secondary_text("This is an example dialog");
+    Hello.run();
+
+    return 0;
+}
