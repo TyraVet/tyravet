@@ -2,10 +2,15 @@
 Veterinary management.
 Manage your clients and its pets in an easy way.
 
+## Dependencies
+```bash
+gtkmm3
+```
+
 ## Installation
 ```bash
-chmod +x install.sh
-./install.sh
+cd tyra/
+make
 ```
 
 ## Usage
