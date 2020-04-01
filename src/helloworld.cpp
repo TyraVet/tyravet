@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../headers/helloworld.h"
+#include "../include/helloworld.hpp"
 
 HelloWorld::HelloWorld() : button("Hello World"){
     set_border_width(10);

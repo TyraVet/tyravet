@@ -1,6 +1,4 @@
 #pragma once
-#ifndef GTKMM_EXAMPLE_HELLOWORLD_H
-#define GTKMM_EXAMPLE_HELLOWORLD_H
 
 #include <gtkmm/button.h>
 #include <gtkmm/window.h>
@@ -17,5 +15,3 @@ protected:
     // Member widgets
     Gtk::Button button;
 };
-
-#endif // GTKMM_EXAMPLE_HELLOWORLD_H
