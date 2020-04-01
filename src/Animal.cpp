@@ -1,57 +1,44 @@
 /*! \file */
 
-/*
- * Pet class implementation
-*/
+//! Animal class.
+/*! Animal class. The most basic for any animal. */
 
 #include<string>
-#include "Pet.h"
+#include "../include/Animal.hpp"
 
-// Constructor
-Pet::Pet(std::string pName, std::string pSpecie, std::string pBreed, std::string pBirthday){
-	setName(pName);
-	setSpecie(pSpecie);
-	setBreed(pBreed);
-	setBirthday(pBirthday);
+//! Class constructor.
+/*! To initialize every attribute of the class. */
+Animal::Animal(std::string animalSpecie, std::string animalBreed){
+	setSpecie(animalSpecie);
+	setBreed(animalBreed);
 }
 
-// Setters and getters
-void Pet::setName(std::string pName){
-	name = pName;
+//! Setter member taking one argument and returning void.
+/*!
+ * \param animalSpecie a string argument.
+ * \return void. */
+void Animal::setSpecie(std::string animalSpecie){
+	specie = animalSpecie;
 }
 
-std::string Pet::getName(){
-	return name;
-}
-
-void Pet::setSpecie(std::string pSpecie){
-	specie = pSpecie;
-}
-
-std::string Pet::getSpecie(){
+//! Getter member taking no arguments and returning a string value.
+/*!
+ * \return Object's string attribute. */
+std::string Animal::getSpecie(){
 	return specie;
 }
 
-void Pet::setBreed(std::string pBreed){
-	breed = pBreed;
+//! Setter member taking one argument and returning void.
+/*!
+ * \param animalBreed a string argument.
+ * \return void. */
+void Animal::setBreed(std::string animalBreed){
+	breed = animalBreed;
 }
 
-std::string Pet::getBreed(){
+//! Getter member taking no arguments and returning a string value.
+/*!
+ * \return Object's string attribute. */
+std::string Animal::getBreed(){
 	return breed;
-}
-
-void Pet::setBirthday(std::string pBirthday){
-	birthday = pBirthday;
-}
-
-std::string Pet::getBirthday(){
-	return birthday;
-}
-
-void Pet::setAge(int pAge){
-	age = pAge;
-}
-
-int Pet::getAge(){
-	return age;
 }
