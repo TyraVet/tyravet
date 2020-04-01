@@ -6,7 +6,7 @@
 */
 
 #include <string>
-#include "Person.h"
+#include "../include/Person.h"
 
 //! Class constructor.
 /*!

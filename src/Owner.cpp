@@ -7,8 +7,8 @@
 
 #include <string>
 #include <vector>
-#include "Person.h"
-#include "Owner.h"
+#include "../headers/Person.h"
+#include "../headers/Owner.h"
 
 //! Class constructor.
 /*!

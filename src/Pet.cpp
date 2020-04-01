@@ -5,7 +5,7 @@
 */
 
 #include<string>
-#include "Pet.h"
+#include "../headers/Pet.h"
 
 // Constructor
 Pet::Pet(std::string pName, std::string pSpecie, std::string pBreed, std::string pBirthday){
