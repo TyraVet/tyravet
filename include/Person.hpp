@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _PERSON_H_
-#define _PERSON_H_
 
 /*! Person class */
 #include<string>
@@ -20,5 +18,3 @@ class Person{
 		std::string lastName; /*!< Person's lastname. */
 		std::string gender; /*!< Person's gender. */
 };
-
-#endif
