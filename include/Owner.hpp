@@ -1,6 +1,6 @@
 #pragma once
-/*! Owner class */
 
+/*! Owner class */
 #include "Person.hpp"
 
 class Owner: public Person{
