@@ -1,30 +1,23 @@
-#ifndef _PET_H_
-#define _PET_H_
+#pragma once
 
-/*
- * Pet class interface
-*/
+/*! Pet class */
+#include "Animal.hpp"
 
-class Pet{
-public:
-	Pet(std::string, std::string, std::string, std::string); // Constructor
-	void setName(std::string); // Setters and getters
-	std::string getName();
-	void setSpecie(std::string);
-	std::string getSpecie();
-	void setBreed(std::string);
-	std::string getBreed();
-	void setBirthday(std::string);
-	std::string getBirthday();
-	void setAge(int);
-	int getAge();
-private:
-	// Attributes
-	std::string name;
-	std::string specie;
-	std::string breed;
-	std::string birthday;
-	int age;
+class Pet: public Animal{
+	public:
+		Pet(std::string, std::string, // Animal
+			std::string, std::string); // Pet
+		// Animal : specie, breed
+		// Pet : name, birthday
+		void setName(std::string); // Setters and getters
+		std::string getName();
+		void setBirthday(std::string);
+		std::string getBirthday();
+		void setAge(int);
+		int getAge();
+	private:
+		// Attributes
+		std::string name;
+		std::string birthday;
+		int age;
 };
-
-#endif

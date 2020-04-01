@@ -1,57 +1,62 @@
 /*! \file */
 
-/*
- * Pet class implementation
-*/
+//! Pet class.
+/*! Pet class is meant to stored all the information of a single pet. */
 
 #include<string>
-#include "../headers/Pet.h"
+#include "../include/Pet.hpp"
 
-// Constructor
-Pet::Pet(std::string pName, std::string pSpecie, std::string pBreed, std::string pBirthday){
-	setName(pName);
-	setSpecie(pSpecie);
-	setBreed(pBreed);
-	setBirthday(pBirthday);
+//! Class constructor
+/*!
+ * To initialize every attribute of the class. */
+Pet::Pet(std::string petSpecie, std::string petBreed,
+		 std::string petName, std::string petBirthday)
+	: Animal(petSpecie, petBreed){
+	setName(petName);
+	setBirthday(petBirthday);
 }
 
-// Setters and getters
-void Pet::setName(std::string pName){
-	name = pName;
+//! Setter member taking one argument and returning void.
+/*!
+ * \param petName a string argument.
+ * \return void. */
+void Pet::setName(std::string petName){
+	name = petName;
 }
 
+//! Getter member taking no arguments and returning a string value.
+/*!
+ * \return Object's string attribute. */
 std::string Pet::getName(){
 	return name;
 }
 
-void Pet::setSpecie(std::string pSpecie){
-	specie = pSpecie;
-}
-
-std::string Pet::getSpecie(){
-	return specie;
-}
-
-void Pet::setBreed(std::string pBreed){
-	breed = pBreed;
-}
-
-std::string Pet::getBreed(){
-	return breed;
-}
-
+// Setter member taking one argument and returning void.
+/*!
+ * \param petBirthday a string argument.
+ * \return void. */
 void Pet::setBirthday(std::string pBirthday){
 	birthday = pBirthday;
 }
 
+// Getter member taking no arguments and returning a string value.
+/*!
+ * \return Object's string attribute. */
 std::string Pet::getBirthday(){
 	return birthday;
 }
 
-void Pet::setAge(int pAge){
-	age = pAge;
+// Setter member taking one argument and returning void.
+/*!
+ * \param petAge a string argument.
+ * \return void. */
+void Pet::setAge(int petAge){
+	age = petAge;
 }
 
+// Getter member taking no arguments and returning a string value.
+/*!
+ * \return Object's string attribute. */
 int Pet::getAge(){
 	return age;
 }
