@@ -1,14 +1,14 @@
 #pragma once
-#ifndef _OWNER_H_
-#define _OWNER_H_
-
 /*! Owner class */
 
-#include "Person.h"
+#include "Person.hpp"
 
 class Owner: public Person{
 	public:
-		Owner(std::string, std::string, std::string);
+		Owner(std::string, std::string, std::string, // Person
+		      std::string, std::string, std::string); // Owner
+		// Person : name, lastName, gender
+		// Owner : email, address, phoneNumber
 		void setEmail(std::string);
 		std::string getEmail();
 		void setAddress(std::string);
@@ -20,5 +20,3 @@ class Owner: public Person{
 		std::string address; /*!< Owner's address. */
 		std::string phoneNumber; /*!< Owner's mobile phone number. */
 };
-
-#endif

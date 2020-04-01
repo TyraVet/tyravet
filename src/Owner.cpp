@@ -7,15 +7,15 @@
 
 #include <string>
 #include <vector>
-#include "../headers/Person.h"
-#include "../headers/Owner.h"
+#include "../include/Owner.hpp"
 
 //! Class constructor.
 /*!
  To initialize every attribute of the class except the pets array.
 */
-Owner::Owner(std::string ownerEmail, std::string ownerAddress, std::string ownerPhoneNumber)
-	: Person(){
+Owner::Owner(std::string ownerName, std::string ownerLastName, std::string ownerGender,
+			 std::string ownerEmail, std::string ownerAddress, std::string ownerPhoneNumber)
+	: Person(ownerName, ownerLastName, ownerGender){
 	setEmail(ownerEmail);
 	setAddress(ownerAddress);
 	setPhoneNumber(ownerPhoneNumber);

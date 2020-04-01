@@ -5,7 +5,6 @@
 
 class Person{
 	public:
-		Person();
 		Person(std::string, std::string, std::string);
 		void setName(std::string);
 		std::string getName();

@@ -6,14 +6,12 @@
 */
 
 #include <string>
-#include "../include/Person.h"
+#include "../include/Person.hpp"
 
 //! Class constructor.
 /*!
  To initialize every attribute of the class.
 */
-Person::Person(){}
-
 Person::Person(std::string personName, std::string personLastName, std::string personGender){
 	setName(personName);
 	setLastName(personLastName);
