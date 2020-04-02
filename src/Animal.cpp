@@ -13,6 +13,8 @@ Animal::Animal(std::string animalSpecie, std::string animalBreed){
 	setBreed(animalBreed);
 }
 
+Animal::Animal(){}
+
 //! Setter member taking one argument and returning void.
 /*!
  * \param animalSpecie a string argument.

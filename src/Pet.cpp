@@ -16,6 +16,8 @@ Pet::Pet(std::string petSpecie, std::string petBreed,
 	setBirthday(petBirthday);
 }
 
+Pet::Pet(){}
+
 //! Setter member taking one argument and returning void.
 /*!
  * \param petName a string argument.

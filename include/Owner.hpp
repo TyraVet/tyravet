@@ -7,8 +7,8 @@ class Owner: public Person{
 	public:
 		Owner(std::string, std::string, std::string, // Person
 		      std::string, std::string, std::string); // Owner
-		// Person : name, lastName, gender
-		// Owner : email, address, phoneNumber
+		Owner(); // Default
+		~Owner();
 		void setEmail(std::string);
 		std::string getEmail();
 		void setAddress(std::string);

@@ -21,6 +21,8 @@ Owner::Owner(std::string ownerName, std::string ownerLastName, std::string owner
 	setPhoneNumber(ownerPhoneNumber);
 }
 
+Owner::Owner(){}
+
 // Setter member taking one argument and returning void.
 /*!
  \param ownerEmail a string argument.

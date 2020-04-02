@@ -18,6 +18,8 @@ Person::Person(std::string personName, std::string personLastName, std::string p
 	setGender(personGender);
 }
 
+Person::Person(){} // Default
+
 //! Setter member taking one argument and returning void.
 /*!
  \param personName a string argument.

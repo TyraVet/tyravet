@@ -6,9 +6,9 @@
 class Pet: public Animal{
 	public:
 		Pet(std::string, std::string, // Animal
-			std::string, std::string); // Pet
-		// Animal : specie, breed
-		// Pet : name, birthday
+		    std::string, std::string); // Pet
+		Pet(); // Default
+		~Pet();
 		void setName(std::string); // Setters and getters
 		std::string getName();
 		void setBirthday(std::string);

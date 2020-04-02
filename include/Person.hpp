@@ -6,6 +6,7 @@
 class Person{
 	public:
 		Person(std::string, std::string, std::string);
+		Person(); // Default
 		void setName(std::string);
 		std::string getName();
 		void setLastName(std::string);
