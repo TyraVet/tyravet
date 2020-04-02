@@ -14,6 +14,7 @@ Client::Client(Owner myOwner, Pet myPet){
 }
 
 Client::Client(){}
+Client::~Client(){}
 
 // Setter member taking one argument and returning void.
 /*!
