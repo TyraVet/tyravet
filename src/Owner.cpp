@@ -28,48 +28,36 @@ Owner::Owner(){}
  \param ownerEmail a string argument.
  \return void.
 */
-void Owner::setEmail(std::string ownerEmail){
-	email = ownerEmail;
-}
+void Owner::setEmail(std::string ownerEmail){ email = ownerEmail; }
 
 // Getter member taking no argument and returning a string value.
 /*!
  \return Object's string attribute.
 */
-std::string Owner::getEmail(){
-	return email;
-}
+std::string Owner::getEmail(){ return email; }
 
 // Setter member taking one argument and returning void.
 /*!
  \param ownerAddress a string argument.
  \return void.
 */
-void Owner::setAddress(std::string ownerAddress){
-	address = ownerAddress;
-}
+void Owner::setAddress(std::string ownerAddress){ address = ownerAddress; }
 
 // Getter member taking no argument and returning a string value.
 /*!
  \return Object's string attribute.
 */
-std::string Owner::getAddress(){
-	return address;
-}
+std::string Owner::getAddress(){ return address; }
 
 // Setter member taking one argument and returning void.
 /*!
  \param ownerPhoneNumber a string argument.
  \return void.
 */
-void Owner::setPhoneNumber(std::string ownerPhoneNumber){
-	phoneNumber = ownerPhoneNumber;
-}
+void Owner::setPhoneNumber(std::string ownerPhoneNumber){ phoneNumber = ownerPhoneNumber; }
 
 // Getter member taking no argument and returning a string value.
 /*!
  \return Object's string attribute.
 */
-std::string Owner::getPhoneNumber(){
-	return phoneNumber;
-}
+std::string Owner::getPhoneNumber(){ return phoneNumber; }

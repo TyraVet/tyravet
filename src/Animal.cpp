@@ -19,28 +19,20 @@ Animal::Animal(){}
 /*!
  * \param animalSpecie a string argument.
  * \return void. */
-void Animal::setSpecie(std::string animalSpecie){
-	specie = animalSpecie;
-}
+void Animal::setSpecie(std::string animalSpecie){ specie = animalSpecie; }
 
 //! Getter member taking no arguments and returning a string value.
 /*!
  * \return Object's string attribute. */
-std::string Animal::getSpecie(){
-	return specie;
-}
+std::string Animal::getSpecie(){ return specie; }
 
 //! Setter member taking one argument and returning void.
 /*!
  * \param animalBreed a string argument.
  * \return void. */
-void Animal::setBreed(std::string animalBreed){
-	breed = animalBreed;
-}
+void Animal::setBreed(std::string animalBreed){ breed = animalBreed; }
 
 //! Getter member taking no arguments and returning a string value.
 /*!
  * \return Object's string attribute. */
-std::string Animal::getBreed(){
-	return breed;
-}
+std::string Animal::getBreed(){ return breed; }

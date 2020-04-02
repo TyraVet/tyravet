@@ -25,48 +25,36 @@ Person::Person(){} // Default
  \param personName a string argument.
  \return void.
 */
-void Person::setName(std::string personName){
-	name = personName;
-}
+void Person::setName(std::string personName){ name = personName; }
 
 //! Getter member taking no argument and returning a string value.
 /*!
  \return Object's string attribute.
 */
-std::string Person::getName(){
-	return name;
-}
+std::string Person::getName(){ return name; }
 
 //! Setter member taking one argument and returning void.
 /*!
  \param personLastName a string argument.
  \return void.
 */
-void Person::setLastName(std::string personLastName){
-	lastName = personLastName;
-}
+void Person::setLastName(std::string personLastName){ lastName = personLastName; }
 
 // Getter member taking no argument and returning a string value.
 /*!
  \return Object's string attribute.
 */
-std::string Person::getLastName(){
-	return lastName;
-}
+std::string Person::getLastName(){ return lastName; }
 
 // Setter member taking one argument and returning void.
 /*!
  \param personGender a string argument.
  \return void.
 */
-void Person::setGender(std::string personGender){
-	gender = personGender;
-}
+void Person::setGender(std::string personGender){ gender = personGender; }
 
 // Getter member taking no argument and returning a string value.
 /*!
  \return Object's string attribute.
 */
-std::string Person::getGender(){
-	return gender;
-}
+std::string Person::getGender(){ return gender; }
