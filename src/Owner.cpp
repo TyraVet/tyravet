@@ -22,6 +22,7 @@ Owner::Owner(std::string ownerName, std::string ownerLastName, std::string owner
 }
 
 Owner::Owner(){}
+Owner::~Owner(){}
 
 // Setter member taking one argument and returning void.
 /*!

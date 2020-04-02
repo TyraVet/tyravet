@@ -7,6 +7,7 @@ class Animal{
 	public:
 		Animal(std::string, std::string); // Constructor
 		Animal(); // Default
+		~Animal();
 		void setSpecie(std::string);
 		std::string getSpecie();
 		void setBreed(std::string);

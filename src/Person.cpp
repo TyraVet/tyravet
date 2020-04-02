@@ -19,6 +19,7 @@ Person::Person(std::string personName, std::string personLastName, std::string p
 }
 
 Person::Person(){} // Default
+Person::~Person(){}
 
 //! Setter member taking one argument and returning void.
 /*!

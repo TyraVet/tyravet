@@ -14,6 +14,7 @@ Animal::Animal(std::string animalSpecie, std::string animalBreed){
 }
 
 Animal::Animal(){}
+Animal::~Animal(){}
 
 //! Setter member taking one argument and returning void.
 /*!

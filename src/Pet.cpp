@@ -17,6 +17,7 @@ Pet::Pet(std::string petSpecie, std::string petBreed,
 }
 
 Pet::Pet(){}
+Pet::~Pet(){}
 
 //! Setter member taking one argument and returning void.
 /*!
