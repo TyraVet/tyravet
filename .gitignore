@@ -10,5 +10,8 @@
 # Ignore cache org files
 *.org~
 
+# Ignore object files
+*.o
+
 # Inore txt files
 *.txt
