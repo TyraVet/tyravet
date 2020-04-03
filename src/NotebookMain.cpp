@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/helloworld.hpp"
+#include "../include/NotebookMain.hpp"
 
 NotebookMain::NotebookMain() : labelDatebook("Hello from inside Datebook!"),
                            labelHospital("Hello from inside Hospital!"),
@@ -15,7 +15,7 @@ NotebookMain::NotebookMain() : labelDatebook("Hello from inside Datebook!"),
     notebookMain.append_page(labelInventory, "Inventory");
     // Switch tabs
     notebookMain.signal_switch_page().connect(sigc::mem_fun(*this,
-                                                            &HelloWorld::on_notebook_switch_page));
+                                                            &NotebookMain::on_notebook_switch_page));
 
     add(notebookMain);
     show_all_children();
