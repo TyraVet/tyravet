@@ -6,12 +6,12 @@
 #include "../include/Owner.hpp"
 #include "../include/Client.hpp"
 #include <gtkmm/application.h>
-#include "../include/helloworld.hpp"
+#include "../include/NotebookMain.hpp"
 
 int main(int argc, char *argv[]){
-    auto app = Gtk::Application::create(argc, argv, "example");
+    auto app = Gtk::Application::create(argc, argv, "dev.tyra");
 
-    HelloWorld helloworld;
+    NotebookMain notebookMain;
 
     Owner me = Owner("andres", "ruiz", "male", "andres@mail.com", "micasa #90", "93405900");
 
@@ -29,5 +29,5 @@ int main(int argc, char *argv[]){
     std::cout << meAgain.getPet().getBreed() << "\n";
 
 
-    return app->run(helloworld);
+    return app->run(notebookMain);
 }
