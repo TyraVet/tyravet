@@ -1,11 +1,11 @@
 CPP= g++
 CFLAGS = `pkg-config --cflags --libs gtkmm-3.0`
 
-tyra: src/main.cpp helloworld.o Client.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) src/main.cpp helloworld.o Client.o Owner.o Person.o Pet.o Animal.o $(CFLAGS) -o tyra
+tyra: src/main.cpp NotebookMain.o Client.o Owner.o Person.o Pet.o Animal.o
+	$(CPP) src/main.cpp NotebookMain.o Client.o Owner.o Person.o Pet.o Animal.o $(CFLAGS) -o tyra
 
-helloworld.o: src/helloworld.cpp
-	$(CPP) -c src/helloworld.cpp $(CFLAGS)
+NotebookMain.o: src/NotebookMain.cpp
+	$(CPP) -c src/NotebookMain.cpp $(CFLAGS)
 
 Client.o: src/Client.cpp
 	$(CPP) -c src/Client.cpp
