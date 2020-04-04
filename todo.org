@@ -11,9 +11,9 @@
 ****** STRT Button events
 **** TODO Hospital Tab
 **** TODO Inventory Tab
-* TODO Data Base
-** TODO PostgreSQL
-*** TODO Set up server
+* STRT Data Base
+** STRT PostgreSQL
+*** STRT Set up server
 *** TODO Store information into the server
 *** TODO Receive information from the server
 ** TODO Object serialization
@@ -24,3 +24,6 @@
 *** DONE Animal class
 *** DONE Pet class
 *** STRT Client class
+* TODO Send Email
+* TODO Send SMS-Whatsapp
+** TODO Twilio API
