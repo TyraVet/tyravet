@@ -6,6 +6,7 @@
 class Pacient : public Pet{
     public:
         Pacient(int);
+        Pacient(); // Default
         ~Pacient();
         void setStatus(int);
         int getStatus();

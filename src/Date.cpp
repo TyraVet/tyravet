@@ -14,6 +14,7 @@ Date::Date(int dateDay, int dateMonth, int dateYear){
     setYear(dateYear);
 }
 
+Date::Date(){}
 Date::~Date(){}
 
 // Setter member taking one argument and returning void.

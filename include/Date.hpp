@@ -6,6 +6,7 @@
 class Date{
     public:
         Date(int, int, int);
+        Date(); // Default
         ~Date();
         void setDay(int);
         int getDay();

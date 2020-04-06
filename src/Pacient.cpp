@@ -11,6 +11,7 @@ Pacient::Pacient(int pacientStatus){
     setStatus(pacientStatus);
 }
 
+Pacient::Pacient(){}
 Pacient::~Pacient(){}
 
 // Setter member taking one argument and returning void.
