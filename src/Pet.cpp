@@ -10,10 +10,11 @@
 /*!
  * To initialize every attribute of the class. */
 Pet::Pet(std::string petSpecie, std::string petBreed,
-		 std::string petName, std::string petBirthday)
+		 std::string petName, std::string petBirthday, Owner petOwner)
 	: Animal(petSpecie, petBreed){
 	setName(petName);
 	setBirthday(petBirthday);
+	setOwner(petOwner);
 }
 
 Pet::Pet(){}
@@ -40,6 +41,17 @@ void Pet::setBirthday(std::string pBirthday){ birthday = pBirthday; }
 /*!
  * \return Object's string attribute. */
 std::string Pet::getBirthday(){ return birthday; }
+
+// Setter member taking one argument and returning void.
+/*!
+ * \param petOwner object.
+ * \return void. */
+void Pet::setOwner(Owner petOwner){ myOwner = petOwner;}
+
+// Getter member taking no arguments and returning an object
+/*!
+ * \return Owner object. */
+Owner Pet::getOwner(){ return myOwner; }
 
 // Setter member taking one argument and returning void.
 /*!
