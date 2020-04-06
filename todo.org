@@ -4,8 +4,8 @@
 ** STRT Main Window
 *** STRT Set a Notebook(Gtk)
 **** STRT Datebook Tab
-***** TODO Calendar(Gtk)
-****** TODO Get Calendar Attributes (date)
+***** WAIT Calendar(Gtk)
+****** WAIT Get Calendar Attributes (date)
 ***** TODO Dynamic widget list
 ***** STRT Button(Gtk)
 ****** STRT Button events
