@@ -1,29 +1,36 @@
 # Tyra TODO list
 
-* STRT User Interface
-** STRT Main Window
-*** STRT Set a Notebook(Gtk)
-**** STRT Datebook Tab
-***** WAIT Calendar(Gtk)
-****** WAIT Get Calendar Attributes (date)
-***** TODO Dynamic widget list
-***** STRT Button(Gtk)
-****** STRT Button events
-**** TODO Hospital Tab
-**** TODO Inventory Tab
-* STRT Data Base
-** STRT PostgreSQL
-*** STRT Set up server
-*** TODO Store information into the server
-*** TODO Receive information from the server
-** TODO Object serialization
-* STRT Software Design
-** STRT Classes
+* STRT [#A] User Interface
+** STRT [#A] Main Window
+*** STRT [#A] Set a Notebook(Gtk)
+**** STRT [#A] Datebook Tab
+***** WAIT [#C] Calendar(Gtk)
+****** WAIT [#C] Get Calendar Attributes (date)
+***** TODO [#B] Dynamic widget list
+***** STRT [#B] Button(Gtk)
+****** STRT [#B] Button events
+**** TODO [#B] Hospital Tab
+**** TODO [#B] Inventory Tab
+* STRT [#A] Functionatily
+** TODO [#A] Create new Pet(Client)
+** TODO [#A] Store Pet(Client) Object
+* STRT [#B] Data Base
+** STRT [#B] PostgreSQL
+*** STRT [#B] Set up server
+*** TODO [#A] Store information into the server
+*** TODO [#A] Receive information from the server
+** TODO [#A] Object serialization
+* STRT [#A] Software Design
+** STRT [#A] Classes
 *** DONE Person class
 *** DONE Owner class
 *** DONE Animal class
 *** DONE Pet class
-*** STRT Client class
-* TODO Send Email
-* TODO Send SMS-Whatsapp
-** TODO Twilio API
+*** KILL Client class
+*** DONE Date class
+*** STRT [#A] Pacient class
+**** TODO [#A] 2D vector
+*** STRT [#A] Report class
+* TODO [#C] Send Email
+* TODO [#C] Send SMS-Whatsapp
+** TODO [#C] Twilio API
