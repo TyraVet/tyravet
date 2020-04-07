@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "../include/NotebookMain.hpp"
+#include "../include/AddPet.hpp"
 
 NotebookMain::NotebookMain() : labelHospital("Hello from inside Hospital!"),
                                labelInventory("Hello from inside Inventory!"),
@@ -47,6 +48,8 @@ void NotebookMain::on_notebook_switch_page(Gtk::Widget * /* page */, guint page_
 }
 
 void NotebookMain::on_button_add_appointment(){
-    std::cout << "Button clicked\n";
+    std::cout << "Button clicked\nCreating new window\n...\n";
+    AddPet* window = new AddPet();
+    window->show();
     // std::cout << calendar.get_date() << "\n"; This doesn't work!
 }
