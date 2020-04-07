@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "../include/Owner.hpp"
-#include "../include/Client.hpp"
+#include "../include/Pet.hpp"
 #include <gtkmm/application.h>
 #include "../include/NotebookMain.hpp"
 
@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
 
     NotebookMain notebookMain;
 
-    Owner me = Owner("andres", "ruiz", "male", "andres@mail.com", "micasa #90", "93405900");
+    // Owner me = Owner("andres", "ruiz", "male", "andres@mail.com", "micasa #90", "93405900");
 
     // std::cout << me.getName() << "\n";
     // std::cout << me.getLastName() << "\n";
@@ -21,13 +21,6 @@ int main(int argc, char *argv[]){
     // std::cout << me.getEmail() << "\n";
     // std::cout << me.getAddress() << "\n";
     // std::cout << me.getPhoneNumber() << "\n";
-
-    Pet coque = Pet();
-    Client meAgain = Client(me, coque);
-
-    std::cout << meAgain.getOwner().getName() << "\n";
-    std::cout << meAgain.getPet().getBreed() << "\n";
-
 
     return app->run(notebookMain);
 }
