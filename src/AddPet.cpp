@@ -1,20 +1,22 @@
-#include <iostream>
+#include <string>
 #include "../include/AddPet.hpp"
+#include "../include/Pet.hpp"
+#include "../include/Owner.hpp"
 
-const char* WINDOW_TITLE = "Agregar Mascota";
-const char* LABEL_PET = "Agregar una Mascota";
-const char* LABEL_PET_SPECIE = "Especie :";
-const char* LABEL_PET_BREED = "Raza :";
-const char* LABEL_PET_NAME = "Nombre :";
-const char* LABEL_PET_BIRTHDAY = "Fecha de Nacimiento :";
-const char* LABEL_OWNER_NAME = "Nombre (Dueño) :";
-const char* LABEL_OWNER_LAST_NAME = "Apellido :";
-const char* LABEL_OWNER_GENDER = "Genero :";
-const char* LABEL_OWNER_EMAIL = "Correo :";
-const char* LABEL_OWNER_ADDRESS = "Direccion :";
-const char* LABEL_OWNER_PHONE_NUMBER = "Telefono :";
-const char* BUTTON_ADD_PET = "Agregar";
-const char* CLEAN_ENTRY = "";
+const std::string WINDOW_TITLE = "Agregar Mascota";
+const std::string LABEL_PET = "Agregar una Mascota";
+const std::string LABEL_PET_SPECIE = "Especie :";
+const std::string LABEL_PET_BREED = "Raza :";
+const std::string LABEL_PET_NAME = "Nombre :";
+const std::string LABEL_PET_BIRTHDAY = "Fecha de Nacimiento :";
+const std::string LABEL_OWNER_NAME = "Nombre (Dueño) :";
+const std::string LABEL_OWNER_LAST_NAME = "Apellido :";
+const std::string LABEL_OWNER_GENDER = "Genero :";
+const std::string LABEL_OWNER_EMAIL = "Correo :";
+const std::string LABEL_OWNER_ADDRESS = "Direccion :";
+const std::string LABEL_OWNER_PHONE_NUMBER = "Telefono :";
+const std::string BUTTON_ADD_PET = "Agregar";
+const std::string CLEAN_ENTRY = "";
 const bool WINDOW_RESIZABLE = false;
 const bool GRID_ROW_HOMOGENEOUS = true;
 // Avoid magic numbers
@@ -91,12 +93,28 @@ void AddPet::on_button_add_pet(){
        (entryOwnerEmail.get_text() == ::CLEAN_ENTRY) ||
        (entryOwnerAddress.get_text() == ::CLEAN_ENTRY) ||
        (entryOwnerPhoneNumber.get_text() == ::CLEAN_ENTRY)){
-        std::cout << "Enter all data\n";
+        printf("Enter all data\n");
         return;
     }
 
-    // Save data
-    std::cout << "Passed!\n";
+    // TODO Save data
+    printf("Passed!\n");
+    // Create objects
+    Owner* myOwner = new Owner(std::string(entryOwnerName.get_text()),
+                               std::string(entryOwnerLastName.get_text()),
+                               std::string(entryOwnerGender.get_text()),
+                               std::string(entryOwnerEmail.get_text()),
+                               std::string(entryOwnerAddress.get_text()),
+                               std::string(entryOwnerPhoneNumber.get_text()));
+
+    Pet* myPet = new Pet(std::string(entryPetSpecie.get_text()),
+                         std::string(entryPetBreed.get_text()),
+                         std::string(entryPetName.get_text()),
+                         std::string(entryPetBirthday.get_text()),
+                         myOwner);
+    // TODO object serialization
+    delete myPet;
+    delete myOwner;
 
     // Clean entries
     entryPetSpecie.set_text(::CLEAN_ENTRY);
