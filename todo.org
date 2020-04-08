@@ -21,8 +21,9 @@
 *** STRT [#B] Set up server
 *** TODO [#A] Store information into the server
 *** TODO [#A] Receive information from the server
-** TODO [#A] Object serialization
+*** TODO [#A] Object serialization
 * STRT [#A] Software Design
+** TODO [#A] Objects serealization
 ** STRT [#A] Classes
 *** DONE Person class
 *** DONE Owner class
