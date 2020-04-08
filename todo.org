@@ -27,7 +27,8 @@
 *** DONE Person class
 *** DONE Owner class
 *** DONE Animal class
-*** DONE Pet class
+*** STRT Pet class
+**** TODO Pet need a gender attribute
 *** KILL Client class
 *** DONE Date class
 *** STRT [#A] Pacient class
