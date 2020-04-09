@@ -13,5 +13,8 @@
 # Ignore object files
 *.o
 
+# Ignore serialized objects
+*.dat
+
 # Inore txt files
 *.txt
