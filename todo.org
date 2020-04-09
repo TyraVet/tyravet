@@ -7,12 +7,12 @@
 ***** WAIT [#C] Calendar(Gtk)
 ****** WAIT [#C] Get Calendar Attributes (date)
 ***** TODO [#B] Dynamic widget list
-***** STRT [#A] Button(Gtk)
-****** STRT [#A] Button events
-******* TODO [#A] Launch new Window
+***** DONE [#A] Button(Gtk)
+****** DONE [#A] Button events
+******* DONE [#A] Launch new Window
 **** TODO [#B] Hospital Tab
 **** TODO [#B] Inventory Tab
-** TODO [#A] Add Pet(Client) Window
+** DONE [#A] Add Pet(Client) Window
 * STRT [#A] Functionatily
 ** TODO [#A] Create new Pet(Client)
 ** TODO [#A] Store Pet(Client) Object
