@@ -1,4 +1,7 @@
 #include <string>
+#include <fstream>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 #include "../include/AddPet.hpp"
 #include "../include/Pet.hpp"
 #include "../include/Owner.hpp"
@@ -113,6 +116,14 @@ void AddPet::on_button_add_pet(){
                          std::string(entryPetBirthday.get_text()),
                          myOwner);
     // TODO object serialization
+    std::string pet;
+    std::string fileExtention = ".dat";
+    pet = myPet->getName() + myOwner->getName() + fileExtention;
+
+    std::ofstream ofs(pet, std::ios::binary);
+    boost::archive::binary_oarchive oa(ofs);
+    oa << myPet;
+
     delete myPet;
     delete myOwner;
 
