@@ -3,10 +3,8 @@ Veterinary management.
 Manage your clients and its pets in an easy way.
 
 ## Dependencies
-```bash
 [gtkmm 3.0](https://www.gtk.org/docs/language-bindings/cpp/)
 [boost 1.72.0](https://www.boost.org/)
-```
 
 ## Installation
 ```bash
