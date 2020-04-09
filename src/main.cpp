@@ -2,7 +2,7 @@
 
 /* TYRA by Andres Ruiz */
 
-#include <gtkmm/application.h>
+#include <gtkmm-3.0/gtkmm.h>
 #include "../include/NotebookMain.hpp"
 
 int main(int argc, char *argv[]){
