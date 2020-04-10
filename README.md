@@ -2,14 +2,23 @@
 Veterinary management.
 Manage your clients and its pets in an easy way.
 
+## Requeriments
+#### [PostgreSQL 12.2](https://www.postgresql.org/download/)
+
 ## Dependencies
 #### [gtkmm 3.0](https://www.gtk.org/docs/language-bindings/cpp/)
 #### [boost 1.72.0](https://www.boost.org/)
 
 ## Installation
+### Program
 ```bash
 cd tyra/
 make
+```
+### Setup Database
+``` bash
+chmod +x db/set-up-new-db.sh
+./set-up-new-db.sh
 ```
 
 ## Usage
