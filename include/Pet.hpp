@@ -1,7 +1,7 @@
 #pragma once
 
 /*! Pet class */
-#include <boost/serialization/access.hpp>
+#include <boost/serialization/base_object.hpp>
 #include "Animal.hpp"
 #include "Owner.hpp"
 
@@ -29,6 +29,8 @@ class Pet: public Animal{
 		friend class boost::serialization::access;
 		template<class Archive>
 		void serialize(Archive &ar, const unsigned int version){
+			// Serialize base class
+			ar << boost::serialization::base_object<Animal>(*this);
 			ar << name;
 			ar << birthday;
 			ar << myOwner;

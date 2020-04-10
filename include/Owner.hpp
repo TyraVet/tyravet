@@ -1,13 +1,13 @@
 #pragma once
 
 /*! Owner class */
-#include <boost/serialization/access.hpp>
+#include <boost/serialization/base_object.hpp>
 #include "Person.hpp"
 
 class Owner: public Person{
 	public:
 		Owner(std::string, std::string, std::string, // Person
-		      std::string, std::string, std::string); // Owner
+			  std::string, std::string, std::string); // Owner
 		Owner(); // Default
 		~Owner();
 		void setEmail(std::string);
@@ -25,6 +25,8 @@ class Owner: public Person{
 		friend class boost::serialization::access;
 		template<class Archive>
 		void serialize(Archive &ar, const unsigned int version){
+			// Serialize base class
+			ar << boost::serialization::base_object<Person>(*this);
 			ar << email;
 			ar << address;
 			ar << phoneNumber;
