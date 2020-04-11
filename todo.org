@@ -13,6 +13,7 @@
 **** TODO [#B] Hospital Tab
 **** TODO [#B] Inventory Tab
 ** DONE [#A] Add Pet(Client) Window
+*** DONE [#A] MessageDialog if something is wrong with the data
 * STRT [#A] Functionatily
 ** TODO [#A] Create new Pet(Client)
 ** TODO [#A] Store Pet(Client) Object
@@ -21,9 +22,8 @@
 *** STRT [#B] Set up server
 *** TODO [#A] Store information into the server
 *** TODO [#A] Receive information from the server
-*** TODO [#A] Object serialization
 * STRT [#A] Software Design
-** TODO [#A] Objects serealization
+** DONE [#A] Objects serealization
 ** STRT [#A] Classes
 *** DONE Person class
 *** DONE Owner class

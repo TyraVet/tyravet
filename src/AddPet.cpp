@@ -2,6 +2,7 @@
 #include <fstream>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
+#include <gtkmm/messagedialog.h>
 #include "../include/AddPet.hpp"
 #include "../include/Pet.hpp"
 #include "../include/Owner.hpp"
@@ -20,8 +21,11 @@ const std::string LABEL_OWNER_ADDRESS = "Direccion :";
 const std::string LABEL_OWNER_PHONE_NUMBER = "Telefono :";
 const std::string BUTTON_ADD_PET = "Agregar";
 const std::string CLEAN_ENTRY = "";
+const std::string MESSAGE_DIALOG_WARNING = "WARNING";
+const std::string MESSAGE_DIALOG_WARNING_2 = "Ingresa todo los datos";
 const bool WINDOW_RESIZABLE = false;
 const bool GRID_ROW_HOMOGENEOUS = true;
+const bool MESSAGE_DIALOG_MARKUP = false;
 // Avoid magic numbers
 const int PHONE_MAX_LENGTH = 10;
 const int WINDOW_WIDTH = 300;
@@ -96,7 +100,16 @@ void AddPet::on_button_add_pet(){
        (entryOwnerEmail.get_text() == ::CLEAN_ENTRY) ||
        (entryOwnerAddress.get_text() == ::CLEAN_ENTRY) ||
        (entryOwnerPhoneNumber.get_text() == ::CLEAN_ENTRY)){
-        printf("Enter all data\n");
+        // Create Message Dialog
+        Gtk::MessageDialog dialog(*this,
+                                  ::MESSAGE_DIALOG_WARNING,
+                                  ::MESSAGE_DIALOG_MARKUP,
+                                  Gtk::MESSAGE_WARNING,
+                                  Gtk::BUTTONS_OK);
+        dialog.set_secondary_text(::MESSAGE_DIALOG_WARNING_2);
+        // Open Message Dialog
+        dialog.run();
+        // Exit function
         return;
     }
 
