@@ -15,21 +15,24 @@
 ** DONE [#A] Add Pet(Client) Window
 *** DONE [#A] MessageDialog if something is wrong with the data
 * STRT [#A] Functionatily
-** TODO [#A] Create new Pet(Client)
-** TODO [#A] Store Pet(Client) Object
+** DONE [#A] Create new Pet(Client)
+** DONE [#A] Serialize Pet(Client) Object
+** TODO [#A] Store Serialize data into DataBase
+** TODO [#C] Generate PDF
 * STRT [#B] Data Base
 ** STRT [#B] PostgreSQL
-*** STRT [#B] Set up server
-*** TODO [#A] Store information into the server
-*** TODO [#A] Receive information from the server
+*** DONE [#B] Set up server
+*** TODO [#A] Create DataBase
+*** TODO [#B] Store information into the server
+*** TODO [#B] Receive information from the server
 * STRT [#A] Software Design
 ** DONE [#A] Objects serealization
 ** STRT [#A] Classes
 *** DONE Person class
 *** DONE Owner class
 *** DONE Animal class
-*** STRT Pet class
-**** TODO Pet need a gender attribute
+*** STRT [#A] Pet class
+**** TODO [#A] Pet need a gender attribute
 *** KILL Client class
 *** DONE Date class
 *** STRT [#A] Pacient class
