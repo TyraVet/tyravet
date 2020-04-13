@@ -1,6 +1,6 @@
 CPP= g++
 STANDAR= -std=c++17
-LIBRARY= -I /usr/locali/boost_1_72_0
+LIBRARY= -I /usr/local/boost_1_72_0
 SERIALIZATION= /usr/local/lib/libboost_serialization.a
 CFLAGS = `pkg-config --cflags --libs gtkmm-3.0`
 
