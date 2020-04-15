@@ -1,10 +1,8 @@
 #include <iostream>
 #include <pqxx/pqxx>
 
-int main()
-{
-    try
-    {
+int main(){
+    try{
         pqxx::connection C;
         std::cout << "Connected to " << C.dbname() << std::endl;
         pqxx::work W{C};
@@ -21,11 +19,10 @@ int main()
         std::cout << "Making changes definite: ";
         W.commit();
         std::cout << "OK.\n";
-    }
-    catch (std::exception const &e)
-    {
+    }catch(std::exception const &e){
         std::cerr << e.what() << '\n';
         return 1;
     }
+
     return 0;
 }
