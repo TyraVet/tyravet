@@ -19,6 +19,9 @@
 ** DONE [#A] Serialize Pet(Client) Object
 ** TODO [#A] Store Serialize data into DataBase
 ** TODO [#C] Generate PDF
+** TODO [#A] Terminal Functionality
+*** DONE [#A] Terminal options
+*** TODO [#A] Terminal AddPet
 * STRT [#B] Data Base
 ** STRT [#B] PostgreSQL
 *** DONE [#B] Set up server
