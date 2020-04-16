@@ -1,8 +1,10 @@
+#include <iostream>
 #include <string>
-#include <fstream>
+#include <fstream> // Manipulating files
+#include <gtkmm/messagedialog.h> // UI
 #include <boost/archive/binary_oarchive.hpp>
-#include <boost/archive/binary_iarchive.hpp>
-#include <gtkmm/messagedialog.h>
+#include <boost/archive/binary_iarchive.hpp> // Serialization
+#include <pqxx/pqxx> // PostgreSQL C++ Library
 #include "../include/AddPet.hpp"
 #include "../include/Pet.hpp"
 #include "../include/Owner.hpp"
@@ -109,7 +111,6 @@ void AddPet::on_button_add_pet(){
         dialog.set_secondary_text(::MESSAGE_DIALOG_WARNING_2);
         // Open Message Dialog
         dialog.run();
-        // Exit function
         return;
     }
 
@@ -136,6 +137,27 @@ void AddPet::on_button_add_pet(){
     std::ofstream ofs(pet, std::ios::binary);
     boost::archive::binary_oarchive oa(ofs);
     oa << myPet;
+
+    // Save to DB
+    // try{
+    //     pqxx::connection connection("postgresql://admin:1234@localhost/vet");
+    //     std::cout << "Connected to " << connection.dbname() << std::endl;
+    //     connection.prepare( "test", "INSERT INTO pet( id, binfile ) VALUES ($1, $2)" );
+    //     pqxx::work work(connection);
+
+    //     int id = 1;
+    //     void * bin_data = oa;
+    //     size_t bin_size = sizeof(bin_data);
+
+    //     pqxx::binarystring blob( bin_data, bin_size );
+    //     pqxx::result r = work.exec_prepared( "test" )( id )( blob ).exec();
+
+    //     std::cout << "Making changes definite..." << std::endl;
+    //     work.commit();
+    //     std::cout << "OK!" << std::endl;
+    // }catch(std::exception const& e){
+    //     std::cerr << e.what() << std::endl;
+    // }
 
     delete myPet;
     delete myOwner;

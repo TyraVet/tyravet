@@ -1,17 +1,18 @@
 CPP= g++
 STANDAR= -std=c++17
-LIBRARY= -I /usr/local/boost_1_72_0
-SERIALIZATION= /usr/local/lib/libboost_serialization.a
+LBOOST= -I/usr/local/boost_1_72_0
+LPQXX= -lpqxx -lpq
+LSERIALIZATION= /usr/local/lib/libboost_serialization.a
 CFLAGS = `pkg-config --cflags --libs gtkmm-3.0`
 
 tyra: src/main.cpp NotebookMain.o AddPet.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) $(STANDAR) src/main.cpp NotebookMain.o AddPet.o Owner.o Person.o Pet.o Animal.o $(LIBRARY) $(CFLAGS) -o tyra $(SERIALIZATION)
+	$(CPP) $(STANDAR) src/main.cpp NotebookMain.o AddPet.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) -o tyra $(LSERIALIZATION)
 
 NotebookMain.o: src/NotebookMain.cpp
 	$(CPP) $(STANDAR) -c src/NotebookMain.cpp $(CFLAGS)
 
 AddPet.o: src/AddPet.cpp
-	$(CPP) $(STANDAR) -c src/AddPet.cpp $(CFLAGS)
+	$(CPP) $(STANDAR) -c src/AddPet.cpp $(CFLAGS) $(LPQXX)
 
 Owner.o: src/Owner.cpp
 	$(CPP) $(STANDAR) -c src/Owner.cpp
