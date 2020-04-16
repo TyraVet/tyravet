@@ -1,12 +1,18 @@
 CPP= g++
 STANDAR= -std=c++17
+DEBUG= -g
 LBOOST= -I/usr/local/boost_1_72_0
 LPQXX= -lpqxx -lpq
 LSERIALIZATION= /usr/local/lib/libboost_serialization.a
 CFLAGS = `pkg-config --cflags --libs gtkmm-3.0`
 
+# Release
 tyra: src/main.cpp NotebookMain.o AddPet.o Owner.o Person.o Pet.o Animal.o
 	$(CPP) $(STANDAR) src/main.cpp NotebookMain.o AddPet.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) -o tyra $(LSERIALIZATION)
+
+# Debug
+tyra-debug: src/main.cpp NotebookMain.o AddPet.o Owner.o Person.o Pet.o Animal.o
+	$(CPP) $(STANDAR) $(DEBUG) src/main.cpp NotebookMain.o AddPet.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) -o tyra-debug $(LSERIALIZATION)
 
 NotebookMain.o: src/NotebookMain.cpp
 	$(CPP) $(STANDAR) -c src/NotebookMain.cpp $(CFLAGS)
