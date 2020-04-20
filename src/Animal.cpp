@@ -8,9 +8,10 @@
 
 //! Class constructor.
 /*! To initialize every attribute of the class. */
-Animal::Animal(std::string animalSpecie, std::string animalBreed){
+Animal::Animal(std::string animalSpecie, std::string animalBreed, std::string animalGender){
 	setSpecie(animalSpecie);
 	setBreed(animalBreed);
+	setGender(animalGender);
 }
 
 Animal::Animal(){}
@@ -37,3 +38,14 @@ void Animal::setBreed(std::string animalBreed){ breed = animalBreed; }
 /*!
  * \return Object's string attribute. */
 std::string Animal::getBreed(){ return breed; }
+
+//! Setter member taking one argument and returning void.
+/*!
+ * \param animalGender a string argument.
+ * \return void. */
+void Animal::setGender(std::string animalGender){ gender = animalGender; }
+
+//! Getter member taking no arguments and returning a string value.
+/*!
+ * \return Object's string attribute. */
+std::string Animal::getGender(){ return gender; }
