@@ -9,9 +9,9 @@
 //! Class constructor
 /*!
  * To initialize every attribute of the class. */
-Pet::Pet(std::string petSpecie, std::string petBreed,
+Pet::Pet(std::string petSpecie, std::string petBreed, std::string petGender,
 		 std::string petName, std::string petBirthday, Owner* petOwner)
-	: Animal(petSpecie, petBreed){
+	: Animal(petSpecie, petBreed, petGender){
 	setName(petName);
 	setBirthday(petBirthday);
 	setOwner(petOwner);

@@ -7,8 +7,8 @@
 
 class Pet: public Animal{
 	public:
-		Pet(std::string, std::string, // Animal
-			std::string, std::string, Owner*); // Pet
+		Pet(std::string specie, std::string breed, std::string gender, /* Animal */
+			std::string name, std::string birthday, Owner* owner); /* Pet */
 		Pet(); // Default
 		~Pet();
 		void setName(std::string); // Setters and getters
