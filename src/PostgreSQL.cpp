@@ -9,6 +9,7 @@ PostgreSQL::~PostgreSQL(){}
 pqxx::connection PostgreSQL::connect(const std::string& server, const std::string& user,
 						const std::string& password, const std::string& database){
 	std::string urlConnection = "postgresql://" + user + ":" + password + "@" + server + "/" + database;
+	pqxx::connection connection;
 	try{
 		pqxx::connection connection(urlConnection);
 	}catch(std::exception const& e){
