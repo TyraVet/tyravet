@@ -13,9 +13,9 @@
 /*!
  To initialize every attribute of the class except the pets array.
 */
-Owner::Owner(std::string ownerName, std::string ownerLastName, std::string ownerGender,
-			 std::string ownerEmail, std::string ownerAddress, std::string ownerPhoneNumber)
-	: Person(ownerName, ownerLastName, ownerGender){
+Owner::Owner(std::string ownerName, /* Person */
+			std::string ownerEmail, std::string ownerAddress, std::string ownerPhoneNumber)
+	: Person(ownerName){
 	setEmail(ownerEmail);
 	setAddress(ownerAddress);
 	setPhoneNumber(ownerPhoneNumber);

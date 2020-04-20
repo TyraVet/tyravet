@@ -6,9 +6,9 @@
 
 class Owner: public Person{
 	public:
-		Owner(std::string, std::string, std::string, // Person
-			  std::string, std::string, std::string); // Owner
-		Owner(); // Default
+		Owner(std::string name, /*Person*/
+			std::string email, std::string address, std::string phone); /* Owner */
+		Owner(); /* Default */
 		~Owner();
 		void setEmail(std::string);
 		std::string getEmail();
