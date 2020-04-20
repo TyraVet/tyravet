@@ -21,7 +21,7 @@ Person::Person(std::string personName){
 	setLastName(nameBlitted[1]);
 }
 
-Person::Person(){} // Default
+Person::Person(){} /* Default */
 Person::~Person(){}
 
 //! Setter member taking one argument and returning void.
@@ -55,7 +55,7 @@ std::string Person::getFullName(){ return name + lastName; }
 /*!
  * \param personName a string argument.
  * \return vector<string> containing the splitted name. */
-std::vector<std::string> blitName(std::string personName){
+std::vector<std::string> Person::blitName(std::string personName){
 	std::istringstream iss(personName);
 	copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::ostream_iterator<std::string>(std::cout, "\n"));
 	std::vector<std::string> nameBlitted{std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>{}};

@@ -6,6 +6,10 @@
 #include <string>
 #include <gtkmm-3.0/gtkmm.h>
 #include "../include/NotebookMain.hpp" /* GUI */
+#include "../include/Owner.hpp"
+#include "../include/Pet.hpp"
+#include "../include/DataBase.hpp"
+#include "../include/PostgreSQL.hpp"
 
 const char a = 'a';
 const char c = 'c';
@@ -17,6 +21,7 @@ const std::string WEB_PAGE = "https://github.com/Andrsrz";
 void printWelcomeMessage();
 void printOptions();
 void printAbout();
+Pet* createPet();
 
 int main(int argc, char* argv[]){
 	/* GUI */
@@ -42,6 +47,12 @@ int main(int argc, char* argv[]){
 		std::cin >> option;
 		switch(option){
 			case ::a:
+				Pet* pet;
+				pet = createPet();
+				std::cout << "\tSaving to Data base ...\n";
+				/* TODO save to DB */
+				std::cout << "\tDone!\n";
+				delete pet;
 				break;
 			case ::c:
 				break;
@@ -75,4 +86,32 @@ void printAbout(){
 	std::cout << "\tTyra. Veterinary Management.\n";
 	std::cout << "\tBy Andres Ruiz\n";
 	std::cout << "\t" << ::WEB_PAGE << "\n";
+}
+
+Pet* createPet(){
+	std::string ownerName = "", ownerEmail = "", ownerAddress = "", ownerPhoneNumber = "";
+	std::string petSpecie = "", petBreed = "", petGender = "", petName = "", petBirthday = "";
+	std::cout << "\t --- Dueño ---\n";
+	std::cout << "\t Nombre: ";
+	std::cin >> ownerName;
+	std::cout << "\t Correo electronico: ";
+	std::cin >> ownerEmail;
+	std::cout << "\t Direccion: ";
+	std::cin >> ownerAddress;
+	std::cout << "\t Numero celular: ";
+	std::cin >> ownerPhoneNumber;
+	Owner* myNewOwner = new Owner(ownerName, ownerEmail, ownerAddress, ownerPhoneNumber);
+	std::cout << "\t --- Mascota ---\n";
+	std::cout << "\t Nombre: ";
+	std::cin >> petName;
+	std::cout << "\t Especie: ";
+	std::cin >> petSpecie;
+	std::cout << "\t Raza: ";
+	std::cin >> petBreed;
+	std::cout << "\t Genero: ";
+	std::cin >> petGender;
+	std::cout << "\t Cumpleaños: ";
+	std::cin >> petBirthday;
+	Pet* myNewPet = new Pet(petSpecie, petBreed, petGender, petName, petBirthday, myNewOwner);
+	return myNewPet;
 }

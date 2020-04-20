@@ -116,27 +116,26 @@ void AddPet::on_button_add_pet(){
 
 	// TODO Save data
 	printf("Passed!\n");
-	// Create objects
-	Owner* myOwner = new Owner(std::string(entryOwnerName.get_text()),
-								std::string(entryOwnerLastName.get_text()),
-								std::string(entryOwnerGender.get_text()),
-								std::string(entryOwnerEmail.get_text()),
-								std::string(entryOwnerAddress.get_text()),
-								std::string(entryOwnerPhoneNumber.get_text()));
+	// Create object// s
+	// Owner* myOwner = new Owner(std::string(entryOwnerName.get_text()),
+	// 							std::string(entryOwnerGender.get_text()),
+	// 							std::string(entryOwnerEmail.get_text()),
+	// 							std::string(entryOwnerAddress.get_text()),
+	// 							std::string(entryOwnerPhoneNumber.get_text()));
 
-	Pet* myPet = new Pet(std::string(entryPetSpecie.get_text()),
-							std::string(entryPetBreed.get_text()),
-							std::string(entryPetName.get_text()),
-							std::string(entryPetBirthday.get_text()),
-							myOwner);
+	// Pet* myPet = new Pet(std::string(entryPetSpecie.get_text()),
+	// 						std::string(entryPetBreed.get_text()),
+	// 						std::string(entryPetName.get_text()),
+	// 						std::string(entryPetBirthday.get_text()),
+	// 						myOwner);
 	// TODO object serialization
-	std::string pet;
-	std::string fileExtention = ".dat";
-	pet = myPet->getName() + myOwner->getName() + fileExtention;
+	// std::string pet;
+	// std::string fileExtention = ".dat";
+	// pet = myPet->getName() + myOwner->getName() + fileExtention;
 
-	std::ofstream ofs(pet, std::ios::binary);
-	boost::archive::binary_oarchive oa(ofs);
-	oa << myPet;
+	// std::ofstream ofs(pet, std::ios::binary);
+	// boost::archive::binary_oarchive oa(ofs);
+	// oa << myPet;
 
 	// Save to DB
 	// try{
@@ -159,8 +158,8 @@ void AddPet::on_button_add_pet(){
 	//     std::cerr << e.what() << std::endl;
 	// }
 
-	delete myPet;
-	delete myOwner;
+	// delete myPet;
+	// delete myOwner;
 
 	// Clean entries
 	entryPetSpecie.set_text(::CLEAN_ENTRY);
