@@ -1,18 +1,27 @@
 CPP= g++
 STANDAR= -std=c++17
 DEBUG= -g
+WARN= -Wall
 LBOOST= -I/usr/local/boost_1_72_0
 LPQXX= -lpqxx -lpq
 LSERIALIZATION= /usr/local/lib/libboost_serialization.a
 CFLAGS = `pkg-config --cflags --libs gtkmm-3.0`
+EXEC_RELEASE= tyra
+EXEC_DEBUG= tyra-debug
+
+# Multiple executables
+.TYRA: all release debug
+all: release debug
+release: $(EXEC_RELEASE)
+debug: $(EXEC_DEBUG)
 
 # Release
-tyra: src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) $(STANDAR) src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) -o tyra $(LSERIALIZATION)
+$(EXEC_RELEASE): src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o
+	$(CPP) $(STANDAR) $(WARN) src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) -o $(EXEC_RELEASE) $(LSERIALIZATION)
 
 # Debug
-tyra-debug: src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) $(STANDAR) $(DEBUG) src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) -o tyra-debug $(LSERIALIZATION)
+$(EXEC_DEBUG): src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o
+	$(CPP) $(STANDAR) $(DEBUG) $(WARN) src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) -o $(EXEC_DEBUG) $(LSERIALIZATION)
 
 NotebookMain.o: src/NotebookMain.cpp
 	$(CPP) $(STANDAR) -c src/NotebookMain.cpp $(CFLAGS)
@@ -36,4 +45,4 @@ Animal.o: src/Animal.cpp
 	$(CPP) $(STANDAR) -c src/Animal.cpp
 
 clean:
-	rm *.o tyra
+	rm *.o tyra tyra-debug
