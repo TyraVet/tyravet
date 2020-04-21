@@ -4,12 +4,12 @@
 
 #include <iostream>
 #include <string>
-#include <gtkmm-3.0/gtkmm.h>
-#include "../include/NotebookMain.hpp" /* GUI */
+// #include <gtkmm-3.0/gtkmm.h>
+// #include "../include/NotebookMain.hpp" /* GUI */
 #include "../include/Owner.hpp"
 #include "../include/Pet.hpp"
-#include "../include/DataBase.hpp"
-#include "../include/PostgreSQL.hpp"
+// #include "../include/DataBase.hpp"
+// #include "../include/PostgreSQL.hpp"
 
 const char a = 'a';
 const char c = 'c';
@@ -21,7 +21,7 @@ const std::string WEB_PAGE = "https://github.com/Andrsrz";
 void printWelcomeMessage();
 void printOptions();
 void printAbout();
-Pet* createPet();
+void createPet(Pet *);
 
 int main(int argc, char* argv[]){
 	/* GUI */
@@ -32,28 +32,30 @@ int main(int argc, char* argv[]){
 		*/
 		std::string arg1(argv[1]);
 		if(arg1 == "-gui"){
-			auto app = Gtk::Application::create("dev.tyra");
-			NotebookMain notebookMain;
-			return app->run(notebookMain);
+			// auto app = Gtk::Application::create("dev.tyra");
+			// NotebookMain notebookMain;
+			// return app->run(notebookMain);
 		}
 	}
 
 	/* MENU */
-	char option;
+	char option = 'a';
 	bool quit = false;
-	printWelcomeMessage();
+	// printWelcomeMessage();
 	while(!quit){
-		printOptions();
-		std::cin >> option;
+		// printOptions();
+		// std::cin >> option;
 		switch(option){
-			case ::a:
-				Pet* pet;
-				pet = createPet();
+			case ::a:{
+				Pet pet;
+				createPet(&pet);
+				std::cout << pet.getName();
+				std::cout << pet.getOwner().getName();
 				std::cout << "\tSaving to Data base ...\n";
 				/* TODO save to DB */
 				std::cout << "\tDone!\n";
-				delete pet;
 				break;
+			}
 			case ::c:
 				break;
 			case ::q:
@@ -88,30 +90,38 @@ void printAbout(){
 	std::cout << "\t" << ::WEB_PAGE << "\n";
 }
 
-Pet* createPet(){
-	std::string ownerName = "", ownerEmail = "", ownerAddress = "", ownerPhoneNumber = "";
-	std::string petSpecie = "", petBreed = "", petGender = "", petName = "", petBirthday = "";
+void createPet(Pet *myPet){
+	std::string input = "";
+	Owner owner;
 	std::cout << "\t --- Dueño ---\n";
 	std::cout << "\t Nombre: ";
-	std::cin >> ownerName;
+	std::cin.ignore();
+	std::getline(std::cin, input);
+	owner.setName(input);
 	std::cout << "\t Correo electronico: ";
-	std::cin >> ownerEmail;
+	std::cin >> input;
+	owner.setEmail(input);
 	std::cout << "\t Direccion: ";
-	std::cin >> ownerAddress;
+	std::cin >> input;
+	owner.setAddress(input);
 	std::cout << "\t Numero celular: ";
-	std::cin >> ownerPhoneNumber;
-	Owner* myNewOwner = new Owner(ownerName, ownerEmail, ownerAddress, ownerPhoneNumber);
+	std::cin >> input;
+	owner.setPhoneNumber(input);
 	std::cout << "\t --- Mascota ---\n";
 	std::cout << "\t Nombre: ";
-	std::cin >> petName;
+	std::cin >> input;
+	myPet->setName(input);
 	std::cout << "\t Especie: ";
-	std::cin >> petSpecie;
+	std::cin >> input;
+	myPet->setSpecie(input);
 	std::cout << "\t Raza: ";
-	std::cin >> petBreed;
+	std::cin >> input;
+	myPet->setBreed(input);
 	std::cout << "\t Genero: ";
-	std::cin >> petGender;
+	std::cin >> input;
+	myPet->setGender(input);
 	std::cout << "\t Cumpleaños: ";
-	std::cin >> petBirthday;
-	Pet* myNewPet = new Pet(petSpecie, petBreed, petGender, petName, petBirthday, myNewOwner);
-	return myNewPet;
+	std::cin >> input;
+	myPet->setBirthday(input);
+	myPet->setOwner(owner);
 }
