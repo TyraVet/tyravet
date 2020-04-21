@@ -31,11 +31,13 @@
 * STRT [#A] Software Design
 ** DONE [#A] Objects serealization
 ** STRT [#A] Classes
+*** TODO [#A] DataBase class
+**** TODO [#A] Check why is not creating the object
 *** DONE Person class
 *** DONE Owner class
 *** DONE Animal class
-*** STRT [#A] Pet class
-**** TODO [#A] Pet need a gender attribute
+*** DONE [#A] Pet class
+**** DONE [#A] Pet need a gender attribute
 *** KILL Client class
 *** DONE Date class
 *** STRT [#A] Pacient class
