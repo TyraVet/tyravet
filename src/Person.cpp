@@ -7,8 +7,6 @@
 
 #include <iostream>
 #include <sstream>
-#include <algorithm>
-#include <iterator>
 #include <string>
 #include <vector>
 #include "../include/Person.hpp"
@@ -53,7 +51,15 @@ std::string Person::getFullName(){ return name + lastName; }
  * \return vector<string> containing the splitted name. */
 std::vector<std::string> Person::blitName(std::string personName){
 	std::istringstream iss(personName);
-	copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::ostream_iterator<std::string>(std::cout, "\n"));
-	std::vector<std::string> nameBlitted{std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>{}};
-	return nameBlitted;
+	std::vector<std::string> vect;
+
+	do{
+		std::string substr;
+		iss >> substr;
+		if(substr == "") /* No empty string in vector */
+			break;
+		vect.push_back(substr);
+	}while(iss);
+
+	return vect;
 }
