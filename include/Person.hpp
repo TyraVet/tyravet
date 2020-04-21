@@ -12,7 +12,6 @@ class Person{
 		~Person();
 		void setName(std::string name);
 		std::string getName();
-		void setLastName(std::string lastName);
 		std::string getLastName();
 		std::string getFullName();
 		std::vector<std::string> blitName(std::string name);
