@@ -18,7 +18,7 @@ pqxx::connection PostgreSQL::connect(const std::string& server, const std::strin
 	return connection;
 }
 
-void PostgreSQL::execute(std::string& sql, pqxx::connection connection){
+void PostgreSQL::execute(std::string& sql, pqxx::connection& connection){
 	try{
 		connection.prepare("test", sql);
 		pqxx::work work(connection);
@@ -28,4 +28,4 @@ void PostgreSQL::execute(std::string& sql, pqxx::connection connection){
 	}
 }
 
-void PostgreSQL::close(pqxx::connection connection){ connection.close(); }
+void PostgreSQL::close(pqxx::connection& connection){ connection.close(); }
