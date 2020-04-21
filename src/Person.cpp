@@ -16,9 +16,7 @@
 //! Class constructor.
 /*! To initialize every attribute of the class. */
 Person::Person(std::string personName){
-	std::vector<std::string> nameBlitted = blitName(personName);
-	setName(nameBlitted[0]);
-	setLastName(nameBlitted[1]);
+	setName(personName);
 }
 
 Person::Person(){} /* Default */
@@ -28,18 +26,16 @@ Person::~Person(){}
 /*!
   * \param personName a string argument.
  * \return void. */
-void Person::setName(std::string personName){ name = personName; }
+void Person::setName(std::string personName){
+	std::vector<std::string> nameBlitted = blitName(personName);
+	name = nameBlitted[0];
+	lastName = nameBlitted[1];
+}
 
 //! Getter member taking no argument and returning a string value.
 /*!
  * \return Object's string attribute. */
 std::string Person::getName(){ return name; }
-
-//! Setter member taking one argument and returning void.
-/*!
- * \param personLastName a string argument.
- * \return void. */
-void Person::setLastName(std::string personLastName){ lastName = personLastName; }
 
 // Getter member taking no argument and returning a string value.
 /*!
