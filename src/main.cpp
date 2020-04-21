@@ -39,12 +39,12 @@ int main(int argc, char* argv[]){
 	}
 
 	/* MENU */
-	char option = 'a';
+	char option = 't';
 	bool quit = false;
-	// printWelcomeMessage();
+	printWelcomeMessage();
 	while(!quit){
-		// printOptions();
-		// std::cin >> option;
+		printOptions();
+		std::cin >> option;
 		switch(option){
 			case ::a:{
 				Pet pet;
@@ -97,6 +97,7 @@ void createPet(Pet *myPet){
 	std::cout << "\t Nombre: ";
 	std::cin.ignore();
 	std::getline(std::cin, input);
+	std::cout << input << std::endl;
 	owner.setName(input);
 	std::cout << "\t Correo electronico: ";
 	std::cin >> input;
