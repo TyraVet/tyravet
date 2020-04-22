@@ -4,24 +4,25 @@
 
 #include <iostream>
 #include <string>
-// #include <gtkmm-3.0/gtkmm.h>
-// #include "../include/NotebookMain.hpp" /* GUI */
+#include <gtkmm-3.0/gtkmm.h>
+#include <pqxx/pqxx>
+#include "../include/NotebookMain.hpp"
+#include "../include/Tyra.hpp"
 #include "../include/Owner.hpp"
 #include "../include/Pet.hpp"
-// #include "../include/DataBase.hpp"
-// #include "../include/PostgreSQL.hpp"
+
+const std::string USER = "admin";
+const std::string PASSWORD = "1234";
+const std::string SERVER = "localhost";
+const std::string DATABASE = "vet";
 
 const char a = 'a';
 const char c = 'c';
 const char q = 'q';
 const char t = 't';
-const std::string WEB_PAGE = "https://github.com/Andrsrz";
 
 /* Function declaration */
-void printWelcomeMessage();
-void printOptions();
-void printAbout();
-void createPet(Pet *);
+Pet* createPet(Pet *);
 
 int main(int argc, char* argv[]){
 	/* GUI */
@@ -41,32 +42,42 @@ int main(int argc, char* argv[]){
 	/* MENU */
 	char option = 't';
 	bool quit = false;
-	printWelcomeMessage();
+	Tyra tyra;
+	tyra.printWelcomeMessage();
 	while(!quit){
-		printOptions();
+		tyra.printOptions();
 		std::cin >> option;
 		switch(option){
 			case ::a:{
-				Pet pet;
-				createPet(&pet);
-				std::cout << pet.getName();
-				std::cout << pet.getOwner().getName();
-				std::cout << "\tSaving to Data base ...\n";
+				// Pet pet;
+				// createPet(&pet);
+				std::cout << "\tSaving to Data base ..." << std::endl;
 				/* TODO save to DB */
-				std::cout << "\tDone!\n";
+				std::string connectionUrl = "postgresql://" + ::USER + ":" + ::PASSWORD + "@" + ::SERVER + "/" + ::DATABASE;
+				std::string sql = "DROP TABLE pet";
+				try{
+					pqxx::connection conn(connectionUrl);
+					conn.prepare("test", sql);
+					pqxx::work work(conn);
+					work.commit();
+					conn.close();
+					std::cout << "\tDone!" << std::endl;
+				} catch(std::exception const& e){
+					std::cerr << e.what() << std::endl;
+				}
 				break;
 			}
 			case ::c:
 				break;
 			case ::q:
-				std::cout << "Exiting program...\n";
+				std::cout << "Exiting program..." << std::endl;
 				quit = true;
 				break;
 			case ::t:
-				printAbout();
+				tyra.printAbout();
 				break;
 			default:
-				std::cout << "Enter a valid option!\n\n";
+				std::cout << "Enter a valid option!" << std::endl << std::endl;
 				break;
 		}
 	}
@@ -75,29 +86,13 @@ int main(int argc, char* argv[]){
 }
 
 /* Function implementation */
-void printWelcomeMessage(){ std::cout << "\tWelcome to Tyra!\n"; }
-
-void printOptions(){
-	std::cout << "\ta - Add new Pet\n";
-	std::cout << "\tc - Check DataBase\n";
-	std::cout << "\tq - Exit the program\n";
-	std::cout << "\tt - About\n\n";
-}
-
-void printAbout(){
-	std::cout << "\tTyra. Veterinary Management.\n";
-	std::cout << "\tBy Andres Ruiz\n";
-	std::cout << "\t" << ::WEB_PAGE << "\n";
-}
-
-void createPet(Pet *myPet){
+Pet* createPet(Pet *myPet){
 	std::string input = "";
 	Owner owner;
-	std::cout << "\t --- Dueño ---\n";
+	std::cout << "\t --- Dueño ---" << std::endl;
 	std::cout << "\t Nombre: ";
 	std::cin.ignore();
 	std::getline(std::cin, input);
-	std::cout << input << std::endl;
 	owner.setName(input);
 	std::cout << "\t Correo electronico: ";
 	std::cin >> input;
@@ -108,7 +103,7 @@ void createPet(Pet *myPet){
 	std::cout << "\t Numero celular: ";
 	std::cin >> input;
 	owner.setPhoneNumber(input);
-	std::cout << "\t --- Mascota ---\n";
+	std::cout << "\t --- Mascota ---" << std::endl;
 	std::cout << "\t Nombre: ";
 	std::cin >> input;
 	myPet->setName(input);
@@ -125,4 +120,5 @@ void createPet(Pet *myPet){
 	std::cin >> input;
 	myPet->setBirthday(input);
 	myPet->setOwner(owner);
+	return myPet;
 }
