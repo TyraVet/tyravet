@@ -1,10 +1,12 @@
 CPP= g++
 STANDAR= -std=c++17
+OBJ= -c
 DEBUG= -g
 WARN= -Wall
+EXEC= -o
 LBOOST= -I/usr/local/boost_1_72_0
-LPQXX= -lpqxx -lpq
 LSERIALIZATION= /usr/local/lib/libboost_serialization.a
+LPQXX= -lpqxx -lpq
 CFLAGS = `pkg-config --cflags --libs gtkmm-3.0`
 EXEC_RELEASE= tyra
 EXEC_DEBUG= tyra-debug
@@ -16,33 +18,36 @@ release: $(EXEC_RELEASE)
 debug: $(EXEC_DEBUG)
 
 # Release
-$(EXEC_RELEASE): src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) $(STANDAR) $(WARN) src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) -o $(EXEC_RELEASE) $(LSERIALIZATION)
+$(EXEC_RELEASE): src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Tyra.o Owner.o Person.o Pet.o Animal.o
+	$(CPP) $(STANDAR) $(WARN) src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Tyra.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) $(EXEC) $(EXEC_RELEASE) $(LSERIALIZATION)
 
 # Debug
-$(EXEC_DEBUG): src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) $(STANDAR) $(DEBUG) $(WARN) src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) -o $(EXEC_DEBUG) $(LSERIALIZATION)
+$(EXEC_DEBUG): src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Tyra.o Owner.o Person.o Pet.o Animal.o
+	$(CPP) $(STANDAR) $(DEBUG) $(WARN) src/main.cpp NotebookMain.o AddPet.o PostgreSQL.o Tyra.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) $(EXEC) $(EXEC_DEBUG) $(LSERIALIZATION)
 
 NotebookMain.o: src/NotebookMain.cpp
-	$(CPP) $(STANDAR) -c src/NotebookMain.cpp $(CFLAGS)
+	$(CPP) $(STANDAR) $(OBJ) src/NotebookMain.cpp $(CFLAGS)
 
 AddPet.o: src/AddPet.cpp
-	$(CPP) $(STANDAR) -c src/AddPet.cpp $(CFLAGS) $(LPQXX)
+	$(CPP) $(STANDAR) $(OBJ) src/AddPet.cpp $(CFLAGS) $(LPQXX)
 
 PostgreSQL.o: src/PostgreSQL.cpp
-	$(CPP) $(STANDAR) -c src/PostgreSQL.cpp $(LPQXX)
+	$(CPP) $(STANDAR) $(OBJ) src/PostgreSQL.cpp $(LPQXX)
+
+Tyra.o: src/Tyra.cpp
+	$(CPP) $(STANDAR) $(OBJ) src/Tyra.cpp
 
 Owner.o: src/Owner.cpp
-	$(CPP) $(STANDAR) -c src/Owner.cpp
+	$(CPP) $(STANDAR) $(OBJ) src/Owner.cpp
 
 Person.o: src/Person.cpp
-	$(CPP) $(STANDAR) -c src/Person.cpp
+	$(CPP) $(STANDAR) $(OBJ) src/Person.cpp
 
 Pet.o: src/Pet.cpp
-	$(CPP) $(STANDAR) -c src/Pet.cpp
+	$(CPP) $(STANDAR) $(OBJ) src/Pet.cpp
 
 Animal.o: src/Animal.cpp
-	$(CPP) $(STANDAR) -c src/Animal.cpp
+	$(CPP) $(STANDAR) $(OBJ) src/Animal.cpp
 
 clean:
 	rm *.o tyra tyra-debug
