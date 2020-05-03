@@ -6,6 +6,7 @@
 **** STRT [#A] Datebook Tab
 ***** WAIT [#C] Calendar(Gtk)
 ****** WAIT [#C] Get Calendar Attributes (date)
+******* TODO [#A] Check if the method receive pointer as arguments
 ***** TODO [#B] Dynamic widget list
 ***** DONE [#A] Button(Gtk)
 ****** DONE [#A] Button events
