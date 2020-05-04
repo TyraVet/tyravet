@@ -10,9 +10,11 @@ const std::string LABEL_PET = "Mascota";
 const std::string LABEL_NOT_HERE = "Tu mascota no está aquí?";
 const std::string LABEL_SERVICE = "Servicio";
 const std::string LABEL_HOUR = "Hora";
+const std::string BUTTON_ADD_PET = "Nueva";
+const std::string BUTTON_CONFIRM = "Confirmar";
 /* Window options */
 const bool WINDOW_RESIZABLE = false;
-const bool GRID_ROW_HOMOGENEOUS = true;
+const bool GRID_ROW_HOMOGENEOUS = false;
 const bool MESSAGE_DIALOG_MARKUP = false;
 const std::string MESSAGE_DIALOG_WARNING = "WARNING";
 const std::string MESSAGE_DIALOG_WARNING_2 = "Ingresa todo los datos";
@@ -38,12 +40,14 @@ AddAppointment::AddAppointment() : labelPet(::LABEL_PET),
 	gridMain.attach(labelPet, 0, 0, 1, 1);
 	gridMain.attach(comboboxPet, 1, 0, 1, 1);
 	gridMain.attach(labelNotHere, 0, 1, 1, 1);
+	buttonAddPet.set_label(::BUTTON_ADD_PET);
 	gridMain.attach(buttonAddPet, 1, 1, 1, 1);
 	gridMain.attach(labelService, 0, 2, 1, 1);
 	gridMain.attach(comboboxService, 1, 2, 1, 1);
 	gridMain.attach(calendar, 0, 3, 2, 1);
 	gridMain.attach(labelHour, 0, 4, 1, 1);
 	gridMain.attach(comboboxHour, 1, 4, 1, 1);
+	buttonAddAppointment.set_label(::BUTTON_CONFIRM);
 	gridMain.attach(buttonAddAppointment, 0, 5, 2, 1);
 
 	/* Events */
@@ -58,14 +62,14 @@ AddAppointment::AddAppointment() : labelPet(::LABEL_PET),
 AddAppointment::~AddAppointment(){}
 
 void AddAppointment::on_button_add_pet(){
-	AddPet window;
-	window.show();
+	AddPet *window = new AddPet();
+	window->show();
 }
 
 void AddAppointment::on_button_add_appointment(){
 	/* The user may click the button whitout choosing
 	 * a pet, a service or an hour. This prevents to
-	 * save null data into the database. */
+	 * save empty data into the database. */
 	while((comboboxPet.get_entry_text() == ::CLEAN_ENTRY) ||
 			(comboboxService.get_entry_text() == ::CLEAN_ENTRY) ||
 			(comboboxHour.get_entry_text() == ::CLEAN_ENTRY)){

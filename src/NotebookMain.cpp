@@ -52,6 +52,6 @@ void NotebookMain::on_button_add_appointment(){
 	unsigned int year, month, day;
 	calendar.get_date(year, month, day);
 	std::cout << year << month << day;
-	AddAppointment* window = new AddAppointment();
+	AddAppointment *window = new AddAppointment();
 	window->show();
 }
