@@ -5,7 +5,11 @@
 *** STRT [#A] Set a Notebook(Gtk)
 **** STRT [#A] Datebook Tab
 ***** TODO [#A] Add new appointment Window
+****** DONE [#A] Add Pet(Client) Window
+******* TODO [#A] Change birthday date input to be a calendar
+******* DONE [#B] MessageDialog if something is wrong with the data
 ****** DONE [#A] Create Main Window
+****** TODO [#B] Fix position of widgets to fit the window
 ****** TODO [#A] Retreive information from database to fill options
 ***** DONE [#C] Calendar(Gtk)
 ****** DONE [#C] Get Calendar Attributes (date)
@@ -16,8 +20,6 @@
 ******* DONE [#A] Launch new Window
 **** TODO [#B] Hospital Tab
 **** TODO [#B] Inventory Tab
-** DONE [#A] Add Pet(Client) Window
-*** DONE [#A] MessageDialog if something is wrong with the data
 * STRT [#A] Functionatily
 ** DONE [#A] Create new Pet(Client)
 ** DONE [#A] Serialize Pet(Client) Object
@@ -41,8 +43,9 @@
 *** DONE Person class
 *** DONE Owner class
 *** DONE Animal class
-*** DONE [#A] Pet class
-**** DONE [#A] Pet need a gender attribute
+*** TODO [#A] Pet class
+***** DONE [#A] Pet need a gender attribute
+***** TODO [#A] Add Size of Pet attribute
 *** KILL Client class
 *** DONE Date class
 *** STRT [#A] Pacient class
