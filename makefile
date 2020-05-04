@@ -18,18 +18,21 @@ release: $(EXEC_RELEASE)
 debug: $(EXEC_DEBUG)
 
 # Release
-$(EXEC_RELEASE): src/main.cpp NotebookMain.o AddPet.o Tyra.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) $(STANDAR) $(WARN) src/main.cpp NotebookMain.o AddPet.o Tyra.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) $(EXEC) $(EXEC_RELEASE) $(LSERIALIZATION)
+$(EXEC_RELEASE): src/main.cpp NotebookMain.o AddPet.o AddAppointment.o Tyra.o Owner.o Person.o Pet.o Animal.o
+	$(CPP) $(STANDAR) $(WARN) src/main.cpp NotebookMain.o AddPet.o AddAppointment.o Tyra.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) $(EXEC) $(EXEC_RELEASE) $(LSERIALIZATION)
 
 # Debug
-$(EXEC_DEBUG): src/main.cpp NotebookMain.o AddPet.o Tyra.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) $(STANDAR) $(DEBUG) $(WARN) src/main.cpp NotebookMain.o AddPet.o Tyra.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) $(EXEC) $(EXEC_DEBUG) $(LSERIALIZATION)
+$(EXEC_DEBUG): src/main.cpp NotebookMain.o AddPet.o AddAppointment.o Tyra.o Owner.o Person.o Pet.o Animal.o
+	$(CPP) $(STANDAR) $(DEBUG) $(WARN) src/main.cpp NotebookMain.o AddPet.o AddAppointment.o Tyra.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) $(EXEC) $(EXEC_DEBUG) $(LSERIALIZATION)
 
 NotebookMain.o: src/NotebookMain.cpp
 	$(CPP) $(STANDAR) $(OBJ) src/NotebookMain.cpp $(CFLAGS)
 
 AddPet.o: src/AddPet.cpp
 	$(CPP) $(STANDAR) $(OBJ) src/AddPet.cpp $(CFLAGS) $(LPQXX)
+
+AddAppointment.o: src/AddAppointment.cpp
+	$(CPP) $(STANDAR) $(OBJ) src/AddAppointment.cpp $(CFLAGS)
 
 Tyra.o: src/Tyra.cpp
 	$(CPP) $(STANDAR) $(OBJ) src/Tyra.cpp
