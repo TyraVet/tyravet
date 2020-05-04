@@ -1,9 +1,5 @@
 #include <iostream>
-#include <string>
-#include <fstream> // Manipulating files
 #include <gtkmm/messagedialog.h> // UI
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/archive/binary_iarchive.hpp> // Serialization
 #include <pqxx/pqxx> // PostgreSQL C++ Library
 #include "../include/AddPet.hpp"
 #include "../include/Pet.hpp"
