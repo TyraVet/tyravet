@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "../include/NotebookMain.hpp"
+#include "../include/AddAppointment.hpp"
 #include "../include/AddPet.hpp"
 
 NotebookMain::NotebookMain() : labelHospital("Hello from inside Hospital!"),
@@ -50,6 +51,7 @@ void NotebookMain::on_notebook_switch_page(Gtk::Widget * /* page */, guint page_
 void NotebookMain::on_button_add_appointment(){
 	unsigned int year, month, day;
 	calendar.get_date(year, month, day);
-	// AddPet window;
-	// window.show();
+	std::cout << year << month << day;
+	AddAppointment* window = new AddAppointment();
+	window->show();
 }
