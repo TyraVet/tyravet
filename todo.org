@@ -5,6 +5,8 @@
 *** STRT [#A] Set a Notebook(Gtk)
 **** STRT [#A] Datebook Tab
 ***** TODO [#A] Add new appointment Window
+****** TODO [#A] Create Main Window
+****** TODO [#A] Retreive information from database to fill options
 ***** DONE [#C] Calendar(Gtk)
 ****** DONE [#C] Get Calendar Attributes (date)
 ******* DONE [#A] Check if the method receive pointer as arguments
@@ -28,6 +30,7 @@
 ** STRT [#B] PostgreSQL
 *** DONE [#B] Set up server
 *** TODO [#A] Create DataBase
+**** TODO [#A] Default
 *** TODO [#B] Store information into the server
 *** TODO [#B] Receive information from the server
 * STRT [#A] Software Design
