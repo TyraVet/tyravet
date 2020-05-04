@@ -5,7 +5,7 @@
 *** STRT [#A] Set a Notebook(Gtk)
 **** STRT [#A] Datebook Tab
 ***** TODO [#A] Add new appointment Window
-****** TODO [#A] Create Main Window
+****** DONE [#A] Create Main Window
 ****** TODO [#A] Retreive information from database to fill options
 ***** DONE [#C] Calendar(Gtk)
 ****** DONE [#C] Get Calendar Attributes (date)

@@ -37,13 +37,14 @@ AddAppointment::AddAppointment() : labelPet(::LABEL_PET),
 	/* attach(widget, column, row, width, height) */
 	gridMain.attach(labelPet, 0, 0, 1, 1);
 	gridMain.attach(comboboxPet, 1, 0, 1, 1);
-	gridMain.attach(labelNotHere, 1, 1, 1, 1);
-	gridMain.attach(buttonAddPet, 1, 2, 1, 1);
-	gridMain.attach(labelService, 0, 3, 1, 1);
-	gridMain.attach(comboboxService, 1, 3, 1, 1);
-	gridMain.attach(calendar, 0, 4, 2, 2);
-	gridMain.attach(labelHour, 0, 5, 1, 1);
-	gridMain.attach(comboboxHour, 1, 5, 1, 1);
+	gridMain.attach(labelNotHere, 0, 1, 1, 1);
+	gridMain.attach(buttonAddPet, 1, 1, 1, 1);
+	gridMain.attach(labelService, 0, 2, 1, 1);
+	gridMain.attach(comboboxService, 1, 2, 1, 1);
+	gridMain.attach(calendar, 0, 3, 2, 1);
+	gridMain.attach(labelHour, 0, 4, 1, 1);
+	gridMain.attach(comboboxHour, 1, 4, 1, 1);
+	gridMain.attach(buttonAddAppointment, 0, 5, 2, 1);
 
 	/* Events */
 	buttonAddPet.signal_clicked().
