@@ -4,6 +4,7 @@
 ** STRT [#A] Main Window
 *** STRT [#A] Set a Notebook(Gtk)
 **** STRT [#A] Datebook Tab
+***** TODO [#A] Add new appointment Window
 ***** DONE [#C] Calendar(Gtk)
 ****** DONE [#C] Get Calendar Attributes (date)
 ******* DONE [#A] Check if the method receive pointer as arguments
