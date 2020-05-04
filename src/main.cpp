@@ -27,15 +27,13 @@ Pet* createPet(Pet *);
 int main(int argc, char* argv[]){
 	/* GUI */
 	if(argc > 1){
-		/*
-		* I needed to create an aditional string to compare to.
-		* It tourns out that a char* and a string can't be compared.
-		*/
+		/* I needed to create an aditional string to compare to.
+		 * It tourns out that a char* and a string can't be compared. */
 		std::string arg1(argv[1]);
 		if(arg1 == "-gui"){
-			// auto app = Gtk::Application::create("dev.tyra");
-			// NotebookMain notebookMain;
-			// return app->run(notebookMain);
+			auto app = Gtk::Application::create("dev.tyra");
+			NotebookMain notebookMain;
+			return app->run(notebookMain);
 		}
 	}
 

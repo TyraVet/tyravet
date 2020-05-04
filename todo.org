@@ -4,9 +4,9 @@
 ** STRT [#A] Main Window
 *** STRT [#A] Set a Notebook(Gtk)
 **** STRT [#A] Datebook Tab
-***** WAIT [#C] Calendar(Gtk)
-****** WAIT [#C] Get Calendar Attributes (date)
-******* TODO [#A] Check if the method receive pointer as arguments
+***** DONE [#C] Calendar(Gtk)
+****** DONE [#C] Get Calendar Attributes (date)
+******* DONE [#A] Check if the method receive pointer as arguments
 ***** TODO [#B] Dynamic widget list
 ***** DONE [#A] Button(Gtk)
 ****** DONE [#A] Button events

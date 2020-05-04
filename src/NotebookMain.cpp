@@ -48,8 +48,8 @@ void NotebookMain::on_notebook_switch_page(Gtk::Widget * /* page */, guint page_
 }
 
 void NotebookMain::on_button_add_appointment(){
-	std::cout << "Button clicked\nCreating new window\n...\n";
-	AddPet* window = new AddPet();
-	window->show();
-	// std::cout << calendar.get_date() << "\n"; This doesn't work!
+	unsigned int year, month, day;
+	calendar.get_date(year, month, day);
+	// AddPet window;
+	// window.show();
 }
