@@ -155,7 +155,6 @@ void AddPet::on_button_add_pet(){
 	entryPetSpecie.set_text(::CLEAN_ENTRY);
 	entryPetBreed.set_text(::CLEAN_ENTRY);
 	entryPetName.set_text(::CLEAN_ENTRY);
-	entryPetBirthday.set_text(::CLEAN_ENTRY);
 	entryOwnerName.set_text(::CLEAN_ENTRY);
 	entryOwnerLastName.set_text(::CLEAN_ENTRY);
 	entryOwnerGender.set_text(::CLEAN_ENTRY);
