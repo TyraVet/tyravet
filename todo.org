@@ -28,7 +28,7 @@
 ** TODO [#A] Terminal Functionality
 *** DONE [#A] Terminal options
 *** TODO [#A] Terminal AddPet
-* STRT [#A] Setup Nginx Web Server
+* DONE [#A] Setup Nginx Web Server
 * STRT [#B] Data Base
 ** STRT [#B] PostgreSQL
 *** DONE [#B] Set up server
