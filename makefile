@@ -1,53 +1,51 @@
-CPP= g++
-STANDAR= -std=c++17
-OBJ= -c
-DEBUG= -g
-WARN= -Wall
-EXEC= -o
-LBOOST= -I/usr/local/boost_1_72_0
-LSERIALIZATION= /usr/local/lib/libboost_serialization.a
-LPQXX= -lpqxx -lpq
-CFLAGS = `pkg-config --cflags --libs gtkmm-3.0`
-EXEC_RELEASE= tyra
-EXEC_DEBUG= tyra-debug
+CC = g++
+STD = -std=c++17
+OBJ = -c
+WARN = -Wall
+LINKER_GTKMM = `pkg-config --cflags --libs gtkmm-3.0`
+LINKER_PQXX = -lpqxx -lpq
+LINKER_BOOST = -I/usr/local/boost_1_72_0
+OBJS = src/main.cpp NotebookMain.o AddPet.o AddAppointment.o Tyra.o Owner.o Person.o Pet.o Animal.o
+OBJ_NAME_RELEASE = tyra
+OBJ_NAME_DEBUG = tyra-debug
 
 # Multiple executables
 .TYRA: all release debug
 all: release debug
-release: $(EXEC_RELEASE)
-debug: $(EXEC_DEBUG)
+release: $(OBJ_NAME_RELEASE)
+debug: $(OBJ_NAME_DEBUG)
 
 # Release
-$(EXEC_RELEASE): src/main.cpp NotebookMain.o AddPet.o AddAppointment.o Tyra.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) $(STANDAR) $(WARN) src/main.cpp NotebookMain.o AddPet.o AddAppointment.o Tyra.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) $(EXEC) $(EXEC_RELEASE) $(LSERIALIZATION)
+$(OBJ_NAME_RELEASE): $(OBJS)
+	$(CC) $(STD) $(WARN) $(OBJS) $(LINKER_BOOST) $(LINKER_PQXX) $(LINKER_GTKMM) -o $(OBJ_NAME_RELEASE)
 
 # Debug
-$(EXEC_DEBUG): src/main.cpp NotebookMain.o AddPet.o AddAppointment.o Tyra.o Owner.o Person.o Pet.o Animal.o
-	$(CPP) $(STANDAR) $(DEBUG) $(WARN) src/main.cpp NotebookMain.o AddPet.o AddAppointment.o Tyra.o Owner.o Person.o Pet.o Animal.o $(LBOOST) $(LPQXX) $(CFLAGS) $(EXEC) $(EXEC_DEBUG) $(LSERIALIZATION)
+$(OBJ_NAME_DEBUG): $(OBJS)
+	$(CC) $(STD) -g $(WARN) $(OBJS) $(LINKER_BOOST) $(LINKER_PQXX) $(LINKER_GTKMM) -o $(OBJ_NAME_DEBUG)
 
 NotebookMain.o: src/NotebookMain.cpp
-	$(CPP) $(STANDAR) $(OBJ) src/NotebookMain.cpp $(CFLAGS)
+	$(CC) $(STD) $(OBJ) src/NotebookMain.cpp $(LINKER_GTKMM)
 
 AddPet.o: src/AddPet.cpp
-	$(CPP) $(STANDAR) $(OBJ) src/AddPet.cpp $(CFLAGS) $(LPQXX)
+	$(CC) $(STD) $(OBJ) src/AddPet.cpp $(LINKER_GTKMM) $(LINKER_PQXX)
 
 AddAppointment.o: src/AddAppointment.cpp
-	$(CPP) $(STANDAR) $(OBJ) src/AddAppointment.cpp $(CFLAGS)
+	$(CC) $(STD) $(OBJ) src/AddAppointment.cpp $(LINKER_GTKMM)
 
 Tyra.o: src/Tyra.cpp
-	$(CPP) $(STANDAR) $(OBJ) src/Tyra.cpp
+	$(CC) $(STD) $(OBJ) src/Tyra.cpp
 
 Owner.o: src/Owner.cpp
-	$(CPP) $(STANDAR) $(OBJ) src/Owner.cpp
+	$(CC) $(STD) $(OBJ) src/Owner.cpp
 
 Person.o: src/Person.cpp
-	$(CPP) $(STANDAR) $(OBJ) src/Person.cpp
+	$(CC) $(STD) $(OBJ) src/Person.cpp
 
 Pet.o: src/Pet.cpp
-	$(CPP) $(STANDAR) $(OBJ) src/Pet.cpp
+	$(CC) $(STD) $(OBJ) src/Pet.cpp
 
 Animal.o: src/Animal.cpp
-	$(CPP) $(STANDAR) $(OBJ) src/Animal.cpp
+	$(CC) $(STD) $(OBJ) src/Animal.cpp
 
 clean:
 	rm *.o tyra tyra-debug
