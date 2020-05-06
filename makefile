@@ -2,8 +2,8 @@ CC = g++
 STD = -std=c++17
 OBJ = -c
 WARN = -Wall
+LINKER_NCURSES = -lncurses
 LINKER_PQXX = -lpqxx -lpq
-LINKER_BOOST = -I/usr/local/boost_1_72_0
 OBJS = src/main.cpp Tyra.o Owner.o Person.o Pet.o Animal.o
 OBJ_NAME_RELEASE = tyra
 OBJ_NAME_DEBUG = tyra-debug
@@ -16,11 +16,11 @@ debug: $(OBJ_NAME_DEBUG)
 
 # Release
 $(OBJ_NAME_RELEASE): $(OBJS)
-	$(CC) $(STD) $(WARN) $(OBJS) $(LINKER_BOOST) $(LINKER_PQXX) $(LINKER_GTKMM) -o $(OBJ_NAME_RELEASE)
+	$(CC) $(STD) $(WARN) $(OBJS) $(LINKER_NCURSES) -o $(OBJ_NAME_RELEASE)
 
 # Debug
 $(OBJ_NAME_DEBUG): $(OBJS)
-	$(CC) $(STD) -g $(WARN) $(OBJS) $(LINKER_BOOST) $(LINKER_PQXX) $(LINKER_GTKMM) -o $(OBJ_NAME_DEBUG)
+	$(CC) $(STD) -g $(WARN) $(OBJS) $(LINKER_NCURSES) -o $(OBJ_NAME_DEBUG)
 
 Tyra.o: src/Tyra.cpp
 	$(CC) $(STD) $(OBJ) src/Tyra.cpp
