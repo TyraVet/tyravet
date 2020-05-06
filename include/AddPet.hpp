@@ -16,8 +16,9 @@ class AddPet : public Gtk::Window{
 		Gtk::Label labelPet, labelPetSpecie, labelPetBreed, labelPetName, labelPetBirthday,
 			labelOwnerName, labelOwnerLastName, labelOwnerGender, labelOwnerEmail,
 			labelOwnerAddress, labelOwnerPhoneNumber;
-		Gtk::Entry entryPetSpecie, entryPetBreed, entryPetName, entryPetBirthday,
+		Gtk::Entry entryPetSpecie, entryPetBreed, entryPetName,
 			entryOwnerName, entryOwnerLastName, entryOwnerGender, entryOwnerEmail,
 			entryOwnerAddress, entryOwnerPhoneNumber;
+		Gtk::Calendar calendarPetBirthday;
 		Gtk::Button buttonAddPet;
 };

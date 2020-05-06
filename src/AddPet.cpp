@@ -1,6 +1,6 @@
 #include <iostream>
-#include <gtkmm/messagedialog.h> // UI
-#include <pqxx/pqxx> // PostgreSQL C++ Library
+#include <gtkmm/messagedialog.h>
+#include <pqxx/pqxx>
 #include "../include/AddPet.hpp"
 #include "../include/Pet.hpp"
 #include "../include/Owner.hpp"
@@ -24,7 +24,7 @@ const std::string MESSAGE_DIALOG_WARNING_2 = "Ingresa todo los datos";
 const bool WINDOW_RESIZABLE = false;
 const bool GRID_ROW_HOMOGENEOUS = true;
 const bool MESSAGE_DIALOG_MARKUP = false;
-// Avoid magic numbers
+/* Avoid magic numbers */
 const int PHONE_MAX_LENGTH = 10;
 const int WINDOW_WIDTH = 300;
 const int WINDOW_HEIGHT = 500;
@@ -40,17 +40,14 @@ AddPet::AddPet() : labelPet(::LABEL_PET),
 					labelOwnerEmail(::LABEL_OWNER_EMAIL),
 					labelOwnerAddress(::LABEL_OWNER_ADDRESS),
 					labelOwnerPhoneNumber(::LABEL_OWNER_PHONE_NUMBER){
-	// this = the window
 	this->set_title(::WINDOW_TITLE);
 	this->set_default_size(::WINDOW_WIDTH, ::WINDOW_HEIGHT);
 	this->set_resizable(::WINDOW_RESIZABLE);
 
-	// Add Main Grid to Window
 	this->add(gridMain);
-	// Set same size for rows
 	gridMain.set_row_homogeneous(::GRID_ROW_HOMOGENEOUS);
-	// Populate Grid
-	// attach(widget, column, row, width, height)
+	/* Populate Grid */
+	/* attach(widget, column, row, width, height) */
 	gridMain.attach(labelPetSpecie, 0, 0, 1, 1);
 	gridMain.attach(entryPetSpecie, 1, 0, 3, 1);
 	gridMain.attach(labelPetBreed, 0, 1, 1, 1);
@@ -58,7 +55,7 @@ AddPet::AddPet() : labelPet(::LABEL_PET),
 	gridMain.attach(labelPetName, 0, 2, 1, 1);
 	gridMain.attach(entryPetName, 1, 2, 3, 1);
 	gridMain.attach(labelPetBirthday, 0, 3, 1, 1);
-	gridMain.attach(entryPetBirthday, 1, 3, 3, 1);
+	gridMain.attach(calendarPetBirthday, 1, 3, 3, 1);
 	gridMain.attach(labelOwnerName, 0, 4, 1, 1);
 	gridMain.attach(entryOwnerName, 1, 4, 3, 1);
 	gridMain.attach(labelOwnerLastName, 0, 5, 1, 1);
@@ -75,10 +72,9 @@ AddPet::AddPet() : labelPet(::LABEL_PET),
 	buttonAddPet.set_label(::BUTTON_ADD_PET);
 	gridMain.attach(buttonAddPet, 0, 10, 4, 1);
 
-	// Button event
+	/* Events */
 	buttonAddPet.signal_clicked().connect(sigc::mem_fun(*this, &AddPet::on_button_add_pet));
 
-	// And show it
 	this->show_all_children();
 }
 
@@ -87,25 +83,24 @@ AddPet::~AddPet(){}
 
 //!
 void AddPet::on_button_add_pet(){
-	// Check entries
+	/* The user may enter want to enter a new Pet with
+	 * an empty entry. This prevents the user to do so.
+	 * We don't want empty data in the database. */
 	if((entryPetSpecie.get_text() == ::CLEAN_ENTRY) ||
 		(entryPetBreed.get_text() == ::CLEAN_ENTRY) ||
 		(entryPetName.get_text() == ::CLEAN_ENTRY) ||
-		(entryPetBirthday.get_text() == ::CLEAN_ENTRY) ||
 		(entryOwnerName.get_text() == ::CLEAN_ENTRY) ||
 		(entryOwnerLastName.get_text() == ::CLEAN_ENTRY) ||
 		(entryOwnerGender.get_text() == ::CLEAN_ENTRY) ||
 		(entryOwnerEmail.get_text() == ::CLEAN_ENTRY) ||
 		(entryOwnerAddress.get_text() == ::CLEAN_ENTRY) ||
 		(entryOwnerPhoneNumber.get_text() == ::CLEAN_ENTRY)){
-		// Create Message Dialog
 		Gtk::MessageDialog dialog(*this,
 									::MESSAGE_DIALOG_WARNING,
 									::MESSAGE_DIALOG_MARKUP,
 									Gtk::MESSAGE_WARNING,
 									Gtk::BUTTONS_OK);
 	dialog.set_secondary_text(::MESSAGE_DIALOG_WARNING_2);
-		// Open Message Dialog
 		dialog.run();
 		return;
 	}
@@ -157,7 +152,6 @@ void AddPet::on_button_add_pet(){
 	// delete myPet;
 	// delete myOwner;
 
-	// Clean entries
 	entryPetSpecie.set_text(::CLEAN_ENTRY);
 	entryPetBreed.set_text(::CLEAN_ENTRY);
 	entryPetName.set_text(::CLEAN_ENTRY);
