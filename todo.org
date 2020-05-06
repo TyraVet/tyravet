@@ -1,25 +1,7 @@
 # Tyra TODO list
 
 * STRT [#A] User Interface
-** STRT [#A] Main Window
-*** STRT [#A] Set a Notebook(Gtk)
-**** STRT [#A] Datebook Tab
-***** TODO [#A] Add new appointment Window
-****** DONE [#A] Add Pet(Client) Window
-******* TODO [#A] Change birthday date input to be a calendar
-******* DONE [#B] MessageDialog if something is wrong with the data
-****** DONE [#A] Create Main Window
-****** TODO [#B] Fix position of widgets to fit the window
-****** TODO [#A] Retreive information from database to fill options
-***** DONE [#C] Calendar(Gtk)
-****** DONE [#C] Get Calendar Attributes (date)
-******* DONE [#A] Check if the method receive pointer as arguments
-***** TODO [#B] Dynamic widget list
-***** DONE [#A] Button(Gtk)
-****** DONE [#A] Button events
-******* DONE [#A] Launch new Window
-**** TODO [#B] Hospital Tab
-**** TODO [#B] Inventory Tab
+** STRT [#A] Migrate to Qt!
 * STRT [#A] Functionatily
 ** DONE [#A] Create new Pet(Client)
 ** DONE [#A] Serialize Pet(Client) Object
