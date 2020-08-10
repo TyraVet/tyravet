@@ -19,5 +19,4 @@
 # Inore txt files
 *.txt
 
-# Ignore debug folder
-build-tyra-Desktop-Debug/
+node_modules/
