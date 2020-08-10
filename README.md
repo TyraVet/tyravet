@@ -1,5 +1,5 @@
 # TyraTS
-Fullstack MEVN Veterinary management application for the web.
+Fullstack MEVN Veterinary management application.
 - Calendar.
 - Clients.
 - Staff Access (Users).
