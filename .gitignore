@@ -20,3 +20,5 @@
 *.txt
 
 node_modules/
+dist/
+coverage
