@@ -1,14 +1,20 @@
-# Tyra
-Veterinary management for Linux.
-Manage your clients and its pets in an easy way.
-
-## Requeriments
+# TyraTS
+Fullstack MEVN Veterinary management application for the web.
+- Calendar.
+- Clients.
+- Staff Access (Users).
+- Inventory (CRUD).
 
 ## Dependencies
+See ```package.json``` inside ```client/``` and ```server/```.
 
-## Installation
+## Getting Started
+```client/```
+Contains the Vue Application. In here we consume the API to display the
+information from the DataBase and also modify that information.
 
-## Usage
+```server/```
+Constains the API.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first
