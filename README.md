@@ -1,4 +1,4 @@
-# TyraTS
+# Tyra Web
 Fullstack MEVN Veterinary management application.
 - Calendar.
 - Clients.
