@@ -1,6 +1,5 @@
 <template>
   <div class='login'>
-	<h1 class='has-text-primary'>{{ welcomeMessage }}</h1>
 	<LoginForm></LoginForm>
   </div>
 </template>
@@ -13,10 +12,7 @@ export default {
 	components: { LoginForm },
 	data() {
 		return {
-			welcomeMessage: 'Tyra Web'
 		}
 	}
 }
 </script>
-
-<style></style>
