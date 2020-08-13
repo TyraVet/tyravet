@@ -21,12 +21,13 @@ export default {
 		return {
 			title: 'Tyra Web',
 			menu: 'Menu',
-			user: null
+			user: null,
+			sideBarOpen: false
 		}
 	},
 	methods: {
 		openSideBar() {
-			alert('Hi')
+			this.sideBarOpen = true
 		}
 	}
 }

@@ -16,9 +16,16 @@ describe('NavBar Component', () => {
 		expect(defaultData.title).toMatch('Tyra Web')
 		expect(defaultData.menu).toMatch('Menu')
 		expect(defaultData.user).toBeNull()
+		expect(defaultData.sideBarOpen).toBeFalsy()
 	})
 
 	it('Has a methods object', () => {
 		expect(typeof NavBar.methods).toBe('object')
+	})
+
+	it('Open SideBar', () => {
+		expect(wrapper.vm.sideBarOpen).toBeFalsy()
+		wrapper.vm.openSideBar()
+		expect(wrapper.vm.sideBarOpen).toBeTruthy()
 	})
 })
