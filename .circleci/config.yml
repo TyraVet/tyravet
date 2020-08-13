@@ -1,5 +1,5 @@
 jobs:
-  build:
+  build_and_test:
     working_directory: ~/repo
     docker:
       - image: circleci/node:14.2.0 # the primary container, where your job's commands are run
@@ -11,29 +11,15 @@ jobs:
           command: |
             cd 'client/'
             npm install
+            npm run test:unit
       - run: # Go into server directory and install packages
           command: |
             cd 'server/'
             npm install
-  test:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/node:14.2.0 # the primary container, where your job's commands are run
-    steps:
-      - checkout # check out the code in the project directory
-      - run: # Go into client and run tests
-          command: |
-            cd 'client/'
-            npm run test:unit
-      # - run: # Go into server and run tests
-      #     command: |
-      #       cd "server/"
-      #       npm run test
+            # No Tests at the moment
+
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - build_and_test
