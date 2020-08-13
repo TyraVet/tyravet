@@ -16,7 +16,8 @@ module.exports = {
 	'indent': [1, 'tab'],
 	'no-tabs': 0,
 	'space-before-function-paren': 0,
-	'space-before-blocks': 0
+	'space-before-blocks': 0,
+	'no-mixed-spaces-and-tabs': 0
   },
   overrides: [
     {
