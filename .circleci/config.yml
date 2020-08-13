@@ -23,10 +23,10 @@ jobs:
           command: |
             cd "client/"
             npm run test:unit
-      - run: # Go into server and run tests
-          command: |
-            cd "server/"
-            npm run test
+      # - run: # Go into server and run tests
+      #     command: |
+      #       cd "server/"
+      #       npm run test
 workflows:
   version: 2
   build_and_test:
