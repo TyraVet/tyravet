@@ -22,7 +22,7 @@ jobs:
       - run: # Go into client and run tests
           command: |
             cd "client/"
-            npm run test
+            npm run test:unit
       - run: # Go into server and run tests
           command: |
             cd "server/"
