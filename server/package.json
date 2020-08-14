@@ -4,16 +4,18 @@
   "description": "Veterinary management",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js",
+    "test:unit": "jest"
   },
   "author": "Andres Ruiz",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^7.6.0",
-    "jest": "^26.4.0"
+    "jest": "^26.4.0",
+    "mockingoose": "^2.13.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.0"
   }
 }
