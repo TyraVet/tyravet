@@ -16,7 +16,7 @@ jobs:
           command: |
             cd 'server/'
             npm install
-            # No Tests at the moment
+            npm run test:unit
 
 workflows:
   version: 2
