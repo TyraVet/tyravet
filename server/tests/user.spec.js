@@ -53,35 +53,16 @@ describe('POST User, TYRAWEB_ROUTE_USERS', () => {
 	})
 
 	it('Should create a new User', async () => {
-		let username = users[0].username
-		let password = users[0].password
-
 		await request(app)
 			.post(process.env.TYRAWEB_ROUTE_USERS)
-			.send({ username: username, password: password })
+			.send({ username: users[0].username, password: users[0].password })
 			.expect(200)
 			.end((error, response) => {
 				if(error)
 					return done(error)
 
-				UserModel.find({ username }).then((users) => {
+				UserModel.find({ username: users[0].username }).then((users) => {
 					expect(users[0].username).toMatch('arturo')
-					done()
-				}).catch((error) => done(error))
-			})
-	})
-
-	it("Shouldn't create User with invalid body data", async (done) => {
-		await request(app)
-			.post(process.env.TYRAWEB_ROUTE_USERS)
-			.send({})
-			.expect(400)
-			.end((error, result) => {
-				if(error)
-					return done(error)
-
-				UserModel.find().then((users) => {
-					expect(users[0].username).toMatch('')
 					done()
 				}).catch((error) => done(error))
 			})
