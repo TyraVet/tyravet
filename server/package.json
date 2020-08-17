@@ -12,10 +12,12 @@
   "devDependencies": {
     "eslint": "^7.6.0",
     "jest": "^26.4.0",
-    "mockingoose": "^2.13.2"
+    "mockingoose": "^2.13.2",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "mongodb": "^3.6.0",
     "mongoose": "^5.10.0"
   }
 }
