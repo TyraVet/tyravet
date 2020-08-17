@@ -1,19 +1,31 @@
-const express = require('express');
+const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const serveStatic = require('serve-static')
 
-/* Defining port */
-const port = process.env.PORT || 3000;
+/* Mongo DB */
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_TYRAWEB_TEST, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to database!'));
+
+/* Defining routes */
+var userRouter = require('./routes/user')
+
 /* Defining app */
-const app = express();
+const app = express()
 
-app.get('/', (request, response) => {
-	response.send('Server running');
-});
+/* Defining middlewares */
+app.use(morgan('combined'))
+app.use(bodyParser.json())
+app.use(cors())
 
-app.listen(port, error => {
-	if(error)
-		return console.log(error);
+/* Static Folder */
+app.use(serveStatic(__dirname + '../client/dist'))
 
-	return console.log('Server is listening on ${port}');
-});
+/* Using routes */
+app.use(process.env.TYRAWEB_ROUTE_USERS, userRouter)
 
-module.exports = app;
+module.exports = app
