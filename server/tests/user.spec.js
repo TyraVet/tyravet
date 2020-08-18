@@ -1,5 +1,5 @@
 const mockingoose = require('mockingoose').default
-const UserModel = require('../src/models/user.js')
+const UserModel = require('../models/user.js')
 
 describe('User Model', () => {
 	it('Should return the User with findById', () => {
