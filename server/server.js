@@ -4,6 +4,9 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const serveStatic = require('serve-static')
 
+/* Defining port */
+const port = process.env.PORT || 3000
+
 /* Mongo DB */
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_TYRAWEB_TEST, { useNewUrlParser: true });
@@ -27,5 +30,12 @@ app.use(serveStatic(__dirname + '../client/dist'))
 
 /* Using routes */
 app.use(process.env.TYRAWEB_ROUTE_USERS, userRouter)
+
+app.listen(port, error => {
+	if(error)
+		return console.log(error)
+
+	return console.log('Server is listening on ' + port)
+})
 
 module.exports = app
