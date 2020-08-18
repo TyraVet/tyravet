@@ -4,6 +4,17 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const serveStatic = require('serve-static')
 
+const users = [
+	{
+		username: 'andres',
+		password: '1234'
+	},
+	{
+		username: 'arturo',
+		password: '1234'
+	}
+]
+
 /* Defining port */
 const port = process.env.PORT || 3000
 
@@ -23,6 +34,7 @@ const app = express()
 /* Defining middlewares */
 app.use(morgan('combined'))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extend: true }))
 app.use(cors())
 
 /* Static Folder */
@@ -30,6 +42,10 @@ app.use(serveStatic(__dirname + '../client/dist'))
 
 /* Using routes */
 app.use(process.env.TYRAWEB_ROUTE_USERS, userRouter)
+
+app.get('/users', (request, response) => {
+	response.json(users)
+})
 
 app.listen(port, error => {
 	if(error)
