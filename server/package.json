@@ -4,7 +4,8 @@
   "description": "Veterinary management",
   "main": "dist/app.js",
   "scripts": {
-    "start": "node src/app.js",
+	"devStart": "nodemon server.js",
+    "start": "node server.js",
     "test:unit": "jest"
   },
   "author": "Andres Ruiz",
@@ -13,6 +14,7 @@
     "eslint": "^7.6.0",
     "jest": "^26.4.0",
     "mockingoose": "^2.13.2",
+    "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
   },
   "dependencies": {
