@@ -25,7 +25,6 @@
 			   icon='check'
 			   has-icon
 			   auto-close
-			   duration='3000'
 			   class='message'
 			   v-if='status === 201'>
 	  {{ statusText }}
