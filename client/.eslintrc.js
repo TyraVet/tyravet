@@ -17,7 +17,9 @@ module.exports = {
 	'no-tabs': 0,
 	'space-before-function-paren': 0,
 	'space-before-blocks': 0,
-	'no-mixed-spaces-and-tabs': 0
+	'no-mixed-spaces-and-tabs': 0,
+	'curly': 0,
+	'keyword-spacing': 0
   },
   overrides: [
     {
