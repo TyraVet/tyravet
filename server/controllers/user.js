@@ -1,5 +1,26 @@
-const bcryptjs = require('bcryptjs');
+const bcryptjs = require('bcryptjs')
 const User = require('../models/user.js')
+
+/* Find User to LogIn */
+exports.post_find_user = (req, res, next) => {
+	User.findOne({ username: req.body.username }, (err, user) => {
+		if(err)
+			res.sendStatus(401)
+
+		if(!user)
+			res.sendStatus(402)
+
+		bcryptjs.compare(req.body.password, user.password, (err, res) => {
+			if(err)
+				res.sendStatus(401)
+
+			if(res)
+				res.sendStatus(201).json(user)
+			else
+				res.sendStatus(403)
+		})
+	})
+}
 
 /* Create User */
 exports.post_create_user = (req, res, next) => {

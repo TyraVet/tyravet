@@ -6,12 +6,27 @@ describe('User Model', () => {
 		const _user = {
 			_id: '507f191e810c19729de860ea',
 			username: 'andres',
-			password: '1234'
+			password: 'test12'
 		}
 
 		mockingoose(UserModel).toReturn(_user, 'findOne')
 
 		return UserModel.findById({ _id: _user._id })
+						.then(user => {
+							expect(JSON.parse(JSON.stringify(user))).toMatchObject(_user)
+						})
+	})
+
+	it('Should return the User with findOne', () => {
+		const _user = {
+			_id: '507f191e810c19729de860ea',
+			username: 'andres',
+			password: 'test12'
+		}
+
+		mockingoose(UserModel).toReturn(_user, 'findOne')
+
+		return UserModel.findOne({ username: _user.username })
 						.then(user => {
 							expect(JSON.parse(JSON.stringify(user))).toMatchObject(_user)
 						})
