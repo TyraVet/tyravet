@@ -6,6 +6,6 @@ const path = require('path')
 var userController = require(path.join(__dirname, '../controllers/user.js'))
 
 /* Character Routes */
-router.post('/', userController.create_user)
+router.post('/', userController.post_create_user)
 
 module.exports = router
