@@ -1,0 +1,15 @@
+#sign-up-form {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+.form-button {
+	margin-top: 20px;
+}
+
+.message {
+	width: 75%;
+	margin: auto;
+	text-align: center;
+}
