@@ -1,6 +1,6 @@
 <template>
-  <div class='login-form'>
-	<form id='login-form'>
+  <div class='log-in-form'>
+	<form id='log-in-form'>
 	  <section>
 		<b-field :label='labelUsername'>
 		  <b-input type='text' v-model='username'></b-input>
@@ -9,6 +9,7 @@
 		  <b-input type='password' v-model='password'></b-input>
 		</b-field>
 	  </section>
+	  <section></section>
 	</form>
   </div>
 </template>
@@ -28,4 +29,5 @@ export default {
 </script>
 
 <style>
+@import '../assets/css/log-in-form.css'
 </style>

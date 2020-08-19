@@ -1,15 +1,15 @@
 <template>
   <div class='login'>
-	<LoginForm></LoginForm>
+	<UserForm type='login'></UserForm>
   </div>
 </template>
 
 <script>
-import LoginForm from '@/components/LoginForm.vue'
+import UserForm from '@/components/UserForm.vue'
 
 export default {
-	name: 'Login',
-	components: { LoginForm },
+	name: 'LogIn',
+	components: { UserForm },
 	data() {
 		return {
 		}

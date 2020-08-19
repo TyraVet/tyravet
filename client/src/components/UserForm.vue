@@ -1,6 +1,6 @@
 <template>
-  <div class='sign-up-form'>
-	<form id='sign-up-form'>
+  <div class='user-form'>
+	<form id='user-form'>
 	  <section>
 		<b-field :label='labelUsername'>
 		  <b-input type='text' v-model='username'></b-input>
@@ -12,8 +12,8 @@
 	  <section class='form-button'>
 		<b-button tag='input'
 				  type='is-success'
-				  value='Sign Up'
-				  @click='signUpUser()' />
+				  :value='labelButton'
+				  @click='send()' />
 	  </section>
 	</form>
 	<br>
@@ -47,11 +47,18 @@
 import axios from 'axios'
 
 export default {
-	name: 'SignUpForm',
-	data() {
+	name: 'UserForm',
+	props: {
+		type: String
+	},
+	data(){
 		return {
+			labelSignUp: 'signup',
+			labelLogIn: 'login',
 			labelUsername: 'Username',
 			labelPassword: 'Password',
+			labelButton: '',
+			apiCall: '',
 			username: '',
 			password: '',
 			status: null,
@@ -60,12 +67,21 @@ export default {
 		}
 	},
 	methods: {
+		init(){
+			if(this.type === this.labelSignUp){
+				this.labelButton = 'Sign Up'
+				this.apiCall = process.env.VUE_APP_TYRAWEB_CREATE_USER
+			}else if(this.type === this.labelLogIn){
+				this.labelButton = 'Log In'
+				this.apiCall = process.env.VUE_APP_TYRAWEB_USER
+			}
+		},
 		clearInputs(){
 			this.username = ''
 			this.password = ''
 		},
-		signUpUser(){
-			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_USER, {
+		send(){
+			axios.post(this.apiCall, {
 				username: this.username,
 				password: this.password
 			}).then((response) => {
@@ -83,10 +99,13 @@ export default {
 			})
 			this.clearInputs()
 		}
+	},
+	mounted(){
+		this.init()
 	}
 }
 </script>
 
 <style>
-@import '../assets/css/sign-up-form.css'
+@import '../assets/css/user-form.css'
 </style>

@@ -1,18 +1,18 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Buefy from 'buefy'
-import SignUpForm from '@/components/SignUpForm.vue'
+import UserForm from '@/components/UserForm.vue'
 
 /* We import createLocalVue to load Buefy and don't
  * have warnings due to its own components. */
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
-const wrapper = shallowMount(SignUpForm, { localVue })
+const wrapper = shallowMount(UserForm, { localVue })
 
-describe('SignUpForm Component', () => {
+describe('UserForm Component', () => {
 	it('Sets the correct default data', () => {
-		expect(typeof SignUpForm.data).toBe('function')
-		const defaultData = SignUpForm.data()
+		expect(typeof UserForm.data).toBe('function')
+		const defaultData = UserForm.data()
 		expect(defaultData.labelUsername).toMatch('Username')
 		expect(defaultData.labelPassword).toMatch('Password')
 		expect(defaultData.username).toMatch('')
