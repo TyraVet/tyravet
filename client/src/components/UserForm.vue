@@ -73,7 +73,7 @@ export default {
 				this.apiCall = process.env.VUE_APP_TYRAWEB_CREATE_USER
 			}else if(this.type === this.labelLogIn){
 				this.labelButton = 'Log In'
-				this.apiCall = process.env.VUE_APP_TYRAWEB_USER
+				this.apiCall = process.env.VUE_APP_TYRAWEB_LOGIN_USER
 			}
 		},
 		clearInputs(){
@@ -81,7 +81,7 @@ export default {
 			this.password = ''
 		},
 		send(){
-			axios.post(this.apiCall, {
+			axios.post(this.apiCall, { crossdomain: true }, {
 				username: this.username,
 				password: this.password
 			}).then((response) => {
