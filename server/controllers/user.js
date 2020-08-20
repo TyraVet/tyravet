@@ -3,21 +3,21 @@ const User = require('../models/user.js')
 
 /* Find User to LogIn */
 exports.post_find_user = (req, res, next) => {
-	User.findOne({ username: req.body.username }, (err, user) => {
-		if(err)
-			res.sendStatus(401)
+	const username = req.body.username
+	const password = req.body.password
 
+	User.findOne({ username }).then(user => {
 		if(!user)
-			res.sendStatus(402)
+			res.status(404).json({ msg: 'User does not exists' }).send()
 
-		bcryptjs.compare(req.body.password, user.password, (err, res) => {
+		bcryptjs.compare(password, user.password, (err, data) => {
 			if(err)
-				res.sendStatus(401)
+				throw err
 
-			if(res)
-				res.sendStatus(201).json(user)
+			if(data)
+				res.status(200).json({ msg: 'LogIn Success', user: user }).send()
 			else
-				res.sendStatus(403)
+				res.status(401).json({ msg: 'Invalid Credentials' }).send()
 		})
 	})
 }
