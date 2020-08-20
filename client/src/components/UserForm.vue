@@ -63,8 +63,7 @@ export default {
 			password: '',
 			status: null,
 			statusText: '',
-			error: '',
-			user: null
+			error: ''
 		}
 	},
 	methods: {
@@ -111,6 +110,11 @@ export default {
 	},
 	mounted(){
 		this.init()
+	},
+	computed: {
+		user(){
+			return this.$store.state.user
+		}
 	}
 }
 </script>
