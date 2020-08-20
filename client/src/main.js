@@ -16,7 +16,8 @@ Vue.config.productionTip = false
 
 const store = new Vuex.Store({
 	state: {
-		user: null
+		user: null,
+		sideBarOpen: false
 	},
 	mutations: {
 		fillUser(state, user){
@@ -25,6 +26,12 @@ const store = new Vuex.Store({
 				username: user.username,
 				token: user.token
 			}
+		},
+		changeSideBarState(state){
+			if(state.sideBarOpen)
+				state.sideBarOpen = false
+			else if(!state.sideBarOpen)
+				state.sideBarOpen = true
 		}
 	}
 })
