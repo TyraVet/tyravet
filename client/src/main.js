@@ -14,7 +14,23 @@ Vue.use(Buefy, {
 
 Vue.config.productionTip = false
 
+const store = new Vuex.Store({
+	state: {
+		user: null
+	},
+	mutations: {
+		fillUser(state, user){
+			state.user = {
+				_id: user._id,
+				username: user.username,
+				token: user.token
+			}
+		}
+	}
+})
+
 new Vue({
-	router,
+	store: store,
+	router: router,
 	render: h => h(App)
 }).$mount('#app')
