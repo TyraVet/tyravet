@@ -9,10 +9,6 @@ import UserForm from '@/components/UserForm.vue'
 
 export default {
 	name: 'LogIn',
-	components: { UserForm },
-	data() {
-		return {
-		}
-	}
+	components: { UserForm }
 }
 </script>
