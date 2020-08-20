@@ -81,6 +81,9 @@ export default {
 			this.username = ''
 			this.password = ''
 		},
+		fillUser(user){
+			this.$store.commit('fillUser', user)
+		},
 		send(){
 			axios.post(this.apiCall, {
 				username: this.username,
@@ -88,10 +91,11 @@ export default {
 			}).then((response) => {
 				this.status = response.status
 				this.statusText = response.statusText + response.data.msg ? (' ' + response.data.msg + '.') : '.'
-				this.user = {
+				this.fillUser({
 					_id: response.data.user._id,
-					username: response.data.user.username
-				}
+					username: response.data.user.username,
+					token: 'nothingfornow'
+				})
 			}).catch((error) => {
 				if(error.response){
 					this.status = error.response.status
