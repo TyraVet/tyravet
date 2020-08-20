@@ -113,17 +113,13 @@ export default {
 	},
 	computed: {
 		user(){
-			if(this.$store)
-				return this.$store.state.user
-			else
-				return null
+			return this.$store.state.user
 		}
 	},
 	watch: {
 		/* When user is logged in redirect to Home */
 		user: function(){
-			if(this.$router)
-				this.$router.push('/')
+			this.$router.push('/')
 		}
 	}
 }

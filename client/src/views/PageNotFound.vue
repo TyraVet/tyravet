@@ -10,8 +10,7 @@ export default {
 	name: 'PageNotFound',
 	methods: {
 		goBack(){
-			if(this.$router)
-				this.$router.go(-1)
+			this.$router.go(-1)
 		}
 	}
 }

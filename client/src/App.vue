@@ -15,8 +15,7 @@ export default {
 		/* Redirect to LogIn page if there is no user stored */
 		init(){
 			if(!this.user)
-				if(this.$router)
-					this.$router.push('/log-in')
+				this.$router.push('/log-in')
 		}
 	},
 	mounted(){
@@ -24,10 +23,7 @@ export default {
 	},
 	computed: {
 		user(){
-			if(this.$store)
-				return this.$store.state.user
-			else
-				return null
+			return this.$store.state.user
 		}
 	}
 }

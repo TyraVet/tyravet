@@ -1,5 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
+import router from '@/router'
+import Vuex from 'vuex'
 import App from '@/App.vue'
 import NavBar from '@/components/NavBar.vue'
 
@@ -7,7 +9,24 @@ import NavBar from '@/components/NavBar.vue'
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)
-const wrapper = shallowMount(App, { localVue })
+localVue.use(Vuex)
+
+const store = new Vuex.Store({
+	state: {
+		user: null
+	},
+	mutations: {
+		fillUser(state, user){
+			state.user = {
+				_id: user._id,
+				username: user.username,
+				token: user.token
+			}
+		}
+	}
+})
+
+const wrapper = shallowMount(App, { store, router, localVue })
 
 describe('App Component', () => {
 	it('Has components', () => {
