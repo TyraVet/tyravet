@@ -26,7 +26,7 @@
 			   has-icon
 			   auto-close
 			   class='message'
-			   v-if='status === 201'>
+			   v-if='status === 201 || status === 200'>
 	  {{ statusText }}
 	</b-message>
 	<b-message title='Error'
@@ -37,7 +37,7 @@
 			   icon='exclamation'
 			   has-icon
 			   class='message'
-			   v-if='status === 401'>
+			   v-if='status === 401 || status === 404'>
 	  {{ error }}
 	</b-message>
   </div>
@@ -63,7 +63,8 @@ export default {
 			password: '',
 			status: null,
 			statusText: '',
-			error: ''
+			error: '',
+			user: null
 		}
 	},
 	methods: {
@@ -81,12 +82,16 @@ export default {
 			this.password = ''
 		},
 		send(){
-			axios.post(this.apiCall, { crossdomain: true }, {
+			axios.post(this.apiCall, {
 				username: this.username,
 				password: this.password
 			}).then((response) => {
 				this.status = response.status
-				this.statusText = response.statusText
+				this.statusText = response.statusText + response.data.msg ? (' ' + response.data.msg + '.') : '.'
+				this.user = {
+					_id: response.data.user._id,
+					username: response.data.user.username
+				}
 			}).catch((error) => {
 				if(error.response){
 					this.status = error.response.status

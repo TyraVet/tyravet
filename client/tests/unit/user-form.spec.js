@@ -22,7 +22,7 @@ describe('UserForm Component', () => {
 		expect(defaultData.error).toMatch('')
 	})
 
-	it('Should have a Success Messages on Success Status', async () => {
+	it('Should have a Success Messages on SignUp Success Status', async () => {
 		wrapper.setData({ status: 201 })
 		await wrapper.vm.$nextTick()
 		const successMessage = wrapper.get('b-message-stub')
@@ -30,8 +30,24 @@ describe('UserForm Component', () => {
 		expect(successMessage.attributes().icon).toMatch('check')
 	})
 
-	it('Should have an Error Messages on Error Status', async () => {
+	it('Should have an Error Messages on SignUp Error Status', async () => {
 		wrapper.setData({ status: 401 })
+		await wrapper.vm.$nextTick()
+		const errorMessage = wrapper.get('b-message-stub')
+		expect(errorMessage.attributes().title).toMatch('Error')
+		expect(errorMessage.attributes().icon).toMatch('exclamation')
+	})
+
+	it('Should have a Success Messages on LogIn Success Status', async () => {
+		wrapper.setData({ status: 200 })
+		await wrapper.vm.$nextTick()
+		const successMessage = wrapper.get('b-message-stub')
+		expect(successMessage.attributes().title).toMatch('Success')
+		expect(successMessage.attributes().icon).toMatch('check')
+	})
+
+	it('Should have an Error Messages on LogIn Error Status', async () => {
+		wrapper.setData({ status: 404 })
 		await wrapper.vm.$nextTick()
 		const errorMessage = wrapper.get('b-message-stub')
 		expect(errorMessage.attributes().title).toMatch('Error')
