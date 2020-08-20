@@ -3,7 +3,8 @@
 	<b-button type='is-primary'
 			  icon-pack='fas'
 			  icon-left='bars'
-			  @click=openSideBar()>
+			  @click=openSideBar()
+			  v-if='user'>
 	  {{ menu }}
 	</b-button>
 	<h1 class='is-size-3'>{{ title }}</h1>
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-import SideBar from '@/components/NavBar.vue'
+import SideBar from '@/components/SideBar.vue'
 
 export default {
 	name: 'NavBar',
@@ -21,13 +22,17 @@ export default {
 		return {
 			title: 'Tyra Web',
 			menu: 'Menu',
-			user: null,
 			sideBarOpen: false
 		}
 	},
 	methods: {
 		openSideBar() {
 			this.sideBarOpen = true
+		}
+	},
+	computed: {
+		user(){
+			return this.$store.state.user
 		}
 	}
 }

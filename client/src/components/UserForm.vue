@@ -115,6 +115,12 @@ export default {
 		user(){
 			return this.$store.state.user
 		}
+	},
+	watch: {
+		/* When user is logged in redirect to Home */
+		user: function(){
+			this.$router.push('/')
+		}
 	}
 }
 </script>
