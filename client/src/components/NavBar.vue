@@ -3,12 +3,12 @@
 	<b-button type='is-primary'
 			  icon-pack='fas'
 			  icon-left='bars'
-			  @click=openSideBar()
+			  @click=changeSideBarState()
 			  v-if='user'>
 	  {{ menu }}
 	</b-button>
-	<h1 class='is-size-3'>{{ title }}</h1>
 	<SideBar v-if='user'></SideBar>
+	<h1 class='is-size-3'>{{ title }}</h1>
   </div>
 </template>
 
@@ -21,13 +21,12 @@ export default {
 	data() {
 		return {
 			title: 'Tyra Web',
-			menu: 'Menu',
-			sideBarOpen: false
+			menu: 'Menu'
 		}
 	},
 	methods: {
-		openSideBar() {
-			this.sideBarOpen = true
+		changeSideBarState(){
+			this.$store.commit('changeSideBarState')
 		}
 	},
 	computed: {

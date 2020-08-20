@@ -12,7 +12,8 @@ localVue.use(Buefy)
 
 const store = new Vuex.Store({
 	state: {
-		user: null
+		user: null,
+		sideBarOpen: false
 	},
 	mutations: {
 		fillUser(state, user){
@@ -21,6 +22,12 @@ const store = new Vuex.Store({
 				username: user.username,
 				token: user.token
 			}
+		},
+		changeSideBarState(state){
+			if(state.sideBarOpen)
+				state.sideBarOpen = false
+			else if(!state.sideBarOpen)
+				state.sideBarOpen = true
 		}
 	}
 })
@@ -33,16 +40,16 @@ describe('NavBar Component', () => {
 		const defaultData = NavBar.data()
 		expect(defaultData.title).toMatch('Tyra Web')
 		expect(defaultData.menu).toMatch('Menu')
-		expect(defaultData.sideBarOpen).toBeFalsy()
+		expect(wrapper.vm.$store.state.sideBarOpen).toBeFalsy()
 	})
 
 	it('Has a methods object', () => {
 		expect(typeof NavBar.methods).toBe('object')
 	})
 
-	it('Open SideBar', () => {
-		expect(wrapper.vm.sideBarOpen).toBeFalsy()
-		wrapper.vm.openSideBar()
-		expect(wrapper.vm.sideBarOpen).toBeTruthy()
+	it('Open SideBar', async () => {
+		expect(wrapper.vm.$store.state.sideBarOpen).toBeFalsy()
+		await wrapper.vm.changeSideBarState()
+		expect(wrapper.vm.$store.state.sideBarOpen).toBeTruthy()
 	})
 })
