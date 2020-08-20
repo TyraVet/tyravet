@@ -15,7 +15,6 @@ describe('NavBar Component', () => {
 		const defaultData = NavBar.data()
 		expect(defaultData.title).toMatch('Tyra Web')
 		expect(defaultData.menu).toMatch('Menu')
-		expect(defaultData.user).toBeNull()
 		expect(defaultData.sideBarOpen).toBeFalsy()
 	})
 

@@ -32,7 +32,10 @@ export default {
 	},
 	computed: {
 		user(){
-			return this.$store.state.user
+			if(this.$store)
+				return this.$store.state.user
+			else
+				return null
 		}
 	}
 }
