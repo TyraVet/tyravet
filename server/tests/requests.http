@@ -1,4 +1,10 @@
 #
-# Get all users
+# Log In as Admin and check Token
 #
-GET http://localhost:3000/users
+POST http://localhost:3000/TYRAWEB_ROUTE_USERS/login
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "admin12"
+}
