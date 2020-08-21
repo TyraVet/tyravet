@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
-import Vuex from 'vuex'
+import store from '@/store'
 import Buefy from 'buefy'
 import NavBar from '@/components/NavBar.vue'
 
@@ -7,30 +7,7 @@ import NavBar from '@/components/NavBar.vue'
  * have warnings due to its own components. */
 
 const localVue = createLocalVue()
-localVue.use(Vuex)
 localVue.use(Buefy)
-
-const store = new Vuex.Store({
-	state: {
-		user: null,
-		sideBarOpen: false
-	},
-	mutations: {
-		fillUser(state, user){
-			state.user = {
-				_id: user._id,
-				username: user.username,
-				token: user.token
-			}
-		},
-		changeSideBarState(state){
-			if(state.sideBarOpen)
-				state.sideBarOpen = false
-			else if(!state.sideBarOpen)
-				state.sideBarOpen = true
-		}
-	}
-})
 
 const wrapper = shallowMount(NavBar, { store, localVue })
 

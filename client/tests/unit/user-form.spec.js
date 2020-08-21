@@ -1,7 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
-import VueRouter from 'vue-router'
 import router from '@/router'
-import Vuex from 'vuex'
+import store from '@/store'
 import Buefy from 'buefy'
 import UserForm from '@/components/UserForm.vue'
 
@@ -10,23 +9,6 @@ import UserForm from '@/components/UserForm.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
-localVue.use(VueRouter)
-localVue.use(Vuex)
-
-const store = new Vuex.Store({
-	state: {
-		user: null
-	},
-	mutations: {
-		fillUser(state, user){
-			state.user = {
-				_id: user._id,
-				username: user.username,
-				token: token
-			}
-		}
-	}
-})
 
 const wrapper = shallowMount(UserForm, { store, router, localVue })
 
