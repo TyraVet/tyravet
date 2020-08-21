@@ -21,7 +21,10 @@ exports.post_find_user = (req, res, next) => {
 				const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET)
 				res.status(200).json({
 					msg: 'LogIn Success',
-					user: user,
+					user: {
+						_id: user._id,
+						username: user.username
+					},
 					accessToken: accessToken
 				}).send()
 			}else{
