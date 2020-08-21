@@ -95,7 +95,7 @@ export default {
 				this.fillUser({
 					_id: response.data.user._id,
 					username: response.data.user.username,
-					token: 'nothingfornow'
+					accessToken: response.data.accessToken
 				})
 			}).catch((error) => {
 				if(error.response){
