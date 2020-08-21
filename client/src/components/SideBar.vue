@@ -7,12 +7,40 @@
 	  <div class='p-1'>
 		<b-menu>
 		  <b-menu-list label='Menu'>
-			<b-menu-item icon='information-outline' label='Info'></b-menu-item>
-			<b-menu-item icon='settings'>
-			  <b-menu-item icon='account' label='Users'></b-menu-item>
+			<b-menu-item label='Panel'
+						 icon-pack='fas'
+						 icon='database'>
+			</b-menu-item>
+			<b-menu-item label='Inventory'
+						 icon-pack='fas'
+						 icon='warehouse'>
+			  <b-menu-item label='Home'
+						   icon-pack='fas'
+						   icon='home'>
+			  </b-menu-item>
+			</b-menu-item>
+			<b-menu-item label='Schedule'
+						 icon-pack='fas'
+						 icon='calendar'>
+			  <b-menu-item label='Home'
+						   icon-pack='fas'
+						   icon='home'>
+			  </b-menu-item>
 			</b-menu-item>
 		  </b-menu-list>
-		  <span @click=changeSideBarState()>Close</span>
+		  <b-menu-list label='Actions'>
+			<b-menu-item label='Log Out'
+						 icon-pack='fas'
+						 icon='sign-out-alt'>
+			</b-menu-item>
+		  </b-menu-list>
+		  <br>
+		  <b-button type='is-primary'
+					icon-pack='fas'
+					icon-left='times'
+					@click=changeSideBarState()>
+			Close
+		  </b-button>
 		</b-menu>
 	  </div>
 	</b-sidebar>
