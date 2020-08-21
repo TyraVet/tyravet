@@ -2,7 +2,8 @@ require('dotenv').config()
 
 const async = require('async')
 const bcryptjs = require('bcryptjs')
-const User = require('./models/user')
+const User = require('./models/user.js')
+const Type = require('./models/type.js')
 
 var mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_TYRAWEB_TEST, { useNewUrlParser: true })
@@ -15,7 +16,8 @@ var users = []
 function userCreate(username, password, callback){
 	userdetail = {
 		username : username,
-		password: password
+		password: password,
+		type: new Type({ name: 'admin' })
 	}
 
 	var myUser = new User(userdetail)
@@ -27,7 +29,8 @@ function userCreate(username, password, callback){
 		/* Success */
 		const user = new User({
 			username: myUser.username,
-			password: hashedPassword
+			password: hashedPassword,
+			type: myUser.type
 		}).save(err => {
 			if(err){
 				callback(err, null)
