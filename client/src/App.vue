@@ -2,15 +2,17 @@
   <div id='app'>
 	<NavBar></NavBar>
 	<router-view id='router'/>
+	<Footer></Footer>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
 	name: 'app',
-	components: { NavBar },
+	components: { NavBar, Footer },
 	methods: {
 		/* Redirect to LogIn page if there is no user stored */
 		init(){
