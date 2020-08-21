@@ -7,10 +7,14 @@
 	  <div class='p-1'>
 		<b-menu>
 		  <b-menu-list label='Menu'>
-			<b-menu-item label='Panel'
-						 icon-pack='fas'
-						 icon='database'>
-			</b-menu-item>
+			<span @click=changeSideBarState()>
+			  <b-menu-item label='Panel'
+						   icon-pack='fas'
+						   icon='database'
+						   tag='router-link'
+						   to='/panel'>
+			  </b-menu-item>
+			</span>
 			<b-menu-item label='Inventory'
 						 icon-pack='fas'
 						 icon='warehouse'>
