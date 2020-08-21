@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import PageNotFound from '../views/PageNotFound.vue'
+import Panel from '../views/Panel.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -14,9 +15,9 @@ const routes = [
 		component: Home
 	},
 	{
-		path: '*',
-		name: 'page-not-found',
-		component: PageNotFound
+		path: '/panel',
+		name: 'panel',
+		component: Panel
 	},
 	{
 		path: '/log-in',
@@ -27,6 +28,11 @@ const routes = [
 		path: '/sign-up',
 		name: 'sign-up',
 		component: SignUp
+	},
+	{
+		path: '*',
+		name: 'page-not-found',
+		component: PageNotFound
 	}
 ]
 
