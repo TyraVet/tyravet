@@ -1,7 +1,13 @@
+.user-form {
+	height: 100%;
+}
+
 #user-form {
+	height: 100%;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
+	justify-content: center;
 }
 
 .form-button {
