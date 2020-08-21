@@ -13,6 +13,7 @@ const store = new Vuex.Store({
 			state.user = {
 				_id: user._id,
 				username: user.username,
+				type: user.type,
 				token: user.token
 			}
 		},
