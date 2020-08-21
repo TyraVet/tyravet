@@ -1,4 +1,5 @@
 const bcryptjs = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const User = require('../models/user.js')
 
 /* Find User to LogIn */
@@ -8,16 +9,26 @@ exports.post_find_user = (req, res, next) => {
 
 	User.findOne({ username }).then(user => {
 		if(!user)
-			res.status(404).json({ msg: 'User does not exists' }).send()
+			res.status(404).json({
+				msg: 'User does not exists'
+			}).send()
 
 		bcryptjs.compare(password, user.password, (err, data) => {
 			if(err)
 				throw err
 
-			if(data)
-				res.status(200).json({ msg: 'LogIn Success', user: user }).send()
-			else
-				res.status(401).json({ msg: 'Invalid Credentials' }).send()
+			if(data){
+				const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET)
+				res.status(200).json({
+					msg: 'LogIn Success',
+					user: user,
+					accessToken: accessToken
+				}).send()
+			}else{
+				res.status(401).json({
+					msg: 'Invalid Credentials'
+				}).send()
+			}
 		})
 	})
 }
