@@ -5,8 +5,12 @@ describe('User Model', () => {
 	it('Should return the User with findById', () => {
 		const _user = {
 			_id: '507f191e810c19729de860ea',
-			username: 'andres',
-			password: 'test12'
+			username: 'admin',
+			password: 'admin12',
+			type: ({
+				_id: '507f191e810c19729de860eb',
+				name: 'admin'
+			})
 		}
 
 		mockingoose(UserModel).toReturn(_user, 'findOne')
@@ -20,8 +24,12 @@ describe('User Model', () => {
 	it('Should return the User with findOne', () => {
 		const _user = {
 			_id: '507f191e810c19729de860ea',
-			username: 'andres',
-			password: 'test12'
+			username: 'admin',
+			password: 'admin12',
+			type: ({
+				_id: '507f191e810c19729de860eb',
+				name: 'admin'
+			})
 		}
 
 		mockingoose(UserModel).toReturn(_user, 'findOne')
