@@ -10,10 +10,12 @@
 		</b-field>
 	  </section>
 	  <section class='form-button'>
-		<b-button tag='input'
-				  type='is-success'
-				  :value='labelButton'
-				  @click='send()' />
+		<b-button type='is-success'
+				  icon-pack='fas'
+				  icon-left='sign-in-alt'
+				  @click='send()'>
+		  {{ labelButton }}
+		</b-button>
 	  </section>
 	</form>
 	<br>
