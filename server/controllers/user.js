@@ -1,6 +1,11 @@
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user.js')
+const Type = require('../models/type.js')
+
+const normal = new Type({ name: 'normal' })
+const medic = new Type({ name: 'medic' })
+const admin = new Type({ name: 'admin' })
 
 /* Find User to LogIn */
 exports.post_find_user = (req, res, next) => {
@@ -23,7 +28,8 @@ exports.post_find_user = (req, res, next) => {
 					msg: 'LogIn Success',
 					user: {
 						_id: user._id,
-						username: user.username
+						username: user.username,
+						type: user.type
 					},
 					accessToken: accessToken
 				}).send()
@@ -38,6 +44,8 @@ exports.post_find_user = (req, res, next) => {
 
 /* Create User */
 exports.post_create_user = (req, res, next) => {
+	const Type = new Type({ name: req.body.type })
+
 	bcryptjs.hash(req.body.password, 10, (err, hashedPassword) => {
 		if(err)
 			res.sendStatus(401)
@@ -45,7 +53,8 @@ exports.post_create_user = (req, res, next) => {
 		/* Success */
 		const user = new User({
 			username: req.body.username,
-			password: hashedPassword
+			password: hashedPassword,
+			type: Type
 		}).save(err => {
 			if(err)
 				return next(err)
