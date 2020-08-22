@@ -18,18 +18,26 @@
 			<b-menu-item label='Inventory'
 						 icon-pack='fas'
 						 icon='warehouse'>
-			  <b-menu-item label='Home'
-						   icon-pack='fas'
-						   icon='home'>
-			  </b-menu-item>
+			  <span @click=changeSideBarState()>
+				<b-menu-item label='Home'
+							 icon-pack='fas'
+							 icon='home'
+							 tag='router-link'
+							 to='/inventory'>
+				</b-menu-item>
+			  </span>
 			</b-menu-item>
 			<b-menu-item label='Schedule'
 						 icon-pack='fas'
 						 icon='calendar'>
-			  <b-menu-item label='Home'
-						   icon-pack='fas'
-						   icon='home'>
-			  </b-menu-item>
+			  <span @click=changeSideBarState()>
+				<b-menu-item label='Home'
+							 icon-pack='fas'
+							 icon='home'
+							 tag='router-link'
+							 to='/'>
+				</b-menu-item>
+			  </span>
 			</b-menu-item>
 		  </b-menu-list>
 		  <b-menu-list label='Actions'>
