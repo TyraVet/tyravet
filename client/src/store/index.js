@@ -17,6 +17,9 @@ const store = new Vuex.Store({
 				token: user.token
 			}
 		},
+		logOutUser(state){
+			state.user = null
+		},
 		changeSideBarState(state){
 			if(state.sideBarOpen)
 				state.sideBarOpen = false
