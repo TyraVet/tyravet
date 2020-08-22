@@ -3,6 +3,12 @@
 // Set your colors
 $primary: #3f72af;
 $primary-invert: findColorInvert($primary);
+$primary-dark: #112d4e;
+$primary-dark-invert: findColorInvert($primary-dark);
+$primary-white: #f9f7f7;
+$primary-white-invert: findColorInvert($primary-white);
+$primary-light: #dbe2ef;
+$primary-light-invert: findColorInvert($primary-light);
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -11,6 +17,9 @@ $colors: (
 	"light": ($light, $light-invert),
 	"dark": ($dark, $dark-invert),
 	"primary": ($primary, $primary-invert),
+	"primary-dark": ($primary-dark, $primary-dark-invert),
+	"primary-white": ($primary-white, $primary-white-invert),
+	"primary-light": ($primary-light, $primary-light-invert),
 	"info": ($info, $info-invert),
 	"success": ($success, $success-invert),
 	"warning": ($warning, $warning-invert),
