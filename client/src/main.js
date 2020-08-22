@@ -4,8 +4,7 @@ import router from './router'
 import store from './store'
 import Buefy from 'buefy'
 import './assets/scss/app.scss'
-import './variables.scss'
-import './assets/css/no-margin-nor-padding.css'
+import './assets/css/main.css'
 
 Vue.use(Buefy, {
 	defaultIconPack: 'fas'
