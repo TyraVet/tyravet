@@ -32,9 +32,12 @@ $link-invert: $primary-light-invert;
 $link-hover: $primary-light;
 
 /* Bulma Variables */
+/* Footer */
 $footer-background-color: $primary-dark;
 $footer-background-color-invert: $primary-dark-invert;
 $footer-padding: 1rem .5rem 2rem;
+/* Inputs */
+$input-focus-border-color: $primary;
 
 @import "../../../node_modules/bulma/bulma.sass";
 @import "../../../node_modules/buefy/src/scss/buefy";
