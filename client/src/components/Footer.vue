@@ -1,6 +1,6 @@
 <template>
   <footer class='footer content has-text-centered'>
-	<p>
+	<p class='has-text-primary-white'>
 	  <a :href='bug'>Found a Bug?</a> |
 	  <a :href='mit'>License</a>
 	</p>
@@ -19,8 +19,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style type="text/css" media="screen">
+
 .footer {
-  background-color: #E0E0E0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }
 </style>

@@ -27,9 +27,14 @@ $colors: (
 );
 
 // Links
-$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: $primary;
+$link: $primary-light;
+$link-invert: $primary-light-invert;
+$link-hover: $primary-light;
+
+/* Bulma Variables */
+$footer-background-color: $primary-dark;
+$footer-background-color-invert: $primary-dark-invert;
+$footer-padding: 1rem .5rem 2rem;
 
 @import "../../../node_modules/bulma/bulma.sass";
 @import "../../../node_modules/buefy/src/scss/buefy";
