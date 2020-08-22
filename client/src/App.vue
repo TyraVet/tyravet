@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='css' scoped>
 #app {
   height: 100%;
 }
