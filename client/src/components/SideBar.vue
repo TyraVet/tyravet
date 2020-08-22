@@ -41,10 +41,12 @@
 			</b-menu-item>
 		  </b-menu-list>
 		  <b-menu-list label='Actions'>
-			<b-menu-item label='Log Out'
-						 icon-pack='fas'
-						 icon='sign-out-alt'>
-			</b-menu-item>
+			<span @click=logOut()>
+			  <b-menu-item label='Log Out'
+						   icon-pack='fas'
+						   icon='sign-out-alt'>
+			  </b-menu-item>
+			</span>
 		  </b-menu-list>
 		  <br>
 		  <b-button type='is-primary'
@@ -79,6 +81,11 @@ export default {
 	methods: {
 		changeSideBarState(){
 			this.$store.commit('changeSideBarState')
+		},
+		logOut(){
+			this.$store.commit('logOutUser')
+			this.changeSideBarState()
+			this.$router.push({ name: 'log-in' })
 		}
 	}
 }
