@@ -24,9 +24,11 @@ describe('NavBar Component', () => {
 		expect(typeof NavBar.methods).toBe('object')
 	})
 
-	it('Open SideBar', async () => {
+	it('Should open and close the Sidebar on Store Commit', async () => {
 		expect(wrapper.vm.$store.state.sideBarOpen).toBeFalsy()
 		await wrapper.vm.changeSideBarState()
 		expect(wrapper.vm.$store.state.sideBarOpen).toBeTruthy()
+		await wrapper.vm.changeSideBarState()
+		expect(wrapper.vm.$store.state.sideBarOpen).toBeFalsy()
 	})
 })

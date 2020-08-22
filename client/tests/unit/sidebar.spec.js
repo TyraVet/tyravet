@@ -19,4 +19,12 @@ describe('SideBar Component', () => {
 		expect(defaultData.fullwidth).toBeTruthy()
 		expect(defaultData.fullheight).toBeTruthy()
 	})
+
+	it('Should open and close the Sidebar on Store Commit', () => {
+		expect(wrapper.vm.$store.state.sideBarOpen).toBeFalsy()
+		wrapper.vm.$store.commit('changeSideBarState')
+		expect(wrapper.vm.$store.state.sideBarOpen).toBeTruthy()
+		wrapper.vm.$store.commit('changeSideBarState')
+		expect(wrapper.vm.$store.state.sideBarOpen).toBeFalsy()
+	})
 })
