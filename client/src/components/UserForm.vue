@@ -6,9 +6,7 @@
 		  <b-input type='text' v-model='username'></b-input>
 		</b-field>
 		<b-field :label='labelPassword'>
-		  <b-input type='password'
-				   password-reveal
-				   v-model='password'></b-input>
+		  <b-input type='password' v-model='password'></b-input>
 		</b-field>
 	  </section>
 	  <section class='form-button'>
