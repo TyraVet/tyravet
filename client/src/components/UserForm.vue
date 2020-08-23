@@ -5,14 +5,14 @@
 		<b-field :label='labelUsername'>
 		  <b-input type='text'
 				   v-model='username'
-				   validation-message='Fill out username'
+				   validation-message='Username Required'
 				   required
 				   autofocus></b-input>
 		</b-field>
 		<b-field :label='labelPassword'>
 		  <b-input type='password'
 				   v-model='password'
-				   validation-message='Fill out password'
+				   validation-message='Password Required'
 				   required></b-input>
 		</b-field>
 	  </section>
@@ -115,7 +115,9 @@ export default {
 					this.error = error.message
 				}
 			})
-			this.clearInputs()
+
+			if(this.type === this.labelSignUp)
+				this.clearInputs()
 		}
 	},
 	mounted(){
