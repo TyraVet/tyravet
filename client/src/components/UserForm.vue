@@ -76,6 +76,9 @@ export default {
 		}
 	},
 	methods: {
+		/* We need to know if the user is going to log in or sign up
+		 * a new user. So when the component is mounted we initialize
+		 * where are we going to send our request */
 		init(){
 			if(this.type === this.labelSignUp){
 				this.labelButton = 'Sign Up'
@@ -89,9 +92,12 @@ export default {
 			this.username = ''
 			this.password = ''
 		},
+		/* Commit to our Vuex Store and have the user that is going
+		 * to be logged in */
 		fillUser(user){
 			this.$store.commit('fillUser', user)
 		},
+		/* POST request to out API */
 		send(){
 			axios.post(this.apiCall, {
 				username: this.username,
