@@ -45,6 +45,7 @@
 			   icon-size='is-medium'
 			   icon='exclamation'
 			   has-icon
+			   auto-close
 			   class='message'
 			   v-if='status === 401 || status === 404'>
 	  {{ error }}
@@ -76,9 +77,9 @@ export default {
 		}
 	},
 	methods: {
-		/* We need to know if the user is going to log in or sign up
-		 * a new user. So when the component is mounted we initialize
-		 * where are we going to send our request */
+		/* Know if the user is going to log in or sign up a new user.
+		 * So when the component is mounted we initialize where are
+		 * we going to send our request */
 		init(){
 			if(this.type === this.labelSignUp){
 				this.labelButton = 'Sign Up'
@@ -91,6 +92,10 @@ export default {
 		clearInputs(){
 			this.username = ''
 			this.password = ''
+		},
+		clearErrors(){
+			this.status = null
+			this.error = ''
 		},
 		/* Commit to our Vuex Store and have the user that is going
 		 * to be logged in */
@@ -120,6 +125,10 @@ export default {
 				}else{
 					this.error = error.message
 				}
+
+				/* To clear the error and status variable so we
+				 * can show again our error mesasge if needed. */
+				setTimeout(this.clearErrors, 2000)
 			})
 
 			if(this.type === this.labelSignUp)
