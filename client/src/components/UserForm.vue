@@ -1,5 +1,5 @@
 <template>
-  <div class='user-form'>
+  <div class='user-form' @keyup.enter=send()>
 	<form id='user-form'>
 	  <section>
 		<b-field :label='labelUsername'>
