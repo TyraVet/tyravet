@@ -5,6 +5,11 @@
 	justify-content: center;
 }
 
+.stay-logged-in {
+	margin: auto;
+	text-align: center;
+}
+
 .form-button {
 	margin-top: 20px;
 }

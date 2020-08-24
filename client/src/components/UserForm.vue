@@ -15,6 +15,12 @@
 				   validation-message='Password Required'
 				   required></b-input>
 		</b-field>
+		<b-field class='stay-logged-in'>
+		  <b-switch type='is-primary'
+					v-model='stayLoggedIn'>
+			{{ labelStayLoggedIn }}
+		  </b-switch>
+		</b-field>
 	  </section>
 	  <section class='form-button'>
 		<b-button type='is-success'
@@ -67,10 +73,12 @@ export default {
 			labelLogIn: 'login',
 			labelUsername: 'Username',
 			labelPassword: 'Password',
+			labelStayLoggedIn: 'Stay Logged In?',
 			labelButton: '',
 			apiCall: '',
 			username: '',
 			password: '',
+			stayLoggedIn: false,
 			status: null,
 			statusText: '',
 			error: ''
@@ -97,6 +105,30 @@ export default {
 			this.status = null
 			this.error = ''
 		},
+		setOnSuccess(response){
+			this.status = response.status
+			this.statusText = response.statusText +
+							  response.data.msg ? (' ' + response.data.msg + '.') : '.'
+			this.fillUser({
+				_id: response.data.user._id,
+				username: response.data.user.username,
+				type: response.data.user.type,
+				token: response.data.accessToken
+			})
+		},
+		setOnError(error){
+			if(error.response){
+				this.status = error.response.status
+				this.error = error.response.statusText
+			}else if(error.request){
+				this.error = error.request
+			}else{
+				this.error = error.message
+			}
+		},
+		setCookies(){
+			this.$cookies.set('user', this.user)
+		},
 		/* Commit to our Vuex Store and have the user that is going
 		 * to be logged in */
 		fillUser(user){
@@ -108,24 +140,12 @@ export default {
 				username: this.username,
 				password: this.password
 			}).then((response) => {
-				this.status = response.status
-				this.statusText = response.statusText +
-								  response.data.msg ? (' ' + response.data.msg + '.') : '.'
-				this.fillUser({
-					_id: response.data.user._id,
-					username: response.data.user.username,
-					type: response.data.user.type,
-					token: response.data.accessToken
-				})
+				this.setOnSuccess(response)
+
+				if(this.type === this.labelLogIn)
+					this.setCookies()
 			}).catch((error) => {
-				if(error.response){
-					this.status = error.response.status
-					this.error = error.response.statusText
-				}else if(error.request){
-					this.error = error.request
-				}else{
-					this.error = error.message
-				}
+				this.setOnError(error)
 
 				/* To clear the error and status variable so we
 				 * can show again our error mesasge if needed. */
