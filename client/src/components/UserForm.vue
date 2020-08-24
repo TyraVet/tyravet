@@ -109,7 +109,8 @@ export default {
 				password: this.password
 			}).then((response) => {
 				this.status = response.status
-				this.statusText = response.statusText + response.data.msg ? (' ' + response.data.msg + '.') : '.'
+				this.statusText = response.statusText +
+								  response.data.msg ? (' ' + response.data.msg + '.') : '.'
 				this.fillUser({
 					_id: response.data.user._id,
 					username: response.data.user.username,
