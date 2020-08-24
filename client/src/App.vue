@@ -6,11 +6,18 @@
 </template>
 
 <script>
+import axios from 'axios'
 import NavBar from '@/components/NavBar.vue'
 
 export default {
 	name: 'app',
 	components: { NavBar },
+	data() {
+		return {
+			status: '',
+			error: ''
+		}
+	},
 	methods: {
 		/* Redirect to LogIn page if there is no user stored */
 		init(){
@@ -19,6 +26,19 @@ export default {
 			else
 				this.fillUserFromCookies()
 		},
+		setOnSuccess(response){
+			this.status = response.status
+		},
+		setOnError(error){
+			if(error.response){
+				this.status = error.response.status
+				this.error = error.response.statusText
+			}else if(error.request){
+				this.error = error.request
+			}else{
+				this.error = error.message
+			}
+		},
 		fillUserFromCookies(){
 			const user = {
 				_id: this.$cookies.get('user')._id,
@@ -26,7 +46,20 @@ export default {
 				type: this.$cookies.get('user').type,
 				token: this.$cookies.get('user').token
 			}
-			this.$store.commit('fillUser', user)
+
+			this.validateUser(user)
+		},
+		validateUser(user){
+			axios.post(process.env.VUE_APP_TYRAWEB_FIND_USER, {
+				_id: user._id
+			}).then((response) => {
+				this.setOnSuccess(response)
+
+				if(this.status === 200)
+					this.$store.commit('fillUser', user)
+			}).catch((error) => {
+				this.setOnErrors(error)
+			})
 		}
 	},
 	mounted(){
