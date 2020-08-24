@@ -14,8 +14,19 @@ export default {
 	methods: {
 		/* Redirect to LogIn page if there is no user stored */
 		init(){
-			if(!this.user)
+			if(!this.$cookies.get('user'))
 				this.$router.push({ name: 'log-in' }).catch(() => {})
+			else
+				this.fillUserFromCookies()
+		},
+		fillUserFromCookies(){
+			const user = {
+				_id: this.$cookies.get('user')._id,
+				username: this.$cookies.get('user').username,
+				type: this.$cookies.get('user').type,
+				token: this.$cookies.get('user').token
+			}
+			this.$store.commit('fillUser', user)
 		}
 	},
 	mounted(){
