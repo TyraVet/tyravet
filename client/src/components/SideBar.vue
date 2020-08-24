@@ -1,6 +1,7 @@
 <template>
-  <section>
+  <section class='side-bar' @keyup.esc='changeSideBarState()'>
 	<b-sidebar type='is-light'
+			   :can-cancel='canCancel'
 			   :fullheight='fullheight'
 			   :fullwidth='fullwidth'
 			   :open.sync='open'>
@@ -66,6 +67,7 @@ export default {
 	name: 'SideBar',
 	data() {
 		return {
+			canCancel: false,
 			fullwidth: true,
 			fullheight: true
 		}
