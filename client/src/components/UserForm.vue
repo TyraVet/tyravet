@@ -142,7 +142,7 @@ export default {
 			}).then((response) => {
 				this.setOnSuccess(response)
 
-				if(this.type === this.labelLogIn)
+				if(this.type === this.labelLogIn && this.stayLoggedIn)
 					this.setCookies()
 			}).catch((error) => {
 				this.setOnError(error)
