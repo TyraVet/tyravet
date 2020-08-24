@@ -104,6 +104,7 @@ export default {
 		},
 		logOut(){
 			this.$store.commit('logOutUser')
+			this.$cookies.remove('user')
 			this.changeSideBarState()
 			this.$router.push({ name: 'log-in' })
 		}
