@@ -49,6 +49,9 @@ export default {
 
 			this.validateUser(user)
 		},
+		/* POST request to out API
+		 * To check if the User from the cookies exists in the
+		 * database. */
 		validateUser(user){
 			axios.post(process.env.VUE_APP_TYRAWEB_FIND_USER, {
 				_id: user._id
