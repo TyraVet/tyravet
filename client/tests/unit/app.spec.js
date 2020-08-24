@@ -2,11 +2,13 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import store from '@/store'
 import router from '@/router'
 import App from '@/App.vue'
+import VueCookies from 'vue-cookies'
 import NavBar from '@/components/NavBar.vue'
 
 /* We import createLocalVue to load VueRouter */
-
 const localVue = createLocalVue()
+localVue.use(VueCookies)
+
 const wrapper = shallowMount(App, { store, router, localVue })
 
 describe('App Component', () => {
