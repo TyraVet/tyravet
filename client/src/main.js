@@ -14,6 +14,7 @@ Vue.use(Buefy, {
 Vue.config.productionTip = false
 
 Vue.use(VueCookies)
+Vue.$cookies.config('2m')
 
 new Vue({
 	store: store,
