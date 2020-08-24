@@ -33,8 +33,4 @@ export default {
 #app {
   height: 100%;
 }
-
-#router {
-  height: 80%;
-}
 </style>
