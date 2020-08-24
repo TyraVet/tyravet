@@ -38,6 +38,8 @@ $footer-background-color-invert: $primary-dark-invert;
 $footer-padding: 1rem .5rem 2rem;
 /* Inputs */
 $input-focus-border-color: $primary;
+/* Menus */
+$menu-item-active-background-color: $primary;
 
 @import "../../../node_modules/bulma/bulma.sass";
 @import "../../../node_modules/buefy/src/scss/buefy";
