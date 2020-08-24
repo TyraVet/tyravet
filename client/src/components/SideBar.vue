@@ -49,6 +49,22 @@
 			  </b-menu-item>
 			</span>
 		  </b-menu-list>
+		  <b-menu-list label='About'>
+			<b-menu-item label='Found a Bug?'
+						 icon-pack='fas'
+						 icon='bug'
+						 tag='a'
+						 :href='bug'
+						 target='_blank'>
+			</b-menu-item>
+			<b-menu-item label='License'
+						 icon-pack='fas'
+						 icon='balance-scale'
+						 tag='a'
+						 :href='mit'
+						 target='_blank'>
+			</b-menu-item>
+		  </b-menu-list>
 		  <br>
 		  <b-button type='is-primary'
 					icon-pack='fas'
@@ -69,7 +85,9 @@ export default {
 		return {
 			canCancel: false,
 			fullwidth: true,
-			fullheight: true
+			fullheight: true,
+			bug: process.env.VUE_APP_NEW_ISSUE,
+			mit: process.env.VUE_APP_MIT
 		}
 	},
 	computed: {
