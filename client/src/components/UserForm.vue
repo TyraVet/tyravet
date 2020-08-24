@@ -109,12 +109,13 @@ export default {
 			this.status = response.status
 			this.statusText = response.statusText +
 							  response.data.msg ? (' ' + response.data.msg + '.') : '.'
-			this.fillUser({
+			const user = {
 				_id: response.data.user._id,
 				username: response.data.user.username,
 				type: response.data.user.type,
 				token: response.data.accessToken
-			})
+			}
+			this.fillUser(user)
 		},
 		setOnError(error){
 			if(error.response){
