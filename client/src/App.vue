@@ -55,13 +55,17 @@ export default {
 		validateUser(user){
 			axios.post(process.env.VUE_APP_TYRAWEB_FIND_USER, {
 				_id: user._id
+			}, {
+				headers: {
+					Authorization: 'Bearer ' + user.token
+				}
 			}).then((response) => {
 				this.setOnSuccess(response)
 
 				if(this.status === 200)
 					this.$store.commit('fillUser', user)
 			}).catch((error) => {
-				this.setOnErrors(error)
+				this.setOnError(error)
 			})
 		}
 	},
