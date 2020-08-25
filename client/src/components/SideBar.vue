@@ -1,6 +1,6 @@
 <template>
-  <section class='side-bar' @keyup.esc='changeSideBarState()'>
-	<b-sidebar type='is-light'
+  <section class='side-bar'>
+	<b-sidebar type='is-primary-light'
 			   :can-cancel='canCancel'
 			   :fullheight='fullheight'
 			   :fullwidth='fullwidth'
