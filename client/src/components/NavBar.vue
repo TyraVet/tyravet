@@ -8,7 +8,7 @@
 	  {{ menu }}
 	</b-button>
 	<SideBar v-if='user'></SideBar>
-	<h1 class='is-size-3 has-text-primary-light'>{{ title }}</h1>
+	<h1 class='is-size-3 has-text-primary-white'>{{ title }}</h1>
   </div>
 </template>
 
