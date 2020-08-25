@@ -28,4 +28,17 @@ describe('App Component', () => {
 	it('Renders Router View Component', () => {
 		expect(wrapper.get('#router')).toBeTruthy()
 	})
+
+	it('Should store the User if there are Cookies', () => {
+		const user = {
+			_id: 'dummyid',
+			username: 'andres',
+			type: 'dummytype',
+			token: 'dummytoken'
+		}
+
+		wrapper.vm.$cookies.set('user', user)
+		expect(wrapper.vm.$cookies.get('user')).toMatchObject(user)
+		wrapper.vm.$cookies.remove('user')
+	})
 })
