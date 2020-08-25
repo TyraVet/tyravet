@@ -1,5 +1,5 @@
 <template>
-  <div class='navbar'>
+  <div class='navbar has-background-primary-dark'>
 	<b-button type='is-primary'
 			  icon-pack='fas'
 			  icon-left='bars'
@@ -8,7 +8,7 @@
 	  {{ menu }}
 	</b-button>
 	<SideBar v-if='user'></SideBar>
-	<h1 class='is-size-3'>{{ title }}</h1>
+	<h1 class='is-size-3 has-text-primary-light'>{{ title }}</h1>
   </div>
 </template>
 
