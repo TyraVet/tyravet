@@ -8,14 +8,26 @@
 	  <div class='p-1'>
 		<b-menu>
 		  <b-menu-list label='Menu'>
-			<span @click=changeSideBarState()>
-			  <b-menu-item label='Panel'
-						   icon-pack='fas'
-						   icon='database'
-						   tag='router-link'
-						   to='/panel'>
-			  </b-menu-item>
-			</span>
+			<b-menu-item label='Panel'
+						 icon-pack='fas'
+						 icon='database'>
+			  <span @click=changeSideBarState()>
+				<b-menu-item label='Home'
+							 icon-pack='fas'
+							 icon='home'
+							 tag='router-link'
+							 to='/panel'>
+				</b-menu-item>
+			  </span>
+			  <span @click=changeSideBarState()>
+				<b-menu-item label='Breeds'
+							 icon-pack='fas'
+							 icon='database'
+							 tag='router-link'
+							 to='/panel/breeds'>
+				</b-menu-item>
+			  </span>
+			</b-menu-item>
 			<b-menu-item label='Inventory'
 						 icon-pack='fas'
 						 icon='warehouse'>
