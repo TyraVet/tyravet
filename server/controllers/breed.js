@@ -12,3 +12,17 @@ exports.post_create_breed = (req, res, next) => {
 		res.sendStatus(201).json(breed)
 	})
 }
+
+/* Get all Breeds */
+exports.get_breeds = (req, res, next) => {
+	Breed.find()
+		 .populate('breed')
+		 .sort([['name', 'ascending']])
+		 .exec((err, breeds) => {
+			 if(err)
+				 return res.sendStatus(403)
+
+			 /* Success */
+			 res.json(breeds)
+		 })
+}
