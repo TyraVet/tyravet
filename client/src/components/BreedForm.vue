@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form id='breed-form'>
 	<div class='modal-card' style='width: auto'>
 	  <header class='modal-card-head'>
 		<p class='modal-card-title'>Create Breed</p>
@@ -10,7 +10,7 @@
 	  <section class='modal-card-body'>
 		   <b-field label='Name'>
 			 <b-input type='text'
-					  v-model='name'
+					  v-model='breedName'
 					  required>
 			 </b-input>
 		   </b-field>
@@ -61,7 +61,7 @@ export default {
 	name: 'BreedForm',
 	data() {
 		return {
-			name: '',
+			breedName: '',
 			status: null,
 			statusText: '',
 			error: ''
@@ -69,7 +69,7 @@ export default {
 	},
 	methods: {
 		clearInput(){
-			this.name = ''
+			this.breedName = ''
 		},
 		setOnSuccess(response){
 			this.status = response.status
@@ -91,7 +91,7 @@ export default {
 		},
 		send(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_BREED, {
-				name: this.name
+				name: this.breedName
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.$store.state.user.token
