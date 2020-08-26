@@ -8,5 +8,6 @@ var breedController = require(path.join(__dirname, '../controllers/breed.js'))
 
 /* Breed Routes */
 router.post('/create', authenticateToken, breedController.post_create_breed)
+router.get('/', authenticateToken, breedController.get_breeds)
 
 module.exports = router
