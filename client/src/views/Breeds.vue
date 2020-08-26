@@ -5,7 +5,7 @@
 	  <b-button type='is-primary'
 				icon-pack='fas'
 				icon-left='plus'
-				@click=changeModalState()>
+				@click=launchModal()>
 		Add
 	  </b-button>
 	</span>
@@ -18,7 +18,7 @@ import BreedForm from '@/components/BreedForm.vue'
 export default {
 	name: 'Breeds',
 	methods: {
-		changeModalState(){
+		launchModal(){
 			this.$buefy.modal.open({
 				parent: this,
 				component: BreedForm,
