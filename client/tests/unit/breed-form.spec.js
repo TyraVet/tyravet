@@ -13,7 +13,7 @@ describe('BreedForm Component', () => {
 	it('Set the correct default data', () => {
 		expect(typeof BreedForm.data).toBe('function')
 		const defaultData = BreedForm.data()
-		expect(defaultData.name).toMatch('')
+		expect(defaultData.breedName).toMatch('')
 		expect(defaultData.status).toBeNull()
 		expect(defaultData.statusText).toMatch('')
 		expect(defaultData.error).toMatch('')
