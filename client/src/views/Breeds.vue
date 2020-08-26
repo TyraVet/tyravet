@@ -9,14 +9,17 @@
 		{{ labelButton }}
 	  </b-button>
 	</span>
+	<BreedList></BreedList>
   </div>
 </template>
 
 <script>
+import BreedList from '@/components/BreedList.vue'
 import BreedForm from '@/components/BreedForm.vue'
 
 export default {
 	name: 'Breeds',
+	components: { BreedList },
 	data() {
 		return {
 			title: 'Breeds',
