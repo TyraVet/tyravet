@@ -6,6 +6,6 @@
 	margin-bottom: 20px;
 }
 
-.title-container * {
+.title-container > * {
 	margin: 0 10px 0 10px;
 }
