@@ -51,6 +51,14 @@
 							 to='/'>
 				</b-menu-item>
 			  </span>
+			  <span @click=changeSideBarState()>
+				<b-menu-item label='Clients Book'
+							 icon-pack='fas'
+							 icon='address-book'
+							 tag='router-link'
+							 to='/clients'>
+				</b-menu-item>
+			  </span>
 			</b-menu-item>
 		  </b-menu-list>
 		  <b-menu-list label='Actions'>
