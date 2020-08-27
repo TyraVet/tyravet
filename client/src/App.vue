@@ -38,6 +38,7 @@ export default {
 			}else{
 				this.error = error.message
 			}
+			console.error(this.error)
 		},
 		fillUserFromCookies(){
 			const user = {
@@ -66,6 +67,8 @@ export default {
 					this.$store.commit('fillUser', user)
 			}).catch((error) => {
 				this.setOnError(error)
+				/* Redirect to LogIn if any error occurs */
+				this.$router.push({ name: 'log-in' }).catch(() => {})
 			})
 		}
 	},
