@@ -1,6 +1,10 @@
 <template>
-  <div>
-	<h1>List</h1>
+  <div class='breed-list'>
+	<b-table :data='breeds' :bordered='isBordered'>
+	  <b-table-column field='name' label='Name' v-slot='props'>
+		{{ props.row.name }}
+	  </b-table-column>
+	</b-table>
   </div>
 </template>
 
@@ -11,12 +15,12 @@ export default {
 	name: 'BreedList',
 	data() {
 		return {
-			breeds: []
+			breeds: [],
+			isBordered: true
 		}
 	},
 	methods: {
 		init(){
-			console.log(this.$store.state.user.token)
 			this.getBreeds()
 		},
 		getBreeds(){
@@ -25,7 +29,7 @@ export default {
 					Authorization: 'Bearer ' + this.$store.state.user.token
 				}
 			}).then((response) => {
-				console.log(response)
+				this.breeds = response.data
 			}).catch((error) => {
 				console.error(error)
 			})
