@@ -3,6 +3,7 @@
 	flex-flow: row nowrap;
 	justify-content: flex-start;
 	margin-top: 25px;
+	margin-bottom: 20px;
 }
 
 .title-container * {
