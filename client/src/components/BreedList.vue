@@ -1,7 +1,11 @@
 <template>
   <div class='breed-list'>
-	<b-table :data='breeds' :bordered='isBordered'>
-	  <b-table-column field='name' label='Name' v-slot='props'>
+	<b-table :data='breeds'
+			 :bordered='isBordered'
+			 :mobile-cards='hasMobileCards'>
+	  <b-table-column field='name'
+					  label='Name'
+					  v-slot='props'>
 		{{ props.row.name }}
 	  </b-table-column>
 	</b-table>
@@ -16,7 +20,8 @@ export default {
 	data() {
 		return {
 			breeds: [],
-			isBordered: true
+			isBordered: true,
+			hasMobileCards: false
 		}
 	},
 	methods: {
