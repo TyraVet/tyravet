@@ -14,7 +14,42 @@
 					  required>
 			 </b-input>
 		   </b-field>
-		   <b-field label='Address'>
+		   <b-field label='Address'
+					grouped
+					group-multiline
+					position='is-centered'>
+			 <b-field label='Street'>
+			   <b-input type='text'
+						v-model='clientAddressStreet'
+						required></b-input>
+			 </b-field>
+			 <b-field label='Number'>
+			   <b-input type='tel'
+						v-model='clientAddressNumber'
+						min='0'
+						maxlength='4'
+						required></b-input>
+			 </b-field>
+			 <b-field label='Int Number'>
+			   <b-input type='tel'
+						v-model='clientAddressIntNumber'
+						min='0'
+						maxlength='4'></b-input>
+			 </b-field>
+			 <b-field label='Postal Code'>
+			   <b-input type='tel'
+						v-model='clientAddressPostalCode'
+						min='0'
+						maxlength='5'
+						required></b-input>
+			 </b-field>
+		   </b-field>
+		   <b-field label='Phone Number'>
+			 <b-input type='tel'
+					  v-model='clientPhoneNumber'
+					  maxlength='10'
+					  min='0'
+					  required></b-input>
 		   </b-field>
 	  </section>
 	  <footer class='modal-card-foot'>
@@ -64,10 +99,15 @@ export default {
 	data() {
 		return {
 			title: 'Create Client',
-			clientName: '',
 			status: null,
 			statusText: '',
-			error: ''
+			error: '',
+			clientName: '',
+			clientAddressStreet: '',
+			clientAddressNumber: null,
+			clientAddressIntNumber: null,
+			clientAddressPostalCode: null,
+			clientPhoneNumber: null
 		}
 	},
 	methods: {
