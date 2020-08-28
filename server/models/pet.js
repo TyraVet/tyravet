@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const BreedSchema = require('./breedSchema.js')
 
 var Schema = mongoose.Schema
 
@@ -6,8 +7,8 @@ var PetSchema = new Schema({
 	name: { type: String, required: true },
 	age: { type: Number },
 	weight: { type: Number },
-	birthday: { type Object },
-	breed: { type Object }
+	birthday: { type Date },
+	breed: { type BreedSchema }
 })
 
-module.exports = mongoose.model('Pet', PetSchema)
+module.exports = PetSchema
