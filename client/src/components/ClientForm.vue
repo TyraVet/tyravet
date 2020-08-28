@@ -51,6 +51,39 @@
 					  min='0'
 					  required></b-input>
 		   </b-field>
+		   <b-field label='Pet'
+					grouped
+					group-multiline
+					position='is-centered'>
+			 <b-field label='Name'>
+			   <b-input type='text'
+						v-model='clientPetName'
+						required></b-input>
+			 </b-field>
+			 <b-field label='Age'>
+			   <b-input type='tel'
+						v-model='clientPetAge'
+						min='0'
+						maxlength='2'></b-input>
+			 </b-field>
+			 <b-field label='Weighht'>
+			   <b-input type='number'
+						v-model='clientPetWeight'
+						min='0'
+						maxlength='4'></b-input>
+			 </b-field>
+			 <b-field label='Birthday'>
+			   <b-datepicker v-model='clientPetBirthday'
+							 :max-date='maxDate'>
+			   </b-datepicker>
+			 </b-field>
+			 <b-field label='Breed'>
+			   <b-input type='text'
+						v-model='clientPetBreed'
+						min='0'
+						required></b-input>
+			 </b-field>
+		   </b-field>
 	  </section>
 	  <footer class='modal-card-foot'>
 		<button class='button'
@@ -107,7 +140,13 @@ export default {
 			clientAddressNumber: null,
 			clientAddressIntNumber: null,
 			clientAddressPostalCode: null,
-			clientPhoneNumber: null
+			clientPhoneNumber: null,
+			clientPetName: '',
+			clientPetAge: null,
+			clientPetWeight: null,
+			clientPetBirthday: null,
+			clientPetBreed: '',
+			maxDate: new Date()
 		}
 	},
 	methods: {
