@@ -8,9 +8,12 @@
 				 icon='exclamation-circle'
 				 has-icon
 				 class='message'>
-	  <h1 class='has-text-danger'>{{ noClients }}</h1>
-	</b-message>
-
+		<h1 class='has-text-danger'>{{ noClients }}</h1>
+	  </b-message>
+	</span>
+	<span class='no-clients'
+		  v-if='clients.length > 0'>
+	  <h1>There are clients</h1>
 	</span>
   </div>
 </template>
