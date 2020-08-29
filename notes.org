@@ -1,0 +1,5 @@
+# Tyra TODO list and notes
+* TODO Schedule <2020-08-29 Sat>
+# The home view could be like a TODO list.
+# Each 'TODO list' would be the a 'day'
+# In this case the 'tasks' would be 'appointments'
