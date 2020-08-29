@@ -60,6 +60,11 @@
 						v-model='clientPetName'
 						required></b-input>
 			 </b-field>
+			 <b-field label='Birthday'>
+			   <b-datepicker v-model='clientPetBirthday'
+							 :max-date='maxDate'>
+			   </b-datepicker>
+			 </b-field>
 			 <b-field label='Age'>
 			   <b-input type='tel'
 						v-model='clientPetAge'
@@ -71,11 +76,6 @@
 						v-model='clientPetWeight'
 						min='0'
 						maxlength='4'></b-input>
-			 </b-field>
-			 <b-field label='Birthday'>
-			   <b-datepicker v-model='clientPetBirthday'
-							 :max-date='maxDate'>
-			   </b-datepicker>
 			 </b-field>
 			 <b-field label='Breed'>
 			   <b-select v-model='clientPetBreed'
@@ -176,6 +176,10 @@ export default {
 		close(){
 			this.$emit('close')
 		},
+		calculateAge(date){
+			const today = new Date()
+			this.clientPetAge = today.getFullYear() - date.getFullYear()
+		},
 		send(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_CLIENT, {
 				name: this.clientName
@@ -203,6 +207,11 @@ export default {
 	},
 	mounted(){
 		this.getBreeds()
+	},
+	watch: {
+		clientPetBirthday: function(){
+			this.calculateAge(this.clientPetBirthday)
+		}
 	}
 }
 </script>
