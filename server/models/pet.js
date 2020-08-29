@@ -5,9 +5,9 @@ var Schema = mongoose.Schema
 
 var PetSchema = new Schema({
 	name: { type: String, required: true },
+	birthday: { type Date },
 	age: { type: Number },
 	weight: { type: Number },
-	birthday: { type Date },
 	breed: { type BreedSchema }
 })
 
