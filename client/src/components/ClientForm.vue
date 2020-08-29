@@ -78,10 +78,14 @@
 			   </b-datepicker>
 			 </b-field>
 			 <b-field label='Breed'>
-			   <b-input type='text'
-						v-model='clientPetBreed'
-						min='0'
-						required></b-input>
+			   <b-select v-model='clientPetBreed'
+						required>
+				 <option v-for='(breed, index) in breeds'
+						 :key=index
+						 :value='breed.name'>
+				   {{ breed.name }}
+				 </option>
+			   </b-select>
 			 </b-field>
 		   </b-field>
 	  </section>
@@ -146,7 +150,8 @@ export default {
 			clientPetWeight: null,
 			clientPetBirthday: null,
 			clientPetBreed: '',
-			maxDate: new Date()
+			maxDate: new Date(),
+			breeds: []
 		}
 	},
 	methods: {
@@ -183,7 +188,21 @@ export default {
 			}).catch((error) => {
 				this.setOnError(error)
 			})
+		},
+		getBreeds(){
+			axios.get(process.env.VUE_APP_TYRAWEB_BREEDS, {
+				headers: {
+					Authorization: 'Bearer ' + this.$store.state.user.token
+				}
+			}).then((response) => {
+				this.breeds = response.data
+			}).catch((error) => {
+				console.error(error)
+			})
 		}
+	},
+	mounted(){
+		this.getBreeds()
 	}
 }
 </script>
