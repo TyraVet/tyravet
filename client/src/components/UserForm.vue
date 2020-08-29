@@ -16,10 +16,10 @@
 				   required></b-input>
 		</b-field>
 		<b-field class='stay-logged-in'>
-		  <b-switch type='is-primary'
+		  <b-checkbox type='is-primary'
 					v-model='stayLoggedIn'>
 			{{ labelStayLoggedIn }}
-		  </b-switch>
+		  </b-checkbox>
 		</b-field>
 	  </section>
 	  <section class='form-button'>
