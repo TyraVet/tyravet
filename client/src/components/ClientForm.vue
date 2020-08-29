@@ -82,7 +82,7 @@
 						required>
 				 <option v-for='(breed, index) in breeds'
 						 :key=index
-						 :value='breed.name'>
+						 :value='breed'>
 				   {{ breed.name }}
 				 </option>
 			   </b-select>
@@ -182,7 +182,20 @@ export default {
 		},
 		send(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_CLIENT, {
-				name: this.clientName
+				/* Client */
+				name: this.clientName,
+				phone: this.clientPhoneNumber,
+				/* Address */
+				street: this.clientAddressStreet,
+				number: this.clientAddressNumber,
+				intNumber: this.clientAddressIntNumber,
+				postalCode: this.clientAddressPostalCode,
+				/* Pet */
+				petName: this.clientPetName,
+				petBirthday: this.clientPetBirthday,
+				petAge: this.clientPetAge,
+				petWeight: this.clientPetWeight,
+				petBreed: this.clientPetBreed
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.$store.state.user.token
