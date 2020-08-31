@@ -5,10 +5,10 @@ var Schema = mongoose.Schema
 
 var PetSchema = new Schema({
 	name: { type: String, required: true },
-	birthday: { type Date },
+	birthday: { type: Date },
 	age: { type: Number },
 	weight: { type: Number },
-	breed: { type BreedSchema }
+	breed: { type: BreedSchema }
 })
 
 module.exports = PetSchema
