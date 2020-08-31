@@ -11,4 +11,4 @@ var PetSchema = new Schema({
 	breed: { type: BreedSchema }
 })
 
-module.exports = mongoose.model('Pet', PetSchema)
+module.exports = PetSchema

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const AddressSchema = require('./address.js')
-const PetSchema = require('./pet.js')
+const AddressSchema = require('./addressSchema.js')
+const PetSchema = require('./petSchema.js')
 
 var Schema = mongoose.Schema
 

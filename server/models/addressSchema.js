@@ -9,4 +9,4 @@ var AddressSchema = new Schema({
 	postalCode: { type: Number, required: true }
 })
 
-module.exports = mongoose.model('Address', AddressSchema)
+module.exports = AddressSchema
