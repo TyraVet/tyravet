@@ -1,6 +1,39 @@
 <template>
   <div class='client-list'>
 	<span class='no-clients'
+		  v-if='clients.length > 0'>
+	  <b-table :data='clients'
+			   :bordered='isBordered'
+			   :mobile-cards='hasMobileCards'>
+		<b-table-column field='name'
+						label='Name'
+						v-slot='props'>
+		  {{ props.row.name }}
+		</b-table-column>
+		<b-table-column field='phone'
+						label='Phone'
+						v-slot='props'>
+		  {{ props.row.phone }}
+		</b-table-column>
+		<b-table-column field='pets'
+						label='Pets'
+						v-slot='props'>
+		  <span v-for='(pet, index) in props.row.pets'
+				:key='index'>
+			{{ pet.name }}, {{ pet.breed.name }}
+		  </span>
+		</b-table-column>
+		<b-table-column field='address'
+						label='Address'
+						v-slot='props'>
+		  {{ props.row.address.street }}
+		  #{{ props.row.address.number }}
+		  C.P. {{ props.row.address.postalCode }}
+		</b-table-column>
+	  </b-table>
+	</span>
+
+	<span class='no-clients'
 		  v-if='clients.length == 0'>
 	  <b-message type='is-danger'
 				 icon-pack='fas'
@@ -11,21 +44,40 @@
 		<h1 class='has-text-danger'>{{ noClients }}</h1>
 	  </b-message>
 	</span>
-	<span class='no-clients'
-		  v-if='clients.length > 0'>
-	  <h1>There are clients</h1>
-	</span>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
 	name: 'ClientList',
 	data(){
 		return{
 			clients: [],
+			isBordered: true,
+			hasMobileCards: true,
 			noClients: "You don't have Clients now. Add One!"
 		}
+	},
+	methods: {
+		init(){
+			this.getClients()
+		},
+		getClients(){
+			axios.get(process.env.VUE_APP_TYRAWEB_CLIENTS, {
+				headers: {
+					Authorization: 'Bearer ' + this.$store.state.user.token
+				}
+			}).then((response) => {
+				this.clients = response.data
+			}).catch((error) => {
+				console.error(error)
+			})
+		}
+	},
+	mounted() {
+		this.init()
 	}
 }
 </script>
