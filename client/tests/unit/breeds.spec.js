@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Buefy from 'buefy'
 import Breeds from '@/views/Breeds.vue'
-import BreedForm from '@/components/BreedForm.vue'
+import BreedList from '@/components/BreedList.vue'
 
 /* We import createLocalVue to load Buefy and don't
  * have warnings due to its own components. */
@@ -16,5 +16,10 @@ describe('Breeds Component', () => {
 		const defaultData = Breeds.data()
 		expect(defaultData.title).toMatch('Breeds')
 		expect(defaultData.labelButton).toMatch('Add')
+	})
+
+	it('Should have a BreedList Component', () => {
+		const breedListComponent = wrapper.findComponent(BreedList)
+		expect(breedListComponent.exists()).toBeTruthy()
 	})
 })
