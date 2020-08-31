@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const Client = require('../models/client.js')
 const Pet = require('../models/pet.js')
-const Address = requie('../models/address.js')
+const Address = require('../models/address.js')
 
 /* Create Client */
 exports.post_create_client = (req, res, next) => {
@@ -20,7 +20,7 @@ exports.post_create_client = (req, res, next) => {
 		breed: req.body.petBreed
 	})
 
-	const pets = []
+	let pets = []
 	pets.push(pet)
 
 	const client = new Client({
