@@ -36,3 +36,17 @@ exports.post_create_client = (req, res, next) => {
 		res.sendStatus(201).json(client)
 	})
 }
+
+/* Get all Clients */
+exports.get_clients = (req, res, next) => {
+	Client.find()
+		  .populate('client')
+		  .sort([['name', 'ascending']])
+		  .exec((err, clients) => {
+			  if(err)
+				  return res.sendStatus(403)
+
+			  /* Success */
+			  res.json(clients)
+		  })
+}
