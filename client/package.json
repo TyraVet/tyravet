@@ -12,6 +12,7 @@
   "dependencies": {
     "buefy": "^0.9.2",
     "core-js": "^3.6.5",
+    "moment": "^2.27.0",
     "vue": "^2.6.11",
     "vue-cookies": "^1.7.3",
     "vue-router": "^3.2.0",
