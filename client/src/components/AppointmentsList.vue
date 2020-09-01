@@ -1,5 +1,15 @@
 <template>
   <div class='appointments-list'>
+	<div v-for='(hour, index) in hours'
+		 :key='index'
+		 class='hour-container has-background-primary-white'>
+	  <span class='is-size-4'>
+		{{ hour }}
+	  </span>
+	  <div>
+		<h1>Brbrbrbrb</h1>
+	  </div>
+	</div>
   </div>
 </template>
 
@@ -30,3 +40,7 @@ export default {
 	}
 }
 </script>
+
+<style>
+@import '../assets/css/appointments-list.css'
+</style>
