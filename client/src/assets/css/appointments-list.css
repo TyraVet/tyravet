@@ -1,0 +1,36 @@
+.appointments-list {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	margin-top: 25px;
+}
+
+.hour-container {
+	display: flex;
+	flex-flow: row nowrap;
+	cursor: pointer;
+	margin: 1px 0 1px 0;
+	padding: 20px;
+}
+
+.hour-container > span {
+	margin-right: 50px;
+}
+
+@media all and (min-width: 1000px) {
+	.hour-container {
+		width: 50%;
+	}
+}
+
+@media all and (max-width: 999px) {
+	.hour-container {
+		width: 75%;
+	}
+}
+
+@media all and (max-width: 750px) {
+	.hour-container {
+		width: 100%;
+	}
+}
