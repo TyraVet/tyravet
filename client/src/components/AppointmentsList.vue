@@ -2,23 +2,28 @@
   <div class='appointments-list'>
 	<div v-for='(hour, index) in hours'
 		 :key='index'
-		 class='hour-container has-background-primary-white'>
+		 class='hour-container has-background-primary-white'
+		 @click=addAppointment(hour)>
 	  <span class='is-size-4'>
-		{{ hour }}
+		{{ hour.hour }}
 	  </span>
 	  <div>
-		<h1>Brbrbrbrb</h1>
+		<h1>{{ hour.appointments }}</h1>
 	  </div>
 	</div>
   </div>
 </template>
 
 <script>
+import AppointmentForm from '@/components/AppointmentForm.vue'
+
 export default {
 	name: 'AppointmentsList',
 	data(){
 		return{
-			hours: []
+			hours: [],
+			appointment: '',
+			count: 1
 		}
 	},
 	methods: {
@@ -30,9 +35,29 @@ export default {
 
 			for(let i = 0; i < maxLength; i++){
 				if(i !== 0)
-					this.hours.push((initialHour + i) + ':00')
-				this.hours.push((initialHour + i) + ':30')
+					this.hours.push({
+						hour: (initialHour + i) + ':00',
+						appointments: []
+					})
+				this.hours.push({
+					hour: (initialHour + i) + ':30',
+					appointments: []
+				})
 			}
+		},
+		addAppointment(hour){
+			this.launchModal(hour)
+		},
+		launchModal(hour){
+			this.$buefy.modal.open({
+				parent: this,
+				component: AppointmentForm,
+				hasModalCard: true,
+				trapFocus: true,
+				props: {
+					hour: hour
+				}
+			})
 		}
 	},
 	mounted(){
