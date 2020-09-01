@@ -1,6 +1,6 @@
 <template>
   <div class='home'>
-	<h1 class='is-size-5'>Today is {{ today }}</h1>
+	<h1 class='is-size-4 has-text-centered has-text-weight-semibold'>{{ today }}</h1>
 	<AppointmentsList></AppointmentsList>
   </div>
 </template>
