@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const BreedSchema = require('./breedSchema.js')
+const BreedSchema = require('./breed.js')
 
 var Schema = mongoose.Schema
 
