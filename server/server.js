@@ -20,6 +20,7 @@ db.once('open', () => console.log('Connected to database!'));
 var userRouter = require('./routes/user')
 var breedRouter = require('./routes/breed')
 var clientRouter = require('./routes/client')
+var serviceRouter = require('./routes/service')
 
 /* Defining app */
 const app = express()
@@ -37,6 +38,7 @@ app.use(serveStatic(__dirname + '../client/dist'))
 app.use(process.env.TYRAWEB_ROUTE_USERS, userRouter)
 app.use(process.env.TYRAWEB_ROUTE_BREED, breedRouter)
 app.use(process.env.TYRAWEB_ROUTE_CLIENTS, clientRouter)
+app.use(process.env.TYRAWEB_ROUTE_SERVICES, serviceRouter)
 
 app.listen(port, error => {
 	if(error)
