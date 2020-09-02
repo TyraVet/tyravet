@@ -28,6 +28,7 @@ List of Environment Variables
 - VUE_APP_TYRAWEB_CREATE_BREED
 - VUE_APP_TYRAWEB_CLIENTS
 - VUE_APP_TYRAWEB_CREATE_CLIENT
+- VUE_APP_TYRAWEB_SERVICES
 
 ```server/.env```
 - MONGODB_TYRAWEB
@@ -35,7 +36,7 @@ List of Environment Variables
 - TYRAWEB_ROUTE_USERS
 - TYRAWEB_ROUTE_BREED
 - TYRAWEB_ROTUE_CLIENTS
-
+- TYRAWEB_ROUTE_SERVICES
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first
