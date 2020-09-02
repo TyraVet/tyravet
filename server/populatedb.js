@@ -5,6 +5,7 @@ const bcryptjs = require('bcryptjs')
 const User = require('./models/user.js')
 const Type = require('./models/type.js')
 const Breed = require('./models/breed.js')
+const Service = require('./models/service.js')
 
 var mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_TYRAWEB_TEST, { useNewUrlParser: true })
@@ -14,6 +15,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 var users = []
 var breeds = []
+var services = []
 
 function userCreate(username, password, callback){
 	userdetail = {
@@ -60,6 +62,25 @@ function breedCreate(name, callback){
 
 		breeds.push(myBreed)
 		callback(null, myBreed)
+	})
+}
+
+function serviceCreate(name, price, callback){
+	service_detail = {
+		name: name,
+		price: price
+	}
+
+	var myService = new Service(service_detail)
+
+	myService.save(err => {
+		if(err){
+			callback(err, null)
+			return
+		}
+
+		services.push(myService)
+		callback(null, myService)
 	})
 }
 
@@ -178,9 +199,78 @@ function createBreeds(callback){
 	], callback)
 }
 
+function createServices(callback){
+	async.series([
+		function(callback){
+			serviceCreate('Bath Mini', 120, callback)
+		},
+		function(callback){
+			serviceCreate('Bath Small', 150, callback)
+		},
+		function(callback){
+			serviceCreate('Bath Medium', 200, callback)
+		},
+		function(callback){
+			serviceCreate('Bath Large', 350, callback)
+		},
+		function(callback){
+			serviceCreate('Bath Extra Large', 500, callback)
+		},
+		function(callback){
+			serviceCreate('Bath Long Hair Mini', 150, callback)
+		},
+		function(callback){
+			serviceCreate('Bath Long Hair Small', 180, callback)
+		},
+		function(callback){
+			serviceCreate('Bath Long Hair Medium', 250, callback)
+		},
+		function(callback){
+			serviceCreate('Bath Long Hair Large', 450, callback)
+		},
+		function(callback){
+			serviceCreate('Bath Long Hair Extra Large', 600, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut Without Knots Mini', 180, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut Without Knots Small', 200, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut Without Knots Medium', 350, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut Without Knots Large', 550, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut Without Knots Extra Large', 700, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut With Knots Mini', 200, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut With Knots Small', 250, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut With Knots Medium', 450, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut With Knots Large', 650, callback)
+		},
+		function(callback){
+			serviceCreate('Haircut With Knots Extra Large', 800, callback)
+		},
+		function(callback){
+			serviceCreate('Extra Bug', 50, callback)
+		}
+	], callback)
+}
+
 async.series([
 	createUsers
 	createBreeds
+	createServices
 ], function(err, results){
 	if (err) {
 		console.log('FINAL ERR: ' + err)
@@ -188,6 +278,7 @@ async.series([
 	else {
 		console.log('Users: ' + users)
 		console.log('Breeds: ' + breeds)
+		console.log('Services: ' + services)
 	}
 	// All done, disconnect from database
 	mongoose.connection.close()
