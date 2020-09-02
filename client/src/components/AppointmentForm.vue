@@ -8,6 +8,20 @@
 				@click=close() />
 	  </header>
 	  <section class='modal-card-body'>
+			<b-field label='Client'>
+			 <b-select v-model='client'
+					   required>
+			   <option v-for='(client, index) in clients'
+					   :key=index
+					   :value='client'>
+				 <option v-for='(pet, index) in client.pets'
+					   :key=index
+					   :value='pet'>
+				   {{ pet.name }}, ({{ pet.breed.name }}). {{ client.name }}
+				 </option>
+			   </option>
+			 </b-select>
+		   </b-field>
 		   <b-field label='Service'>
 			 <b-select v-model='service'
 					   required>
@@ -52,7 +66,10 @@ export default {
 	data() {
 		return {
 			title: 'New Appointment',
-			services: []
+			services: [],
+			clients: [],
+			service: null,
+			client: null
 		}
 	},
 	methods: {
@@ -69,10 +86,22 @@ export default {
 			}).catch((error) => {
 				console.error(error)
 			})
+		},
+		getClients(){
+			axios.get(process.env.VUE_APP_TYRAWEB_CLIENTS, {
+				headers: {
+					Authorization: 'Bearer ' + this.$store.state.user.token
+				}
+			}).then((response) => {
+				this.clients = response.data
+			}).catch((error) => {
+				console.log(error)
+			})
 		}
 	},
 	mounted(){
 		this.getServices()
+		this.getClients()
 	}
 }
 </script>
