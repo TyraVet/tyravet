@@ -73,7 +73,7 @@ export default {
 		},
 		getDaySchedule(){
 			axios.get(process.env.VUE_APP_TYRAWEB_DAY_SCHEDULES, {
-				data: {
+				params: {
 					date: moment(this.$store.state.today).format('YYYY-MM-DD')
 				},
 				headers: {
