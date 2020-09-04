@@ -15,12 +15,16 @@
 </template>
 
 <script>
+import axios from 'axios'
 import AppointmentForm from '@/components/AppointmentForm.vue'
+
+export const NOT_FOUND = '404'
 
 export default {
 	name: 'AppointmentsList',
 	data(){
 		return{
+			NOT_FOUND,
 			hours: [],
 			appointment: '',
 			count: 1
@@ -58,10 +62,27 @@ export default {
 					hour: hour
 				}
 			})
+		},
+		setOnSuccess(response){ console.log(response) },
+		setOnError(error){ console.error(error) },
+		getDaySchedule(){
+			axios.get(process.env.VUE_APP_TYRAWEB_DAY_SCHEDULES, {
+				data: {
+					date: this.$store.state.today
+				},
+				headers: {
+					Authorization: 'Bearer ' + this.$store.state.user.token
+				}
+			}).then(response => {
+				this.setOnSuccess(response)
+			}).catch(error => {
+				this.setOnError(error)
+			})
 		}
 	},
 	mounted(){
 		this.init()
+		this.getDaySchedule()
 	}
 }
 </script>
