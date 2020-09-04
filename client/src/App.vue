@@ -78,6 +78,9 @@ export default {
 	computed: {
 		user(){
 			return this.$store.state.user
+		},
+		today(){
+			return this.$store.state.today
 		}
 	}
 }
