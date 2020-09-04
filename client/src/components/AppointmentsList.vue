@@ -16,9 +16,10 @@
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
 import AppointmentForm from '@/components/AppointmentForm.vue'
 
-export const NOT_FOUND = '404'
+export const NOT_FOUND = 404
 
 export default {
 	name: 'AppointmentsList',
@@ -27,7 +28,8 @@ export default {
 			NOT_FOUND,
 			hours: [],
 			appointment: '',
-			count: 1
+			count: 1,
+			isInDB: null
 		}
 	},
 	methods: {
@@ -64,12 +66,29 @@ export default {
 			})
 		},
 		setOnSuccess(response){ console.log(response) },
-		setOnError(error){ console.error(error) },
+		setOnError(error){
+			console.error(error)
+			if(error.response.status === this.NOT_FOUND)
+				this.isInDB = false
+		},
 		getDaySchedule(){
 			axios.get(process.env.VUE_APP_TYRAWEB_DAY_SCHEDULES, {
 				data: {
-					date: this.$store.state.today
+					date: moment(this.$store.state.today).format('YYYY-MM-DD')
 				},
+				headers: {
+					Authorization: 'Bearer ' + this.$store.state.user.token
+				}
+			}).then(response => {
+				this.setOnSuccess(response)
+			}).catch(error => {
+				this.setOnError(error)
+			})
+		},
+		createDaySchedule(){
+			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_DAY_SCHEDULE, {
+				date: moment(this.$store.state.date).format('YYYY-MM-DD')
+			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.$store.state.user.token
 				}
@@ -83,6 +102,12 @@ export default {
 	mounted(){
 		this.init()
 		this.getDaySchedule()
+	},
+	watch: {
+		isInDB(){
+			if(!this.isInDB)
+				this.createDaySchedule()
+		}
 	}
 }
 </script>
