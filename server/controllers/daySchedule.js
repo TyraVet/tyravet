@@ -2,8 +2,7 @@ const DaySchedule = require('../models/daySchedule.js')
 
 /* GET Find the current DaySchedule */
 exports.get_day_schedule = (req, res, next) => {
-	console.log(req.body) // is undefined, why?
-	DaySchedule.findOne({ date: new Date('2020-09-04') }, (err, daySchedule) => {
+	DaySchedule.findOne({ date: new Date(req.query.date) }, (err, daySchedule) => {
 		if(err)
 			res.status(403).json(err)
 
