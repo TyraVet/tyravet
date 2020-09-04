@@ -21,6 +21,7 @@ var userRouter = require('./routes/user')
 var breedRouter = require('./routes/breed')
 var clientRouter = require('./routes/client')
 var serviceRouter = require('./routes/service')
+var dayScheduleRouter = require('./routes/daySchedule')
 
 /* Defining app */
 const app = express()
@@ -39,6 +40,7 @@ app.use(process.env.TYRAWEB_ROUTE_USERS, userRouter)
 app.use(process.env.TYRAWEB_ROUTE_BREED, breedRouter)
 app.use(process.env.TYRAWEB_ROUTE_CLIENTS, clientRouter)
 app.use(process.env.TYRAWEB_ROUTE_SERVICES, serviceRouter)
+app.use(process.env.TYRAWEB_ROUTE_DAY_SCHEDULES, dayScheduleRouter)
 
 app.listen(port, error => {
 	if(error)
