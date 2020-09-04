@@ -2,12 +2,15 @@ const DaySchedule = require('../models/daySchedule.js')
 
 /* GET Find the current DaySchedule */
 exports.get_day_schedule = (req, res, next) => {
-	DaySchedule.findOne({ date: body.date }, (err, daySchedule) => {
+	DaySchedule.findOne({ date: req.body.date }, (err, daySchedule) => {
 		if(err)
-			res.sendStatus(404)
+			res.sendStatus(403).end()
 
-		/* Success */
-		res.sendSatus(201).json(daySchedule)
+		if(!daySchedule)
+			res.sendStatus(404)
+		else
+			/* Success */
+			res.status(201).json(daySchedule)
 	})
 }
 
