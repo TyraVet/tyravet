@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const Service = require('./schemas/service.js')
-const Client = require('./schemas/client.js')
+const Service = require('./service.js')
+const Client = require('./client.js')
 
-var Schema = new mongoose.Schema
+var Schema = mongoose.Schema
 
 const AppointmentSchema = new Schema({
 	service: { type: Service, required: true },
