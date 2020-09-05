@@ -8,7 +8,6 @@
 		{{ hour.hour }}
 	  </span>
 	  <div>
-		<h1>{{ hour.appointments }}</h1>
 	  </div>
 	</div>
   </div>
@@ -36,7 +35,8 @@ export default {
 	methods: {
 		/* Fill the hours array with the available hours
 		 * where you can set an appointment. */
-		init(){
+		async init(){
+			await this.getDaySchedule()
 			const maxLength = 13
 			const initialHour = 8
 
@@ -107,7 +107,6 @@ export default {
 	},
 	mounted(){
 		this.init()
-		this.getDaySchedule()
 	},
 	watch: {
 		isInDB(){
