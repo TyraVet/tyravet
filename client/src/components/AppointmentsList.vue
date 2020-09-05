@@ -26,6 +26,7 @@ export default {
 	data(){
 		return{
 			NOT_FOUND,
+			schedule: null,
 			hours: [],
 			appointment: '',
 			count: 1,
@@ -65,7 +66,10 @@ export default {
 				}
 			})
 		},
-		setOnSuccess(response){ console.log(response) },
+		setOnSuccess(response){
+			console.log(response)
+			this.schedule = response.data
+		},
 		setOnError(error){
 			console.error(error)
 			if(error.response.status === this.NOT_FOUND)
