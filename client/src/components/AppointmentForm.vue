@@ -61,7 +61,8 @@ import axios from 'axios'
 export default {
 	name: 'AppointmentForm',
 	props: {
-		hour: Object
+		hour: Object,
+		schedule: Object
 	},
 	data() {
 		return {
