@@ -19,11 +19,11 @@ exports.post_create_day_schedule = (req, res, next) => {
 	const daySchedule = new DaySchedule({
 		date: req.body.date,
 		appointments: []
-	}).save(err => {
+	}).save((err, theDaySchedule) => {
 		if(err)
 			res.status(403).json(err)
 
 		/* Success */
-		res.status(201).json(daySchedule)
+		res.status(201).json(theDaySchedule)
 	})
 }
