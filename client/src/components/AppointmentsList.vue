@@ -53,16 +53,18 @@ export default {
 			}
 		},
 		addAppointment(hour){
-			this.launchModal(hour)
+			if(this.schedule)
+				this.launchModal(hour, this.schedule)
 		},
-		launchModal(hour){
+		launchModal(hour, schedule){
 			this.$buefy.modal.open({
 				parent: this,
 				component: AppointmentForm,
 				hasModalCard: true,
 				trapFocus: true,
 				props: {
-					hour: hour
+					hour: hour,
+					schedule: schedule
 				}
 			})
 		},
