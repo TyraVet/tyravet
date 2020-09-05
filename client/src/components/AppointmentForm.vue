@@ -47,7 +47,7 @@
 		  Cancel
 		</button>
 		<b-button class='button is-success'
-				@click=send()>
+				  @click=send()>
 		  Accept
 		</b-button>
 	  </footer>
@@ -97,6 +97,23 @@ export default {
 				this.clients = response.data
 			}).catch((error) => {
 				console.log(error)
+			})
+		},
+		send(){
+			axios.post(process.env.VUE_APP_TYRAWEB_ADD_APPOINTMENT, {
+				id: this.schedule._id,
+				service: this.service,
+				client: this.client,
+				hour: this.hour.hour,
+				appointments: this.schedule.appointments
+			}, {
+				headers: {
+					Authorization: 'Bearer ' + this.$store.state.user.token
+				}
+			}).then(response => {
+				console.log(response)
+			}).catch(error => {
+				console.error(error)
 			})
 		}
 	},
