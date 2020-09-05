@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken')
 const Client = require('../models/client.js')
 const Pet = require('../models/pet.js')
 const Address = require('../models/address.js')
