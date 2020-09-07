@@ -50,6 +50,6 @@ exports.post_add_appointment = (req, res, next) => {
 			res.status(403).json(err)
 
 		/* Success */
-		res.status(201).json(theDaySchedule)
+		res.status(201).json(theDaySchedule.appointments)
 	})
 }
