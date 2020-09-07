@@ -126,9 +126,9 @@ export default {
 			})
 		}
 	},
-	mounted(){
-		this.getServices()
+	created(){
 		this.getClients()
+		this.getServices()
 	}
 }
 </script>
