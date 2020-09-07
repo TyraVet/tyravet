@@ -1,5 +1,6 @@
 <template>
   <div class='appointments-list'>
+	<button @click=syncAppointments()></button>
 	<div v-for='(hour, index) in hours'
 		 :key='index'
 		 class='hour-container has-background-primary-white'
@@ -7,7 +8,9 @@
 	  <span class='is-size-4'>
 		{{ hour.hour }}
 	  </span>
-	  <div>
+	  <div v-for='(appointment, index) in hour.appointments'
+		   :key='index'>
+		{{ appointment }}
 	  </div>
 	</div>
   </div>
@@ -32,6 +35,10 @@ export default {
 		 * where you can set an appointment. */
 		async init(){
 			await this.getDaySchedule()
+			this.fillHours()
+			this.syncAppointments()
+		},
+		fillHours(){
 			const maxLength = 13
 			const initialHour = 8
 
@@ -46,6 +53,14 @@ export default {
 					appointments: []
 				})
 			}
+		},
+		syncAppointments(){
+			this.hours.forEach(hour => {
+				this.schedule.appointments.forEach(appointment => {
+					if(hour.hour === appointment.hour)
+						hour.appointments.push(appointment)
+				})
+			})
 		},
 		addAppointment(hour){
 			if(this.schedule)
@@ -89,6 +104,7 @@ export default {
 
 		EventBus.$on('received-appointments', appointments => {
 			this.schedule.appointments = appointments
+			this.syncAppointments()
 			this.$nextTick()
 		})
 	}
