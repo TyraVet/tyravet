@@ -57,6 +57,9 @@
 
 <script>
 import axios from 'axios'
+import { EventBus } from '../eventBus.js'
+
+export const OK = 201
 
 export default {
 	name: 'AppointmentForm',
@@ -66,6 +69,7 @@ export default {
 	},
 	data() {
 		return {
+			OK,
 			title: 'New Appointment',
 			services: [],
 			clients: [],
@@ -99,6 +103,11 @@ export default {
 				console.log(error)
 			})
 		},
+		setOnSuccess(response){
+			console.log(response)
+			if(response.status === this.OK)
+				EventBus.$emit('received-appointments', response.data)
+		},
 		send(){
 			axios.post(process.env.VUE_APP_TYRAWEB_ADD_APPOINTMENT, {
 				id: this.schedule._id,
@@ -111,7 +120,7 @@ export default {
 					Authorization: 'Bearer ' + this.$store.state.user.token
 				}
 			}).then(response => {
-				console.log(response)
+				this.setOnSuccess(response)
 			}).catch(error => {
 				console.error(error)
 			})
