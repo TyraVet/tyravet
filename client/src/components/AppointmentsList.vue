@@ -17,8 +17,13 @@
 import axios from 'axios'
 import moment from 'moment'
 import AppointmentForm from '@/components/AppointmentForm.vue'
+import { EventBus } from '../eventBus.js'
 
 export const NOT_FOUND = 404
+
+EventBus.$on('received-appointments', appointments => {
+	console.log(appointments)
+})
 
 export default {
 	name: 'AppointmentsList',
