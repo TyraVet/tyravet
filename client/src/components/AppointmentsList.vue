@@ -1,6 +1,5 @@
 <template>
   <div class='appointments-list'>
-	<button @click=syncAppointments()></button>
 	<div v-for='(hour, index) in hours'
 		 :key='index'
 		 class='hour-container has-background-primary-white'
@@ -39,14 +38,12 @@ export default {
 		}
 	},
 	methods: {
-		/* Fill the hours array with the available hours
-		 * where you can set an appointment. */
 		init(){
-			this.getDaySchedule().then(() => {
-				console.log('Entering')
-				this.fillHours()
-				this.syncAppointments()
-			})
+			/* Wait until we have our user so we fetch
+			 * data from the API. */
+			if(this.user){
+				this.getDaySchedule()
+			}
 		},
 		fillHours(){
 			const maxLength = 13
@@ -76,6 +73,8 @@ export default {
 			if(this.schedule)
 				this.launchModal(hour, this.schedule)
 		},
+		/* Launch custom component programmactically,
+		 * to create a new appointment. */
 		launchModal(hour, schedule){
 			this.$buefy.modal.open({
 				parent: this,
@@ -88,14 +87,21 @@ export default {
 				}
 			})
 		},
+		/* Execute methods on Request Success. */
 		setOnSuccess(response){
-			console.log(response)
 			this.schedule = response.data
+			this.fillHours()
+			this.syncAppointments()
 		},
+		/* Prints Error on Request Failure. */
 		setOnError(error){
 			console.error(error)
 		},
-		async getDaySchedule(){
+		/* POST request to the API.
+		 * params : none
+		 * return on response : schedule - Object
+		 * return on error : error - Object */
+		getDaySchedule(){
 			axios.post(process.env.VUE_APP_TYRAWEB_DAY_SCHEDULES, {
 				date: moment(this.date).format('YYYY-MM-DD')
 			}, {
@@ -112,11 +118,21 @@ export default {
 	created(){
 		this.init()
 
+		/* Set event listener once the component is created.
+		 * This event listener receive the appointments from the API
+		 * and sync then with the ones of the component's data. */
 		EventBus.$on('received-appointments', appointments => {
 			this.schedule.appointments = appointments
 			this.syncAppointments()
 			this.$nextTick()
 		})
+	},
+	watch: {
+		/* Wait until we have our user so we fetch
+		 * data from the API. */
+		user(){
+			this.getDaySchedule()
+		}
 	}
 }
 </script>
