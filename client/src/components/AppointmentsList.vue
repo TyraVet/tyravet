@@ -30,13 +30,23 @@ export default {
 			hours: []
 		}
 	},
+	computed: {
+		user(){
+			return this.$store.state.user
+		},
+		date(){
+			return this.$store.state.date
+		}
+	},
 	methods: {
 		/* Fill the hours array with the available hours
 		 * where you can set an appointment. */
-		async init(){
-			await this.getDaySchedule()
-			this.fillHours()
-			this.syncAppointments()
+		init(){
+			this.getDaySchedule().then(() => {
+				console.log('Entering')
+				this.fillHours()
+				this.syncAppointments()
+			})
 		},
 		fillHours(){
 			const maxLength = 13
@@ -87,10 +97,10 @@ export default {
 		},
 		async getDaySchedule(){
 			axios.post(process.env.VUE_APP_TYRAWEB_DAY_SCHEDULES, {
-				date: moment(this.$store.state.date).format('YYYY-MM-DD')
+				date: moment(this.date).format('YYYY-MM-DD')
 			}, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
 				this.setOnSuccess(response)

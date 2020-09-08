@@ -18,6 +18,14 @@ export default {
 			error: ''
 		}
 	},
+	computed: {
+		user(){
+			return this.$store.state.user
+		},
+		today(){
+			return this.$store.state.today
+		}
+	},
 	methods: {
 		/* Redirect to LogIn page if there is no user stored */
 		init(){
@@ -26,8 +34,11 @@ export default {
 			else
 				this.fillUserFromCookies()
 		},
-		setOnSuccess(response){
+		setOnSuccess(response, user){
 			this.status = response.status
+
+			if(this.status === 200)
+				this.$store.commit('fillUser', user)
 		},
 		setOnError(error){
 			if(error.response){
@@ -39,6 +50,9 @@ export default {
 				this.error = error.message
 			}
 			console.error(this.error)
+
+			/* Redirect to LogIn if any error occurs */
+			this.$router.push({ name: 'log-in' }).catch(() => {})
 		},
 		fillUserFromCookies(){
 			const user = {
@@ -53,7 +67,7 @@ export default {
 		/* POST request to our API
 		 * To check if the User from the cookies exists in the
 		 * database. */
-		validateUser(user){
+		async validateUser(user){
 			axios.post(process.env.VUE_APP_TYRAWEB_FIND_USER, {
 				_id: user._id
 			}, {
@@ -61,27 +75,14 @@ export default {
 					Authorization: 'Bearer ' + user.token
 				}
 			}).then((response) => {
-				this.setOnSuccess(response)
-
-				if(this.status === 200)
-					this.$store.commit('fillUser', user)
+				this.setOnSuccess(response, user)
 			}).catch((error) => {
 				this.setOnError(error)
-				/* Redirect to LogIn if any error occurs */
-				this.$router.push({ name: 'log-in' }).catch(() => {})
 			})
 		}
 	},
 	created(){
 		this.init()
-	},
-	computed: {
-		user(){
-			return this.$store.state.user
-		},
-		today(){
-			return this.$store.state.today
-		}
 	}
 }
 </script>
