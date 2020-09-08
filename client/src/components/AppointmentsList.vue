@@ -9,7 +9,20 @@
 	  </span>
 	  <div v-for='(appointment, index) in hour.appointments'
 		   :key='index'>
-		{{ appointment }}
+		<span class='appointment'>
+		  <h3 class='is-size-5 has-text-primary'>
+			{{ appointment.service.name }}
+		  </h3>
+		  <h3 class='is-size-5 has-text-dark'>
+			|
+			{{ appointment.client.pets[0].name }},
+			({{ appointment.client.pets[0].breed.name }})
+			-
+		  </h3>
+		  <h3 class='is-size-5 has-text-grey-darker'>
+			{{ appointment.client.name }}, {{ appointment.client.phone }}
+		  </h3>
+		</span>
 	  </div>
 	</div>
   </div>
@@ -34,7 +47,7 @@ export default {
 			return this.$store.state.user
 		},
 		date(){
-			return this.$store.state.date
+			return this.$store.state.today
 		}
 	},
 	methods: {
@@ -49,6 +62,9 @@ export default {
 			const maxLength = 13
 			const initialHour = 8
 
+			/* Clear Array */
+			this.hours = []
+
 			for(let i = 0; i < maxLength; i++){
 				if(i !== 0)
 					this.hours.push({
@@ -62,6 +78,8 @@ export default {
 			}
 		},
 		syncAppointments(){
+			this.fillHours()
+
 			this.hours.forEach(hour => {
 				this.schedule.appointments.forEach(appointment => {
 					if(hour.hour === appointment.hour)
@@ -90,7 +108,6 @@ export default {
 		/* Execute methods on Request Success. */
 		setOnSuccess(response){
 			this.schedule = response.data
-			this.fillHours()
 			this.syncAppointments()
 		},
 		/* Prints Error on Request Failure. */
