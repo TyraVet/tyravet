@@ -17,6 +17,15 @@
 	margin-right: 50px;
 }
 
+.appointment {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.appointment > h3 {
+	margin: 0 2px 0 2px;
+}
+
 @media all and (min-width: 1000px) {
 	.hour-container {
 		width: 50%;
