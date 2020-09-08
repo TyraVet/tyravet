@@ -50,7 +50,7 @@ export default {
 
 			this.validateUser(user)
 		},
-		/* POST request to out API
+		/* POST request to our API
 		 * To check if the User from the cookies exists in the
 		 * database. */
 		validateUser(user){
