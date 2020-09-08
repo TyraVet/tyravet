@@ -1,0 +1,14 @@
+.appointments-header {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+}
+
+.appointments-header > button {
+	margin: 0 10px 0 10px;
+}
+
+.date-title {
+	display: flex;
+	align-items: center;
+}
