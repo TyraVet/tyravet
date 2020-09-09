@@ -50,12 +50,16 @@ export default {
 		init(){
 			this.day = this.today
 		},
+		/* Set the respective day the user wants to see */
 		startTimeMachine(where){
 			if(!this.back || !this.next){
 				this.back = new Date(this.day)
 				this.next = new Date(this.day)
 			}
 
+			/* Depending on going backwards or forward
+			 * we change both 'back' and 'next' variables
+			 * to have consistency in the timeline. */
 			if(where === 'past'){
 				this.back.setDate(this.day.getDate() - 1)
 				this.next = this.day
