@@ -1,6 +1,6 @@
 <template>
   <div class='pick-date'>
-	<div class='modal-card' style='width: auto'>
+	<div class='modal-card pick-date-container'>
 	  <header class='modal-card-head'>
 		<p class='modal-card-title'>{{ title }}</p>
 		<button type='button'
@@ -45,3 +45,7 @@ export default {
 	}
 }
 </script>
+
+<style>
+@import '../assets/css/pick-date.css'
+</style>
