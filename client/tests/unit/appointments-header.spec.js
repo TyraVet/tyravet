@@ -12,11 +12,15 @@ const wrapper = shallowMount(AppointmentsHeader, { store, localVue })
 
 describe('AppointmentsHeader Component', () => {
 	const today = new Date()
-	const formattedToday = moment(today).format('MMMM Do YYYY')
+	const formattedDay = moment(today).format('MMMM Do YYYY')
 
 	it('Set the correct default data', () => {
 		expect(typeof AppointmentsHeader.data).toBe('function')
 		const defaultData = AppointmentsHeader.data()
-		expect(defaultData.formattedToday).toMatch(formattedToday)
+		expect(defaultData.FUTURE).toMatch('future')
+		expect(defaultData.PAST).toMatch('past')
+		expect(defaultData.back).toBeNull()
+		expect(defaultData.next).toBeNull()
+		expect(defaultData.formattedDay).toMatch(formattedDay)
 	})
 })
