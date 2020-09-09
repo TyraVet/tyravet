@@ -8,7 +8,8 @@
 			  @click=startTimeMachine(PAST)>
 	</b-button>
 	<span class='date-title'
-		  title='Pick date'>
+		  title='Pick date'
+		  @click=pickDate()>
 	  <h1 class='is-size-4 has-text-centered has-text-weight-semibold'>
 		{{ formattedDay }}
 	  </h1>
@@ -26,6 +27,7 @@
 <script>
 import moment from 'moment'
 import { EventBus } from '../eventBus.js'
+import PickDate from '@/components/PickDate.vue'
 
 export const FUTURE = 'future'
 export const PAST = 'past'
@@ -76,6 +78,14 @@ export default {
 			/* Emit event so the Appointments List can listen to
 			 * and receive the updated date. */
 			EventBus.$emit('update-date', this.day)
+		},
+		pickDate(){
+			this.$buefy.modal.open({
+				parent: this,
+				component: PickDate,
+				hasModalCard: true,
+				trapFocus: true
+			})
 		}
 	},
 	created(){
