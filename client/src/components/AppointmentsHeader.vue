@@ -25,6 +25,7 @@
 
 <script>
 import moment from 'moment'
+import { EventBus } from '../eventBus.js'
 
 export const FUTURE = 'future'
 export const PAST = 'past'
@@ -71,6 +72,10 @@ export default {
 			}
 
 			this.formattedDay = moment(this.day).format('MMMM Do YYYY')
+
+			/* Emit event so the Appointments List can listen to
+			 * and receive the updated date. */
+			EventBus.$emit('update-date', this.day)
 		}
 	},
 	created(){
