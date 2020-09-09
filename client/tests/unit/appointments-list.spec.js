@@ -16,5 +16,7 @@ describe('AppointmentsList Component', () => {
 		const defaultData = AppointmentsList.data()
 		expect(defaultData.schedule).toMatchObject({})
 		expect(defaultData.hours).toEqual(expect.arrayContaining([]))
+		expect(defaultData.error).toBeFalsy()
+		expect(defaultData.errorMessage).toMatch('No Data Available')
 	})
 })
