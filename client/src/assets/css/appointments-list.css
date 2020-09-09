@@ -1,3 +1,9 @@
+.appointments-list-comp {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+}
+
 .appointments-list {
 	display: flex;
 	flex-flow: column;
@@ -10,6 +16,7 @@
 	cursor: pointer;
 	margin: 1px 0 1px 0;
 	padding: 20px;
+	width: 100%;
 }
 
 .hour-container > span {
@@ -26,19 +33,19 @@
 }
 
 @media all and (min-width: 1000px) {
-	.hour-container {
+	.appointments-list {
 		width: 50%;
 	}
 }
 
 @media all and (max-width: 999px) {
-	.hour-container {
+	.appointments-list {
 		width: 75%;
 	}
 }
 
 @media all and (max-width: 750px) {
-	.hour-container {
+	.appointments-list {
 		width: 100%;
 	}
 }
