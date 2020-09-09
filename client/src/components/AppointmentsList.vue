@@ -1,30 +1,44 @@
 <template>
-  <div class='appointments-list'>
-	<div v-for='(hour, index) in hours'
-		 :key='index'
-		 class='hour-container has-background-primary-white'
-		 @click=addAppointment(hour)>
-	  <span class='is-size-4'>
-		{{ hour.hour }}
-	  </span>
-	  <div v-for='(appointment, index) in hour.appointments'
-		   :key='index'>
-		<span class='appointment'>
-		  <h3 class='is-size-5 has-text-primary'>
-			{{ appointment.service.name }}
-		  </h3>
-		  <h3 class='is-size-5 has-text-dark'>
-			|
-			{{ appointment.client.pets[0].name }},
-			({{ appointment.client.pets[0].breed.name }})
-			-
-		  </h3>
-		  <h3 class='is-size-5 has-text-grey-darker'>
-			{{ appointment.client.name }}, {{ appointment.client.phone }}
-		  </h3>
+  <div class='appointments-list-comp'>
+	<div class='appointments-list'
+		 v-if='schedule'>
+	  <div v-for='(hour, index) in hours'
+		   :key='index'
+		   class='hour-container has-background-primary-white'
+		   @click=addAppointment(hour)>
+		<span class='is-size-4'>
+		  {{ hour.hour }}
 		</span>
+		<div v-for='(appointment, index) in hour.appointments'
+			 :key='index'>
+		  <span class='appointment'>
+			<h3 class='is-size-5 has-text-primary'>
+			  {{ appointment.service.name }}
+			</h3>
+			<h3 class='is-size-5 has-text-dark'>
+			  |
+			  {{ appointment.client.pets[0].name }},
+			  ({{ appointment.client.pets[0].breed.name }})
+			  -
+			</h3>
+			<h3 class='is-size-5 has-text-grey-darker'>
+			  {{ appointment.client.name }}, {{ appointment.client.phone }}
+			</h3>
+		  </span>
+		</div>
 	  </div>
 	</div>
+	<b-message title='Error'
+			   type='is-danger'
+			   aria-close-label='Close message'
+			   icon-pack='fas'
+			   icon-size='is-medium'
+			   icon='exclamation'
+			   has-icon
+			   class='message'
+			   v-if='error'>
+	  {{ errorMessage }}
+	</b-message>
   </div>
 </template>
 
@@ -39,14 +53,17 @@ export default {
 	data(){
 		return{
 			schedule: {},
-			hours: []
+			hours: [],
+			day: null,
+			error: false,
+			errorMessage: 'No Data Available'
 		}
 	},
 	computed: {
 		user(){
 			return this.$store.state.user
 		},
-		date(){
+		today(){
 			return this.$store.state.today
 		}
 	},
@@ -55,7 +72,7 @@ export default {
 			/* Wait until we have our user so we fetch
 			 * data from the API. */
 			if(this.user){
-				this.getDaySchedule()
+				this.getDaySchedule(this.today)
 			}
 		},
 		fillHours(){
@@ -107,20 +124,23 @@ export default {
 		},
 		/* Execute methods on Request Success. */
 		setOnSuccess(response){
+			this.error = false
 			this.schedule = response.data
 			this.syncAppointments()
 		},
 		/* Prints Error on Request Failure. */
 		setOnError(error){
 			console.error(error)
+			this.schedule = null
+			this.error = true
 		},
 		/* POST request to the API.
 		 * params : none
 		 * return on response : schedule - Object
 		 * return on error : error - Object */
-		getDaySchedule(){
+		getDaySchedule(date){
 			axios.post(process.env.VUE_APP_TYRAWEB_DAY_SCHEDULES, {
-				date: moment(this.date).format('YYYY-MM-DD')
+				date: moment(date).format('YYYY-MM-DD')
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
@@ -135,20 +155,29 @@ export default {
 	created(){
 		this.init()
 
-		/* Set event listener once the component is created.
-		 * This event listener receive the appointments from the API
-		 * and sync then with the ones of the component's data. */
+		/* Set event listener once the component is created. */
+
+		/* Receives the appointments from the API and sync
+		 * them with the ones of the component's data. */
 		EventBus.$on('received-appointments', appointments => {
 			this.schedule.appointments = appointments
 			this.syncAppointments()
 			this.$nextTick()
+		})
+
+		/* Receives the updated date so we can fetch the API
+		 * and get the day's schedule. */
+		EventBus.$on('update-date', date => {
+			this.day = date
+			console.log(this.day)
+			this.getDaySchedule(this.day)
 		})
 	},
 	watch: {
 		/* Wait until we have our user so we fetch
 		 * data from the API. */
 		user(){
-			this.getDaySchedule()
+			this.getDaySchedule(this.today)
 		}
 	}
 }
