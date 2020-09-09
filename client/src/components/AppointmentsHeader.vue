@@ -3,9 +3,11 @@
 	<b-button icon-left='chevron-left'
 			  icon-pack='fas'
 			  type='is-primary-light'
-			  size='is-large'>
+			  size='is-large'
+			  title='Previous'>
 	</b-button>
-	<span class='date-title'>
+	<span class='date-title'
+		  title='Pick date'>
 	  <h1 class='is-size-4 has-text-centered has-text-weight-semibold'>
 		{{ formattedToday }}
 	  </h1>
@@ -13,7 +15,8 @@
 	<b-button icon-right='chevron-right'
 			  icon-pack='fas'
 			  type='is-primary-light'
-			  size='is-large'>
+			  size='is-large'
+			  title='Next'>
 	</b-button>
   </div>
 </template>
