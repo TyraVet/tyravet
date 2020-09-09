@@ -8,16 +8,23 @@ exports.post_day_schedule = (req, res, next) => {
 			res.status(403).json(err)
 
 		if(!daySchedule){
-			const newDaySchedule = new DaySchedule({
-				date: req.body.date,
-				appointments: []
-			}).save((err, theDaySchedule) => {
-				if(err)
-					res.status(403).json(err)
+			const today = new Date()
+			const requestDay = new Date(req.body.date)
 
-				/* Success */
-				res.status(201).json(theDaySchedule)
-			})
+			if(requestDay < today){
+				res.status(410).json()
+			}else{
+				const newDaySchedule = new DaySchedule({
+					date: req.body.date,
+					appointments: []
+				}).save((err, theDaySchedule) => {
+					if(err)
+						res.status(403).json(err)
+
+					/* Success */
+					res.status(201).json(theDaySchedule)
+				})
+			}
 		}else{
 			/* Success */
 			res.status(200).json(daySchedule)
