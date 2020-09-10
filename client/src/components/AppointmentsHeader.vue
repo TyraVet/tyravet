@@ -52,6 +52,13 @@ export default {
 	methods: {
 		init(){
 			this.day = this.today
+
+			/* Set event listener once the component is created.
+			 * Receives the updated day from PickDate component. */
+			EventBus.$on('update-header', day => {
+				this.day = day
+				this.formattedDay = moment(this.day).format('MMMM Do YYYY')
+			})
 		},
 		/* Set the respective day the user wants to see */
 		startTimeMachine(where){
