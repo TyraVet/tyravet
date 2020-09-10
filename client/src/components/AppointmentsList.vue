@@ -46,6 +46,7 @@
 import axios from 'axios'
 import moment from 'moment'
 import AppointmentForm from '@/components/AppointmentForm.vue'
+import AppointmentError from '@/components/AppointmentError.vue'
 import { EventBus } from '../eventBus.js'
 
 export default {
@@ -69,10 +70,11 @@ export default {
 	},
 	methods: {
 		init(){
+			this.day = this.today
 			/* Wait until we have our user so we fetch
 			 * data from the API. */
 			if(this.user){
-				this.getDaySchedule(this.today)
+				this.getDaySchedule(this.day)
 			}
 		},
 		fillHours(){
@@ -105,12 +107,16 @@ export default {
 			})
 		},
 		addAppointment(hour){
-			if(this.schedule)
-				this.launchModal(hour, this.schedule)
+			/* Check dates, prevent the user to add an
+			 * appointment if the day has already paassed. */
+			if(this.day < this.today)
+				this.launchErrorModal()
+			else if(this.schedule)
+			   this.launchAppointmentModal(hour, this.schedule)
 		},
 		/* Launch custom component programmactically,
 		 * to create a new appointment. */
-		launchModal(hour, schedule){
+		launchAppointmentModal(hour, schedule){
 			this.$buefy.modal.open({
 				parent: this,
 				component: AppointmentForm,
@@ -120,6 +126,14 @@ export default {
 					hour: hour,
 					schedule: schedule
 				}
+			})
+		},
+		launchErrorModal(){
+			this.$buefy.modal.open({
+				parent: this,
+				component: AppointmentError,
+				hadModalCard: true,
+				trapFocus: true
 			})
 		},
 		/* Execute methods on Request Success. */
@@ -169,7 +183,6 @@ export default {
 		 * and get the day's schedule. */
 		EventBus.$on('update-date', date => {
 			this.day = date
-			console.log(this.day)
 			this.getDaySchedule(this.day)
 		})
 	},
