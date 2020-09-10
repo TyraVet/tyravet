@@ -108,7 +108,7 @@ export default {
 		},
 		addAppointment(hour){
 			/* Check dates, prevent the user to add an
-			 * appointment if the day has already paassed. */
+			 * appointment if the day has already passed. */
 			if(this.day < this.today)
 				this.launchErrorModal()
 			else if(this.schedule)
