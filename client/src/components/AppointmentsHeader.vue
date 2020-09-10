@@ -91,7 +91,10 @@ export default {
 				parent: this,
 				component: PickDate,
 				hasModalCard: true,
-				trapFocus: true
+				trapFocus: true,
+				props: {
+					day: this.day
+				}
 			})
 		}
 	},

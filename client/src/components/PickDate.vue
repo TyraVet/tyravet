@@ -9,7 +9,7 @@
 	  </header>
 	  <section class='modal-card-body'>
 		<b-field label='Select Date'>
-		  <b-datepicker v-model='day'
+		  <b-datepicker v-model='date'
 						trap-focus>
 		  </b-datepicker>
 		</b-field>
@@ -37,8 +37,11 @@ export default {
 	data() {
 		return {
 			title: 'Select Date',
-			day: null
+			date: this.day
 		}
+	},
+	props: {
+		day: Date
 	},
 	methods: {
 		close(){
@@ -48,9 +51,9 @@ export default {
 			/* Emit event so the Appointments List and
 			 * Appointments Header can listen to
 			 * and receive the updated date. */
-			if(this.day){
-				EventBus.$emit('update-date', this.day)
-				EventBus.$emit('update-header', this.day)
+			if(this.date){
+				EventBus.$emit('update-date', this.date)
+				EventBus.$emit('update-header', this.date)
 				this.close()
 			}
 		}
