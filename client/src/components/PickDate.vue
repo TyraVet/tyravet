@@ -9,7 +9,7 @@
 	  </header>
 	  <section class='modal-card-body'>
 		<b-field label='Select Date'>
-		  <b-datepicker v-model='date'
+		  <b-datepicker v-model='day'
 						trap-focus>
 		  </b-datepicker>
 		</b-field>
@@ -30,17 +30,29 @@
 </template>
 
 <script>
+import { EventBus } from '../eventBus.js'
+
 export default {
 	name: 'PickDate',
 	data() {
 		return {
 			title: 'Select Date',
-			date: null
+			day: null
 		}
 	},
 	methods: {
 		close(){
 			this.$emit('close')
+		},
+		send(){
+			/* Emit event so the Appointments List and
+			 * Appointments Header can listen to
+			 * and receive the updated date. */
+			if(this.day){
+				EventBus.$emit('update-date', this.day)
+				EventBus.$emit('update-header', this.day)
+				this.close()
+			}
 		}
 	}
 }
