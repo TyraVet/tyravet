@@ -37,13 +37,16 @@ export default {
 	data() {
 		return {
 			title: 'Select Date',
-			date: this.day
+			date: null
 		}
 	},
 	props: {
 		day: Date
 	},
 	methods: {
+		init(){
+			this.date = this.day
+		},
 		close(){
 			this.$emit('close')
 		},
@@ -57,6 +60,9 @@ export default {
 				this.close()
 			}
 		}
+	},
+	created(){
+		this.init()
 	}
 }
 </script>
