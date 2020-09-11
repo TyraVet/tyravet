@@ -56,3 +56,17 @@ exports.post_add_appointment = (req, res, next) => {
 		res.status(201).json(appointments)
 	})
 }
+
+/* POST update Appointments when click on done */
+exports.post_update_appointments = (req, res, next) => {
+	DaySchedule.findByIdAndUpdate(req.body.id,
+								  { appointments: req.body.appointments },
+								  (err, appointments) => {
+		if(err)
+			res.status(403).json(err)
+
+		/* Success */
+		console.log(appointments)
+		res.status(201).json(appointments)
+	})
+}
