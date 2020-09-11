@@ -138,12 +138,30 @@ export default {
 			this.error = true
 		},
 		/* POST request to the API.
-		 * params : none
+		 * params : date - Date Object
 		 * return on response : schedule - Object
 		 * return on error : error - Object */
 		getDaySchedule(date){
 			axios.post(process.env.VUE_APP_TYRAWEB_DAY_SCHEDULES, {
 				date: moment(date).format('YYYY-MM-DD')
+			}, {
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				this.setOnSuccess(response)
+			}).catch(error => {
+				this.setOnError(error)
+			})
+		},
+		/* POST request to the API.
+		 * params: id - String, appointments - Array
+		 * return on response: appointments - Array
+		 * return on error: error - Object */
+		updateAppointments(id, appointments){
+			axios.post(process.env.VUE_APP_TYRAWEB_UPDATE_APPOINTMENTS, {
+				id: id,
+				appointments: appointments
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
@@ -173,6 +191,18 @@ export default {
 		EventBus.$on('update-date', date => {
 			this.day = date
 			this.getDaySchedule(this.day)
+		})
+
+		/* Receives the appointment when the 'done' changed.
+		 * So we change it here in our schedule. */
+		EventBus.$on('update-appointments', res => {
+			this.schedule.appointments.forEach(appointment => {
+				if(appointment._id === res.appointment._id)
+					appointment.done = res.done
+			})
+
+			this.updateAppointments(this.schedule._id, this.schedule.appointments)
+			this.$nextTick()
 		})
 	},
 	watch: {
