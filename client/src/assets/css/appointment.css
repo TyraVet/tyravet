@@ -1,0 +1,12 @@
+.appointment-container {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.appointment-container > h3 {
+	margin: 0 2px 0 2px;
+}
+
+.done {
+	text-decoration: line-through;
+}
