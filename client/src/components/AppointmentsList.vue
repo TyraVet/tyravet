@@ -4,28 +4,15 @@
 		 v-if='schedule'>
 	  <div v-for='(hour, index) in hours'
 		   :key='index'
-		   class='hour-container has-background-primary-white'
-		   @click=addAppointment(hour)>
-		<span class='is-size-4'>
+		   class='hour-container has-background-primary-white'>
+		<span class='hour is-size-4'
+			  @click=addAppointment(hour)>
 		  {{ hour.hour }}
 		</span>
-		<div v-for='(appointment, index) in hour.appointments'
-			 :key='index'>
-		  <span class='appointment'>
-			<h3 class='is-size-5 has-text-primary'>
-			  {{ appointment.service.name }}
-			</h3>
-			<h3 class='is-size-5 has-text-dark'>
-			  |
-			  {{ appointment.client.pets[0].name }},
-			  ({{ appointment.client.pets[0].breed.name }})
-			  -
-			</h3>
-			<h3 class='is-size-5 has-text-grey-darker'>
-			  {{ appointment.client.name }}, {{ appointment.client.phone }}
-			</h3>
-		  </span>
-		</div>
+		<Appointment v-for='(appointment, index) in hour.appointments'
+					 :key='index'
+					 :appointment='appointment'>
+		</Appointment>
 	  </div>
 	</div>
 	<b-message title='Error'
@@ -45,12 +32,14 @@
 <script>
 import axios from 'axios'
 import moment from 'moment'
+import Appointment from '@/components/Appointment.vue'
 import AppointmentForm from '@/components/AppointmentForm.vue'
 import AppointmentError from '@/components/AppointmentError.vue'
 import { EventBus } from '../eventBus.js'
 
 export default {
 	name: 'AppointmentsList',
+	components: { Appointment },
 	data(){
 		return{
 			schedule: {},
