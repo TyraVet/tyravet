@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { EventBus } from '../eventBus.js'
+
 export default {
 	name: 'Appointment',
 	props: {
@@ -32,7 +34,21 @@ export default {
 	},
 	data(){
 		return{
-			isDone: false
+			isDone: this.appointment.done
+		}
+	},
+	methods: {
+		/* Emit event to update the specific appointment */
+		send(){
+			EventBus.$emit('update-appointments', {
+				appointment: this.appointment,
+				done: this.isDone
+			})
+		}
+	},
+	watch: {
+		isDone(){
+			this.send()
 		}
 	}
 }
