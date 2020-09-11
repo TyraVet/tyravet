@@ -13,7 +13,6 @@
 .hour-container {
 	display: flex;
 	flex-flow: row nowrap;
-	cursor: pointer;
 	margin: 1px 0 1px 0;
 	padding: 20px;
 	width: 100%;
@@ -23,13 +22,8 @@
 	margin-right: 50px;
 }
 
-.appointment {
-	display: flex;
-	flex-flow: row wrap;
-}
-
-.appointment > h3 {
-	margin: 0 2px 0 2px;
+.hour-container > .hour {
+	cursor: pointer;
 }
 
 @media all and (min-width: 1000px) {
