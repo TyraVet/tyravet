@@ -66,7 +66,6 @@ exports.post_update_appointments = (req, res, next) => {
 			res.status(403).json(err)
 
 		/* Success */
-		console.log(appointments)
 		res.status(201).json(appointments)
 	})
 }
