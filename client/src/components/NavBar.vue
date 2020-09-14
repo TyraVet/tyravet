@@ -1,6 +1,7 @@
 <template>
   <div class='navbar has-background-primary-dark'>
-	<b-button type='is-primary'
+	<b-button title='Menu'
+			  type='is-primary'
 			  icon-pack='fas'
 			  icon-left='bars'
 			  @click=changeSideBarState()
@@ -8,7 +9,10 @@
 	  {{ menu }}
 	</b-button>
 	<SideBar v-if='user'></SideBar>
-	<h1 class='is-size-3 has-text-primary-white'>{{ title }}</h1>
+	<h1 title='Title'
+		class='is-size-3 has-text-primary-white'>
+	  {{ title }}
+	</h1>
   </div>
 </template>
 
