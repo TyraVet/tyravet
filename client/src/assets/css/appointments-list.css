@@ -23,12 +23,18 @@
 }
 
 .hour-container > .hour {
-	cursor: pointer;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+}
+
+.hour-container > .hour > * {
+	margin: 0 5px 0 5px;
 }
 
 @media all and (min-width: 1000px) {
 	.appointments-list {
-		width: 50%;
+		width: 60%;
 	}
 }
 

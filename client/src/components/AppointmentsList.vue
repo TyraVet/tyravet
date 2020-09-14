@@ -5,9 +5,14 @@
 	  <div v-for='(hour, index) in hours'
 		   :key='index'
 		   class='hour-container has-background-primary-white'>
-		<span class='hour is-size-4'
-			  @click=addAppointment(hour)>
+		<span class='hour is-size-4'>
 		  {{ hour.hour }}
+		  <b-button title='Add Appointment'
+					icon-pack='fas'
+					icon-left='plus'
+					type='is-primary-dark'
+					@click=addAppointment(hour)>
+		  </b-button>
 		</span>
 		<Appointment v-for='(appointment, index) in hour.appointments'
 					 :key='index'
