@@ -1,3 +1,4 @@
+const moment = require('moment')
 const DaySchedule = require('../models/daySchedule.js')
 const Appointment = require('../models/appointment.js')
 
@@ -8,7 +9,12 @@ exports.post_day_schedule = (req, res, next) => {
 			res.status(403).json(err)
 
 		if(!daySchedule){
-			const today = new Date()
+			/* The date has a very specific format, so to avoid any issues
+			 * we better create a temporal date, formatted and create a new
+			 * date as today and then compare. */
+			let tempDate = new Date()
+			tempDate = moment(tempDate).format('YYYY-MM-DD')
+			today = new Date(tempDate)
 			const requestDay = new Date(req.body.date)
 
 			if(requestDay < today){
