@@ -96,7 +96,7 @@
 		  Cancel
 		</button>
 		<b-button class='button is-success'
-				@click=send()>
+				  @click=send()>
 		  Accept
 		</b-button>
 		<b-message title='Success'
