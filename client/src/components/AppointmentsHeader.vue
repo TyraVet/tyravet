@@ -7,13 +7,14 @@
 			  title='Previous'
 			  @click=startTimeMachine(PAST)>
 	</b-button>
-	<span class='date-title'
-		  title='Pick date'
-		  @click=pickDate()>
+	<b-button title='Pick Date'
+			  type='is-primary-light'
+			  size='is-large'
+			  @click='pickDate()'>
 	  <h1 class='is-size-4 has-text-centered has-text-weight-semibold'>
 		{{ formattedDay }}
 	  </h1>
-	</span>
+	</b-button>
 	<b-button icon-right='chevron-right'
 			  icon-pack='fas'
 			  type='is-primary-light'
