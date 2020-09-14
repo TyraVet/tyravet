@@ -25,6 +25,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.28.0",
     "mongodb": "^3.6.0",
     "mongoose": "^5.10.0",
     "morgan": "^1.10.0"
