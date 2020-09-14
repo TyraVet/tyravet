@@ -1,6 +1,6 @@
 <template>
   <div class='appointment'>
-	<section>
+	<section title='Appointment'>
 	  <div class='field'>
 		<b-checkbox type='is-success'
 					v-model='isDone'>
