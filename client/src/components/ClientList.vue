@@ -21,6 +21,14 @@
 		  <span v-for='(pet, index) in props.row.pets'
 				:key='index'>
 			{{ pet.name }}, {{ pet.breed.name }}
+			<b-button title='Add Pet'
+					  icon-pack='fas'
+					  icon-left='plus'
+					  type='is-primary-dark'
+					  size='is-small'
+					  @click=addPet(props.row._id)
+					  v-if='index == props.row.pets.length - 1'>
+			</b-button>
 		  </span>
 		</b-table-column>
 		<b-table-column field='address'
@@ -49,6 +57,7 @@
 
 <script>
 import axios from 'axios'
+import PetForm from '@/components/PetForm.vue'
 
 export default {
 	name: 'ClientList',
@@ -73,6 +82,17 @@ export default {
 				this.clients = response.data
 			}).catch((error) => {
 				console.error(error)
+			})
+		},
+		addPet(id){
+			this.$buefy.modal.open({
+				parent: this,
+				component: PetForm,
+				hasModalCard: true,
+				trapFocus: true,
+				props: {
+					id: id
+				}
 			})
 		}
 	},
