@@ -20,7 +20,7 @@
 						v-slot='props'>
 		  <span v-for='(pet, index) in props.row.pets'
 				:key='index'>
-			{{ pet.name }}, {{ pet.breed.name }}
+			{{ pet.name }}, {{ pet.breed.name }} |
 			<b-button title='Add Pet'
 					  icon-pack='fas'
 					  icon-left='plus'
