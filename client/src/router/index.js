@@ -14,37 +14,58 @@ const routes = [
 	{
 		path: '/',
 		name: 'home',
-		component: Home
+		component: Home,
+		meta: {
+			title: 'TyraWeb Home Page'
+		}
 	},
 	{
 		path: '/clients',
 		name: 'clients',
-		component: Clients
+		component: Clients,
+		meta: {
+			title: 'TyraWeb Clients View'
+		}
 	},
 	{
 		path: '/panel',
 		name: 'panel',
-		component: Panel
+		component: Panel,
+		meta: {
+			title: 'TyraWeb Admin Panel'
+		}
 	},
 	{
 		path: '/panel/breeds',
 		name: 'breeds',
-		component: Breeds
+		component: Breeds,
+		meta: {
+			title: 'TyraWeb Breeds List'
+		}
 	},
 	{
 		path: '/log-in',
 		name: 'log-in',
-		component: Login
+		component: Login,
+		meta: {
+			title: 'TyraWeb Login'
+		}
 	},
 	{
 		path: '/sign-up',
 		name: 'sign-up',
-		component: SignUp
+		component: SignUp,
+		meta: {
+			title: 'TyraWeb SignUp'
+		}
 	},
 	{
 		path: '*',
 		name: 'page-not-found',
-		component: PageNotFound
+		component: PageNotFound,
+		meta: {
+			title: 'TyraWeb Page Not Found'
+		}
 	}
 ]
 
