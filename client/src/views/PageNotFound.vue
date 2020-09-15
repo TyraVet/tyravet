@@ -1,7 +1,13 @@
 <template>
-  <div class='page-not-found'>
-	<h1 class='is-size-1'>Page Not Found</h1>
-	<button @click=goBack()>Go Back</button>
+  <div class='page-not-found-container'>
+	<div class='page-not-found'>
+	  <h1 class='is-size-1'>Page Not Found</h1>
+	  <b-button title='Go Back'
+				type='is-primary'
+				@click=goBack()>
+		Go Back
+	  </b-button>
+	</div>
   </div>
 </template>
 
@@ -15,3 +21,7 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+@import '../assets/css/page-not-found.css'
+</style>
