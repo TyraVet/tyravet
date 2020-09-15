@@ -11,14 +11,10 @@
 			<b-field label='Client'>
 			 <b-select v-model='client'
 					   required>
-			   <option v-for='(client, index) in clients'
-					   :key=index
-					   :value='client'>
-				 <option v-for='(pet, index) in client.pets'
+			   <option v-for='(pet, index) in pets'
 					   :key=index
 					   :value='pet'>
-				   {{ pet.name }}, ({{ pet.breed.name }}). {{ client.name }}
-				 </option>
+				 {{ pet.name }}, ({{ pet.breed }}). {{ pet.clientName }}
 			   </option>
 			 </b-select>
 		   </b-field>
@@ -73,13 +69,43 @@ export default {
 			title: 'New Appointment',
 			services: [],
 			clients: [],
+			pets: [],
 			service: null,
 			client: null
 		}
 	},
+	watch: {
+		clients: function(){
+			this.processPets()
+		}
+	},
 	methods: {
+		init(){
+			this.getClients()
+			this.getServices()
+		},
 		close(){
 			this.$emit('close')
+		},
+		setOnSuccess(response){
+			console.log(response)
+			if(response.status === this.OK)
+				EventBus.$emit('received-appointments', response.data)
+		},
+		processPets(){
+			this.clients.forEach(client => {
+				client.pets.forEach(pet => {
+					const processedPet = {
+						clientId: client._id,
+						clientName: client.name,
+						petId: pet._id,
+						name: pet.name,
+						breed: pet.breed.name
+					}
+
+					this.pets.push(processedPet)
+				})
+			})
 		},
 		getServices(){
 			axios.get(process.env.VUE_APP_TYRAWEB_SERVICES, {
@@ -103,16 +129,12 @@ export default {
 				console.log(error)
 			})
 		},
-		setOnSuccess(response){
-			console.log(response)
-			if(response.status === this.OK)
-				EventBus.$emit('received-appointments', response.data)
-		},
 		send(){
 			axios.post(process.env.VUE_APP_TYRAWEB_ADD_APPOINTMENT, {
 				id: this.schedule._id,
 				service: this.service,
-				client: this.client,
+				clientId: this.client.clientId,
+				petId: this.client.petId,
 				hour: this.hour.hour,
 				appointments: this.schedule.appointments
 			}, {
@@ -127,8 +149,7 @@ export default {
 		}
 	},
 	created(){
-		this.getClients()
-		this.getServices()
+		this.init()
 	}
 }
 </script>
