@@ -50,6 +50,20 @@ exports.get_clients = (req, res, next) => {
 		  })
 }
 
+/* Get one Client */
+exports.get_client = (req, res, next) => {
+	Client.findById(req.query.id, (err, client) => {
+		if(err)
+			res.status(403).json()
+
+		if(client)
+			/* Success */
+			res.status(200).json(client)
+		else
+			res.status(404).json()
+	})
+}
+
 /* Add Pet to Client */
 exports.post_add_pet = (req, res, next) => {
 	const pet = new Pet({
