@@ -40,12 +40,13 @@ exports.post_day_schedule = (req, res, next) => {
 
 /* POST Add Appointment into the Schedule */
 exports.post_add_appointment = (req, res, next) => {
-	if(!req.body.service || !req.body.client)
+	if(!req.body.service || !req.body.clientId || !req.body.petId)
 		return res.status(406).json({ error: 'No Service or Client send' })
 
 	const appointment = new Appointment({
 		service: req.body.service,
-		client: req.body.client,
+		clientId: req.body.clientId,
+		petId: req.body.petId,
 		hour: req.body.hour
 	})
 
