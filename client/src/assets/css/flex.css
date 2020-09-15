@@ -1,0 +1,4 @@
+.flex-vertical > .field-body > .field {
+	flex-flow: column nowrap;
+	justify-content: center;
+}
