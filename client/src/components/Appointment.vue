@@ -33,8 +33,8 @@ export default {
 	data(){
 		return{
 			isDone: this.appointment.done,
-			client: null,
-			pet: null
+			client: { name: '', phone: '' },
+			pet: { name: '', breed: { name: '' } }
 		}
 	},
 	computed: {
