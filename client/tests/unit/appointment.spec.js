@@ -1,4 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
+import store from '@/store'
 import Buefy from 'buefy'
 import Appointment from '@/components/Appointment.vue'
 
@@ -10,20 +11,23 @@ const appointment = {
 	service: {
 		name: ''
 	},
-	client: {
-		name: '',
-		phone: '',
-		pets: [{
-			name: '',
-			breed: {
-				name: ''
-			}
-		}]
-	},
-	hour: ''
+	clientId: '',
+	petId: '',
+	hour: '',
+	done: false,
 }
 
-const wrapper = shallowMount(Appointment, { propsData: { appointment }, localVue })
+/* Dummy User */
+store.state.user = {
+	_id: '',
+	username: '',
+	type: {},
+	token: ''
+}
+
+const wrapper = shallowMount(Appointment, { store,
+											propsData: { appointment },
+											localVue })
 
 describe('Appointment Component', () => {
 	it('Shoudl have the appointment Object', () => {
