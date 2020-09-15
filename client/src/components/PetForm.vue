@@ -11,7 +11,8 @@
 		<b-field label='Pet'
 				 grouped
 				 group-multiline
-				 position='is-centered'>
+				 position='is-centered'
+				 class='flex-vertical'>
 		  <b-field label='Name'>
 			<b-input type='text'
 					 v-model='petName'
@@ -19,6 +20,7 @@
 		  </b-field>
 		  <b-field label='Birthday'>
 			<b-datepicker v-model='petBirthday'
+						  inline
 						  :max-date='maxDate'>
 			</b-datepicker>
 		  </b-field>
@@ -134,3 +136,7 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+@import '../assets/css/flex.css'
+</style>
