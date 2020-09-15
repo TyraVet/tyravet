@@ -1,6 +1,6 @@
 <template>
   <div class='pick-date'>
-	<div class='modal-card pick-date-container'>
+	<div class='modal-card'>
 	  <header class='modal-card-head'>
 		<p class='modal-card-title'>{{ title }}</p>
 		<button type='button'
@@ -10,6 +10,7 @@
 	  <section class='modal-card-body'>
 		<b-field label='Select Date'>
 		  <b-datepicker v-model='date'
+						inline
 						trap-focus>
 		  </b-datepicker>
 		</b-field>
@@ -66,7 +67,3 @@ export default {
 	}
 }
 </script>
-
-<style>
-@import '../assets/css/pick-date.css'
-</style>
