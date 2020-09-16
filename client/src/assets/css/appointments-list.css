@@ -18,18 +18,8 @@
 	width: 100%;
 }
 
-.hour-container > span {
-	margin-right: 50px;
-}
-
-.hour-container > .hour {
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-}
-
-.hour-container > .hour > * {
-	margin: 0 5px 0 5px;
+.hour {
+	margin-right: 25px;
 }
 
 @media all and (min-width: 1000px) {
