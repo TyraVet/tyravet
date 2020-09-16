@@ -1,11 +1,14 @@
 <template>
   <div class='panel'>
-	<h1 class='is-size-1 has-text-primary'>Panel</h1>
+	<UsersList></UsersList>
   </div>
 </template>
 
 <script>
+import UsersList from '@/components/UsersList.vue'
+
 export default {
-	name: 'Panel'
+	name: 'Panel',
+	components: { UsersList }
 }
 </script>
