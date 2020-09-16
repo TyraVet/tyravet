@@ -84,3 +84,16 @@ exports.post_create_user = (req, res, next) => {
 		})
 	})
 }
+
+/* Get all Users */
+exports.get_users = (req, res, next) => {
+	User.find()
+		.populate('user')
+		.exec((err, users) => {
+			if(err)
+				return res.sendStatus(403)
+
+			/* Success */
+			res.json(users)
+		})
+}
