@@ -64,18 +64,13 @@ import axios from 'axios'
 
 export default {
 	name: 'UserForm',
-	props: {
-		type: String
-	},
 	data(){
 		return {
-			labelSignUp: 'signup',
 			labelLogIn: 'login',
 			labelUsername: 'Username',
 			labelPassword: 'Password',
 			labelStayLoggedIn: 'Stay Logged In?',
-			labelButton: '',
-			apiCall: '',
+			labelButton: 'Log In',
 			username: '',
 			password: '',
 			stayLoggedIn: false,
@@ -84,19 +79,18 @@ export default {
 			error: ''
 		}
 	},
+	computed: {
+		user(){
+			return this.$store.state.user
+		}
+	},
+	watch: {
+		/* When user is logged in redirect to Home */
+		user: function(){
+			this.$router.push('/')
+		}
+	},
 	methods: {
-		/* Know if the user is going to log in or sign up a new user.
-		 * So when the component is mounted we initialize where are
-		 * we going to send our request */
-		init(){
-			if(this.type === this.labelSignUp){
-				this.labelButton = 'Sign Up'
-				this.apiCall = process.env.VUE_APP_TYRAWEB_CREATE_USER
-			}else if(this.type === this.labelLogIn){
-				this.labelButton = 'Log In'
-				this.apiCall = process.env.VUE_APP_TYRAWEB_LOGIN_USER
-			}
-		},
 		clearInputs(){
 			this.username = ''
 			this.password = ''
@@ -137,7 +131,7 @@ export default {
 		},
 		/* POST request to out API */
 		send(){
-			axios.post(this.apiCall, {
+			axios.post(process.env.VUE_APP_TYRAWEB_LOGIN_USER, {
 				username: this.username,
 				password: this.password
 			}).then((response) => {
@@ -155,20 +149,6 @@ export default {
 
 			if(this.type === this.labelSignUp)
 				this.clearInputs()
-		}
-	},
-	mounted(){
-		this.init()
-	},
-	computed: {
-		user(){
-			return this.$store.state.user
-		}
-	},
-	watch: {
-		/* When user is logged in redirect to Home */
-		user: function(){
-			this.$router.push('/')
 		}
 	}
 }
