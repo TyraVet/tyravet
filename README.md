@@ -5,6 +5,11 @@ Fullstack MEVN Veterinary management application.
 - Staff Access (Users).
 - Inventory (CRUD).
 
+## Video Demo
+[![TyraWeb
+v0.1](http://img.youtube.com/vi/TYUGz7Selpw/0.jpg)](https://www.youtube.com/watch?v=TYUGz7Selpw
+"TyraWeb v0.1")
+
 ## Dependencies
 See ```package.json``` inside ```client/``` and ```server/```.
 
