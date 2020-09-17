@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user.js')
 const Type = require('../models/type.js')
 
-const normal = new Type({ name: 'normal' })
 const medic = new Type({ name: 'medic' })
 const admin = new Type({ name: 'admin' })
 
@@ -65,17 +64,17 @@ exports.post_find_user = (req, res, next) => {
 
 /* Create User */
 exports.post_create_user = (req, res, next) => {
-	const Type = new Type({ name: req.body.type })
-
 	bcryptjs.hash(req.body.password, 10, (err, hashedPassword) => {
 		if(err)
 			res.sendStatus(401)
 
 		/* Success */
+		const type = new Type({ name: req.body.type })
+
 		const user = new User({
 			username: req.body.username,
 			password: hashedPassword,
-			type: Type
+			type: type
 		}).save(err => {
 			if(err)
 				return next(err)
