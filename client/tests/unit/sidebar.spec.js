@@ -9,6 +9,14 @@ import SideBar from '@/components/SideBar.vue'
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
+/* Dummy User */
+store.state.user = {
+	_id: '',
+	username: '',
+	type: { name: '' },
+	token: ''
+}
+
 const wrapper = shallowMount(SideBar, { store, localVue })
 
 describe('SideBar Component', () => {
