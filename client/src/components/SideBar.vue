@@ -10,7 +10,8 @@
 		  <b-menu-list label='Menu'>
 			<b-menu-item label='Panel'
 						 icon-pack='fas'
-						 icon='database'>
+						 icon='database'
+						 v-if='isAdmin'>
 			  <span @click=changeSideBarState()>
 				<b-menu-item label='Home'
 							 icon-pack='fas'
@@ -107,7 +108,8 @@ export default {
 			fullwidth: true,
 			fullheight: true,
 			bug: process.env.VUE_APP_NEW_ISSUE,
-			mit: process.env.VUE_APP_MIT
+			mit: process.env.VUE_APP_MIT,
+			isAdmin: false
 		}
 	},
 	computed: {
@@ -119,6 +121,12 @@ export default {
 		}
 	},
 	methods: {
+		init(){
+			if(this.user.type.name === 'admin')
+				this.isAdmin = true
+			else
+				this.isAdmin = false
+		},
 		changeSideBarState(){
 			this.$store.commit('changeSideBarState')
 		},
@@ -128,6 +136,9 @@ export default {
 			this.changeSideBarState()
 			this.$router.push({ name: 'log-in' })
 		}
+	},
+	created(){
+		this.init()
 	}
 }
 </script>
