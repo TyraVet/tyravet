@@ -29,18 +29,6 @@
 				</b-menu-item>
 			  </span>
 			</b-menu-item>
-			<b-menu-item label='Inventory'
-						 icon-pack='fas'
-						 icon='warehouse'>
-			  <span @click=changeSideBarState()>
-				<b-menu-item label='Home'
-							 icon-pack='fas'
-							 icon='home'
-							 tag='router-link'
-							 to='/inventory'>
-				</b-menu-item>
-			  </span>
-			</b-menu-item>
 			<b-menu-item label='Schedule'
 						 icon-pack='fas'
 						 icon='calendar'>
@@ -58,6 +46,30 @@
 							 icon='address-book'
 							 tag='router-link'
 							 to='/clients'>
+				</b-menu-item>
+			  </span>
+			</b-menu-item>
+			<b-menu-item label='Hospital'
+						 icon-pack='fas'
+						 icon='hospital'>
+			  <span @click=changeSideBarState()>
+				<b-menu-item label='Home'
+							 icon-pack='fas'
+							 icon='home'
+							 tag='router-link'
+							 to='/hospital'>
+				</b-menu-item>
+			  </span>
+			</b-menu-item>
+			<b-menu-item label='Inventory'
+						 icon-pack='fas'
+						 icon='warehouse'>
+			  <span @click=changeSideBarState()>
+				<b-menu-item label='Home'
+							 icon-pack='fas'
+							 icon='home'
+							 tag='router-link'
+							 to='/inventory'>
 				</b-menu-item>
 			  </span>
 			</b-menu-item>
