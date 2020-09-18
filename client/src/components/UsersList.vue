@@ -19,6 +19,7 @@
 
 <script>
 import axios from 'axios'
+import { EventBus } from '../eventBus.js'
 
 export default {
 	name: 'UsersList',
@@ -44,7 +45,6 @@ export default {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
-				console.log(response)
 				this.users = response.data
 			}).catch(error => {
 				console.error(error)
@@ -53,6 +53,14 @@ export default {
 	},
 	created(){
 		this.init()
+
+		/* Event Listeners */
+
+		/* When new user is created, fetch API to get users
+		 * and re-render list */
+		EventBus.$on('update-users', () => {
+			this.getUsers()
+		})
 	}
 }
 </script>
