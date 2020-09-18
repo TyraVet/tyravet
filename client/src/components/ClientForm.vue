@@ -111,7 +111,7 @@
 				   has-icon
 				   auto-close
 				   class='message'
-				   v-if='status === 201 || status === 200'>
+				   v-if='status === OK'>
 		  {{ statusText }}
 		</b-message>
 		<b-message title='Error'
@@ -133,11 +133,15 @@
 
 <script>
 import axios from 'axios'
+import { EventBus } from '../eventBus.js'
+
+export const OK = 201
 
 export default {
 	name: 'ClientForm',
 	data() {
 		return {
+			OK,
 			title: 'Create Client',
 			status: null,
 			statusText: '',
@@ -157,15 +161,45 @@ export default {
 			breeds: []
 		}
 	},
+	computed: {
+		user(){
+			return this.$store.state.user
+		}
+	},
+	watch: {
+		/* Calculate Age whenever the birthdate changes. */
+		clientPetBirthday: function(){
+			this.calculateAge(this.clientPetBirthday)
+		}
+	},
 	methods: {
+		init(){
+			this.getBreeds()
+		},
 		clearInput(){
 			this.clientName = ''
+			this.clientAddressStreet = ''
+			this.clientAddressNumber = null
+			this.clientAddressIntNumber = null
+			this.clientAddressPostalCode = null
+			this.clientPhoneNumber = null
+			this.clientPetName = ''
+			this.clientPetAge = null
+			this.clientPetWeight = null
+			this.clientPetBirthday = null
+			this.clientPetBreed = ''
 		},
+		/* Render Success Message on Modal and send event to
+		 * re-render the Clients List. */
 		setOnSuccess(response){
 			this.status = response.status
 			this.statusText = response.statusText
 			this.clearInput()
+
+			if(this.status === this.OK)
+				EventBus.$emit('update-clients')
 		},
+		/* Render Error Message on Modal. */
 		setOnError(error){
 			if(error.response){
 				this.status = error.response.status
@@ -201,7 +235,7 @@ export default {
 				petBreed: this.clientPetBreed
 			}, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then((response) => {
 				this.setOnSuccess(response)
@@ -212,7 +246,7 @@ export default {
 		getBreeds(){
 			axios.get(process.env.VUE_APP_TYRAWEB_BREEDS, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then((response) => {
 				this.breeds = response.data
@@ -221,13 +255,8 @@ export default {
 			})
 		}
 	},
-	mounted(){
-		this.getBreeds()
-	},
-	watch: {
-		clientPetBirthday: function(){
-			this.calculateAge(this.clientPetBirthday)
-		}
+	created(){
+		this.init()
 	}
 }
 </script>
