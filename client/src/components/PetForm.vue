@@ -58,6 +58,30 @@
 				  @click=send()>
 		  Accept
 		</b-button>
+		<b-message title='Success'
+				   type='is-success'
+				   aria-close-label='Close message'
+				   icon-pack='fas'
+				   icon-size='is-medium'
+				   icon='check'
+				   has-icon
+				   auto-close
+				   class='message'
+				   v-if='status === OK'>
+		  {{ statusText }}
+		</b-message>
+		<b-message title='Error'
+				   type='is-danger'
+				   aria-close-label='Close message'
+				   icon-pack='fas'
+				   icon-size='is-medium'
+				   icon='exclamation'
+				   has-icon
+				   auto-close
+				   class='message'
+				   v-if='status === ERROR'>
+		  {{ error }}
+		</b-message>
 	  </footer>
 	</div>
   </form>
@@ -65,6 +89,10 @@
 
 <script>
 import axios from 'axios'
+import { EventBus } from '../eventBus.js'
+
+export const OK = 201
+export const ERROR = 403
 
 export default {
 	name: 'PetForm',
@@ -73,7 +101,12 @@ export default {
 	},
 	data(){
 		return{
+			OK,
+			ERROR,
 			title: 'Add Pet',
+			status: null,
+			statusText: '',
+			error: '',
 			breeds: [],
 			petName: '',
 			petAge: null,
@@ -81,6 +114,11 @@ export default {
 			petBirthday: null,
 			petBreed: '',
 			maxDate: new Date()
+		}
+	},
+	computed: {
+		user(){
+			return this.$store.state.user
 		}
 	},
 	watch: {
@@ -92,6 +130,34 @@ export default {
 		init(){
 			this.getBreeds()
 		},
+		clearInput(){
+			this.petName = ''
+			this.petAge = null
+			this.petWeight = null
+			this.petBirthday = null
+			this.petBreed = ''
+		},
+		/* Render Success Message on Modal and send event to
+		 * re-render the Clients List. */
+		setOnSuccess(response){
+			this.status = response.status
+			this.statusText = response.statusText
+			this.clearInput()
+
+			if(this.status === this.OK)
+				EventBus.$emit('update-clients')
+		},
+		/* Render Error Message on Modal. */
+		setOnError(error){
+			if(error.response){
+				this.status = error.response.status
+				this.error = error.response.statusText
+			}else if(error.request){
+				this.error = error.request
+			}else{
+				this.error = error.message
+			}
+		},
 		close(){
 			this.$emit('close')
 		},
@@ -102,7 +168,7 @@ export default {
 		getBreeds(){
 			axios.get(process.env.VUE_APP_TYRAWEB_BREEDS, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then((response) => {
 				this.breeds = response.data
@@ -122,12 +188,12 @@ export default {
 				petBreed: this.petBreed
 			}, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
-				console.log(response)
+				this.setOnSuccess(response)
 			}).catch(error => {
-				console.log(error)
+				this.setOnError(error)
 			})
 		}
 	},
