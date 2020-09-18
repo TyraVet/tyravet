@@ -21,12 +21,17 @@
 						v-slot='props'>
 		  <span v-for='(pet, index) in props.row.pets'
 				:key='index'>
-			{{ pet.name }}, {{ pet.breed.name }} |
+			<b-button title='Go Pet Profile'
+					  class='button-pet'
+					  type='is-primary-light'
+					  @click=sayPet(pet)>
+			  {{ pet.name }}, {{ pet.breed.name }}
+			</b-button>
 			<b-button title='Add Pet'
+					  class='button-pet'
 					  icon-pack='fas'
 					  icon-left='plus'
 					  type='is-primary-dark'
-					  size='is-small'
 					  @click=addPet(props.row._id)
 					  v-if='index == props.row.pets.length - 1'>
 			</b-button>
@@ -96,6 +101,9 @@ export default {
 					id: id
 				}
 			})
+		},
+		sayPet(pet){
+			alert(pet.name)
 		}
 	},
 	created() {
@@ -113,6 +121,10 @@ export default {
 </script>
 
 <style>
+.button-pet {
+  margin: 0 2px 0 2px;
+ }
+
 .no-clients {
   margin: 50px;
  }
