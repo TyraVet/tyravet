@@ -50,7 +50,7 @@
 				   has-icon
 				   auto-close
 				   class='message'
-				   v-if='status === 201 || status === 200'>
+				   v-if='status === OK'>
 		  {{ statusText }}
 		</b-message>
 		<b-message title='Error'
@@ -62,7 +62,7 @@
 				   has-icon
 				   auto-close
 				   class='message'
-				   v-if='status === 401 || status === 404'>
+				   v-if='status === ERROR'>
 		  {{ error }}
 		</b-message>
 	  </footer>
@@ -72,11 +72,17 @@
 
 <script>
 import axios from 'axios'
+import { EventBus } from '../eventBus.js'
+
+export const OK = 201
+export const ERROR = 401
 
 export default {
 	name: 'CreateUserForm',
 	data() {
 		return {
+			OK,
+			ERROR,
 			title: 'Create User',
 			username: '',
 			password: '',
@@ -86,6 +92,11 @@ export default {
 			statusText: '',
 			error: '',
 			type: 'medic'
+		}
+	},
+	computed: {
+		user(){
+			return this.$store.state.user
 		}
 	},
 	watch: {
@@ -106,6 +117,9 @@ export default {
 			this.status = response.status
 			this.statusText = response.statusText
 			this.clearInput()
+
+			if(this.status === this.OK)
+				EventBus.$emit('update-users')
 		},
 		setOnError(error){
 			if(error.response){
@@ -127,7 +141,7 @@ export default {
 				type: this.type
 			}, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then((response) => {
 				this.setOnSuccess(response)
