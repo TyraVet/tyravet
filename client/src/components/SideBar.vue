@@ -21,6 +21,14 @@
 				</b-menu-item>
 			  </span>
 			  <span @click=changeSideBarState()>
+				<b-menu-item label='Services'
+							 icon-pack='fas'
+							 icon='database'
+							 tag='router-link'
+							 to='/panel/services'>
+				</b-menu-item>
+			  </span>
+			  <span @click=changeSideBarState()>
 				<b-menu-item label='Breeds'
 							 icon-pack='fas'
 							 icon='database'
