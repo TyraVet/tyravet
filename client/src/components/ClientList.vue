@@ -36,7 +36,7 @@
 						v-slot='props'>
 		  {{ props.row.address.street }}
 		  #{{ props.row.address.number }}
-		  C.P. {{ props.row.address.postalCode }}
+		  P.C. {{ props.row.address.postalCode }}
 		</b-table-column>
 	  </b-table>
 	</span>
@@ -57,6 +57,7 @@
 
 <script>
 import axios from 'axios'
+import { EventBus } from '../eventBus.js'
 import PetForm from '@/components/PetForm.vue'
 
 export default {
@@ -96,8 +97,16 @@ export default {
 			})
 		}
 	},
-	mounted() {
+	created() {
 		this.init()
+
+		/* Event Listeners */
+
+		/* When a new Client is created, fetch from the API all the
+		 * clients and render them. */
+		EventBus.$on('update-clients', () => {
+			this.getClients()
+		})
 	}
 }
 </script>
