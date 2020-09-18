@@ -7,6 +7,7 @@
 			   :mobile-cards='hasMobileCards'>
 		<b-table-column field='name'
 						label='Name'
+						searchable
 						v-slot='props'>
 		  {{ props.row.name }}
 		</b-table-column>
