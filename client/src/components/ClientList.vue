@@ -24,7 +24,7 @@
 			<b-button title='Go Pet Profile'
 					  class='button-pet'
 					  type='is-primary-light'
-					  @click=sayPet(pet)>
+					  @click=goPetProfile(pet._id)>
 			  {{ pet.name }}, {{ pet.breed.name }}
 			</b-button>
 			<b-button title='Add Pet'
@@ -76,6 +76,11 @@ export default {
 			noClients: "You don't have Clients now. Add One!"
 		}
 	},
+	computed: {
+		user(){
+			return this.$store.state.user
+		}
+	},
 	methods: {
 		init(){
 			this.getClients()
@@ -83,7 +88,7 @@ export default {
 		getClients(){
 			axios.get(process.env.VUE_APP_TYRAWEB_CLIENTS, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then((response) => {
 				this.clients = response.data
@@ -102,8 +107,8 @@ export default {
 				}
 			})
 		},
-		sayPet(pet){
-			alert(pet.name)
+		goPetProfile(id){
+			this.$router.push({ name: 'pet', params: { id } })
 		}
 	},
 	created() {
