@@ -91,10 +91,6 @@ export default {
 		}
 	},
 	methods: {
-		clearInputs(){
-			this.username = ''
-			this.password = ''
-		},
 		clearErrors(){
 			this.status = null
 			this.error = ''
@@ -110,6 +106,7 @@ export default {
 				token: response.data.accessToken
 			}
 			this.fillUser(user)
+			this.setCookies()
 		},
 		setOnError(error){
 			if(error.response){
@@ -136,9 +133,6 @@ export default {
 				password: this.password
 			}).then((response) => {
 				this.setOnSuccess(response)
-
-				if(this.type === this.labelLogIn && this.stayLoggedIn)
-					this.setCookies()
 			}).catch((error) => {
 				this.setOnError(error)
 
@@ -146,9 +140,6 @@ export default {
 				 * can show again our error mesasge if needed. */
 				setTimeout(this.clearErrors, 2000)
 			})
-
-			if(this.type === this.labelSignUp)
-				this.clearInputs()
 		}
 	}
 }
