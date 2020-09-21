@@ -4,12 +4,17 @@ const path = require('path')
 const authenticateToken = require('../middlewares/authenticateToken.js')
 
 /* Require Controller Modules */
-var clientController = require(path.join(__dirname, '../controllers/client.js'))
+var client = require(path.join(__dirname, '../controllers/client.js'))
+var pet = require(path.join(__dirname, '../controllers/pet.js'))
 
 /* Client Routes */
-router.post('/create', authenticateToken, clientController.post_create_client)
-router.get('/', authenticateToken, clientController.get_clients)
-router.get('/client', authenticateToken, clientController.get_client)
-router.post('/add-pet', authenticateToken, clientController.post_add_pet)
+router.post('/create',
+			authenticateToken,
+			pet.post_create_pet,
+			client.post_create_client,
+			pet.post_add_owner)
+router.get('/', authenticateToken, client.get_clients)
+router.get('/client', authenticateToken, client.get_client)
+router.post('/add-pet', authenticateToken, client.post_add_pet)
 
 module.exports = router
