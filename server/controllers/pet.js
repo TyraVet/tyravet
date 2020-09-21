@@ -34,3 +34,18 @@ exports.post_add_owner = (req, res) => {
 		res.status(201).json()
 	})
 }
+
+/* Get Pet */
+/* Find Pet by Id. */
+exports.get_pet = (req, res) => {
+	Pet.findById(req.query.id, (err, pet) => {
+		if(err)
+			res.status(403).json()
+
+		if(pet)
+			/* Success */
+			res.status(200).json(pet)
+		else
+			res.status(404).json()
+	})
+}
