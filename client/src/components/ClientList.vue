@@ -18,7 +18,8 @@
 		</b-table-column>
 		<b-table-column field='pets'
 						label='Pets'
-						v-slot='props'>
+						v-slot='props'
+						:key='petsKey'>
 		  <span v-for='(pet, index) in props.row.pets'
 				:key='index'>
 			<b-button title='Go Pet Profile'
@@ -73,7 +74,8 @@ export default {
 			clients: [],
 			isBordered: true,
 			hasMobileCards: true,
-			noClients: "You don't have Clients now. Add One!"
+			noClients: "You don't have Clients now. Add One!",
+			petsKey: 0
 		}
 	},
 	computed: {
@@ -85,13 +87,42 @@ export default {
 		init(){
 			this.getClients()
 		},
+		/* We need to tell Vue to update the pets column, the proper way
+		 * of doing this is to set a key in the component and update
+		 * that key value. */
+		forceRenderer(){
+			this.petsKey++
+		},
+		/* Once we have the clients we need to populate the pets
+		 * of each client. */
+		setOnSuccess(res){
+			this.clients = res.data
+
+			this.clients.forEach((client, clientIndex) => {
+				client.pets.forEach((pet, petIndex) => {
+					axios.get(process.env.VUE_APP_TYRAWEB_PETS, {
+						params: {
+							id: pet
+						},
+						headers: {
+							Authorization: 'Bearer ' + this.user.token
+						}
+					}).then(response => {
+						client.pets[petIndex] = response.data
+						this.forceRenderer()
+					}).catch(error => {
+						console.error(error)
+					})
+				})
+			})
+		},
 		getClients(){
 			axios.get(process.env.VUE_APP_TYRAWEB_CLIENTS, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then((response) => {
-				this.clients = response.data
+				this.setOnSuccess(response)
 			}).catch((error) => {
 				console.error(error)
 			})
