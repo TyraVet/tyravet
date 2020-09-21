@@ -8,5 +8,6 @@ var pet = require(path.join(__dirname, '../controllers/pet.js'))
 
 /* Pet Routes */
 router.get('/', authenticateToken, pet.get_pet)
+router.get('/all', authenticateToken, pet.get_pets)
 
 module.exports = router
