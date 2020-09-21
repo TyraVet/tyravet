@@ -8,7 +8,8 @@ var PetSchema = new Schema({
 	birthday: { type: Date },
 	age: { type: Number },
 	weight: { type: Number },
-	breed: { type: BreedSchema }
+	breed: { type: BreedSchema },
+	owner: { type: mongoose.ObjectId, required: false }
 })
 
 module.exports = mongoose.model('Pet', PetSchema)
