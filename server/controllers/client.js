@@ -61,22 +61,13 @@ exports.get_client = (req, res, next) => {
 
 /* Add Pet to Client */
 exports.post_add_pet = (req, res, next) => {
-	const pet = new Pet({
-		name: req.body.petName,
-		birthday: req.body.petBirthday,
-		age: req.body.petAge,
-		weight: req.body.petWeight,
-		breed: req.body.petBreed,
-		owner: req.body.id
-	})
-
 	Client.findById(req.body.id, (err, client) => {
 		if(err)
 			res.status(403).json(err)
 
 		/* Success */
 		let pets = client.pets
-		pets.push(pet)
+		pets.push(res.locals.pet)
 
 		Client.findByIdAndUpdate(req.body.id,
 								{ pets: pets },
@@ -85,7 +76,8 @@ exports.post_add_pet = (req, res, next) => {
 				res.status(403).json(err)
 
 			/* Success */
-			res.status(201).json(theClient)
+			res.locals.client = theClient
+			next()
 		})
 	})
 }
