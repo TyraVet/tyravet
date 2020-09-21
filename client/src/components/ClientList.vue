@@ -1,7 +1,6 @@
 <template>
   <div class='client-list'>
-	<span class='no-clients'
-		  v-if='clients.length > 0'>
+	<span v-if='clients.length > 0'>
 	  <b-table :data='clients'
 			   :bordered='isBordered'
 			   :mobile-cards='hasMobileCards'>
@@ -100,7 +99,7 @@ export default {
 
 			this.clients.forEach((client, clientIndex) => {
 				client.pets.forEach((pet, petIndex) => {
-					axios.get(process.env.VUE_APP_TYRAWEB_PETS, {
+					axios.get(process.env.VUE_APP_TYRAWEB_PET, {
 						params: {
 							id: pet
 						},
