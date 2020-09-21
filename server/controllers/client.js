@@ -3,6 +3,8 @@ const Pet = require('../models/pet.js')
 const Address = require('../models/address.js')
 
 /* Create Client */
+/* Here we get the pet previously created and use it to
+ * populate that attribute of the client. */
 exports.post_create_client = (req, res, next) => {
 	const address = new Address({
 		street: req.body.street,
@@ -11,28 +13,21 @@ exports.post_create_client = (req, res, next) => {
 		postalCode: req.body.postalCode
 	})
 
-	const pet = new Pet({
-		name: req.body.petName,
-		birthday: req.body.petBirthday,
-		age: req.body.petAge,
-		weight: req.body.petWeight,
-		breed: req.body.petBreed
-	})
-
-	let pets = []
-	pets.push(pet)
+	var pets = []
+	pets.push(res.locals.pet._id)
 
 	const client = new Client({
 		name: req.body.name,
 		phone: req.body.phone,
 		pets: pets,
 		address: address
-	}).save(err => {
+	}).save((err, theClient) => {
 		if(err)
 			return next(err)
 
 		/* Success */
-		res.sendStatus(201).json(client)
+		res.locals.client = theClient
+		next()
 	})
 }
 
@@ -71,7 +66,8 @@ exports.post_add_pet = (req, res, next) => {
 		birthday: req.body.petBirthday,
 		age: req.body.petAge,
 		weight: req.body.petWeight,
-		breed: req.body.petBreed
+		breed: req.body.petBreed,
+		owner: req.body.id
 	})
 
 	Client.findById(req.body.id, (err, client) => {
