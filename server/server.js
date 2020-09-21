@@ -20,6 +20,7 @@ db.once('open', () => console.log('Connected to database!'));
 var userRouter = require('./routes/user')
 var breedRouter = require('./routes/breed')
 var clientRouter = require('./routes/client')
+var petRouter = require('./routes/pet')
 var serviceRouter = require('./routes/service')
 var dayScheduleRouter = require('./routes/daySchedule')
 
@@ -39,6 +40,7 @@ app.use(serveStatic(__dirname + '../client/dist'))
 app.use(process.env.TYRAWEB_ROUTE_USERS, userRouter)
 app.use(process.env.TYRAWEB_ROUTE_BREED, breedRouter)
 app.use(process.env.TYRAWEB_ROUTE_CLIENTS, clientRouter)
+app.use(process.env.TYRAWEB_ROUTE_PETS, petRouter)
 app.use(process.env.TYRAWEB_ROUTE_SERVICES, serviceRouter)
 app.use(process.env.TYRAWEB_ROUTE_DAY_SCHEDULES, dayScheduleRouter)
 
