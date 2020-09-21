@@ -49,3 +49,17 @@ exports.get_pet = (req, res) => {
 			res.status(404).json()
 	})
 }
+
+/* Get all Pets */
+exports.get_pets = (req, res) => {
+	Pet.find()
+		  .populate('client')
+		  .sort([['name', 'ascending']])
+		  .exec((err, pets) => {
+			  if(err)
+				  return res.sendStatus(403)
+
+			  /* Success */
+			  res.json(pets)
+		  })
+}
