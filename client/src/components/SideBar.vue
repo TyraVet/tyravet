@@ -56,6 +56,14 @@
 							 to='/clients'>
 				</b-menu-item>
 			  </span>
+			  <span @click=changeSideBarState()>
+				<b-menu-item label='Pets Book'
+							 icon-pack='fas'
+							 icon='paw'
+							 tag='router-link'
+							 to='/pets'>
+				</b-menu-item>
+			  </span>
 			</b-menu-item>
 			<b-menu-item label='Hospital'
 						 icon-pack='fas'
