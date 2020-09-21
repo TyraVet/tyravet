@@ -15,6 +15,10 @@ router.post('/create',
 			pet.post_add_owner)
 router.get('/', authenticateToken, client.get_clients)
 router.get('/client', authenticateToken, client.get_client)
-router.post('/add-pet', authenticateToken, client.post_add_pet)
+router.post('/add-pet',
+			authenticateToken,
+			pet.post_create_pet,
+			client.post_add_pet,
+			pet.post_add_owner)
 
 module.exports = router
