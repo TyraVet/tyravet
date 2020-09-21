@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Clients from '../views/Clients.vue'
+import Pets from '../views/Pets.vue'
 import Pet from '../views/Pet.vue'
 import Panel from '../views/Panel.vue'
 import Breeds from '../views/Breeds.vue'
@@ -29,7 +30,15 @@ const routes = [
 		}
 	},
 	{
-		path: '/clients/:id',
+		path: '/pets',
+		name: 'pets',
+		component: Pets,
+		meta: {
+			title: 'TyraWeb Pets View'
+		}
+	},
+	{
+		path: '/pets/:id',
 		name: 'pet',
 		component: Pet,
 		meta: {
