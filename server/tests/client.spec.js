@@ -6,26 +6,16 @@ describe('Client Model', () => {
 		const _client = {
 			_id: '507f191e810c19729de860ea',
 			name: 'Andres Ruiz',
-			phone: 5594456711,
+			phone: 88777337699,
 			pets: [
-				{
-					_id: '507f191e810c19729de860eb',
-					name: 'Coqueta',
-					birthday: '2019-01-18T06:00:00.000Z',
-					age: 1,
-					weight: 33,
-					breed: {
-						_id: '507f191e810c19729de860ec',
-						name: 'Rottweiler'
-					}
-				}
+				'507f191e810c19729de860eb'
 			],
 			address: {
 				_id: '507f191e810c19729de860ed',
-				street: 'Far Away',
-				number: 14,
+				street: 'Jersey Street',
+				number: 4,
 				intNumber: null,
-				postalCode: 94110
+				postalCode: 2215
 			}
 		}
 
