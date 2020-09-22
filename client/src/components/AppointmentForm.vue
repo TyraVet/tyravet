@@ -74,6 +74,11 @@ export default {
 			client: null
 		}
 	},
+	computed: {
+		user(){
+			return this.$store.state.user
+		}
+	},
 	watch: {
 		clients: function(){
 			this.processPets()
@@ -110,7 +115,7 @@ export default {
 		getServices(){
 			axios.get(process.env.VUE_APP_TYRAWEB_SERVICES, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
 				this.services = response.data
@@ -121,7 +126,7 @@ export default {
 		getClients(){
 			axios.get(process.env.VUE_APP_TYRAWEB_CLIENTS, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
 				this.clients = response.data
@@ -139,7 +144,7 @@ export default {
 				appointments: this.schedule.appointments
 			}, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
 				this.setOnSuccess(response)
