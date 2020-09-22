@@ -50,6 +50,7 @@ export default {
 	methods: {
 		init(){
 			this.getClient()
+			this.getPet()
 		},
 		/* Emit event to update the specific appointment */
 		send(){
@@ -68,11 +69,20 @@ export default {
 				}
 			}).then(response => {
 				this.client = response.data
-
-				this.client.pets.forEach(pet => {
-					if(pet._id === this.appointment.petId)
-						this.pet = pet
-				})
+			}).catch(error => {
+				console.error(error)
+			})
+		},
+		getPet(){
+			axios.get(process.env.VUE_APP_TYRAWEB_PET, {
+				params: {
+					id: this.appointment.petId
+				},
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				this.pet = response.data
 			}).catch(error => {
 				console.error(error)
 			})
