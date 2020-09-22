@@ -80,8 +80,36 @@ export default {
 		}
 	},
 	watch: {
+		/* Once we have the clients from the database we fetch the API
+		 * to populate the pets of each client. Then we process each pet
+		 * to display correctly in the form. */
 		clients: function(){
-			this.processPets()
+			this.clients.forEach((client, clientIndex) => {
+				client.pets.forEach((pet, petIndex) => {
+					axios.get(process.env.VUE_APP_TYRAWEB_PET, {
+						params: {
+							id: pet
+						},
+						headers: {
+							Authorization: 'Bearer ' + this.user.token
+						}
+					}).then(response => {
+						client.pets[petIndex] = response.data
+
+						const processedPet = {
+							clientId: client._id,
+							clientName: client.name,
+							petId: client.pets[petIndex]._id,
+							name: client.pets[petIndex].name,
+							breed: client.pets[petIndex].breed.name
+						}
+
+						this.pets.push(processedPet)
+					}).catch(error => {
+						console.error(error)
+					})
+				})
+			})
 		}
 	},
 	methods: {
@@ -96,21 +124,6 @@ export default {
 			console.log(response)
 			if(response.status === this.OK)
 				EventBus.$emit('received-appointments', response.data)
-		},
-		processPets(){
-			this.clients.forEach(client => {
-				client.pets.forEach(pet => {
-					const processedPet = {
-						clientId: client._id,
-						clientName: client.name,
-						petId: pet._id,
-						name: pet.name,
-						breed: pet.breed.name
-					}
-
-					this.pets.push(processedPet)
-				})
-			})
 		},
 		getServices(){
 			axios.get(process.env.VUE_APP_TYRAWEB_SERVICES, {
