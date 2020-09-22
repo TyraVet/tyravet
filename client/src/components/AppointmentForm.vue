@@ -112,9 +112,9 @@ export default {
 				headers: {
 					Authorization: 'Bearer ' + this.$store.state.user.token
 				}
-			}).then((response) => {
+			}).then(response => {
 				this.services = response.data
-			}).catch((error) => {
+			}).catch(error => {
 				console.error(error)
 			})
 		},
@@ -123,9 +123,9 @@ export default {
 				headers: {
 					Authorization: 'Bearer ' + this.$store.state.user.token
 				}
-			}).then((response) => {
+			}).then(response => {
 				this.clients = response.data
-			}).catch((error) => {
+			}).catch(error => {
 				console.log(error)
 			})
 		},
