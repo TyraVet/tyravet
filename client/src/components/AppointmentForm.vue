@@ -121,7 +121,6 @@ export default {
 			this.$emit('close')
 		},
 		setOnSuccess(response){
-			console.log(response)
 			if(response.status === this.OK)
 				EventBus.$emit('received-appointments', response.data)
 		},
