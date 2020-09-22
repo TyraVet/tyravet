@@ -2,7 +2,7 @@
   <div class='pet-profile'>
 	<section id='pet-header'>
 	  <img class='pet-profile-picture'
-		   src="https://picsum.photos/600/400">
+		   :src='placeholder'>
 	  <section id='pet-info'>
 		<h1 class='is-size-2'>
 		  {{ pet.name }}
@@ -41,6 +41,7 @@ export default {
 	},
 	data(){
 		return{
+			placeholder: process.env.VUE_APP_PLACEHOLDER,
 			pet: {
 				name: '',
 				breed: {
