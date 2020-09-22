@@ -1,0 +1,17 @@
+#pet-header {
+	margin: 0 10vw 0 10vw;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+}
+
+#pet-header > * {
+	margin: 0 1vw 0 1vw;
+}
+
+.pet-profile-picture {
+	margin-top: 1vh !important;
+	border-radius: 50%;
+	width: 15vw;
+	height: 15vw;
+}
