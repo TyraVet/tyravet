@@ -3,6 +3,7 @@
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
+	align-items: center;
 }
 
 #pet-header > * {
@@ -12,6 +13,13 @@
 .pet-profile-picture {
 	margin-top: 1vh !important;
 	border-radius: 50%;
-	width: 15vw;
-	height: 15vw;
+	width: 250px;
+	height: 250px;
+}
+
+@media all and (max-width: 500px) {
+	.pet-profile-picture {
+		width: 180px;
+		height: 180px;
+	}
 }
