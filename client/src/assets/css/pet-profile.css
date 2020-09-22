@@ -10,8 +10,15 @@
 	margin: 0 1vw 0 1vw;
 }
 
+#pet-profile-picture-container {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
 .pet-profile-picture {
 	margin-top: 1vh !important;
+	margin-bottom: 1vh !important;
 	border-radius: 50%;
 	width: 250px;
 	height: 250px;
@@ -19,7 +26,7 @@
 
 @media all and (max-width: 500px) {
 	.pet-profile-picture {
-		width: 180px;
-		height: 180px;
+		width: 150px;
+		height: 150px;
 	}
 }
