@@ -80,8 +80,6 @@ export default {
 	watch: {
 		file: function(){
 			axios.post(process.env.VUE_APP_TYRAWEB_PET_ADD_PICTURE, {
-				file: this.file
-			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
 				}
