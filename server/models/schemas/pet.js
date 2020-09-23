@@ -9,7 +9,9 @@ var PetSchema = new Schema({
 	age: { type: Number },
 	weight: { type: Number },
 	breed: { type: BreedSchema },
-	owner: { type: mongoose.ObjectId, required: false }
+	owner: { type: mongoose.ObjectId, required: false },
+	vaccinationRecord: { type: Array, required: false, defaul: [] },
+	medialRecord: { type: Array, required: false, default: [] }
 })
 
 module.exports = PetSchema
