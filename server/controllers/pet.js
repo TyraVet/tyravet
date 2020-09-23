@@ -35,6 +35,11 @@ exports.post_add_owner = (req, res) => {
 	})
 }
 
+/* Upload Profile Picture */
+exports.post_upload_profile_picture = (req, res) => {
+	res.json({ error: 'Not implemented yet' })
+}
+
 /* Get Pet */
 /* Find Pet by Id. */
 exports.get_pet = (req, res) => {
