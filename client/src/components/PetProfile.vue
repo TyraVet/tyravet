@@ -4,14 +4,11 @@
 	  <section id='pet-profile-picture-container'>
 		<img class='pet-profile-picture'
 			 :src='placeholder'>
-		<b-field class="file is-primary" :class="{'has-name': !!file}">
-		  <b-upload v-model="file" class="file-label">
-			<span class="file-cta">
-			  <b-icon class="file-icon" icon="upload"></b-icon>
-			  <span class="file-label">Click to upload</span>
-			</span>
-			<span class="file-name" v-if="file">
-			  {{ file.name }}
+		<b-field class='file is-primary' :class="{'has-name': !!file}">
+		  <b-upload v-model='file' class='file-label'>
+			<span class='file-cta'>
+			  <b-icon class='file-icon' icon='upload'></b-icon>
+			  <span class='file-label'>Click to upload</span>
 			</span>
 		  </b-upload>
 		</b-field>
@@ -36,7 +33,7 @@
 	  </section>
 	</section>
 	<section id='vaccination-record'>
-	  Vaccination Record
+	  <VaccinationRecord></VaccinationRecord>
 	</section>
 	<section id='medical-record'>
 	  Medical Record
@@ -45,16 +42,19 @@
 </template>
 
 <script>
+import VaccinationRecord from './VaccinationRecord.vue'
 import axios from 'axios'
 
 export default {
 	name: 'PetProfile',
+	components: { VaccinationRecord },
 	props: {
 		id: String
 	},
 	data(){
 		return{
 			placeholder: process.env.VUE_APP_PLACEHOLDER,
+			file: null,
 			pet: {
 				name: '',
 				breed: {
@@ -75,6 +75,21 @@ export default {
 	computed: {
 		user(){
 			return this.$store.state.user
+		}
+	},
+	watch: {
+		file: function(){
+			axios.post(process.env.VUE_APP_TYRAWEB_PET_ADD_PICTURE, {
+				file: this.file
+			}, {
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				console.log(response)
+			}).catch(error => {
+				console.error(error)
+			})
 		}
 	},
 	methods: {
