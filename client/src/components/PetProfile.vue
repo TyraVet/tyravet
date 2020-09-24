@@ -33,19 +33,18 @@
 	  </section>
 	</section>
 	<VaccinationRecord></VaccinationRecord>
-	<section id='medical-record-container'>
-	  Medical Record
-	</section>
+	<MedicalRecord></MedicalRecord>
   </div>
 </template>
 
 <script>
 import VaccinationRecord from './VaccinationRecord.vue'
+import MedicalRecord from './MedicalRecord.vue'
 import axios from 'axios'
 
 export default {
 	name: 'PetProfile',
-	components: { VaccinationRecord },
+	components: { VaccinationRecord, MedicalRecord },
 	props: {
 		id: String
 	},
