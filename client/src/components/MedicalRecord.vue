@@ -1,0 +1,16 @@
+<template>
+  <section id='medical-record'>
+	<MedicalTitle></MedicalTitle>
+	<MedicalList></MedicalList>
+  </section>
+</template>
+
+<script type="text/javascript">
+import MedicalTitle from '@/components/MedicalTitle.vue'
+import MedicalList from '@/components/MedicalList.vue'
+
+export default {
+	name: 'MedicalRecord',
+	components: { MedicalTitle, MedicalList }
+}
+</script>
