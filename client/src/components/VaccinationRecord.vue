@@ -1,8 +1,8 @@
 <template>
-  <div id='vaccination-record'>
+  <section id='vaccination-record'>
 	<VaccinationTitle></VaccinationTitle>
 	<VaccinationList></VaccinationList>
-  </div>
+  </section>
 </template>
 
 <script>

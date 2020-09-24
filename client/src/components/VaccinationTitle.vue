@@ -1,6 +1,6 @@
 <template>
-  <div id='vaccination-title'>
-  </div>
+  <section id='vaccination-title'>
+  </section>
 </template>
 
 <script>

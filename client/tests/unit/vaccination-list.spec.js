@@ -7,7 +7,7 @@ localVue.use(Buefy)
 const wrapper = shallowMount(VaccinationList, { localVue })
 
 describe('Vaccination List Component', () => {
-	it('Should have a main div container', () => {
+	it('Should have a main section container', () => {
 		expect(wrapper.get('#vaccination-list')).toBeTruthy()
 	})
 })

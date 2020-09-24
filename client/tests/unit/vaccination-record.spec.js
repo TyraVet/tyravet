@@ -11,7 +11,7 @@ describe('Vaccination Record Component', () => {
 		expect(typeof VaccinationRecord.components).toBe('object')
 	})
 
-	it('Should have a main div container', () => {
+	it('Should have a main section container', () => {
 		expect(wrapper.get('#vaccination-record')).toBeTruthy()
 	})
 
