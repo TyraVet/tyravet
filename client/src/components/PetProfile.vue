@@ -32,10 +32,10 @@
 		</section>
 	  </section>
 	</section>
-	<section id='vaccination-record'>
+	<section id='vaccination-record-container'>
 	  <VaccinationRecord></VaccinationRecord>
 	</section>
-	<section id='medical-record'>
+	<section id='medical-record-container'>
 	  Medical Record
 	</section>
   </div>
