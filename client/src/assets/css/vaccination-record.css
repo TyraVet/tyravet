@@ -1,0 +1,9 @@
+#vaccination-title {
+	display: flex;
+	flex-flow: row nowrap;
+	margin-top: 2vh;
+}
+
+#vaccination-title > * {
+	margin: 0 1vw 0 0;
+}
