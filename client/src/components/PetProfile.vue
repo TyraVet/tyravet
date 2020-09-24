@@ -8,7 +8,7 @@
 		  <b-upload v-model='file' class='file-label'>
 			<span class='file-cta'>
 			  <b-icon class='file-icon' icon='upload'></b-icon>
-			  <span class='file-label'>Click to upload</span>
+			  <span title='Upload Picture' class='file-label'>Click to upload</span>
 			</span>
 		  </b-upload>
 		</b-field>

@@ -1,5 +1,8 @@
-#pet-header {
+.pet-profile > * {
 	margin: 0 10vw 0 10vw;
+}
+
+#pet-header {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
