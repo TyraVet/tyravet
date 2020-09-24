@@ -12,6 +12,7 @@ mongoose.connect(process.env.MONGODB_TYRAWEB_TEST, { useNewUrlParser: true })
 mongoose.Promise = global.Promise
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+db.once('open', () => console.log('Connected to database!'));
 
 var users = []
 var breeds = []
@@ -268,9 +269,9 @@ function createServices(callback){
 }
 
 async.series([
-	createUsers
-	createBreeds
-	createServices
+	createUsers,
+	createBreeds,
+	createServices,
 ], function(err, results){
 	if (err) {
 		console.log('FINAL ERR: ' + err)
