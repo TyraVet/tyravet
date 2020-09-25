@@ -10,3 +10,7 @@
 #medical-title > * {
 	margin: 0 1vw 0 0;
 }
+
+#medical-list > #no-records {
+	margin: 2vh;
+}
