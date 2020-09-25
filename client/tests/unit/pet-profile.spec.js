@@ -57,6 +57,27 @@ describe('Pet Component', () => {
 		expect(textUploadFile.text()).toMatch('Click to upload')
 	})
 
+	it('Renders a section for the Pet Information', () => {
+		const main = wrapper.get('#pet-profile')
+		const petInfo = main.get('#pet-info')
+		expect(petInfo.exists()).toBeTruthy()
+
+		const h1 = petInfo.get('h1')
+		expect(h1.exists()).toBeTruthy()
+		expect(h1.attributes().class).toMatch('is-size-2')
+
+		const h3 = petInfo.get('h3')
+		expect(h3.exists()).toBeTruthy()
+		expect(h3.attributes().class).toMatch('is-size-4')
+
+		const ownerInfo = petInfo.get('#owner-info')
+		expect(ownerInfo.exists()).toBeTruthy()
+
+		const h4 = ownerInfo.get('h4')
+		expect(h4.exists()).toBeTruthy()
+		expect(h4.attributes().class).toMatch('is-size-5')
+	})
+
 	it('Renders a VaccinationRecord Component as child of main container', () => {
 		const main = wrapper.get('#pet-profile')
 		const vaccinationRecordComp = main.findComponent(VaccinationRecord)
