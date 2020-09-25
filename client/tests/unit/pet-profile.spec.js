@@ -71,6 +71,8 @@ describe('Pet Component', () => {
 		expect(h3.exists()).toBeTruthy()
 		expect(h3.attributes().class).toMatch('is-size-4')
 
+		expect(petInfo.get('hr').exists()).toBeTruthy()
+
 		const ownerInfo = petInfo.get('#owner-info')
 		expect(ownerInfo.exists()).toBeTruthy()
 
