@@ -14,3 +14,7 @@ export default {
 	components: { MedicalTitle, MedicalList }
 }
 </script>
+
+<style scoped>
+@import '../assets/css/medical-record.css'
+</style>

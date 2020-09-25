@@ -18,7 +18,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped>
-@import '../assets/css/medical-record.css'
-</style>
