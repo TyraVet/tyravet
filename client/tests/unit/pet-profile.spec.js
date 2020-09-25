@@ -3,6 +3,7 @@ import store from '@/store'
 import Buefy from 'buefy'
 import PetProfile from '@/components/PetProfile.vue'
 import VaccinationRecord from '@/components/VaccinationRecord.vue'
+import MedicalRecord from '@/components/MedicalRecord.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -28,8 +29,9 @@ describe('Pet Component', () => {
 		expect(wrapper.get('div').attributes().id).toMatch('pet-profile')
 	})
 
+	const main = wrapper.get('#pet-profile')
+
 	it('Renders a section for the Pet Picture', () => {
-		const main = wrapper.get('#pet-profile')
 		const petHeader = main.get('#pet-header')
 		expect(petHeader.exists()).toBeTruthy()
 
@@ -58,7 +60,6 @@ describe('Pet Component', () => {
 	})
 
 	it('Renders a section for the Pet Information', () => {
-		const main = wrapper.get('#pet-profile')
 		const petInfo = main.get('#pet-info')
 		expect(petInfo.exists()).toBeTruthy()
 
@@ -78,10 +79,14 @@ describe('Pet Component', () => {
 		expect(h4.attributes().class).toMatch('is-size-5')
 	})
 
-	it('Renders a VaccinationRecord Component as child of main container', () => {
-		const main = wrapper.get('#pet-profile')
+	it('Renders a VaccinationRecord Component', () => {
 		const vaccinationRecordComp = main.findComponent(VaccinationRecord)
 		expect(vaccinationRecordComp.exists()).toBeTruthy()
+	})
+
+	it('Renders a MedicalRecord Component', () => {
+		const medicalRecordComp = main.findComponent(MedicalRecord)
+		expect(medicalRecordComp.exists()).toBeTruthy()
 	})
 
 	it('Should have an ID prop data', () => {
