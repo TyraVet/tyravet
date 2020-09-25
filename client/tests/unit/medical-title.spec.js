@@ -14,4 +14,13 @@ describe('Medical Title Component', () => {
 		const data = MedicalTitle.data()
 		expect(data.title).toMatch('Medical Record')
 	})
+
+	const main = wrapper.get('#medical-title')
+
+	it('Renders the Title', () => {
+		const h1 = main.get('h1')
+		expect(h1.exists()).toBeTruthy()
+		expect(h1.attributes().class).toMatch('is-size-2')
+		expect(h1.text()).toMatch('Medical Record')
+	})
 })
