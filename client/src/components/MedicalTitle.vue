@@ -1,5 +1,6 @@
 <template>
   <section id='medical-title'>
+	<h1 class='is-size-2'>{{ title }}</h1>
   </section>
 </template>
 
