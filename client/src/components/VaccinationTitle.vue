@@ -1,6 +1,10 @@
 <template>
   <section id='vaccination-title'>
-	<h1 class='is-size-2'>{{ title }}</h1>
+	<b-icon pack='fas'
+			icon='syringe'
+			size='is-large'
+			type='is-icon'></b-icon>
+	<h1 class='is-size-3'>{{ title }}</h1>
 	<b-button title='Add Vaccination/Deworming Log'
 			  type='is-primary'
 			  size='is-medium'
