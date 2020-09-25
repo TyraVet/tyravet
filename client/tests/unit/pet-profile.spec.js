@@ -25,11 +25,41 @@ describe('Pet Component', () => {
 	})
 
 	it('Renders a main div container', () => {
-		expect(wrapper.get('.pet-profile')).toBeTruthy()
+		expect(wrapper.get('div').attributes().id).toMatch('pet-profile')
 	})
 
-	it('Renders a VaccinationRecord Component', () => {
-		const vaccinationRecordComp = wrapper.findComponent(VaccinationRecord)
+	it('Renders a section for the Pet Picture', () => {
+		const main = wrapper.get('#pet-profile')
+		const petHeader = main.get('#pet-header')
+		expect(petHeader.exists()).toBeTruthy()
+
+		const petPictureContainer = petHeader.get('#pet-profile-picture-container')
+		expect(petPictureContainer.exists()).toBeTruthy()
+
+		const petPicture = petPictureContainer.get('img')
+		expect(petPicture.attributes().id).toMatch('pet-profile-picture')
+		expect(petPicture.attributes().src).toMatch('placeholder')
+
+		const fieldFile = petPictureContainer.get('b-field-stub')
+		expect(fieldFile.exists()).toBeTruthy()
+		expect(fieldFile.attributes().class).toMatch('file is-primary')
+
+		const uploadFile = fieldFile.get('b-upload-stub')
+		expect(uploadFile.exists()).toBeTruthy()
+		expect(uploadFile.attributes().type).toMatch('is-primary')
+
+		const uploadIcon = uploadFile.get('span').get('b-icon-stub')
+		expect(uploadIcon.exists()).toBeTruthy()
+		expect(uploadIcon.attributes().icon).toMatch('upload')
+
+		const textUploadFile = uploadFile.get('span').get('span')
+		expect(textUploadFile.exists()).toBeTruthy()
+		expect(textUploadFile.text()).toMatch('Click to upload')
+	})
+
+	it('Renders a VaccinationRecord Component as child of main container', () => {
+		const main = wrapper.get('#pet-profile')
+		const vaccinationRecordComp = main.findComponent(VaccinationRecord)
 		expect(vaccinationRecordComp.exists()).toBeTruthy()
 	})
 
