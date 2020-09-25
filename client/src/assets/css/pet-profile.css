@@ -28,8 +28,12 @@
 }
 
 @media all and (max-width: 500px) {
-	.pet-profile-picture {
+	#pet-profile-picture {
 		width: 150px;
 		height: 150px;
+	}
+
+	#pet-profile > * {
+		margin: 3vw;
 	}
 }
