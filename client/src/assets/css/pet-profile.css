@@ -19,7 +19,7 @@
 	align-items: center;
 }
 
-.pet-profile-picture {
+#pet-profile-picture {
 	margin-top: 1vh !important;
 	margin-bottom: 1vh !important;
 	border-radius: 50%;

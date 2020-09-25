@@ -1,8 +1,8 @@
 <template>
-  <div class='pet-profile'>
+  <div id='pet-profile'>
 	<section id='pet-header'>
 	  <section id='pet-profile-picture-container'>
-		<img class='pet-profile-picture'
+		<img id='pet-profile-picture'
 			 :src='placeholder'>
 		<b-field class='file is-primary' :class="{'has-name': !!file}">
 		  <b-upload v-model='file' class='file-label'>
