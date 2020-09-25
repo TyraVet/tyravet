@@ -40,7 +40,6 @@ describe('Pet Component', () => {
 
 		const petPicture = petPictureContainer.get('img')
 		expect(petPicture.attributes().id).toMatch('pet-profile-picture')
-		expect(petPicture.attributes().src).toMatch('placeholder')
 
 		const fieldFile = petPictureContainer.get('b-field-stub')
 		expect(fieldFile.exists()).toBeTruthy()
