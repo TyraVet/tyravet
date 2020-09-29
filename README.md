@@ -1,3 +1,4 @@
+<p align="center">
 <span class="badge-license">
     <img
     src="https://img.shields.io/github/license/Andrsrz/tyra-web?style=for-the-badge"
@@ -7,10 +8,11 @@
     <a href="https://www.buymeacoffee.com/andrsrz"
     title="Donate using Buy Me A Coffee">
     <img
-    src="https://img.shields.io/static/v1?label=Buy Me a Beer&message=donate&color=FF813F&style=for-the-badge&logo=buy-me-a-coffee"
+    src="https://img.shields.io/static/v1?label=Buy%20Me%20a%20Beer&message=donate&color=FF813F&style=for-the-badge&logo=buy-me-a-coffee"
     alt="Buy Me A Coffee donate button" />
     </a>
 </span>
+</p>
 
 # Tyra Web
 Fullstack MEVN Veterinary management application.
