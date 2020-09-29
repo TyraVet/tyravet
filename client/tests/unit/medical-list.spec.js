@@ -20,7 +20,7 @@ describe('Medical List Component', () => {
 		expect(main.exists()).toBeTruthy()
 	})
 
-	it('Shoudl has a error message if there are no records', () => {
+	it('Shoudl has an error message if there are no records', () => {
 		const noRecords = main.get('#no-records')
 		expect(noRecords.exists()).toBeTruthy()
 
