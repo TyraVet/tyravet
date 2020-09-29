@@ -10,3 +10,7 @@
 #vaccination-title > * {
 	margin: 0 1vw 0 0;
 }
+
+#vaccination-list > #no-records {
+	margin: 2vh;
+}
