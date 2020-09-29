@@ -5,7 +5,7 @@
   </section>
 </template>
 
-<script type="text/javascript">
+<script>
 import MedicalTitle from '@/components/MedicalTitle.vue'
 import MedicalList from '@/components/MedicalList.vue'
 
