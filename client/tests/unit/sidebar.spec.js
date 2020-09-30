@@ -29,9 +29,9 @@ describe('SideBar Component', () => {
 		expect(data.canCancel).toBeFalsy()
 		expect(data.fullwidth).toBeTruthy()
 		expect(data.fullheight).toBeTruthy()
-		expect(typeof data.contribute).toBe('string')
-		expect(typeof data.bug).toBe('string')
-		expect(typeof data.mit).toBe('string')
+		expect(data.contribute).toBeTruthy()
+		expect(data.bug).toBeTruthy()
+		expect(data.mit).toBeTruthy()
 		expect(data.isAdmin).toBeFalsy()
 	})
 
