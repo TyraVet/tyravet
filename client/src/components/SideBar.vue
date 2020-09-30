@@ -115,7 +115,7 @@
 						 icon-pack='fas'
 						 icon='beer'
 						 tag='a'
-						 :href='donate'
+						 :href='contribute'
 						 target='_blank'>
 			</b-menu-item>
 			<b-menu-item label='Found a Bug?'
@@ -154,7 +154,7 @@ export default {
 			canCancel: false,
 			fullwidth: true,
 			fullheight: true,
-			donate: process.env.VUE_APP_DONATE,
+			contribute: process.env.VUE_APP_CONTRIBUTE,
 			bug: process.env.VUE_APP_NEW_ISSUE,
 			mit: process.env.VUE_APP_MIT,
 			isAdmin: false

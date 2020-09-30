@@ -29,14 +29,14 @@ describe('SideBar Component', () => {
 		expect(data.canCancel).toBeFalsy()
 		expect(data.fullwidth).toBeTruthy()
 		expect(data.fullheight).toBeTruthy()
-		expect(data.donate).toMatch(process.env.VUE_APP_DONATE)
-		expect(data.bug).toMatch(process.env.VUE_APP_NEW_ISSUE)
-		expect(data.mit).toMatch(process.env.VUE_APP_MIT)
+		expect(typeof data.contribute).toBe('string')
+		expect(typeof data.bug).toBe('string')
+		expect(typeof data.mit).toBe('string')
 		expect(data.isAdmin).toBeFalsy()
 	})
 
 	const sideBar = main.get('b-sidebar-stub')
-	it('Shoudl has a Side Bar Component', () => {
+	it('Should has a Side Bar Component', () => {
 		expect(sideBar.exists()).toBeTruthy()
 		expect(sideBar.attributes().type).toMatch('is-primary-light')
 	})
