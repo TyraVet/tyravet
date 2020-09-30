@@ -1,30 +1,38 @@
 <p align="center">
-<span class="badge-license">
-    <img
-    src="https://img.shields.io/github/license/Andrsrz/tyra-web?style=for-the-badge"
-    alt="License" />
-</span>
-<span class="badge-buymeacoffee">
-    <a href="https://www.buymeacoffee.com/andrsrz"
-    title="Donate using Buy Me A Coffee">
-    <img
-    src="https://img.shields.io/static/v1?label=Buy%20Me%20a%20Beer&message=donate&color=FF813F&style=for-the-badge&logo=buy-me-a-coffee"
-    alt="Buy Me A Coffee donate button" />
-    </a>
-</span>
+    <span class="badge-license">
+        <img
+        src="https://img.shields.io/github/license/Andrsrz/tyra-web?style=for-the-badge"
+        alt="License" />
+    </span>
+    <span class="badge-buymeacoffee">
+        <a href="https://www.buymeacoffee.com/andrsrz"
+        title="Donate using Buy Me A Coffee">
+        <img
+        src="https://img.shields.io/static/v1?label=Buy%20Me%20a%20Beer&message=donate&color=FF813F&style=for-the-badge&logo=buy-me-a-coffee"
+        alt="Buy Me A Coffee donate button" />
+        </a>
+    </span>
 </p>
 
 # Tyra Web
 Fullstack MEVN Veterinary management application.
-- Calendar.
-- Clients.
-- Staff Access (Users).
-- Inventory (CRUD).
+- [x] Calendar.
+- [x] Clients and Pets.
+- [ ] Medical Records.
+- [x] Staff Access.
+- [ ] Inventory.
 
 ## Video Demo
-[![TyraWeb
-v0.1](http://img.youtube.com/vi/TYUGz7Selpw/0.jpg)](https://www.youtube.com/watch?v=TYUGz7Selpw
-"TyraWeb v0.1")
+<p align="center">
+    <span>
+        <a href="https://www.youtube.com/watch?v=TYUGz7Selpw"
+        title="TyraWeb Video Demo">
+        <img
+        src="http://img.youtube.com/vi/TYUGz7Selpw/0.jpg"
+        alt="Video Demo" />
+        </a>
+    </span>
+</p>
 
 ## Dependencies
 See ```package.json``` inside ```client/``` and ```server/```.
@@ -106,6 +114,18 @@ to discuss what you would like to change.
 
 If you find this project usefull for your professional life, consider
 making a donation.
+
+### TODO
+- [ ] Process Image for Pet Profile
+- [ ] Pet Sex
+- [ ] Vaccination/Deworming Form
+- [ ] Services List
+- [ ] Edit Specifig Service
+- [ ] Inventory Home Page
+- [ ] Hospital Home Page
+- [ ] Client Profile
+- [ ] Chat between Staff
+- [ ] Electron Build?
 
 ## License
 [MIT](https://mit-license.org/)
