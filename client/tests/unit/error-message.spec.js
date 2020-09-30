@@ -6,7 +6,8 @@ const localVue = createLocalVue()
 localVue.use(Buefy)
 const wrapper = shallowMount(ErrorMessage, {
 	propsData: {
-		message: 'Hello, Error Message'
+		message: 'Hello, Error Message',
+		isForModal: false
 	},
 	localVue })
 
@@ -36,7 +37,26 @@ describe('Error Message Component', () => {
 
 		const message = messageContainer.get('h1')
 		expect(message.exists()).toBeTruthy()
-		expect(message.classes()).toContain('has-text-black')
 		expect(message.classes()).toContain('is-size-5')
+	})
+
+	it('Should has black text by default', () => {
+		const messageContainer = main.get('#message')
+		expect(messageContainer.exists()).toBeTruthy()
+
+		const message = messageContainer.get('h1')
+		expect(message.exists()).toBeTruthy()
+		expect(message.classes()).toContain('has-text-black')
+	})
+
+	it('Should has white text when Modal', async () => {
+		await wrapper.setProps({ isForModal: true })
+
+		const messageContainer = main.get('#message')
+		expect(messageContainer.exists()).toBeTruthy()
+
+		const message = messageContainer.get('h1')
+		expect(message.exists()).toBeTruthy()
+		expect(message.classes()).toContain('has-text-white')
 	})
 })
