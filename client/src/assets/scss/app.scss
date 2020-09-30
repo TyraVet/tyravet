@@ -1,6 +1,5 @@
 @import "../../../node_modules/bulma/sass/utilities/_all";
 
-// Set your colors
 $primary: #3f72af;
 $primary-invert: findColorInvert($primary);
 $primary-dark: #112d4e;
@@ -11,10 +10,11 @@ $primary-light: #dbe2ef;
 $primary-light-invert: findColorInvert($primary-light);
 $danger: #BC243C;
 $danger-invert: findColorInvert($danger);
+$danger-alpha: rgba(#BC243C, 0.1);
+$danger-alpha-invert: findColorInvert($danger-alpha);
 $icon: #E94560;
 $icon-invert: findColorInvert($icon);
 
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
 	"white": ($white, $black),
 	"black": ($black, $white),
@@ -28,10 +28,11 @@ $colors: (
 	"success": ($success, $success-invert),
 	"warning": ($warning, $warning-invert),
 	"danger": ($danger, $danger-invert),
+	"danger-alpha": ($danger-alpha, $danger-alpha-invert),
 	"icon": ($icon, $icon-invert)
 );
 
-// Links
+/* Links */
 $link: $primary-light;
 $link-invert: $primary-light-invert;
 $link-hover: $primary-light;
