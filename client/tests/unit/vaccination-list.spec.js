@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Buefy from 'buefy'
 import VaccinationList from '@/components/VaccinationList.vue'
+import ErrorMessage from '@/components/ErrorMessage.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -13,7 +14,8 @@ describe('Vaccination List Component', () => {
 		expect(typeof VaccinationList.data).toBe('function')
 		const data = VaccinationList.data()
 		expect(data.records).toEqual(expect.arrayContaining([]))
-		expect(data.noRecords).toMatch('There are no Vaccination/Deworming Records for this pet. Add one!')
+		expect(data.errorMessage).toMatch('There are no Vaccination/Deworming Records for this pet. Add one!')
+		expect(data.noRecords).toBeTruthy()
 	})
 
 	it('Should have a main section container', () => {
@@ -21,21 +23,9 @@ describe('Vaccination List Component', () => {
 	})
 
 	it('Should has an error message if there are no records', () => {
-		const noRecords = main.get('#no-records')
-		expect(noRecords.exists()).toBeTruthy()
+		wrapper.setData({ noRecords: true })
 
-		const message = noRecords.get('#message-container')
-		expect(message.exists()).toBeTruthy()
-		expect(message.attributes().type).toMatch('is-danger')
-		expect(message.attributes().hasicon).toBeTruthy()
-		expect(message.attributes().iconpack).toMatch('fas')
-		expect(message.attributes().iconsize).toMatch('is-large')
-		expect(message.attributes().icon).toMatch('exclamation-circle')
-		expect(message.attributes().class).toMatch('message')
-
-		const messageText = message.get('#message')
-		expect(messageText.exists()).toBeTruthy()
-		expect(messageText.attributes().class).toMatch('has-text-danger')
-		expect(messageText.text()).toMatch('There are no Vaccination/Deworming Records for this pet. Add one!')
+		const errorMessage = main.findComponent(ErrorMessage)
+		expect(errorMessage.exists()).toBeTruthy()
 	})
 })
