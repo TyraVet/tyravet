@@ -46,18 +46,7 @@
 		</b-table-column>
 	  </b-table>
 	</span>
-
-	<span class='no-clients'
-		  v-if='clients.length == 0'>
-	  <b-message type='is-danger'
-				 icon-pack='fas'
-				 icon-size='is-large'
-				 icon='exclamation-circle'
-				 has-icon
-				 class='message'>
-		<h1 class='has-text-danger'>{{ noClients }}</h1>
-	  </b-message>
-	</span>
+	<ErrorMessage v-if=noClients :message=errorMessage></ErrorMessage>
   </div>
 </template>
 
@@ -65,15 +54,18 @@
 import axios from 'axios'
 import { EventBus } from '../eventBus.js'
 import PetForm from '@/components/PetForm.vue'
+import ErrorMessage from '@/components/ErrorMessage.vue'
 
 export default {
 	name: 'ClientList',
+	components: { ErrorMessage },
 	data(){
 		return{
 			clients: [],
 			isBordered: true,
 			hasMobileCards: true,
-			noClients: "You don't have Clients now. Add One!",
+			errorMessage: "You don't have Clients now. Add One!",
+			noClients: true,
 			petsKey: 0
 		}
 	},
