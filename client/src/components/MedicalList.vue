@@ -1,29 +1,20 @@
 <template>
   <section id='medical-list'>
-	<span id='no-records'>
-	  <b-message id='message-container'
-				 type='is-danger'
-				 icon-pack='fas'
-				 icon-size='is-large'
-				 icon='exclamation-circle'
-				 has-icon
-				 class='message'>
-		<h1 id='message'
-			class='has-text-danger'>
-		  {{ noRecords }}
-		</h1>
-	  </b-message>
-	</span>
+	<ErrorMessage v-if=noRecords :message=errorMessage></ErrorMessage>
   </section>
 </template>
 
 <script>
+import ErrorMessage from '@/components/ErrorMessage.vue'
+
 export default {
 	name: 'MedicalList',
+	components: { ErrorMessage },
 	data(){
 		return{
 			records: [],
-			noRecords: 'There are no Medical Records for this pet.'
+			errorMessage: 'There are no Medical Records for this pet.',
+			noRecords: true
 		}
 	}
 }
