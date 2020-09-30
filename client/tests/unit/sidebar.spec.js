@@ -22,8 +22,8 @@ const wrapper = shallowMount(SideBar, { store, localVue })
 describe('SideBar Component', () => {
 	const main = wrapper.get('#side-bar')
 
-	const data = SideBar.data()
 	it('Sets the correct default data', () => {
+		const data = SideBar.data()
 		expect(typeof SideBar.data).toBe('function')
 		expect(data.open).toBeFalsy()
 		expect(data.canCancel).toBeFalsy()
