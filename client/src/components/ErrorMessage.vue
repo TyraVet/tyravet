@@ -7,7 +7,7 @@
 			type='is-danger'>
 	</b-icon>
 	<span id='message'>
-	  <h1 class='has-text-black is-size-5'>
+	  <h1 :class='isForModal ? white : black' class='is-size-5'>
 		{{ message }}
 	  </h1>
 	</span>
@@ -21,6 +21,16 @@ export default {
 		message: {
 			type: String,
 			required: true
+		},
+		isForModal: {
+			type: Boolean,
+			default: false
+		}
+	},
+	data(){
+		return{
+			black: 'has-text-black',
+			white: 'has-text-white'
 		}
 	}
 }
