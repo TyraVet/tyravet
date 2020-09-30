@@ -1,18 +1,20 @@
 <template>
-  <section class='side-bar'>
+  <section id='side-bar'>
 	<b-sidebar type='is-primary-light'
 			   :can-cancel='canCancel'
 			   :fullheight='fullheight'
 			   :fullwidth='fullwidth'
 			   :open.sync='open'>
-	  <div class='p-1'>
+	  <div id='menu-container'>
 		<b-menu>
 		  <b-menu-list label='Menu'>
-			<b-menu-item label='Panel'
+			<b-menu-item id='panel'
+						 label='Panel'
 						 icon-pack='fas'
 						 icon='database'
 						 v-if='isAdmin'>
-			  <span @click=changeSideBarState()>
+			  <span id='panel-home'
+					@click=changeSideBarState()>
 				<b-menu-item label='Home'
 							 icon-pack='fas'
 							 icon='home'
@@ -20,7 +22,8 @@
 							 to='/panel'>
 				</b-menu-item>
 			  </span>
-			  <span @click=changeSideBarState()>
+			  <span id='panel-services'
+					@click=changeSideBarState()>
 				<b-menu-item label='Services'
 							 icon-pack='fas'
 							 icon='database'
@@ -28,7 +31,8 @@
 							 to='/panel/services'>
 				</b-menu-item>
 			  </span>
-			  <span @click=changeSideBarState()>
+			  <span id='panel-breeds'
+					@click=changeSideBarState()>
 				<b-menu-item label='Breeds'
 							 icon-pack='fas'
 							 icon='database'
@@ -37,10 +41,12 @@
 				</b-menu-item>
 			  </span>
 			</b-menu-item>
-			<b-menu-item label='Schedule'
+			<b-menu-item id='schedule'
+						 label='Schedule'
 						 icon-pack='fas'
 						 icon='calendar'>
-			  <span @click=changeSideBarState()>
+			  <span id='schedule-home'
+					@click=changeSideBarState()>
 				<b-menu-item label='Home'
 							 icon-pack='fas'
 							 icon='home'
@@ -48,7 +54,8 @@
 							 to='/'>
 				</b-menu-item>
 			  </span>
-			  <span @click=changeSideBarState()>
+			  <span id='schedule-clients'
+					@click=changeSideBarState()>
 				<b-menu-item label='Clients Book'
 							 icon-pack='fas'
 							 icon='address-book'
@@ -56,7 +63,8 @@
 							 to='/clients'>
 				</b-menu-item>
 			  </span>
-			  <span @click=changeSideBarState()>
+			  <span id='schedule-pets'
+					@click=changeSideBarState()>
 				<b-menu-item label='Pets Book'
 							 icon-pack='fas'
 							 icon='paw'
@@ -65,7 +73,8 @@
 				</b-menu-item>
 			  </span>
 			</b-menu-item>
-			<b-menu-item label='Hospital'
+			<b-menu-item id='hospital'
+						 label='Hospital'
 						 icon-pack='fas'
 						 icon='hospital'>
 			  <span @click=changeSideBarState()>
@@ -77,7 +86,8 @@
 				</b-menu-item>
 			  </span>
 			</b-menu-item>
-			<b-menu-item label='Inventory'
+			<b-menu-item id='inventory'
+						 label='Inventory'
 						 icon-pack='fas'
 						 icon='warehouse'>
 			  <span @click=changeSideBarState()>
@@ -90,7 +100,8 @@
 			  </span>
 			</b-menu-item>
 		  </b-menu-list>
-		  <b-menu-list label='Actions'>
+		  <b-menu-list id='actions'
+					   label='Actions'>
 			<span @click=logOut()>
 			  <b-menu-item label='Log Out'
 						   icon-pack='fas'
@@ -98,7 +109,15 @@
 			  </b-menu-item>
 			</span>
 		  </b-menu-list>
-		  <b-menu-list label='About'>
+		  <b-menu-list id='about'
+					   label='About'>
+			<b-menu-item label='Contributing'
+						 icon-pack='fas'
+						 icon='beer'
+						 tag='a'
+						 :href='donate'
+						 target='_blank'>
+			</b-menu-item>
 			<b-menu-item label='Found a Bug?'
 						 icon-pack='fas'
 						 icon='bug'
@@ -135,6 +154,7 @@ export default {
 			canCancel: false,
 			fullwidth: true,
 			fullheight: true,
+			donate: process.env.VUE_APP_DONATE,
 			bug: process.env.VUE_APP_NEW_ISSUE,
 			mit: process.env.VUE_APP_MIT,
 			isAdmin: false
@@ -171,8 +191,8 @@ export default {
 }
 </script>
 
-<style>
-.p-1 {
+<style scoped>
+#menu-container {
   padding: 1em;
 }
 </style>
