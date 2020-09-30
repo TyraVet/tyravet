@@ -30,7 +30,7 @@ describe('ClientList Component', () => {
 	})
 
 	it('Should have an Error Messages if There are no Clients', async () => {
-		wrapper.setData({ noClients: true })
+		await wrapper.setData({ noClients: true })
 
 		const errorMessage = wrapper.findComponent(ErrorMessage)
 		expect(errorMessage.exists()).toBeTruthy()

@@ -87,6 +87,7 @@ export default {
 		/* Once we have the clients we need to populate the pets
 		 * of each client. */
 		setOnSuccess(res){
+			this.noClients = false
 			this.clients = res.data
 
 			this.clients.forEach((client, clientIndex) => {
