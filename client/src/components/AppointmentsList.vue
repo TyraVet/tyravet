@@ -26,7 +26,6 @@ import axios from 'axios'
 import moment from 'moment'
 import Appointment from '@/components/Appointment.vue'
 import AppointmentForm from '@/components/AppointmentForm.vue'
-import AppointmentError from '@/components/AppointmentError.vue'
 import ErrorMessage from '@/components/ErrorMessage.vue'
 import { EventBus } from '../eventBus.js'
 
@@ -40,7 +39,8 @@ export default {
 			day: null,
 			error: false,
 			errorMessage: 'No Data Available',
-			noData: true
+			noData: true,
+			errorAppointment: "You can't create new appointments on passed days"
 		}
 	},
 	computed: {
@@ -114,7 +114,11 @@ export default {
 		launchErrorModal(){
 			this.$buefy.modal.open({
 				parent: this,
-				component: AppointmentError,
+				component: ErrorMessage,
+				props: {
+					message: this.errorAppointment,
+					isForModal: true
+				},
 				hadModalCard: true,
 				trapFocus: true
 			})
