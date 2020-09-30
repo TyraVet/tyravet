@@ -1,5 +1,5 @@
 <template>
-  <div class='appointments-list-comp'>
+  <div id='appointment-list-container' class='appointments-list-comp'>
 	<div class='appointments-list'
 		 v-if='schedule'>
 	  <div v-for='(hour, index) in hours'
@@ -17,17 +17,7 @@
 		</Appointment>
 	  </div>
 	</div>
-	<b-message title='Error'
-			   type='is-danger'
-			   aria-close-label='Close message'
-			   icon-pack='fas'
-			   icon-size='is-medium'
-			   icon='exclamation'
-			   has-icon
-			   class='message'
-			   v-if='error'>
-	  {{ errorMessage }}
-	</b-message>
+	<ErrorMessage v-if=noData :message=errorMessage></ErrorMessage>
   </div>
 </template>
 
@@ -37,18 +27,20 @@ import moment from 'moment'
 import Appointment from '@/components/Appointment.vue'
 import AppointmentForm from '@/components/AppointmentForm.vue'
 import AppointmentError from '@/components/AppointmentError.vue'
+import ErrorMessage from '@/components/ErrorMessage.vue'
 import { EventBus } from '../eventBus.js'
 
 export default {
 	name: 'AppointmentsList',
-	components: { Appointment },
+	components: { Appointment, ErrorMessage },
 	data(){
 		return{
 			schedule: {},
 			hours: [],
 			day: null,
 			error: false,
-			errorMessage: 'No Data Available'
+			errorMessage: 'No Data Available',
+			noData: true
 		}
 	},
 	computed: {
@@ -129,6 +121,7 @@ export default {
 		},
 		/* Execute methods on Request Success. */
 		setOnSuccess(response){
+			this.noData = false
 			this.error = false
 			this.schedule = response.data
 			this.syncAppointments()
@@ -136,6 +129,7 @@ export default {
 		/* Prints Error on Request Failure. */
 		setOnError(error){
 			console.error(error)
+			this.noData = true
 			this.schedule = null
 			this.error = true
 		},
