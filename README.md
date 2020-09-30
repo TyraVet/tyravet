@@ -109,9 +109,6 @@ Constains the API.
 - TYRAWEB_ROUTE_DAY_SCHEDULES
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
-
 If you find this project usefull for your professional life, consider
 making a donation.
 
