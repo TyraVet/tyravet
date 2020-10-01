@@ -25,11 +25,11 @@ Fullstack MEVN Veterinary management application.
 ## Video Demo
 <p align="center">
     <span>
-        <a href="https://www.youtube.com/watch?v=TYUGz7Selpw"
-        title="TyraWeb Video Demo">
+        <a href="https://www.youtube.com/watch?v=p336N-SqQs4"
+        title="TyraWeb v0.2-alpha Video Demo">
         <img
-        src="http://img.youtube.com/vi/TYUGz7Selpw/0.jpg"
-        alt="Video Demo" />
+        src="http://img.youtube.com/vi/p336N-SqQs4/0.jpg"
+        alt="Video Demo v0.2-alpha" />
         </a>
     </span>
 </p>
