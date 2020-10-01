@@ -18,11 +18,19 @@ store.state.user = {
 const wrapper = shallowMount(BreedList, { store, localVue })
 
 describe('BreedList Component', () => {
+	const data = BreedList.data()
 	it('Set the correct default data', () => {
 		expect(typeof BreedList.data).toBe('function')
-		const defaultData = BreedList.data()
-		expect(defaultData.breeds).toEqual(expect.arrayContaining([]))
-		expect(defaultData.isBordered).toBeTruthy()
-		expect(defaultData.hasMobileCards).toBeFalsy()
+		expect(data.breeds).toEqual(expect.arrayContaining([]))
+		expect(data.isBordered).toBeTruthy()
+		expect(data.hasMobileCards).toBeFalsy()
+	})
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.init).toBeTruthy()
+	})
+
+	it('Should has a getBreeds method', () => {
+		expect(wrapper.vm.getBreeds).toBeTruthy()
 	})
 })
