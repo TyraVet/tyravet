@@ -31,4 +31,29 @@ describe('ServiceList Component', () => {
 	it('Should has a getServices method', () => {
 		expect(wrapper.vm.getServices).toBeTruthy()
 	})
+
+	const main = wrapper.get('#service-list')
+	it('Should has a main container', () => {
+		expect(main.exists()).toBeTruthy()
+	})
+
+	const table = main.get('b-table-stub')
+	it('Should has a table child', () => {
+		expect(table.exists()).toBeTruthy()
+	})
+
+	const nameColumn = table.get('#name-column')
+	it('Table should has a Name Column', () => {
+		expect(nameColumn.exists()).toBeTruthy()
+		expect(nameColumn.attributes().searchable).toBeTruthy()
+		expect(nameColumn.attributes().field).toMatch('name')
+		expect(nameColumn.attributes().label).toMatch('Name')
+	})
+
+	const priceColumn = table.get('#price-column')
+	it('Table should has a Price Column', () => {
+		expect(priceColumn.exists()).toBeTruthy()
+		expect(priceColumn.attributes().field).toMatch('price')
+		expect(priceColumn.attributes().label).toMatch('Price')
+	})
 })
