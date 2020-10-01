@@ -75,6 +75,8 @@ information from the DataBase and also modify that information.
 Constains the API.
 
 ### List of Environment Variables
+You need to create two ```.env``` files. One inside ```client/``` and the other
+inside ```server/``` and set the following Environment Variables:
 
 ```client/.env```
 - VUE_APP_NEW_ISSUE
@@ -111,18 +113,6 @@ Constains the API.
 ## Contributing
 If you find this project usefull for your professional life, consider
 making a donation.
-
-### TODO
-- [ ] Process Image for Pet Profile
-- [ ] Pet Sex
-- [ ] Vaccination/Deworming Form
-- [ ] Services List
-- [ ] Edit Specifig Service
-- [ ] Inventory Home Page
-- [ ] Hospital Home Page
-- [ ] Client Profile
-- [ ] Chat between Staff
-- [ ] Electron Build?
 
 ## License
 [MIT](https://mit-license.org/)
