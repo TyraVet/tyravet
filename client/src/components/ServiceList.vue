@@ -1,12 +1,20 @@
 <template>
-  <div class='service-list'>
+  <div id='service-list'>
 	<b-table :data='services'
 			 :bordered='isBordered'
 			 :mobile-cards='hasMobileCards'>
-	  <b-table-column field='name'
+	  <b-table-column id='name-column'
+					  searchable
+					  field='name'
 					  label='Name'
 					  v-slot='props'>
 		{{ props.row.name }}
+	  </b-table-column>
+  	  <b-table-column id='price-column'
+					  field='price'
+					  label='Price'
+					  v-slot='props'>
+		$ {{ props.row.price }}.00
 	  </b-table-column>
 	</b-table>
   </div>
