@@ -24,6 +24,9 @@ export default {
 			hasMobileCards: false
 		}
 	},
+	computed: {
+		user(){ return this.$store.state.user }
+	},
 	methods: {
 		init(){
 			this.getBreeds()
@@ -31,7 +34,7 @@ export default {
 		getBreeds(){
 			axios.get(process.env.VUE_APP_TYRAWEB_BREEDS, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then((response) => {
 				this.breeds = response.data
@@ -40,7 +43,7 @@ export default {
 			})
 		}
 	},
-	mounted(){
+	created(){
 		this.init()
 	}
 }
