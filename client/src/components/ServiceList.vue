@@ -10,7 +10,7 @@
 					  v-slot='props'>
 		{{ props.row.name }}
 	  </b-table-column>
-  	  <b-table-column id='price-column'
+	  <b-table-column id='price-column'
 					  field='price'
 					  label='Price'
 					  v-slot='props'>
