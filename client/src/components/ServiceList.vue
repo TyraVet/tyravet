@@ -8,7 +8,8 @@
 					  field='name'
 					  label='Name'
 					  v-slot='props'>
-		{{ props.row.name }}
+		<TableEditDelete :text='props.row.name' :id='props.row._id'>
+		</TableEditDelete>
 	  </b-table-column>
 	  <b-table-column id='price-column'
 					  field='price'
@@ -22,9 +23,11 @@
 
 <script>
 import axios from 'axios'
+import TableEditDelete from '@/components/TableEditDelete.vue'
 
 export default {
 	name: 'ServiceList',
+	components: { TableEditDelete },
 	data() {
 		return {
 			services: [],
