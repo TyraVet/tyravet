@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import store from '@/store'
 import Buefy from 'buefy'
 import ServiceList from '@/components/ServiceList.vue'
+import TableEditDelete from '@/components/TableEditDelete.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -55,5 +56,9 @@ describe('ServiceList Component', () => {
 		expect(priceColumn.exists()).toBeTruthy()
 		expect(priceColumn.attributes().field).toMatch('price')
 		expect(priceColumn.attributes().label).toMatch('Price')
+	})
+
+	it('Should has TableEditDelete Components as Childs', () => {
+		expect(main.findComponent(TableEditDelete)).toBeTruthy()
 	})
 })
