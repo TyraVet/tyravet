@@ -27,7 +27,8 @@ describe('TableEditDelete Component', () => {
 		expect(main.text()).toMatch(props.text)
 	})
 
-	const editButton = main.get('#edit')
+	const buttonContainer = main.get('#button-container')
+	const editButton = buttonContainer.get('#edit')
 	it('Should has an Edit Button', () => {
 		expect(editButton.exists()).toBeTruthy()
 		expect(editButton.attributes().title).toMatch('Edit')
@@ -37,7 +38,7 @@ describe('TableEditDelete Component', () => {
 		expect(editButton.classes()).toContain('has-text-dark')
 	})
 
-	const deleteButton = main.get('#delete')
+	const deleteButton = buttonContainer.get('#delete')
 	it('Should has an Edit Button', () => {
 		expect(deleteButton.exists()).toBeTruthy()
 		expect(deleteButton.attributes().title).toMatch('Delete')
