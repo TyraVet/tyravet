@@ -1,18 +1,20 @@
 <template>
   <section id='table-edit-delete'>
 	{{ text }}
-	<b-button id='edit'
-			  title='Edit'
-			  type='is-warning'
-			  icon-pack='fas'
-			  icon-left='edit'
-			  class='has-text-dark'></b-button>
-	<b-button id='delete'
-			  title='Delete'
-			  type='is-danger'
-			  icon-pack='fas'
-			  icon-left='trash-alt'
-			  class='has-text-white'></b-button>
+	<div id='button-container'>
+	  <b-button id='edit'
+				title='Edit'
+				type='is-warning'
+				icon-pack='fas'
+				icon-left='edit'
+				class='has-text-dark'></b-button>
+	  <b-button id='delete'
+				title='Delete'
+				type='is-danger'
+				icon-pack='fas'
+				icon-left='trash-alt'
+				class='has-text-white'></b-button>
+	</div>
   </section>
 </template>
 
