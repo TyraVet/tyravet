@@ -18,6 +18,11 @@ describe('TableEditDelete Component', () => {
 		expect(typeof props.text).toBe('string')
 	})
 
+	const data = TableEditDelete.data()
+	it('Should sets the correct default data', () => {
+		expect(typeof TableEditDelete.data).toBe('function')
+	})
+
 	const main = wrapper.get('#table-edit-delete')
 	it('Should has a main container', () => {
 		expect(main.exists()).toBeTruthy()
@@ -28,7 +33,7 @@ describe('TableEditDelete Component', () => {
 	})
 
 	const buttonContainer = main.get('#button-container')
-	const editButton = buttonContainer.get('#edit')
+	const editButton = buttonContainer.find('#edit')
 	it('Should has an Edit Button', () => {
 		expect(editButton.exists()).toBeTruthy()
 		expect(editButton.attributes().title).toMatch('Edit')
@@ -39,12 +44,18 @@ describe('TableEditDelete Component', () => {
 	})
 
 	const deleteButton = buttonContainer.get('#delete')
-	it('Should has an Edit Button', () => {
+	it('Should has a Delete Button', () => {
 		expect(deleteButton.exists()).toBeTruthy()
 		expect(deleteButton.attributes().title).toMatch('Delete')
 		expect(deleteButton.attributes().type).toMatch('is-danger')
 		expect(deleteButton.attributes().iconpack).toMatch('fas')
 		expect(deleteButton.attributes().iconleft).toMatch('trash-alt')
 		expect(deleteButton.classes()).toContain('has-text-white')
+	})
+
+	it('Should has an Edit Method', async () => {
+		expect(wrapper.vm.edit).toBeTruthy()
+		await editButton.vm.$emit('click')
+		expect(editButton.emitted('click')).toHaveLength(1)
 	})
 })
