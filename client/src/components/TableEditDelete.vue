@@ -7,7 +7,8 @@
 				type='is-warning'
 				icon-pack='fas'
 				icon-left='edit'
-				class='has-text-dark'></b-button>
+				class='has-text-dark'
+				@click=edit()></b-button>
 	  <b-button id='delete'
 				title='Delete'
 				type='is-danger'
@@ -29,6 +30,14 @@ export default {
 		text: {
 			type: String,
 			required: true
+		}
+	},
+	data(){
+		return{
+		}
+	},
+	methods: {
+		edit(){
 		}
 	}
 }
