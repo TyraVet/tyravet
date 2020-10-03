@@ -14,7 +14,8 @@
 				type='is-danger'
 				icon-pack='fas'
 				icon-left='trash-alt'
-				class='has-text-white'></b-button>
+				class='has-text-white'
+				@click=deleteAt()></b-button>
 	</div>
   </section>
 </template>
@@ -37,8 +38,8 @@ export default {
 		}
 	},
 	methods: {
-		edit(){
-		}
+		edit(){},
+		deleteAt(){}
 	}
 }
 </script>
