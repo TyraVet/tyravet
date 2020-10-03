@@ -33,7 +33,7 @@ describe('TableEditDelete Component', () => {
 	})
 
 	const buttonContainer = main.get('#button-container')
-	const editButton = buttonContainer.find('#edit')
+	const editButton = buttonContainer.get('#edit')
 	it('Should has an Edit Button', () => {
 		expect(editButton.exists()).toBeTruthy()
 		expect(editButton.attributes().title).toMatch('Edit')
