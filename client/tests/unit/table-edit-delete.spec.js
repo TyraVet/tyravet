@@ -58,4 +58,10 @@ describe('TableEditDelete Component', () => {
 		await editButton.vm.$emit('click')
 		expect(editButton.emitted('click')).toHaveLength(1)
 	})
+
+	it('Should has a Delete Method', async () => {
+		expect(wrapper.vm.deleteAt).toBeTruthy()
+		await deleteButton.vm.$emit('click')
+		expect(deleteButton.emitted('click')).toHaveLength(1)
+	})
 })
