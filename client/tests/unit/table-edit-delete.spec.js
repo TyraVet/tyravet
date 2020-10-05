@@ -76,4 +76,8 @@ describe('TableEditDelete Component', () => {
 	it('Should has imported a ServiceForm Component', () => {
 		expect(wrapper.findComponent(ServiceForm)).toBeTruthy()
 	})
+
+	it('Should has a method to open ServiceForm', () => {
+		expect(wrapper.vm.launchServiceForm).toBeTruthy()
+	})
 })
