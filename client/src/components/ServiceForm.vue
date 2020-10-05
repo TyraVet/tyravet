@@ -5,6 +5,19 @@
 
 <script lang='js'>
 export default {
-	name: 'ServiceForm'
+	name: 'ServiceForm',
+	props: {
+		serviceId: {
+			type: String,
+			default: '',
+			required: false
+		}
+	},
+	data(){
+		return{
+			serviceName: '',
+			servicePrice: 0
+		}
+	}
 }
 </script>
