@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Buefy from 'buefy'
 import TableEditDelete from '@/components/TableEditDelete.vue'
+import ServiceForm from '@/components/ServiceForm.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -70,5 +71,9 @@ describe('TableEditDelete Component', () => {
 		expect(wrapper.vm.deleteAt).toBeTruthy()
 		await deleteButton.vm.$emit('click')
 		expect(deleteButton.emitted('click')).toHaveLength(1)
+	})
+
+	it('Should has imported a ServiceForm Component', () => {
+		expect(wrapper.findComponent(ServiceForm)).toBeTruthy()
 	})
 })
