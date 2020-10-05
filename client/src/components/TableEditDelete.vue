@@ -25,7 +25,6 @@ import ServiceForm from '@/components/ServiceForm.vue'
 
 export default {
 	name: 'TableEditDelete',
-	components: { ServiceForm },
 	props: {
 		id: {
 			type: String,
@@ -50,8 +49,22 @@ export default {
 			if(this.type === 'service')
 				this.isForServices = true
 		},
-		edit(){},
-		deleteAt(){}
+		edit(){
+			if(this.isForServices)
+				this.launchServiceForm()
+		},
+		deleteAt(){},
+		launchServiceForm(){
+			this.$buefy.modal.open({
+				parent: this,
+				component: ServiceForm,
+				hasModalCard: true,
+				trapFocus: true,
+				props: {
+					id: this.id
+				}
+			})
+		}
 	},
 	created(){
 		this.init()
