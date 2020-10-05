@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import UserForm from '@/components/UserForm.vue'
 
 export default {

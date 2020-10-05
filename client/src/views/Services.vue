@@ -5,7 +5,7 @@
   </section>
 </template>
 
-<script>
+<script lang='js'>
 import ServiceHeader from '@/components/ServiceHeader.vue'
 import ServiceList from '@/components/ServiceList.vue'
 

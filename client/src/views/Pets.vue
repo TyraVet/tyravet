@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import PetsList from '@/components/PetsList.vue'
 
 export default {

@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import BreedHeader from '@/components/BreedHeader.vue'
 import BreedList from '@/components/BreedList.vue'
 

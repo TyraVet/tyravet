@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import ClientList from '@/components/ClientList.vue'
 import ClientForm from '@/components/ClientForm.vue'
 
