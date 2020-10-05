@@ -31,15 +31,27 @@ export default {
 		text: {
 			type: String,
 			required: true
+		},
+		type: {
+			type: String,
+			required: true
 		}
 	},
 	data(){
 		return{
+			isForServices: false
 		}
 	},
 	methods: {
+		init(){
+			if(this.type === 'service')
+				this.isForServices = true
+		},
 		edit(){},
 		deleteAt(){}
+	},
+	created(){
+		this.init()
 	}
 }
 </script>
