@@ -1,22 +1,25 @@
 <template>
-  <div class='breed-list'>
+  <div id='breed-list'>
 	<b-table :data='breeds'
 			 :bordered='isBordered'
 			 :mobile-cards='hasMobileCards'>
 	  <b-table-column field='name'
 					  label='Name'
 					  v-slot='props'>
-		{{ props.row.name }}
+		<TableEditDelete :text='props.row.name' :id='props.row._id'>
+		</TableEditDelete>
 	  </b-table-column>
 	</b-table>
   </div>
 </template>
 
 <script>
+import TableEditDelete from '@/components/TableEditDelete.vue'
 import axios from 'axios'
 
 export default {
 	name: 'BreedList',
+	components: { TableEditDelete },
 	data() {
 		return {
 			breeds: [],
@@ -48,3 +51,7 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+@import '../assets/css/table-edit-delete.css'
+</style>
