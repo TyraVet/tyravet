@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit --verbose",
-	"test:unit:debugger": "node --inspect-brk ./node_modules/jest/bin/jest.js --no-cache --runInBand",
+    "test:unit:watch": "vue-cli-service test:unit --watchAll --verbose",
+    "test:unit:debugger": "node --inspect-brk ./node_modules/jest/bin/jest.js --no-cache --runInBand",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
