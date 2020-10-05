@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import store from '@/store'
 import Buefy from 'buefy'
 import BreedList from '@/components/BreedList.vue'
+import TableEditDelete from '@/components/TableEditDelete.vue'
 
 /* We import createLocalVue to load Buefy and store */
 const localVue = createLocalVue()
@@ -18,6 +19,8 @@ store.state.user = {
 const wrapper = shallowMount(BreedList, { store, localVue })
 
 describe('BreedList Component', () => {
+	const main = wrapper.get('#breed-list')
+
 	const data = BreedList.data()
 	it('Set the correct default data', () => {
 		expect(typeof BreedList.data).toBe('function')
@@ -32,5 +35,9 @@ describe('BreedList Component', () => {
 
 	it('Should has a getBreeds method', () => {
 		expect(wrapper.vm.getBreeds).toBeTruthy()
+	})
+
+	it('Should has a TableEditDelete Components as Childs', () => {
+		expect(main.findComponent(TableEditDelete)).toBeTruthy()
 	})
 })
