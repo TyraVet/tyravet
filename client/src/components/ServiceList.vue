@@ -8,7 +8,7 @@
 					  field='name'
 					  label='Name'
 					  v-slot='props'>
-		<TableEditDelete :text='props.row.name' :id='props.row._id'>
+		<TableEditDelete :text='props.row.name' :id='props.row._id' :type='"service"'>
 		</TableEditDelete>
 	  </b-table-column>
 	  <b-table-column id='price-column'
