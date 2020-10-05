@@ -20,9 +20,12 @@
   </section>
 </template>
 
-<script>
+<script lang='js'>
+import ServiceForm from '@/components/ServiceForm.vue'
+
 export default {
 	name: 'TableEditDelete',
+	components: { ServiceForm },
 	props: {
 		id: {
 			type: String,
