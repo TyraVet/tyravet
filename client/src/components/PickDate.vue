@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import { EventBus } from '../eventBus.js'
 
 export default {

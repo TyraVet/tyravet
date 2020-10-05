@@ -10,7 +10,7 @@
   </section>
 </template>
 
-<script>
+<script lang='js'>
 export default {
 	name: 'ServicedHeader',
 	data(){

@@ -37,7 +37,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import VaccinationRecord from './VaccinationRecord.vue'
 import MedicalRecord from './MedicalRecord.vue'
 import axios from 'axios'

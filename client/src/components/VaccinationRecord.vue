@@ -5,7 +5,7 @@
   </section>
 </template>
 
-<script>
+<script lang='js'>
 import VaccinationTitle from './VaccinationTitle.vue'
 import VaccinationList from './VaccinationList.vue'
 

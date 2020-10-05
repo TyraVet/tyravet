@@ -59,7 +59,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import axios from 'axios'
 
 export default {

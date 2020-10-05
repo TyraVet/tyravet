@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import CreateUserForm from '@/components/CreateUserForm.vue'
 
 export default {

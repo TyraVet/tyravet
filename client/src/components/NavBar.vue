@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import SideBar from '@/components/SideBar.vue'
 
 export default {

@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import TableEditDelete from '@/components/TableEditDelete.vue'
 import axios from 'axios'
 

@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import moment from 'moment'
 import { EventBus } from '../eventBus.js'
 import PickDate from '@/components/PickDate.vue'

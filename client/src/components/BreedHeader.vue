@@ -10,7 +10,7 @@
   </section>
 </template>
 
-<script>
+<script lang='js'>
 import BreedForm from '@/components/BreedForm.vue'
 
 export default {

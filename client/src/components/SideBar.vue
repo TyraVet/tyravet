@@ -146,7 +146,7 @@
   </section>
 </template>
 
-<script>
+<script lang='js'>
 export default {
 	name: 'SideBar',
 	data() {

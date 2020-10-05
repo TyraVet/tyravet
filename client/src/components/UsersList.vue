@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script>
+<script lang='js'>
 import axios from 'axios'
 import { EventBus } from '../eventBus.js'
 

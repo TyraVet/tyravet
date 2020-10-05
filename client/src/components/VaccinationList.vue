@@ -4,7 +4,7 @@
   </section>
 </template>
 
-<script>
+<script lang='js'>
 import ErrorMessage from '@/components/ErrorMessage.vue'
 
 export default {
