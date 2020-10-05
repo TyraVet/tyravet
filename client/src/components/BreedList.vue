@@ -51,7 +51,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped>
-@import '../assets/css/table-edit-delete.css'
-</style>
