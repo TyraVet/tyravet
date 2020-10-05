@@ -8,7 +8,8 @@ localVue.use(Buefy)
 const wrapper = shallowMount(TableEditDelete, {
 	propsData: {
 		id: '123',
-		text: 'message'
+		text: 'message',
+		type: 'type'
 	}, localVue })
 
 describe('TableEditDelete Component', () => {
@@ -16,11 +17,13 @@ describe('TableEditDelete Component', () => {
 	it('Should has two props data', () => {
 		expect(typeof props.id).toBe('string')
 		expect(typeof props.text).toBe('string')
+		expect(typeof props.type).toBe('string')
 	})
 
 	const data = TableEditDelete.data()
 	it('Should sets the correct default data', () => {
 		expect(typeof TableEditDelete.data).toBe('function')
+		expect(data.isForServices).toBeFalsy()
 	})
 
 	const main = wrapper.get('#table-edit-delete')
@@ -51,6 +54,10 @@ describe('TableEditDelete Component', () => {
 		expect(deleteButton.attributes().iconpack).toMatch('fas')
 		expect(deleteButton.attributes().iconleft).toMatch('trash-alt')
 		expect(deleteButton.classes()).toContain('has-text-white')
+	})
+
+	it('Should has an Init Method', () => {
+		expect(wrapper.vm.init).toBeTruthy()
 	})
 
 	it('Should has an Edit Method', async () => {
