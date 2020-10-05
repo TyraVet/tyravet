@@ -9,4 +9,17 @@ describe('ServiceForm Component', () => {
 	it('Should has a main container', () => {
 		expect(main.exists()).toBeTruthy()
 	})
+
+	const data = ServiceForm.data()
+	it('Should set the default data', () => {
+		expect(typeof ServiceForm.data).toBe('function')
+		expect(data.serviceName).toMatch('')
+		expect(data.servicePrice).toBe(0)
+	})
+
+	const props = wrapper.props()
+	it('Should set default props if not sent', () => {
+		expect(props).toBeTruthy()
+		expect(props.serviceId).toMatch('')
+	})
 })
