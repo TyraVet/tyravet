@@ -1,7 +1,6 @@
-<template>
-  <section id='medical-list'>
-	<ErrorMessage v-if=noRecords :message=errorMessage></ErrorMessage>
-  </section>
+<template lang='pug'>
+section#medical-list
+	ErrorMessage( v-if='noRecords' :message='errorMessage' )
 </template>
 
 <script lang='js'>

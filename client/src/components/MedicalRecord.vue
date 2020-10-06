@@ -1,8 +1,7 @@
-<template>
-  <section id='medical-record'>
-	<MedicalTitle></MedicalTitle>
-	<MedicalList></MedicalList>
-  </section>
+<template lang='pug'>
+section#medical-record
+	MedicalTitle
+	MedicalList
 </template>
 
 <script lang='js'>
