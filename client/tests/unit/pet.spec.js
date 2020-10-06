@@ -21,7 +21,7 @@ const wrapper = shallowMount(Pet, { localVue, router })
 
 describe('Pet Component', () => {
 	it('Renders a main div container', () => {
-		expect(wrapper.get('.pet')).toBeTruthy()
+		expect(wrapper.get('#pet')).toBeTruthy()
 	})
 
 	it('Should have a PetProfile child', () => {
