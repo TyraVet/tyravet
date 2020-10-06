@@ -1,7 +1,8 @@
-<template>
-  <div class='pet'>
-	<PetProfile :id='$route.params.id'></PetProfile>
-  </div>
+<template lang='pug'>
+div#pet
+	PetProfile(
+		:id='$route.params.id'
+	)
 </template>
 
 <script lang='js'>
