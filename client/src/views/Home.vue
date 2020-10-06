@@ -1,8 +1,7 @@
-<template>
-  <div class='home'>
-	<AppointmentsHeader></AppointmentsHeader>
-	<AppointmentsList></AppointmentsList>
-  </div>
+<template lang='pug'>
+div.home
+	AppointmentsHeader
+	AppointmentsList
 </template>
 
 <script lang='js'>

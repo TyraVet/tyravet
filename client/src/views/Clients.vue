@@ -1,16 +1,14 @@
-<template>
-  <div class='clients'>
-	<span class='title-container'>
-	  <h3 class='is-size-4 has-text-primary-dark'>{{ title }}</h3>
-	  <b-button type='is-primary'
-				icon-pack='fas'
-				icon-left='plus'
-				@click=launchModal()>
-		{{ labelButton }}
-	  </b-button>
-	</span>
-	<ClientList></ClientList>
-  </div>
+<template lang='pug'>
+div.clients
+	span.title-container
+		h3.is-size-4.has-text-primary-dark {{ title }}
+		b-button(
+			type='is-primary'
+			icon-pack='fas'
+			icon-left='plus'
+			@click='launchModal()'
+		) {{ labelButton }}
+	ClientList
 </template>
 
 <script lang='js'>

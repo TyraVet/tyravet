@@ -1,8 +1,7 @@
-<template>
-  <section id='services'>
-	<ServiceHeader></ServiceHeader>
-	<ServiceList></ServiceList>
-  </section>
+<template lang='pug'>
+section#services
+	ServiceHeader
+	ServiceList
 </template>
 
 <script lang='js'>

@@ -1,8 +1,7 @@
-<template>
-  <div id='breeds'>
-	<BreedHeader></BreedHeader>
-	<BreedList></BreedList>
-  </div>
+<template lang='pug'>
+div#breeds
+	BreedHeader
+	BreedList
 </template>
 
 <script lang='js'>

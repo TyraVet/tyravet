@@ -1,7 +1,6 @@
-<template>
-  <div class='pets'>
-	<PetsList></PetsList>
-  </div>
+<template lang='pug'>
+div#pets
+	PetsList
 </template>
 
 <script lang='js'>

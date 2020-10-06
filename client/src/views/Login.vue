@@ -1,7 +1,8 @@
-<template>
-  <div class='login'>
-	<UserForm type='login'></UserForm>
-  </div>
+<template lang='pug'>
+div.login
+	UserForm(
+		type='login'
+	)
 </template>
 
 <script lang='js'>

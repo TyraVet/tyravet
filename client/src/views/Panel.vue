@@ -1,8 +1,7 @@
-<template>
-  <div class='panel'>
-	<UsersHeader></UsersHeader>
-	<UsersList></UsersList>
-  </div>
+<template lang='pug'>
+div#panel
+	UsersHeader
+	UsersList
 </template>
 
 <script>
