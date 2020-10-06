@@ -1,19 +1,17 @@
-<template>
-  <div class='navbar has-background-primary-dark'>
-	<b-button title='Menu'
-			  type='is-primary'
-			  icon-pack='fas'
-			  icon-left='bars'
-			  @click=changeSideBarState()
-			  v-if='user'>
-	  {{ menu }}
-	</b-button>
-	<SideBar v-if='user'></SideBar>
-	<h1 title='Title'
-		class='is-size-3 has-text-primary-white'>
-	  {{ title }}
-	</h1>
-  </div>
+<template lang='pug'>
+div.navbar.has-background-primary-dark
+	b-button(
+		title='Menu'
+		type='is-primary'
+		icon-pack='fas'
+		icon-left='bars'
+		@click='changeSideBarState()'
+		v-if='user'
+	) {{ menu }}
+	SideBar( v-if='user' )
+	h1.is-size-3.has-text-primary-white(
+		title='Title'
+	) {{ title }}
 </template>
 
 <script lang='js'>
