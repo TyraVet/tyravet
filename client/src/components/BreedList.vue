@@ -1,16 +1,20 @@
-<template>
-  <div id='breed-list'>
-	<b-table :data='breeds'
-			 :bordered='isBordered'
-			 :mobile-cards='hasMobileCards'>
-	  <b-table-column field='name'
-					  label='Name'
-					  v-slot='props'>
-		<TableEditDelete :text='props.row.name' :id='props.row._id' :type='"breed"'>
-		</TableEditDelete>
-	  </b-table-column>
-	</b-table>
-  </div>
+<template lang='pug'>
+div#breed-list
+	b-table(
+		:data='breeds'
+		:bordered='isBordered'
+		:mobile-cards='hasMobileCards'
+	)
+		b-table-column(
+			field='name'
+			label='Name'
+			v-slot='props'
+		)
+			TableEditDelete(
+				:text='props.row.name'
+				:id='props.row._id'
+				:type='"breed"'
+			)
 </template>
 
 <script lang='js'>

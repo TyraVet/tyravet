@@ -1,57 +1,50 @@
-<template>
-  <form id='breed-form'>
-	<div class='modal-card' style='width: auto'>
-	  <header class='modal-card-head'>
-		<p class='modal-card-title'>Create Breed</p>
-		<button type='button'
-				class='delete'
-				@click=close() />
-	  </header>
-	  <section class='modal-card-body'>
-		   <b-field label='Name'>
-			 <b-input type='text'
-					  v-model='breedName'
-					  required>
-			 </b-input>
-		   </b-field>
-	  </section>
-	  <footer class='modal-card-foot'>
-		<button class='button'
+<template lang='pug'>
+form#breed-form
+	div.modal-card( style='width: auto' )
+		header.modal-card-head
+			p.modal-card-title Create Breed
+			button(
 				type='button'
-				@click=close()>
-		  Cancel
-		</button>
-		<b-button class='button is-success'
-				@click=send()>
-		  Accept
-		</b-button>
-		<b-message title='Success'
-				   type='is-success'
-				   aria-close-label='Close message'
-				   icon-pack='fas'
-				   icon-size='is-medium'
-				   icon='check'
-				   has-icon
-				   auto-close
-				   class='message'
-				   v-if='status === 201 || status === 200'>
-		  {{ statusText }}
-		</b-message>
-		<b-message title='Error'
-				   type='is-danger'
-				   aria-close-label='Close message'
-				   icon-pack='fas'
-				   icon-size='is-medium'
-				   icon='exclamation'
-				   has-icon
-				   auto-close
-				   class='message'
-				   v-if='status === 401 || status === 404'>
-		  {{ error }}
-		</b-message>
-	  </footer>
-	</div>
-  </form>
+				class='delete'
+				@click='close()'
+			)
+		section.modal-card-body
+			b-field( label='Name' )
+			b-input(
+				type='text'
+				v-model='breedName'
+				required
+			)
+		footer.modal-card-foot
+			button.button(
+				type='button'
+				@click='close()'
+			) Cancel
+			b-button.button.is-success(
+				@click='send()'
+			) Accept
+			b-message.message(
+				title='Success'
+				type='is-success'
+				aria-close-label='Close message'
+				icon-pack='fas'
+				icon-size='is-medium'
+				icon='check'
+				has-icon
+				auto-close
+				v-if='status === 201 || status === 200'
+			) {{ statusText }}
+			b-message.message(
+				title='Error'
+				type='is-danger'
+				aria-close-label='Close message'
+				icon-pack='fas'
+				icon-size='is-medium'
+				icon='exclamation'
+				has-icon
+				auto-close
+				v-if='status === 401 || status === 404'
+			) {{ error }}
 </template>
 
 <script lang='js'>
