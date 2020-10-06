@@ -1,28 +1,27 @@
-<template>
-  <div class='pet-list'>
-	<span v-if='pets.length > 0'>
-	  <b-table :data='pets'
-			   :bordered='isBordered'
-			   :mobile-cards='hasMobileCards'>
-		<b-table-column field='name'
-						label='Name'
-						searchable
-						v-slot='props'>
-			<b-button title='Go Pet Profile'
-					  class='button-pet'
-					  type='is-primary-light'
-					  @click=goPetProfile(props.row._id)>
-			  {{ props.row.name }}
-			</b-button>
-		</b-table-column>
-		<b-table-column field='breed'
-						label='Breed'
-						v-slot='props'>
-			  {{ props.row.breed.name }}
-		</b-table-column>
-	  </b-table>
-	</span>
-  </div>
+<template lang='pug'>
+div.pet-list
+	span( v-if='pets.length > 0' )
+		b-table(
+			:data='pets'
+			:bordered='isBordered'
+			:mobile-cards='hasMobileCards'
+		)
+			b-table-column(
+				field='name'
+				label='Name'
+				searchable
+				v-slot='props'
+			)
+				b-button.button-pet(
+					title='Go Pet Profile'
+					type='is-primary-light'
+					@click='goPetProfile(props.row._id)'
+				) {{ props.row.name }}
+			b-table-column(
+				field='breed'
+				label='Breed'
+				v-slot='props'
+			) {{ props.row.breed.name }}
 </template>
 
 <script lang='js'>

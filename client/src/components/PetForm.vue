@@ -1,90 +1,81 @@
-<template>
-  <form id='pet-form'>
-	<div class='modal-card' style='width: auto'>
-	  <header class='modal-card-head'>
-		<p class='modal-card-title'>{{ title }}</p>
-		<button type='button'
-				class='delete'
-				@click=close()></button>
-	  </header>
-	  <section class='modal-card-body'>
-		<b-field label='Pet'
-				 grouped
-				 group-multiline
-				 position='is-centered'
-				 class='flex-vertical'>
-		  <b-field label='Name'>
-			<b-input type='text'
-					 v-model='petName'
-					 required></b-input>
-		  </b-field>
-		  <b-field label='Birthday'>
-			<b-datepicker v-model='petBirthday'
-						  inline
-						  :max-date='maxDate'>
-			</b-datepicker>
-		  </b-field>
-		  <b-field label='Age'>
-			<b-input type='tel'
-					 v-model='petAge'
-					 min='0'
-					 maxlength='2'></b-input>
-		  </b-field>
-		  <b-field label='Weighht'>
-			<b-input type='number'
-					 v-model='petWeight'
-					 min='0'
-					 maxlength='4'></b-input>
-		  </b-field>
-		  <b-field label='Breed'>
-			<b-select v-model='petBreed'
-					  required>
-			  <option v-for='(breed, index) in breeds'
-					  :key=index
-					  :value='breed'>
-				{{ breed.name }}
-			  </option>
-			</b-select>
-		  </b-field>
-		</b-field>
-	  </section>
-	  <footer class='modal-card-foot'>
-		<button class='button'
+<template lang='pug'>
+form#pet-form
+	div.modal-card( style='width: auto' )
+		header.modal-card-head
+			p.modal-card-title {{ title }}
+			button.delete(
 				type='button'
-				@click=close()>
-		  Cancel
-		</button>
-		<b-button class='button is-success'
-				  @click=send()>
-		  Accept
-		</b-button>
-		<b-message title='Success'
-				   type='is-success'
-				   aria-close-label='Close message'
-				   icon-pack='fas'
-				   icon-size='is-medium'
-				   icon='check'
-				   has-icon
-				   auto-close
-				   class='message'
-				   v-if='status === OK'>
-		  {{ statusText }}
-		</b-message>
-		<b-message title='Error'
-				   type='is-danger'
-				   aria-close-label='Close message'
-				   icon-pack='fas'
-				   icon-size='is-medium'
-				   icon='exclamation'
-				   has-icon
-				   auto-close
-				   class='message'
-				   v-if='status === ERROR'>
-		  {{ error }}
-		</b-message>
-	  </footer>
-	</div>
-  </form>
+				@click='close()'
+			)
+		section.modal-card-body
+			b-field.flex-vertical(
+				label='Pet'
+				grouped
+				group-multiline
+				position='is-centered'
+			)
+				b-field( label='Name' )
+				b-input(
+					type='text'
+					v-model='petName'
+					required
+				)
+				b-field( label='Birthday' )
+				b-datepicker(
+					v-model='petBirthday'
+					inline
+					:max-date='maxDate'
+				)
+				b-field( label='Age' )
+				b-input(
+					type='tel'
+					v-model='petAge'
+					min='0'
+					maxlength='2'
+				)
+				b-field( label='Weighht' )
+				b-input(
+					type='number'
+					v-model='petWeight'
+					min='0'
+					maxlength='4' )
+				b-field( label='Breed' )
+				b-select(
+					v-model='petBreed'
+					required
+				)
+					option(
+						v-for='(breed, index) in breeds'
+						:key='index'
+						:value='breed') {{ breed.name }}
+		footer.modal-card-foot
+			button.button(
+				type='button'
+				@click='close()'
+			) Cancel
+			b-button.button.is-success(
+				@click='send()'
+			) Accept
+			b-message.message(
+				title='Success'
+				type='is-success'
+				aria-close-label='Close message'
+				icon-pack='fas'
+				icon-size='is-medium'
+				icon='check'
+				has-icon
+				auto-close
+				v-if='status === OK' ) {{ statusText }}
+			b-message.message(
+				title='Error'
+				type='is-danger'
+				aria-close-label='Close message'
+				icon-pack='fas'
+				icon-size='is-medium'
+				icon='exclamation'
+				has-icon
+				auto-close
+				v-if='status === ERROR' ) {{ error }}
 </template>
 
 <script lang='js'>

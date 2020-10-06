@@ -1,40 +1,35 @@
-<template>
-  <div id='pet-profile'>
-	<section id='pet-header'>
-	  <section id='pet-profile-picture-container'>
-		<img id='pet-profile-picture'
-			 :src='placeholder'>
-		<b-field class='file is-primary' :class="{'has-name': !!file}">
-		  <b-upload v-model='file' class='file-label'>
-			<span class='file-cta'>
-			  <b-icon class='file-icon' icon='upload'></b-icon>
-			  <span title='Upload Picture' class='file-label'>Click to upload</span>
-			</span>
-		  </b-upload>
-		</b-field>
-	  </section>
-	  <section id='pet-info'>
-		<h1 class='is-size-2'>
-		  {{ pet.name }}
-		</h1>
-		<h3 class='is-size-4'>
-		  {{ pet.breed.name }}
-		</h3>
-		<hr/>
-		<section id='owner-info'>
-		  <h4 class='is-size-5'>
-			{{ owner.name }}<br/>
-			{{ owner.phone }}<br/>
-			{{ owner.address.street }}
-			#{{ owner.address.number }},
-			P.C. {{ owner.address.postalCode }}
-		  </h4>
-		</section>
-	  </section>
-	</section>
-	<VaccinationRecord></VaccinationRecord>
-	<MedicalRecord></MedicalRecord>
-  </div>
+<template lang='pug'>
+div#pet-profile
+	section#pet-header
+		section#pet-profile-picture-container
+			img#pet-profile-picture(
+				:src='placeholder'
+			)
+			b-field.file.is-primary(
+				:class="{'has-name': !!file}"
+			)
+				b-upload.file-label( v-model='file' )
+					span.file-cta
+						b-icon.file-icon( icon='upload' )
+						span.file-label(
+							title='Upload Picture'
+						) Click to upload
+		section#pet-info
+			h1.is-size-2 {{ pet.name }}
+			h3.is-size-4 {{ pet.breed.name }}
+			hr
+			section#owner-info
+				h4.is-size-5
+					| {{ owner.name }}
+					br
+					| {{ owner.phone }}
+					br
+					| {{ owner.address.street }}
+					| {{ owner.address.number }}
+					br
+					| P.C. {{ owner.address.postalCode }}
+	VaccinationRecord
+	MedicalRecord
 </template>
 
 <script lang='js'>
