@@ -1,24 +1,20 @@
-<template>
-  <div class='appointment'>
-	<section title='Appointment'>
-	  <div class='field'>
-		<b-checkbox type='is-success'
-					v-model='isDone'>
-		  <div class='appointment-container' :class='{ done: isDone }'>
-			<h3 class='is-size-5 has-text-primary'>
-			  {{ appointment.service.name }}
-			</h3>
-			<h3 class='is-size-5 has-text-dark'>
-			  | {{ pet.name }}, ({{ pet.breed.name }}) -
-			</h3>
-			<h3 class='is-size-5 has-text-grey-darker'>
-			  {{ client.name }}, {{ client.phone }}
-			</h3>
-		  </div>
-		</b-checkbox>
-	  </div>
-	</section>
-  </div>
+<template lang='pug'>
+div.appointment
+	section( title='Appointment' )
+		div.field
+		b-checkbox(
+			type='is-success'
+			v-model='isDone'
+		)
+			div.appointment-container(
+				:class='{ done: isDone }'
+			)
+				h3.is-size-5.has-text-primary
+					| {{ appointment.service.name }}
+				h3.is-size-5.has-text-dark
+					| | {{ pet.name }}, ({{ pet.breed.name }}) -
+				h3.is-size-5.has-text-grey-darker
+					| {{ client.name }}, {{ client.phone }}
 </template>
 
 <script lang='js'>

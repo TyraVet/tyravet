@@ -1,28 +1,29 @@
-<template>
-  <div class='appointments-header'>
-	<b-button icon-left='chevron-left'
-			  icon-pack='fas'
-			  type='is-primary-light'
-			  size='is-large'
-			  title='Previous'
-			  @click=startTimeMachine(PAST)>
-	</b-button>
-	<b-button title='Pick Date'
-			  type='is-primary-light'
-			  size='is-large'
-			  @click='pickDate()'>
-	  <h1 class='is-size-4 has-text-centered has-text-weight-semibold'>
-		{{ formattedDay }}
-	  </h1>
-	</b-button>
-	<b-button icon-right='chevron-right'
-			  icon-pack='fas'
-			  type='is-primary-light'
-			  size='is-large'
-			  title='Next'
-			  @click=startTimeMachine(FUTURE)>
-	</b-button>
-  </div>
+<template lang='pug'>
+div.appointments-header
+	b-button(
+		icon-left='chevron-left'
+		icon-pack='fas'
+		type='is-primary-light'
+		size='is-large'
+		title='Previous'
+		@click='startTimeMachine(PAST)'
+	)
+	b-button(
+		title='Pick Date'
+		type='is-primary-light'
+		size='is-large'
+		@click='pickDate()'
+	)
+		h1.is-size-4.has-text-centered.has-text-weight-semibold
+			| {{ formattedDay }}
+	b-button(
+		icon-right='chevron-right'
+		icon-pack='fas'
+		type='is-primary-light'
+		size='is-large'
+		title='Next'
+		@click='startTimeMachine(FUTURE)'
+	)
 </template>
 
 <script lang='js'>

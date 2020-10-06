@@ -1,54 +1,48 @@
-<template>
-  <form id='client-form'>
-	<div class='modal-card' style='width: auto'>
-	  <header class='modal-card-head'>
-		<p class='modal-card-title'>{{ title }}</p>
-		<button type='button'
-				class='delete'
-				@click=close() />
-	  </header>
-	  <section class='modal-card-body'>
-			<b-field label='Client'>
-			 <b-select v-model='client'
-					   required>
-			   <option v-for='(pet, index) in pets'
-					   :key=index
-					   :value='pet'>
-				 {{ pet.name }}, ({{ pet.breed }}). {{ pet.clientName }}
-			   </option>
-			 </b-select>
-		   </b-field>
-		   <b-field label='Service'>
-			 <b-select v-model='service'
-					   required>
-			   <option v-for='(service, index) in services'
-					   :key=index
-					   :value='service'>
-				 {{ service.name }}
-			   </option>
-			 </b-select>
-		   </b-field>
-		   <b-field label='Hour'>
-			 <b-input type='text'
-					  v-model='hour.hour'
-					  required
-					  disabled>
-			 </b-input>
-		   </b-field>
-	  </section>
-	  <footer class='modal-card-foot'>
-		<button class='button'
+<template lang='pug'>
+form#client-form
+	div.modal-card( style='width: auto' )
+		header.modal-card-head
+			p.modal-card-title {{ title }}
+			button.delete(
 				type='button'
-				@click=close()>
-		  Cancel
-		</button>
-		<b-button class='button is-success'
-				  @click=send()>
-		  Accept
-		</b-button>
-	  </footer>
-	</div>
-  </form>
+				@click='close()'
+			)
+		section.modal-card-body
+			b-field( label='Client' )
+				b-select(
+					v-model='client'
+					required
+				)
+					option(
+						v-for='(pet, index) in pets'
+						:key='index'
+						:value='pet'
+					) {{ pet.name }}, ({{ pet.breed }}). {{ pet.clientName }}
+			b-field( label='Service' )
+				b-select(
+					v-model='service'
+					required
+				)
+					option(
+						v-for='(service, index) in services'
+						:key='index'
+						:value='service'
+					) {{ service.name }}
+			b-field( label='Hour' )
+				b-input(
+					type='text'
+					v-model='hour.hour'
+					required
+					disabled
+				)
+		footer.modal-card-foot
+			button.button(
+				type='button'
+				@click='close()'
+			) Cancel
+			b-button.button.is-success(
+				@click='send()'
+			) Accept
 </template>
 
 <script lang='js'>

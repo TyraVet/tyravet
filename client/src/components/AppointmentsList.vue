@@ -1,24 +1,23 @@
-<template>
-  <div id='appointment-list-container' class='appointments-list-comp'>
-	<div class='appointments-list'
-		 v-if='schedule'>
-	  <div v-for='(hour, index) in hours'
-		   :key='index'
-		   class='hour-container has-background-primary-white'>
-		<b-button class='hour'
-				  title='Add Appointment'
-				  type='is-primary-dark'
-				  @click=addAppointment(hour)>
-		  {{ hour.hour }}
-		</b-button>
-		<Appointment v-for='(appointment, index) in hour.appointments'
-					 :key='index'
-					 :appointment='appointment'>
-		</Appointment>
-	  </div>
-	</div>
-	<ErrorMessage v-if=noData :message=errorMessage></ErrorMessage>
-  </div>
+<template lang='pug'>
+div#appointment-list-container.appointments-list-comp
+	div.appointments-list(
+		v-if='schedule'
+	)
+		div.hour-container.has-background-primary-white(
+			v-for='(hour, index) in hours'
+			:key='index'
+		)
+			b-button.hour(
+				title='Add Appointment'
+				type='is-primary-dark'
+				@click='addAppointment(hour)'
+			) {{ hour.hour }}
+			Appointment(
+				v-for='(appointment, index) in hour.appointments'
+				:key='index'
+				:appointment='appointment'
+			)
+	ErrorMessage( v-if='noData' :message='errorMessage' )
 </template>
 
 <script lang='js'>
