@@ -48,7 +48,7 @@ div.client-list
 				v-slot='props'
 			)
 				| {{ props.row.address.street }}
-				| '#'{{ props.row.address.number }}
+				| {{ props.row.address.number }}
 				| P.C. {{ props.row.address.postalCode }}
 	ErrorMessage( v-if='noClients' :message='errorMessage' )
 </template>
