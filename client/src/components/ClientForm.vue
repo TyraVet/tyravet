@@ -1,134 +1,134 @@
-<template>
-  <form id='client-form'>
-	<div class='modal-card' style='width: auto'>
-	  <header class='modal-card-head'>
-		<p class='modal-card-title'>{{ title }}</p>
-		<button type='button'
-				class='delete'
-				@click=close() />
-	  </header>
-	  <section class='modal-card-body'>
-		   <b-field label='Name'>
-			 <b-input type='text'
-					  v-model='clientName'
-					  required>
-			 </b-input>
-		   </b-field>
-		   <b-field label='Address'
-					grouped
-					group-multiline
-					position='is-centered'
-					class='flex-vertical'>
-			 <b-field label='Street'>
-			   <b-input type='text'
-						v-model='clientAddressStreet'
-						required></b-input>
-			 </b-field>
-			 <b-field label='Number'>
-			   <b-input type='tel'
-						v-model='clientAddressNumber'
-						min='0'
-						maxlength='4'
-						required></b-input>
-			 </b-field>
-			 <b-field label='Int Number'>
-			   <b-input type='tel'
-						v-model='clientAddressIntNumber'
-						min='0'
-						maxlength='4'></b-input>
-			 </b-field>
-			 <b-field label='Postal Code'>
-			   <b-input type='tel'
-						v-model='clientAddressPostalCode'
-						min='0'
-						maxlength='5'
-						required></b-input>
-			 </b-field>
-		   </b-field>
-		   <b-field label='Phone Number'>
-			 <b-input type='tel'
-					  v-model='clientPhoneNumber'
-					  maxlength='10'
-					  min='0'
-					  required></b-input>
-		   </b-field>
-		   <b-field label='Pet'
-					grouped
-					group-multiline
-					position='is-centered'
-					class='flex-vertical'>
-			 <b-field label='Name'>
-			   <b-input type='text'
-						v-model='clientPetName'
-						required></b-input>
-			 </b-field>
-			 <b-field label='Birthday'>
-			   <b-datepicker v-model='clientPetBirthday'
-							 inline
-							 :max-date='maxDate'>
-			   </b-datepicker>
-			 </b-field>
-			 <b-field label='Age'>
-			   <b-input type='tel'
-						v-model='clientPetAge'
-						min='0'
-						maxlength='2'></b-input>
-			 </b-field>
-			 <b-field label='Weighht'>
-			   <b-input type='number'
-						v-model='clientPetWeight'
-						min='0'
-						maxlength='4'></b-input>
-			 </b-field>
-			 <b-field label='Breed'>
-			   <b-select v-model='clientPetBreed'
-						required>
-				 <option v-for='(breed, index) in breeds'
-						 :key=index
-						 :value='breed'>
-				   {{ breed.name }}
-				 </option>
-			   </b-select>
-			 </b-field>
-		   </b-field>
-	  </section>
-	  <footer class='modal-card-foot'>
-		<button class='button'
+<template lang='pug'>
+form#client-form
+	div.modal-card( style='width: auto' )
+		header.modal-card-head
+			p.modal-card-title {{ title }}
+			button.delete(
 				type='button'
-				@click=close()>
-		  Cancel
-		</button>
-		<b-button class='button is-success'
-				  @click=send()>
-		  Accept
-		</b-button>
-		<b-message title='Success'
-				   type='is-success'
-				   aria-close-label='Close message'
-				   icon-pack='fas'
-				   icon-size='is-medium'
-				   icon='check'
-				   has-icon
-				   auto-close
-				   class='message'
-				   v-if='status === OK'>
-		  {{ statusText }}
-		</b-message>
-		<b-message title='Error'
-				   type='is-danger'
-				   aria-close-label='Close message'
-				   icon-pack='fas'
-				   icon-size='is-medium'
-				   icon='exclamation'
-				   has-icon
-				   auto-close
-				   class='message'
-				   v-if='status === 401 || status === 404'>
-		  {{ error }}
-		</b-message>
-	  </footer>
-	</div>
-  </form>
+				@click='close()'
+			)
+		section.modal-card-body
+			b-field( label='Name')
+			b-input(
+				type='text'
+				v-model='clientName'
+				required
+			)
+			b-field.flex-vertical(
+				label='Address'
+				grouped
+				group-multiline
+				position='is-centered'
+			)
+				b-field( label='Street' )
+				b-input(
+					type='text'
+					v-model='clientAddressStreet'
+					required
+				)
+				b-field( label='Number' )
+				b-input(
+					type='tel'
+					v-model='clientAddressNumber'
+					min='0'
+					maxlength='4'
+					required
+				)
+				b-field( label='Int Number' )
+				b-input(
+					type='tel'
+					v-model='clientAddressIntNumber'
+					min='0'
+					maxlength='4'
+				)
+				b-field( label='Postal Code' )
+				b-input(
+					type='tel'
+					v-model='clientAddressPostalCode'
+					min='0'
+					maxlength='5'
+					required
+				)
+			b-field( label='Phone Number' )
+			b-input(
+				type='tel'
+				v-model='clientPhoneNumber'
+				maxlength='10'
+				min='0'
+				required
+			)
+			b-field.flex-vertical(
+				label='Pet'
+				grouped
+				group-multiline
+				position='is-centered'
+			)
+				b-field( label='Name' )
+				b-input(
+					type='text'
+					v-model='clientPetName'
+					required
+				)
+				b-field( label='Birthday' )
+				b-datepicker(
+					v-model='clientPetBirthday'
+					inline
+					:max-date='maxDate'
+				)
+				b-field( label='Age' )
+				b-input(
+					type='tel'
+					v-model='clientPetAge'
+					min='0'
+					maxlength='2'
+				)
+				b-field( label='Weighht' )
+				b-input(
+					type='number'
+					v-model='clientPetWeight'
+					min='0'
+					maxlength='4'
+				)
+				b-field( label='Breed' )
+				b-select(
+					v-model='clientPetBreed'
+					required
+				)
+					option(
+						v-for='(breed, index) in breeds'
+						:key=index
+						:value='breed'
+					) {{ breed.name }}
+		footer.modal-card-foot
+			button.button(
+				type='button'
+				@click='close()'
+			) Cancel
+			b-button.button.is-success(
+				@click='send()'
+			) Accept
+			b-message.message(
+				title='Success'
+				type='is-success'
+				aria-close-label='Close message'
+				icon-pack='fas'
+				icon-size='is-medium'
+				icon='check'
+				has-icon
+				auto-close
+				v-if='status === OK'
+			) {{ statusText }}
+			b-message.message(
+				title='Error'
+				type='is-danger'
+				aria-close-label='Close message'
+				icon-pack='fas'
+				icon-size='is-medium'
+				icon='exclamation'
+				has-icon
+				auto-close
+				v-if='status === 401 || status === 404'
+			) {{ error }}
 </template>
 
 <script lang='js'>
