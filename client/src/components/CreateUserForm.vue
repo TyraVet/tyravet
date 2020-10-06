@@ -1,73 +1,65 @@
-<template>
-  <form id='create-user-form'>
-	<div class='modal-card' style='width: auto'>
-	  <header class='modal-card-head'>
-		<p class='modal-card-title'>{{ title }}</p>
-		<button type='button'
-				class='delete'
-				@click=close() />
-	  </header>
-	  <section class='modal-card-body'>
-		   <b-field label='Username'>
-			 <b-input type='text'
-					  minlength='4'
-					  v-model='username'
-					  required>
-			 </b-input>
-		   </b-field>
-		   <b-field label='Password'>
-			 <b-input type='password'
-					  minlength='8'
-					  v-model='password'
-					  required>
-			 </b-input>
-		   </b-field>
-		   <b-field label='Confirm Password'>
-			 <b-input type='password'
-					  minlength='8'
-					  :validation-message='validationMessageConfirmPassword'
-					  v-model='confirmPassword'
-					  required>
-			 </b-input>
-		   </b-field>
-	  </section>
-	  <footer class='modal-card-foot'>
-		<button class='button'
+<template lang='pug'>
+form#create-user-form
+	div.modal-card( style='width: auto' )
+		header.modal-card-head
+			p.modal-card-title {{ title }}
+			button.delete(
 				type='button'
-				@click=close()>
-		  Cancel
-		</button>
-		<b-button class='button is-success'
-				@click=send()>
-		  Accept
-		</b-button>
-		<b-message title='Success'
-				   type='is-success'
-				   aria-close-label='Close message'
-				   icon-pack='fas'
-				   icon-size='is-medium'
-				   icon='check'
-				   has-icon
-				   auto-close
-				   class='message'
-				   v-if='status === OK'>
-		  {{ statusText }}
-		</b-message>
-		<b-message title='Error'
-				   type='is-danger'
-				   aria-close-label='Close message'
-				   icon-pack='fas'
-				   icon-size='is-medium'
-				   icon='exclamation'
-				   has-icon
-				   auto-close
-				   class='message'
-				   v-if='status === ERROR'>
-		  {{ error }}
-		</b-message>
-	  </footer>
-	</div>
-  </form>
+				@click='close()'
+			)
+		section.modal-card-body
+			b-field( label='Username' )
+				b-input(
+					type='text'
+					minlength='4'
+					v-model='username'
+					required
+				)
+			b-field( label='Password' )
+				b-input(
+					type='password'
+					minlength='8'
+					v-model='password'
+					required
+				)
+			b-field( label='Confirm Password' )
+				b-input(
+					type='password'
+					minlength='8'
+					:validation-message='validationMessageConfirmPassword'
+					v-model='confirmPassword'
+					required
+				)
+		footer.modal-card-foot
+			button.button(
+				type='button'
+				@click='close()'
+			) Cancel
+			b-button.button.is-success(
+				@click='send()'
+			) Accept
+			b-message.message(
+				title='Success'
+				type='is-success'
+				aria-close-label='Close message'
+				icon-pack='fas'
+				icon-size='is-medium'
+				icon='check'
+				has-icon
+				auto-close
+				v-if='status === OK'
+			) {{ statusText }}
+			b-message.message(
+				title='Error'
+				type='is-danger'
+				aria-close-label='Close message'
+				icon-pack='fas'
+				icon-size='is-medium'
+				icon='exclamation'
+				has-icon
+				auto-close
+				v-if='status === ERROR'
+			) {{ error }}
 </template>
 
 <script lang='js'>
