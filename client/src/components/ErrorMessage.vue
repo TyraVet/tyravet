@@ -1,17 +1,15 @@
-<template>
-  <section id='error-message'
-		   class='has-background-danger-alpha'>
-	<b-icon pack='fas'
-			icon='exclamation-circle'
-			size='is-large'
-			type='is-danger'>
-	</b-icon>
-	<span id='message'>
-	  <h1 :class='isForModal ? white : black' class='is-size-5'>
-		{{ message }}
-	  </h1>
-	</span>
-  </section>
+<template lang='pug'>
+section#error-message.has-background-danger-alpha
+	b-icon(
+		pack='fas'
+		icon='exclamation-circle'
+		size='is-large'
+		type='is-danger'
+	)
+	span#message
+		h1(
+			:class='isForModal ? white : black' class='is-size-5'
+		) {{ message }}
 </template>
 
 <script lang='js'>
