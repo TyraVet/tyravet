@@ -1,33 +1,27 @@
-<template>
-  <div class='pick-date'>
-	<div class='modal-card'>
-	  <header class='modal-card-head'>
-		<p class='modal-card-title'>{{ title }}</p>
-		<button type='button'
-				class='delete'
-				@click=close() />
-	  </header>
-	  <section class='modal-card-body'>
-		<b-field label='Select Date'>
-		  <b-datepicker v-model='date'
-						inline
-						trap-focus>
-		  </b-datepicker>
-		</b-field>
-	  </section>
-	  <footer class='modal-card-foot'>
-		<button class='button'
+<template lang='pug'>
+div.pick-date
+	div.modal-card
+		header.modal-card-head
+			p.modal-card-title {{ title }}
+			button.delete(
 				type='button'
-				@click=close()>
-		  Cancel
-		</button>
-		<b-button class='button is-success'
-				@click=send()>
-		  Accept
-		</b-button>
-	  </footer>
-	</div>
-  </div>
+				@click='close()'
+			)
+		section.modal-card-body
+			b-field( label='Select Date' )
+			b-datepicker(
+				v-model='date'
+				inline
+				trap-focus
+			)
+		footer.modal-card-foot
+			button.button(
+				type='button'
+				@click='close()'
+			) Cancel
+			b-button.button.is-success(
+				@click='send()'
+			) Accept
 </template>
 
 <script lang='js'>
