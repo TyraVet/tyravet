@@ -8,7 +8,6 @@ import Panel from '../views/Panel.vue'
 import Services from '../views/Services.vue'
 import Breeds from '../views/Breeds.vue'
 import Login from '../views/Login.vue'
-import SignUp from '../views/SignUp.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 
 Vue.use(VueRouter)
@@ -76,14 +75,6 @@ const routes = [
 		component: Login,
 		meta: {
 			title: 'TyraWeb Login'
-		}
-	},
-	{
-		path: '/sign-up',
-		name: 'sign-up',
-		component: SignUp,
-		meta: {
-			title: 'TyraWeb SignUp'
 		}
 	},
 	{
