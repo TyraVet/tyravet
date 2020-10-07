@@ -1,16 +1,14 @@
-<template>
-  <div class='users-header'>
-	<span class='title-container'>
-	  <h3 class='is-size-4 has-text-primary-dark'>{{ title }}</h3>
-	  <b-button title='Add User'
-				type='is-primary'
-				icon-pack='fas'
-				icon-left='plus'
-				@click=launchModal()>
-		{{ labelButton }}
-	  </b-button>
-	</span>
-  </div>
+<template lang='pug'>
+div.users-header
+	span.title-container
+		h3.is-size-4.has-text-primary-dark {{ title }}
+		b-button(
+			title='Add User'
+			type='is-primary'
+			icon-pack='fas'
+			icon-left='plus'
+			@click='launchModal()'
+		) {{ labelButton }}
 </template>
 
 <script lang='js'>

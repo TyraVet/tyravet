@@ -1,62 +1,58 @@
-<template>
-  <div class='user-form' @keyup.enter=send()>
-	<form id='user-form'>
-	  <section>
-		<b-field :label='labelUsername'>
-		  <b-input type='text'
-				   v-model='username'
-				   validation-message='Username Required'
-				   required
-				   autofocus></b-input>
-		</b-field>
-		<b-field :label='labelPassword'>
-		  <b-input type='password'
-				   v-model='password'
-				   validation-message='Password Required'
-				   required></b-input>
-		</b-field>
-		<b-field class='stay-logged-in'>
-		  <b-checkbox type='is-primary'
-					v-model='stayLoggedIn'>
-			{{ labelStayLoggedIn }}
-		  </b-checkbox>
-		</b-field>
-	  </section>
-	  <section class='form-button'>
-		<b-button type='is-success'
-				  icon-pack='fas'
-				  icon-left='sign-in-alt'
-				  @click='send()'>
-		  {{ labelButton }}
-		</b-button>
-	  </section>
-	</form>
-	<br>
-	<b-message title='Success'
-			   type='is-success'
-			   aria-close-label='Close message'
-			   icon-pack='fas'
-			   icon-size='is-medium'
-			   icon='check'
-			   has-icon
-			   auto-close
-			   class='message'
-			   v-if='status === 201 || status === 200'>
-	  {{ statusText }}
-	</b-message>
-	<b-message title='Error'
-			   type='is-danger'
-			   aria-close-label='Close message'
-			   icon-pack='fas'
-			   icon-size='is-medium'
-			   icon='exclamation'
-			   has-icon
-			   auto-close
-			   class='message'
-			   v-if='status === 401 || status === 404'>
-	  {{ error }}
-	</b-message>
-  </div>
+<template lang='pug'>
+div.user-form(
+  @keyup.enter='send()'
+)
+	form#user-form
+		section
+			b-field( :label='labelUsername' )
+			b-input(
+				type='text'
+				v-model='username'
+				validation-message='Username Required'
+				required
+				autofocus)
+			b-field( :label='labelPassword' )
+			b-input(
+				type='password'
+				v-model='password'
+				validation-message='Password Required'
+				required
+			)
+			b-field.stay-logged-in
+			b-checkbox(
+				type='is-primary'
+				v-model='stayLoggedIn'
+			) {{ labelStayLoggedIn }}
+		section.form-button
+			b-button(
+				type='is-success'
+				icon-pack='fas'
+				icon-left='sign-in-alt'
+				@click='send()'
+			) {{ labelButton }}
+	br
+	b-message.message(
+		title='Success'
+		type='is-success'
+		aria-close-label='Close message'
+		icon-pack='fas'
+		icon-size='is-medium'
+		icon='check'
+		has-icon
+		auto-close
+		v-if='status === 201 || status === 200'
+	) {{ statusText }}
+	b-message.message(
+		title='Error'
+		type='is-danger'
+		aria-close-label='Close message'
+		icon-pack='fas'
+		icon-size='is-medium'
+		icon='exclamation'
+		has-icon
+		auto-close
+		v-if='status === 401 || status === 404'
+	) {{ error }}
 </template>
 
 <script lang='js'>

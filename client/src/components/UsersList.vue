@@ -1,20 +1,20 @@
-<template>
-  <div class='users-list'>
-	<b-table :data='users'
-			 :bordered='isBordered'
-			 :mobile-cards='hasMobileCards'>
-	  <b-table-column field='Username'
-					  label='Username'
-					  v-slot='props'>
-		{{ props.row.username  }}
-	  </b-table-column>
-	  <b-table-column field='Type'
-					  label='Type'
-					  v-slot='props'>
-		{{ props.row.type.name }}
-	  </b-table-column>
-	</b-table>
-  </div>
+<template lang='pug'>
+div.users-list
+	b-table(
+		:data='users'
+		:bordered='isBordered'
+		:mobile-cards='hasMobileCards'
+	)
+		b-table-column(
+			field='Username'
+			label='Username'
+			v-slot='props'
+		) {{ props.row.username  }}
+		b-table-column(
+			field='Type'
+			label='Type'
+			v-slot='props'
+		) {{ props.row.type.name }}
 </template>
 
 <script lang='js'>
