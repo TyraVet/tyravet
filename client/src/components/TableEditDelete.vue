@@ -61,7 +61,7 @@ export default {
 				hasModalCard: true,
 				trapFocus: true,
 				props: {
-					id: this.id
+					serviceId: this.id
 				}
 			})
 		}
