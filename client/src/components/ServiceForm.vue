@@ -14,6 +14,12 @@ form#service-form
 				v-model='serviceName',
 				required
 			)
+			b-field( label='Price' )
+			b-input(
+				type='phonenumber'
+				v-model='servicePrice',
+				required
+			)
 		footer.modal-card-foot
 			button.button(
 				type='button'
@@ -46,7 +52,7 @@ export default {
 	props: {
 		serviceId: {
 			type: String,
-			default: '',
+			default: null,
 			required: false
 		}
 	},
@@ -59,6 +65,21 @@ export default {
 			labelButtonAccept: 'Accept',
 			status: 0
 		}
+	},
+	methods: {
+		init(){
+			if(this.serviceId)
+				this.title = 'Edit Service'
+			else
+				this.title = 'Create Service'
+		},
+		close(){
+			this.$emit('close')
+		},
+		send(){}
+	},
+	created(){
+		this.init()
 	}
 }
 </script>
