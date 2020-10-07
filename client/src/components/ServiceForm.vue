@@ -1,6 +1,5 @@
-<template>
-  <section id='service-form'>
-  </section>
+<template lang='pug'>
+section#service-form
 </template>
 
 <script lang='js'>
