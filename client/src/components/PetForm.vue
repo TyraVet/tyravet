@@ -56,26 +56,22 @@ form#pet-form
 			b-button.button.is-success(
 				@click='send()'
 			) Accept
-			b-message.message(
+			b-icon(
 				title='Success'
 				type='is-success'
-				aria-close-label='Close message'
-				icon-pack='fas'
-				icon-size='is-medium'
+				pack='fas'
+				size='is-large'
 				icon='check'
-				has-icon
-				auto-close
-				v-if='status === OK' ) {{ statusText }}
-			b-message.message(
+				v-if='status === OK'
+			)
+			b-icon(
 				title='Error'
 				type='is-danger'
-				aria-close-label='Close message'
-				icon-pack='fas'
-				icon-size='is-medium'
+				pack='fas'
+				size='is-large'
 				icon='exclamation'
-				has-icon
-				auto-close
-				v-if='status === ERROR' ) {{ error }}
+				v-if='status === ERROR || status === SERVER_ERROR'
+			)
 </template>
 
 <script lang='js'>
@@ -84,6 +80,7 @@ import { EventBus } from '../eventBus.js'
 
 export const OK = 201
 export const ERROR = 403
+export const SERVER_ERROR = 500
 
 export default {
 	name: 'PetForm',
@@ -94,6 +91,7 @@ export default {
 		return{
 			OK,
 			ERROR,
+			SERVER_ERROR,
 			title: 'Add Pet',
 			status: null,
 			statusText: '',
