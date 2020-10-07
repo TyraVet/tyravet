@@ -83,7 +83,10 @@ export default {
 		close(){
 			this.$emit('close')
 		},
-		send(){},
+		send(){
+			if(this.serviceId)
+				this.updateService()
+		},
 		getService(){
 			axios.get(process.env.VUE_APP_TYRAWEB_SERVICE, {
 				params: {
@@ -93,10 +96,24 @@ export default {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
-				console.log(response.data)
 				this.serviceName = response.data.name
 				this.servicePrice = response.data.price
-			}).cath(error => {
+			}).catch(error => {
+				console.error(error)
+			})
+		},
+		updateService(){
+			axios.post(process.env.VUE_APP_TYRAWEB_UPDATE_SERVICE, {
+				id: this.serviceId,
+				name: this.serviceName,
+				price: this.servicePrice
+			}, {
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				console.log(response)
+			}).catch(error => {
 				console.error(error)
 			})
 		}
