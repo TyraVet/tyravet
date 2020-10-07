@@ -47,6 +47,8 @@ form#service-form
 </template>
 
 <script lang='js'>
+import axios from 'axios'
+
 export default {
 	name: 'ServiceForm',
 	props: {
@@ -66,17 +68,38 @@ export default {
 			status: 0
 		}
 	},
+	computed: {
+		user(){ return this.$store.state.user }
+	},
 	methods: {
 		init(){
-			if(this.serviceId)
+			if(this.serviceId){
 				this.title = 'Edit Service'
-			else
+				this.getService()
+			}else{
 				this.title = 'Create Service'
+			}
 		},
 		close(){
 			this.$emit('close')
 		},
-		send(){}
+		send(){},
+		getService(){
+			axios.get(process.env.VUE_APP_TYRAWEB_SERVICE, {
+				params: {
+					id: this.serviceId
+				},
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				console.log(response.data)
+				this.serviceName = response.data.name
+				this.servicePrice = response.data.price
+			}).cath(error => {
+				console.error(error)
+			})
+		}
 	},
 	created(){
 		this.init()
