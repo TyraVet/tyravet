@@ -23,3 +23,18 @@ exports.get_service = (req, res) => {
 		res.status(200).json(theService)
 	})
 }
+
+/* Update Service */
+exports.update_service = (req, res) => {
+	Service.findByIdAndUpdate(req.body.id, {
+		_id: req.body.id,
+		name: req.body.name,
+		price: req.body.price
+	}, (err) => {
+		if(err)
+			res.status(403).json(err)
+
+		/* Success */
+		res.status(200)
+	})
+}
