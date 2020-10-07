@@ -1,8 +1,7 @@
-<template>
-  <section id='vaccination-record'>
-	<VaccinationTitle></VaccinationTitle>
-	<VaccinationList></VaccinationList>
-  </section>
+<template lang='pug'>
+section#vaccination-record
+	VaccinationTitle
+	VaccinationList
 </template>
 
 <script lang='js'>
