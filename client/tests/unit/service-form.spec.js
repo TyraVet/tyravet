@@ -1,10 +1,20 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
+import store from '@/store'
 import Buefy from 'buefy'
 import ServiceForm from '@/components/ServiceForm.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
-const wrapper = shallowMount(ServiceForm, { localVue })
+
+/* Dummy User */
+store.state.user = {
+	_id: '',
+	username: '',
+	type: {},
+	token: ''
+}
+
+const wrapper = shallowMount(ServiceForm, { store, localVue })
 
 describe('ServiceForm Component', () => {
 	const main = wrapper.get('#service-form')
@@ -100,7 +110,7 @@ describe('ServiceForm Component', () => {
 		const wrapper2 = shallowMount(ServiceForm, {
 			propsData: {
 				serviceId: 'test'
-			}, localVue })
+			}, store, localVue })
 		const main2 = wrapper2.get('#service-form')
 		const modal2 = main2.get('div')
 		const modalHeader2 = modal2.get('.modal-card-head')
