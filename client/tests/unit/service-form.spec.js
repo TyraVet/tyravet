@@ -26,7 +26,7 @@ describe('ServiceForm Component', () => {
 	const props = wrapper.props()
 	it('Should set default props if not sent', () => {
 		expect(props).toBeTruthy()
-		expect(props.serviceId).toMatch('')
+		expect(props.serviceId).toBeNull()
 	})
 
 	const modal = main.get('div')
@@ -90,5 +90,21 @@ describe('ServiceForm Component', () => {
 		expect(errorIcon.attributes().pack).toMatch('fas')
 		expect(errorIcon.attributes().size).toMatch('is-large')
 		expect(errorIcon.attributes().icon).toMatch('exclamation')
+	})
+
+	it('Should change title if ID is sent', async () => {
+		const title = modalHeader.get('.modal-card-title')
+		expect(title.text()).toMatch('Create Service')
+
+		/* Send ID on mount */
+		const wrapper2 = shallowMount(ServiceForm, {
+			propsData: {
+				serviceId: 'test'
+			}, localVue })
+		const main2 = wrapper2.get('#service-form')
+		const modal2 = main2.get('div')
+		const modalHeader2 = modal2.get('.modal-card-head')
+
+		expect(modalHeader2.get('.modal-card-title').text()).toMatch('Edit Service')
 	})
 })
