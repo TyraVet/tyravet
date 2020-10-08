@@ -5,11 +5,13 @@ section#service-header.title-container
 		type='is-primary'
 		icon-pack='fas'
 		icon-left='plus'
-		@click='launchModal()'
+		@click='launchServiceForm()'
 	) {{ labelButton }}
 </template>
 
 <script lang='js'>
+import ServiceForm from '@/components/ServiceForm.vue'
+
 export default {
 	name: 'ServicedHeader',
 	data(){
@@ -19,7 +21,13 @@ export default {
 		}
 	},
 	methods: {
-		launchModal(){
+		launchServiceForm(){
+			this.$buefy.modal.open({
+				parent: this,
+				component: ServiceForm,
+				hasModalCard: true,
+				trapFocus: true
+			})
 		}
 	}
 }
