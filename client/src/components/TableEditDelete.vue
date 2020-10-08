@@ -16,12 +16,13 @@ section#table-edit-delete
 			icon-pack='fas'
 			icon-left='trash-alt'
 			class='has-text-white'
-			@click='deleteAt()'
+			@click='launchDeleteConfirmation()'
 		)
 </template>
 
 <script lang='js'>
 import ServiceForm from '@/components/ServiceForm.vue'
+import DeleteConfirmation from '@/components/DeleteConfirmation.vue'
 
 export default {
 	name: 'TableEditDelete',
@@ -53,7 +54,18 @@ export default {
 			if(this.isForServices)
 				this.launchServiceForm()
 		},
-		deleteAt(){},
+		launchDeleteConfirmation(){
+			this.$buefy.modal.open({
+				parent: this,
+				component: DeleteConfirmation,
+				hasModalCard: true,
+				trapFocus: true,
+				props: {
+					type: this.type,
+					objectId: this.id
+				}
+			})
+		},
 		launchServiceForm(){
 			this.$buefy.modal.open({
 				parent: this,
