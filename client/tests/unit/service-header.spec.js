@@ -39,7 +39,7 @@ describe('Service Header Component', () => {
 		expect(addButton.text()).toMatch(data.labelButton)
 	})
 
-	it('Should has a launchModal Method', () => {
-		expect(wrapper.vm.launchModal).toBeTruthy()
+	it('Should has a launchServiceForm Method', () => {
+		expect(wrapper.vm.launchServiceForm).toBeTruthy()
 	})
 })
