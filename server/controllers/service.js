@@ -52,3 +52,14 @@ exports.post_create_service = (req, res) => {
 		res.sendStatus(201)
 	})
 }
+
+/* Delete Service */
+exports.delete_service = (req, res) => {
+	Service.findByIdAndRemove(req.query.id, (err) => {
+		if(err)
+			res.status(403).json(err)
+
+		/* Success */
+		res.sendStatus(200)
+	})
+}
