@@ -48,6 +48,7 @@ form#service-form
 
 <script lang='js'>
 import axios from 'axios'
+import { EventBus } from '../eventBus.js'
 
 export default {
 	name: 'ServiceForm',
@@ -97,6 +98,7 @@ export default {
 		/* Set Success status to show check icon. */
 		setOnSuccess(response){
 			this.status = response.status
+			EventBus.$emit('update-services')
 		},
 		/* Set Error status to show warning icon. */
 		setOnError(error){

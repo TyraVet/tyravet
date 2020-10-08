@@ -30,7 +30,7 @@ section#delete-confirmation.modal-card( style: 'width: auto' )
 			pack='fas'
 			size='is-large'
 			icon='check'
-			v-if='status === 201 || status === 200'
+			v-if='status === 200'
 		)
 		b-icon#error-icon(
 			title='Error'
@@ -44,6 +44,7 @@ section#delete-confirmation.modal-card( style: 'width: auto' )
 
 <script lang='js'>
 import axios from 'axios'
+import { EventBus } from '../eventBus.js'
 
 export default {
 	name: 'DeleteConfirmation',
@@ -81,6 +82,7 @@ export default {
 		/* Set Success status to show check icon. */
 		setOnSuccess(response){
 			this.status = response.status
+			EventBus.$emit('update-services')
 		},
 		/* Set Error status to show warning icon. */
 		setOnError(error){
