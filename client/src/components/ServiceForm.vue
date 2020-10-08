@@ -42,7 +42,7 @@ form#service-form
 				pack='fas'
 				size='is-large'
 				icon='exclamation'
-				v-if='status === 401 || status === 404'
+				v-if='status === 401 || status === 403 || status === 404'
 			)
 </template>
 
@@ -86,6 +86,27 @@ export default {
 		send(){
 			if(this.serviceId)
 				this.updateService()
+			else
+				this.createService()
+		},
+		clearInputs(){
+			this.serviceName = ''
+			this.servicePrice = 0
+		},
+		createService(){
+			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_SERVICE, {
+				name: this.serviceName,
+				price: this.servicePrice
+			}, {
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				console.log(response)
+				this.clearInputs()
+			}).catch(error => {
+				console.error(error)
+			})
 		},
 		getService(){
 			axios.get(process.env.VUE_APP_TYRAWEB_SERVICE, {
