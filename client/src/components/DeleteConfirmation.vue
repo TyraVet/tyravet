@@ -43,6 +43,8 @@ section#delete-confirmation.modal-card( style: 'width: auto' )
 </template>
 
 <script lang='js'>
+import axios from 'axios'
+
 export default {
 	name: 'DeleteConfirmation',
 	props: {
@@ -71,7 +73,24 @@ export default {
 		close(){
 			this.$emit('close')
 		},
-		send(){}
+		send(){
+			if(this.type === 'service')
+				this.deleteService()
+		},
+		deleteService(){
+			axios.get(process.env.VUE_APP_TYRAWEB_DELETE_SERVICE, {
+				params: {
+					id: this.objectId
+				},
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				console.log(response)
+			}).catch(error => {
+				console.error(error)
+			})
+		}
 	}
 }
 </script>
