@@ -89,6 +89,12 @@ export default {
 			else
 				this.createService()
 		},
+		setOnSuccess(response){
+			this.status = response.status
+		},
+		setOnError(error){
+			this.status = error.response.status
+		},
 		clearInputs(){
 			this.serviceName = ''
 			this.servicePrice = 0
@@ -102,10 +108,10 @@ export default {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
-				console.log(response)
+				this.setOnSuccess(response)
 				this.clearInputs()
 			}).catch(error => {
-				console.error(error)
+				this.setOnError(error)
 			})
 		},
 		getService(){
@@ -133,9 +139,9 @@ export default {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
-				console.log(response)
+				this.setOnSuccess(response)
 			}).catch(error => {
-				console.error(error)
+				this.setOnError(error)
 			})
 		}
 	},
