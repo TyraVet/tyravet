@@ -59,6 +59,7 @@ export default {
 	},
 	data(){
 		return{
+			status: 0,
 			title: 'Delete Confirmation',
 			danger: 'Are you sure you want to delete this item? Proceed with caution.',
 			labelButtonCancel: 'Cancel',
@@ -77,6 +78,14 @@ export default {
 			if(this.type === 'service')
 				this.deleteService()
 		},
+		/* Set Success status to show check icon. */
+		setOnSuccess(response){
+			this.status = response.status
+		},
+		/* Set Error status to show warning icon. */
+		setOnError(error){
+			this.status = error.response.status
+		},
 		deleteService(){
 			axios.get(process.env.VUE_APP_TYRAWEB_DELETE_SERVICE, {
 				params: {
@@ -86,9 +95,9 @@ export default {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
-				console.log(response)
+				this.setOnSuccess(response)
 			}).catch(error => {
-				console.error(error)
+				this.setOnError(error)
 			})
 		}
 	}
