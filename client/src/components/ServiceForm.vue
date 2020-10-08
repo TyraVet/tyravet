@@ -72,6 +72,7 @@ export default {
 		user(){ return this.$store.state.user }
 	},
 	methods: {
+		/* Init method to set the type of the form Edit or Create. */
 		init(){
 			if(this.serviceId){
 				this.title = 'Edit Service'
@@ -80,25 +81,33 @@ export default {
 				this.title = 'Create Service'
 			}
 		},
+		/* Close the modal through emitting the event. */
 		close(){
 			this.$emit('close')
 		},
+		/* on Edit should send a request to the API's edit method,
+		 * the same way on Create should send a request to the API's
+		 * create method. */
 		send(){
 			if(this.serviceId)
 				this.updateService()
 			else
 				this.createService()
 		},
+		/* Set Success status to show check icon. */
 		setOnSuccess(response){
 			this.status = response.status
 		},
+		/* Set Error status to show warning icon. */
 		setOnError(error){
 			this.status = error.response.status
 		},
+		/* Clear inputs on success request. */
 		clearInputs(){
 			this.serviceName = ''
 			this.servicePrice = 0
 		},
+		/* POST request to the API. Only executes on Create type. */
 		createService(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_SERVICE, {
 				name: this.serviceName,
@@ -114,6 +123,7 @@ export default {
 				this.setOnError(error)
 			})
 		},
+		/* GET request to the API. Only executes on Edit type. */
 		getService(){
 			axios.get(process.env.VUE_APP_TYRAWEB_SERVICE, {
 				params: {
@@ -129,6 +139,7 @@ export default {
 				console.error(error)
 			})
 		},
+		/* POST request to the API. Only executes on Edit type. */
 		updateService(){
 			axios.post(process.env.VUE_APP_TYRAWEB_UPDATE_SERVICE, {
 				id: this.serviceId,
