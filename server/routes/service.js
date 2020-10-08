@@ -8,6 +8,7 @@ var service = require(path.join(__dirname, '../controllers/service.js'))
 
 /* Service Routes */
 router.get('/', authenticateToken, service.get_services)
+router.post('/create', authenticateToken, service.post_create_service)
 router.get('/service', authenticateToken, service.get_service)
 router.post('/update', authenticateToken, service.update_service)
 
