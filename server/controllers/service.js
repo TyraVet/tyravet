@@ -35,6 +35,20 @@ exports.update_service = (req, res) => {
 			res.status(403).json(err)
 
 		/* Success */
-		res.status(200)
+		res.sendStatus(200)
+	})
+}
+
+/* Create Service */
+exports.post_create_service = (req, res) => {
+	const service = new Service({
+		name: req.body.name,
+		price: req.body.price
+	}).save(err => {
+		if(err)
+			res.status(403).json(err)
+
+		/* Success */
+		res.sendStatus(201)
 	})
 }
