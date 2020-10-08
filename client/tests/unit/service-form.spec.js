@@ -117,4 +117,40 @@ describe('ServiceForm Component', () => {
 
 		expect(modalHeader2.get('.modal-card-title').text()).toMatch('Edit Service')
 	})
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.init).toBeTruthy()
+	})
+
+	it('Should has a close method', () => {
+		expect(wrapper.vm.close).toBeTruthy()
+	})
+
+	it('Should has a send method', () => {
+		expect(wrapper.vm.send).toBeTruthy()
+	})
+
+	it('Should has a clearInputs method', () => {
+		expect(wrapper.vm.clearInputs).toBeTruthy()
+	})
+
+	it('Should has a createService method', () => {
+		expect(wrapper.vm.createService).toBeTruthy()
+	})
+
+	it('Should has a getService method', () => {
+		expect(wrapper.vm.getService).toBeTruthy()
+	})
+
+	it('Should has an updateService method', () => {
+		expect(wrapper.vm.updateService).toBeTruthy()
+	})
+
+	it('Should has a setOnSuccess method', () => {
+		expect(wrapper.vm.setOnSuccess).toBeTruthy()
+	})
+
+	it('Should has a setOnError method', () => {
+		expect(wrapper.vm.setOnError).toBeTruthy()
+	})
 })
