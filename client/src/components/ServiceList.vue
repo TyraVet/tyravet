@@ -25,6 +25,7 @@ div#service-list
 <script lang='js'>
 import axios from 'axios'
 import TableEditDelete from '@/components/TableEditDelete.vue'
+import { EventBus } from '../eventBus.js'
 
 export default {
 	name: 'ServiceList',
@@ -57,6 +58,14 @@ export default {
 	},
 	created(){
 		this.init()
+
+		/* Event Listeners */
+
+		/* When a client is created, updated or deleted, fetch
+		 * the services again to render the updated list. */
+		EventBus.$on('update-services', () => {
+			this.getServices()
+		})
 	}
 }
 </script>
