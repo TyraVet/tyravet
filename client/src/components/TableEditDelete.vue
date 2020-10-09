@@ -22,6 +22,7 @@ section#table-edit-delete
 
 <script lang='js'>
 import ServiceForm from '@/components/ServiceForm.vue'
+import CreateUserForm from '@/components/CreateUserForm.vue'
 import DeleteConfirmation from '@/components/DeleteConfirmation.vue'
 
 export default {
@@ -42,17 +43,22 @@ export default {
 	},
 	data(){
 		return{
-			isForServices: false
+			isForServices: false,
+			isForUsers: false
 		}
 	},
 	methods: {
 		init(){
 			if(this.type === 'service')
 				this.isForServices = true
+			else if(this.type === 'user')
+				this.isForUsers = true
 		},
 		edit(){
 			if(this.isForServices)
 				this.launchServiceForm()
+			else if(this.isForUsers)
+				this.launchUserForm()
 		},
 		launchDeleteConfirmation(){
 			this.$buefy.modal.open({
@@ -74,6 +80,17 @@ export default {
 				trapFocus: true,
 				props: {
 					serviceId: this.id
+				}
+			})
+		},
+		launchUserForm(){
+			this.$buefy.modal.open({
+				parent: this,
+				component: CreateUserForm,
+				hasModalCard: true,
+				trapFocus: true,
+				props: {
+					userId: this.id
 				}
 			})
 		}
