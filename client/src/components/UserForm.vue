@@ -122,11 +122,13 @@ export default {
 		fillUser(user){
 			this.$store.commit('fillUser', user)
 		},
-		/* POST request to out API */
+		/* GET request to fetch user */
 		send(){
-			axios.post(process.env.VUE_APP_TYRAWEB_LOGIN_USER, {
-				username: this.username,
-				password: this.password
+			axios.get(process.env.VUE_APP_TYRAWEB_LOGIN_USER, {
+				params: {
+					username: this.username,
+					password: this.password
+				}
 			}).then((response) => {
 				this.setOnSuccess(response)
 			}).catch((error) => {
