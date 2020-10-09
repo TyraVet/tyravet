@@ -18,10 +18,16 @@ store.state.user = {
 const wrapper = shallowMount(CreateUserForm, { store, localVue })
 
 describe('CreateUserForm Component', () => {
+	const main = wrapper.get('#create-user-form')
+
+	const modal = main.get('div')
+
+	const modalHeader = modal.get('.modal-card-head')
+
 	it('Set the correct default data', () => {
 		expect(typeof CreateUserForm.data).toBe('function')
 		const defaultData = CreateUserForm.data()
-		expect(defaultData.title).toMatch('Create User')
+		expect(defaultData.title).toMatch('')
 		expect(defaultData.username).toMatch('')
 		expect(defaultData.password).toMatch('')
 		expect(defaultData.confirmPassword).toMatch('')
@@ -46,5 +52,33 @@ describe('CreateUserForm Component', () => {
 		const errorMessage = wrapper.get('b-message-stub')
 		expect(errorMessage.attributes().title).toMatch('Error')
 		expect(errorMessage.attributes().icon).toMatch('exclamation')
+	})
+
+	it('Should change title if ID is sent', async () => {
+		const title = modalHeader.get('.modal-card-title')
+		expect(title.text()).toMatch('Create User')
+
+		/* Send ID on mount */
+		const wrapper2 = shallowMount(CreateUserForm, {
+			propsData: {
+				userId: 'test'
+			}, store, localVue })
+		const main2 = wrapper2.get('#create-user-form')
+		const modal2 = main2.get('div')
+		const modalHeader2 = modal2.get('.modal-card-head')
+
+		expect(modalHeader2.get('.modal-card-title').text()).toMatch('Edit User')
+	})
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.init).toBeTruthy()
+	})
+
+	it('Should has a close method', () => {
+		expect(wrapper.vm.close).toBeTruthy()
+	})
+
+	it('Should has a send method', () => {
+		expect(wrapper.vm.send).toBeTruthy()
 	})
 })
