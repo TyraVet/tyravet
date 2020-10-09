@@ -71,11 +71,18 @@ export const ERROR = 401
 
 export default {
 	name: 'CreateUserForm',
+	props: {
+		userId: {
+			type: String,
+			default: null,
+			required: false
+		}
+	},
 	data() {
 		return {
 			OK,
 			ERROR,
-			title: 'Create User',
+			title: '',
 			username: '',
 			password: '',
 			confirmPassword: '',
@@ -100,6 +107,13 @@ export default {
 		}
 	},
 	methods: {
+		/* Init method to set the type of the form Edit or Create. */
+		init(){
+			if(this.userId)
+				this.title = 'Edit User'
+			else
+				this.title = 'Create User'
+		},
 		clearInput(){
 			this.username = ''
 			this.password = ''
@@ -141,6 +155,9 @@ export default {
 				this.setOnError(error)
 			})
 		}
+	},
+	created(){
+		this.init()
 	}
 }
 </script>
