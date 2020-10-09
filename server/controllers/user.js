@@ -28,9 +28,9 @@ exports.post_find_user_by_id = (req, res, next) => {
 }
 
 /* Find User to LogIn */
-exports.post_find_user = (req, res, next) => {
-	const username = req.body.username
-	const password = req.body.password
+exports.get_login = (req, res) => {
+	const username = req.query.username
+	const password = req.query.password
 
 	User.findOne({ username }).then(user => {
 		if(!user)
@@ -63,7 +63,7 @@ exports.post_find_user = (req, res, next) => {
 }
 
 /* Create User */
-exports.post_create_user = (req, res, next) => {
+exports.post_signup = (req, res) => {
 	bcryptjs.hash(req.body.password, 10, (err, hashedPassword) => {
 		if(err)
 			res.sendStatus(401)
@@ -77,7 +77,7 @@ exports.post_create_user = (req, res, next) => {
 			type: type
 		}).save(err => {
 			if(err)
-				return next(err)
+				return res.status(403).json(err)
 			/* Success */
 			res.sendStatus(201).json(user)
 		})
