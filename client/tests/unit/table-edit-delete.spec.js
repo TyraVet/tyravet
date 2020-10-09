@@ -25,6 +25,7 @@ describe('TableEditDelete Component', () => {
 	it('Should sets the correct default data', () => {
 		expect(typeof TableEditDelete.data).toBe('function')
 		expect(data.isForServices).toBeFalsy()
+		expect(data.isForUsers).toBeFalsy()
 	})
 
 	const main = wrapper.get('#table-edit-delete')
@@ -79,5 +80,9 @@ describe('TableEditDelete Component', () => {
 
 	it('Should has a method to open ServiceForm', () => {
 		expect(wrapper.vm.launchServiceForm).toBeTruthy()
+	})
+
+	it('Should has a method to open CreateUserForm', () => {
+		expect(wrapper.vm.launchUserForm).toBeTruthy()
 	})
 })
