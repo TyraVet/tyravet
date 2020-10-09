@@ -8,8 +8,8 @@ var userController = require(path.join(__dirname, '../controllers/user.js'))
 
 /* User Routes */
 router.post('/find', authenticateToken, userController.post_find_user_by_id)
-router.post('/login', userController.post_find_user)
-router.post('/signup', authenticateToken, userController.post_create_user)
+router.get('/login', userController.get_login)
+router.post('/signup', authenticateToken, userController.post_signup)
 router.get('/', authenticateToken, userController.get_users)
 
 module.exports = router
