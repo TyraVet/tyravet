@@ -1,17 +1,23 @@
 <template lang='pug'>
-div.users-list
+section#users-list
 	b-table(
 		:data='users'
 		:bordered='isBordered'
 		:mobile-cards='hasMobileCards'
 	)
-		b-table-column(
-			field='Username'
+		b-table-column#name-column(
+			field='username'
 			label='Username'
 			v-slot='props'
-		) {{ props.row.username  }}
-		b-table-column(
-			field='Type'
+			searchable
+		)
+			TableEditDelete(
+				:text='props.row.username'
+				:id='props.row._id'
+				:type='"user"'
+			)
+		b-table-column#type-column(
+			field='type'
 			label='Type'
 			v-slot='props'
 		) {{ props.row.type.name }}
@@ -20,9 +26,11 @@ div.users-list
 <script lang='js'>
 import axios from 'axios'
 import { EventBus } from '../eventBus.js'
+import TableEditDelete from '@/components/TableEditDelete.vue'
 
 export default {
 	name: 'UsersList',
+	components: { TableEditDelete },
 	data(){
 		return{
 			isBordered: true,
