@@ -7,7 +7,7 @@ const authenticateToken = require('../middlewares/authenticateToken.js')
 var user = require(path.join(__dirname, '../controllers/user.js'))
 
 /* User Routes */
-router.post('/find', authenticateToken, user.get_user)
+router.get('/find', authenticateToken, user.get_user)
 router.get('/login', user.get_login)
 router.post('/signup', authenticateToken, user.post_signup)
 router.get('/', authenticateToken, user.get_users)
