@@ -113,10 +113,12 @@ export default {
 	methods: {
 		/* Init method to set the type of the form Edit or Create. */
 		init(){
-			if(this.userId)
+			if(this.userId){
 				this.title = 'Edit User'
-			else
+				this.getUser()
+			}else{
 				this.title = 'Create User'
+			}
 		},
 		close(){
 			this.$emit('close')
@@ -167,7 +169,20 @@ export default {
 			})
 		},
 		/* GET request to retreive the user we want to edit. */
-		getUser(){},
+		getUser(){
+			axios.get(process.env.VUE_APP_TYRAWEB_FIND_USER, {
+				params: {
+					id: this.userId
+				},
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				this.username = response.data.username
+			}).catch(error => {
+				console.error(error)
+			})
+		},
 		/* POST request to edit the user. */
 		updateUser(){}
 	},
