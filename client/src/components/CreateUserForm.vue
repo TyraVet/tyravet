@@ -117,6 +117,15 @@ export default {
 				this.title = 'Edit User'
 			else
 				this.title = 'Create User'
+		}c
+		close(){
+			this.$emit('close')
+		},
+		send(){
+			if(this.userId)
+				this.updateUser()
+			else
+				this.createUser()
 		},
 		clearInput(){
 			this.username = ''
@@ -141,10 +150,8 @@ export default {
 				this.error = error.message
 			}
 		},
-		close(){
-			this.$emit('close')
-		},
-		send(){
+		/* POST request to create an User. */
+		createUser(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_USER, {
 				username: this.username,
 				password: this.password,
@@ -158,7 +165,11 @@ export default {
 			}).catch((error) => {
 				this.setOnError(error)
 			})
-		}
+		},
+		/* GET request to retreive the user we want to edit. */
+		getUser(){},
+		/* POST request to edit the user. */
+		updateUser(){}
 	},
 	created(){
 		this.init()
