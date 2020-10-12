@@ -8,7 +8,7 @@ form#create-user-form
 				@click='close()'
 			)
 		section.modal-card-body
-			b-field( label='Username' )
+			b-field#username( label='Username' )
 				b-input(
 					type='text'
 					minlength='4'
@@ -19,14 +19,14 @@ form#create-user-form
 				label='Change Password'
 				v-if='userId'
 			)
-			b-field( label='Password' )
+			b-field#password( label='Password' )
 				b-input(
 					type='password'
 					minlength='8'
 					v-model='password'
 					required
 				)
-			b-field( label='Confirm Password' )
+			b-field#confirm-password( label='Confirm Password' )
 				b-input(
 					type='password'
 					minlength='8'
