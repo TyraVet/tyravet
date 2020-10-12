@@ -15,6 +15,10 @@ form#create-user-form
 					v-model='username'
 					required
 				)
+			b-field#change-password(
+				label='Change Password'
+				v-if='userId'
+			)
 			b-field( label='Password' )
 				b-input(
 					type='password'
