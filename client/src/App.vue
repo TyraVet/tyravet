@@ -67,11 +67,12 @@ export default {
 		 * To check if the User from the cookies exists in the
 		 * database. */
 		async validateUser(user){
-			axios.post(process.env.VUE_APP_TYRAWEB_FIND_USER, {
-				_id: user._id
-			}, {
+			axios.get(process.env.VUE_APP_TYRAWEB_FIND_USER, {
+				params: {
+					id: user._id
+				},
 				headers: {
-					Authorization: 'Bearer ' + user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then((response) => {
 				this.setOnSuccess(response, user)
