@@ -7,22 +7,18 @@ const medic = new Type({ name: 'medic' })
 const admin = new Type({ name: 'admin' })
 
 /* Find User by ID to keep it logged in */
-exports.get_user = (req, res, next) => {
-	const id = req.query._id
-
-	User.findById(id).exec((err, user) => {
+exports.get_user = (req, res) => {
+	User.findById(req.query.id).exec((err, user) => {
 		if(err)
-			return next(err)
+			return res.status(401).json(err)
 
-		if(user == null){
-			let err = new Error('User not found')
-			err.status = 404
-			return next(err)
-		}
+		if(user == null)
+			return res.status(404).json({ error: 'User dont exists' })
 
 		/* Success */
 		res.status(200).json({
-			msg: 'User Exists'
+			msg: 'User Exists',
+			username: user.username
 		})
 	})
 }
