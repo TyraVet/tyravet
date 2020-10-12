@@ -24,6 +24,10 @@ describe('CreateUserForm Component', () => {
 
 	const modalHeader = modal.get('.modal-card-head')
 
+	const modalBody = modal.get('.modal-card-body')
+
+	const modalFooter = modal.get('.modal-card-foot')
+
 	it('Set the correct default data', () => {
 		expect(typeof CreateUserForm.data).toBe('function')
 		const defaultData = CreateUserForm.data()
@@ -54,7 +58,7 @@ describe('CreateUserForm Component', () => {
 		expect(errorMessage.attributes().icon).toMatch('exclamation')
 	})
 
-	it('Should change title if ID is sent', async () => {
+	it('Should change title and change password label if ID is sent', async () => {
 		const title = modalHeader.get('.modal-card-title')
 		expect(title.text()).toMatch('Create User')
 
@@ -66,8 +70,10 @@ describe('CreateUserForm Component', () => {
 		const main2 = wrapper2.get('#create-user-form')
 		const modal2 = main2.get('div')
 		const modalHeader2 = modal2.get('.modal-card-head')
+		const modalBody2 = modal2.get('.modal-card-body')
 
 		expect(modalHeader2.get('.modal-card-title').text()).toMatch('Edit User')
+		expect(modalBody2.get('#change-password').exists()).toBeTruthy()
 	})
 
 	it('Should has an init method', () => {
