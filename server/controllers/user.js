@@ -7,8 +7,8 @@ const medic = new Type({ name: 'medic' })
 const admin = new Type({ name: 'admin' })
 
 /* Find User by ID to keep it logged in */
-exports.post_find_user_by_id = (req, res, next) => {
-	const id = req.body._id
+exports.get_user = (req, res, next) => {
+	const id = req.query._id
 
 	User.findById(id).exec((err, user) => {
 		if(err)
