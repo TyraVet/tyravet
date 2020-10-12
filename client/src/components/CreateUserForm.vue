@@ -117,7 +117,7 @@ export default {
 				this.title = 'Edit User'
 			else
 				this.title = 'Create User'
-		}c
+		},
 		close(){
 			this.$emit('close')
 		},
