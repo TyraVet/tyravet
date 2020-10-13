@@ -56,6 +56,10 @@ export default {
 		objectId: {
 			type: String,
 			required: true
+		},
+		userType: {
+			type: String,
+			required: false
 		}
 	},
 	data(){
@@ -78,11 +82,17 @@ export default {
 		send(){
 			if(this.type === 'service')
 				this.deleteService()
+			else if(this.type === 'user')
+				this.deleteUser()
 		},
 		/* Set Success status to show check icon. */
 		setOnSuccess(response){
 			this.status = response.status
-			EventBus.$emit('update-services')
+
+			if(this.type === 'service')
+				EventBus.$emit('update-services')
+			else if(this.type === 'user')
+				EventBus.$emit('update-users')
 		},
 		/* Set Error status to show warning icon. */
 		setOnError(error){
@@ -93,6 +103,20 @@ export default {
 				params: {
 					id: this.objectId
 				},
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				this.setOnSuccess(response)
+			}).catch(error => {
+				this.setOnError(error)
+			})
+		},
+		deleteUser(){
+			axios.post(process.env.VUE_APP_TYRAWEB_DELETE_USER, {
+				id: this.objectId,
+				type: this.userType
+			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
 				}
