@@ -120,5 +120,7 @@ inside ```server/``` and set the following Environment Variables:
 If you find this project usefull for your professional life, consider
 making a donation.
 
+For code contributions, please go to our [Contribution File](https://github.com/Andrsrz/tyra-web/blob/master/.github/CONTRIBUTING.md)
+
 ## License
 [MIT](https://mit-license.org/)
