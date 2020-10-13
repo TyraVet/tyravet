@@ -102,7 +102,9 @@ export default {
 				token: response.data.accessToken
 			}
 			this.fillUser(user)
-			this.setCookies()
+
+			if(this.stayLoggedIn)
+				this.setCookies()
 		},
 		setOnError(error){
 			if(error.response){
