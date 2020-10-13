@@ -39,6 +39,11 @@ export default {
 		type: {
 			type: String,
 			required: true
+		},
+		userType: {
+			type: String,
+			required: false,
+			default: null
 		}
 	},
 	data(){
@@ -68,7 +73,8 @@ export default {
 				trapFocus: true,
 				props: {
 					type: this.type,
-					objectId: this.id
+					objectId: this.id,
+					userType: this.userType
 				}
 			})
 		},
