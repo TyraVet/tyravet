@@ -56,7 +56,7 @@ form#create-user-form
 				pack='fas'
 				size='is-large'
 				icon='exclamation'
-				v-if='status === ERROR'
+				v-if='status === AUTH || status === ERROR'
 			)
 </template>
 
@@ -66,6 +66,7 @@ import { EventBus } from '../eventBus.js'
 
 export const OK = 200
 export const CREATED = 201
+export const AUTH = 401
 export const ERROR = 406
 
 export default {
@@ -81,6 +82,7 @@ export default {
 		return {
 			OK,
 			CREATED,
+			AUTH,
 			ERROR,
 			title: '',
 			username: '',
@@ -136,9 +138,7 @@ export default {
 		setOnSuccess(response){
 			this.status = response.status
 			this.clearInput()
-
-			if(this.status === this.OK || this.status === this.CREATED)
-				EventBus.$emit('update-users')
+			EventBus.$emit('update-users')
 		},
 		setOnError(error){
 			if(error.response)
