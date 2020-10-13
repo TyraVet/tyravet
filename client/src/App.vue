@@ -17,14 +17,6 @@ export default {
 			error: ''
 		}
 	},
-	computed: {
-		user(){
-			return this.$store.state.user
-		},
-		today(){
-			return this.$store.state.today
-		}
-	},
 	methods: {
 		/* Redirect to LogIn page if there is no user stored */
 		init(){
@@ -72,7 +64,7 @@ export default {
 					id: user._id
 				},
 				headers: {
-					Authorization: 'Bearer ' + this.user.token
+					Authorization: 'Bearer ' + user.token
 				}
 			}).then((response) => {
 				this.setOnSuccess(response, user)
