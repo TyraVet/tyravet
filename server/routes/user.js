@@ -10,6 +10,7 @@ var user = require(path.join(__dirname, '../controllers/user.js'))
 router.get('/find', authenticateToken, user.get_user)
 router.get('/login', user.get_login)
 router.post('/signup', authenticateToken, user.post_signup)
+router.post('/update', authenticateToken, user.post_update)
 router.get('/', authenticateToken, user.get_users)
 
 module.exports = router
