@@ -6,10 +6,10 @@ exports.get_services = (req, res) => {
 		   .populate('service')
 		   .exec((err, services) => {
 			   if(err)
-				   return res.sendStatus(403)
+				   return res.status(406).json(err)
 
 			   /* Succes */
-			   res.json(services)
+			   res.status(200).json(services)
 		   })
 }
 
@@ -17,7 +17,7 @@ exports.get_services = (req, res) => {
 exports.get_service = (req, res) => {
 	Service.findById(req.query.id, (err, theService) => {
 		if(err)
-			res.status(404).json(err)
+			return res.status(404).json(err)
 
 		/* Success */
 		res.status(200).json(theService)
@@ -46,7 +46,7 @@ exports.post_create_service = (req, res) => {
 		price: req.body.price
 	}).save(err => {
 		if(err)
-			res.status(403).json(err)
+			return res.status(406).json(err)
 
 		/* Success */
 		res.sendStatus(201)
