@@ -179,12 +179,28 @@ export default {
 				}
 			}).then(response => {
 				this.username = response.data.username
+				this.type = response.data.type.name
 			}).catch(error => {
 				console.error(error)
 			})
 		},
 		/* POST request to edit the user. */
-		updateUser(){}
+		updateUser(){
+			axios.post(process.env.VUE_APP_TYRAWEB_UPDATE_USER, {
+				id: this.userId,
+				username: this.username,
+				password: this.password,
+				type: this.type
+			}, {
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then((response) => {
+				this.setOnSuccess(response)
+			}).catch((error) => {
+				this.setOnError(error)
+			})
+		}
 	},
 	created(){
 		this.init()
