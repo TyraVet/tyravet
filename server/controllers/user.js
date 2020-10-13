@@ -63,7 +63,7 @@ exports.get_login = (req, res) => {
 exports.post_signup = (req, res) => {
 	bcryptjs.hash(req.body.password, 10, (err, hashedPassword) => {
 		if(err)
-			res.sendStatus(401)
+			return res.status(406).json(err)
 
 		/* Success */
 		const type = new Type({ name: req.body.type })
@@ -74,9 +74,10 @@ exports.post_signup = (req, res) => {
 			type: type
 		}).save(err => {
 			if(err)
-				return res.status(403).json(err)
+				return res.status(406).json(err)
+
 			/* Success */
-			res.sendStatus(201).json(user)
+			res.sendStatus(201)
 		})
 	})
 }
@@ -110,9 +111,9 @@ exports.get_users = (req, res, next) => {
 		.populate('user')
 		.exec((err, users) => {
 			if(err)
-				return res.sendStatus(403)
+				return res.sendStatus(406)
 
 			/* Success */
-			res.json(users)
+			res.status(200).json(users)
 		})
 }
