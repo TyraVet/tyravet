@@ -42,36 +42,31 @@ form#create-user-form
 			b-button.button.is-success(
 				@click='send()'
 			) Accept
-			b-message.message(
+			b-icon#success-icon(
 				title='Success'
 				type='is-success'
-				aria-close-label='Close message'
-				icon-pack='fas'
-				icon-size='is-medium'
+				pack='fas'
+				size='is-large'
 				icon='check'
-				has-icon
-				auto-close
-				v-if='status === OK'
-			) {{ statusText }}
-			b-message.message(
+				v-if='status === OK || status === CREATED'
+			)
+			b-icon#error-icon(
 				title='Error'
 				type='is-danger'
-				aria-close-label='Close message'
-				icon-pack='fas'
-				icon-size='is-medium'
+				pack='fas'
+				size='is-large'
 				icon='exclamation'
-				has-icon
-				auto-close
 				v-if='status === ERROR'
-			) {{ error }}
+			)
 </template>
 
 <script lang='js'>
 import axios from 'axios'
 import { EventBus } from '../eventBus.js'
 
-export const OK = 201
-export const ERROR = 401
+export const OK = 200
+export const CREATED = 201
+export const ERROR = 406
 
 export default {
 	name: 'CreateUserForm',
@@ -85,6 +80,7 @@ export default {
 	data() {
 		return {
 			OK,
+			CREATED,
 			ERROR,
 			title: '',
 			username: '',
@@ -92,8 +88,6 @@ export default {
 			confirmPassword: '',
 			validationMessageConfirmPassword: '',
 			status: null,
-			statusText: '',
-			error: '',
 			type: 'medic'
 		}
 	},
@@ -130,27 +124,25 @@ export default {
 				this.createUser()
 		},
 		clearInput(){
-			this.username = ''
-			this.password = ''
-			this.confirmPassword = ''
+			if(this.userId){
+				this.password = ''
+				this.confirmPassword = ''
+			}else{
+				this.username = ''
+				this.password = ''
+				this.confirmPassword = ''
+			}
 		},
 		setOnSuccess(response){
 			this.status = response.status
-			this.statusText = response.statusText
 			this.clearInput()
 
-			if(this.status === this.OK)
+			if(this.status === this.OK || this.status === this.CREATED)
 				EventBus.$emit('update-users')
 		},
 		setOnError(error){
-			if(error.response){
+			if(error.response)
 				this.status = error.response.status
-				this.error = error.response.statusText
-			}else if(error.request){
-				this.error = error.request
-			}else{
-				this.error = error.message
-			}
 		},
 		/* POST request to create an User. */
 		createUser(){
@@ -162,9 +154,9 @@ export default {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
 				}
-			}).then((response) => {
+			}).then(response => {
 				this.setOnSuccess(response)
-			}).catch((error) => {
+			}).catch(error => {
 				this.setOnError(error)
 			})
 		},
@@ -181,7 +173,7 @@ export default {
 				this.username = response.data.username
 				this.type = response.data.type.name
 			}).catch(error => {
-				console.error(error)
+				this.setOnError(error)
 			})
 		},
 		/* POST request to edit the user. */
@@ -195,9 +187,9 @@ export default {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
 				}
-			}).then((response) => {
+			}).then(response => {
 				this.setOnSuccess(response)
-			}).catch((error) => {
+			}).catch(error => {
 				this.setOnError(error)
 			})
 		}
