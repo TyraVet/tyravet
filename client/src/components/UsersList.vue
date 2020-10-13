@@ -15,6 +15,7 @@ section#users-list
 				:text='props.row.username'
 				:id='props.row._id'
 				:type='"user"'
+				:userType='props.row.type.name'
 			)
 		b-table-column#type-column(
 			field='type'
