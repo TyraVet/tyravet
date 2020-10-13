@@ -105,6 +105,7 @@ exports.post_update = (req, res) => {
 		})
 	})
 }
+
 /* Get all Users */
 exports.get_users = (req, res, next) => {
 	User.find()
@@ -116,4 +117,20 @@ exports.get_users = (req, res, next) => {
 			/* Success */
 			res.status(200).json(users)
 		})
+}
+
+/* Delete User */
+exports.post_delete = (req, res) => {
+	if(req.body.type === 'admin')
+		return res.status(406).json({
+			message: 'Can not remove admin user'
+		})
+
+	User.findByIdAndRemove(req.body.id, (err) => {
+		if(err)
+			return res.status(406).json(err)
+
+		/* Success */
+		res.sendStatus(200)
+	})
 }
