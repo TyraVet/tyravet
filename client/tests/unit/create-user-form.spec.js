@@ -27,8 +27,6 @@ describe('CreateUserForm Component', () => {
 		expect(data.confirmPassword).toMatch('')
 		expect(data.validationMessageConfirmPassword).toMatch('')
 		expect(data.status).toBeNull()
-		expect(data.statusText).toMatch('')
-		expect(data.error).toMatch('')
 		expect(data.type).toMatch('medic')
 	})
 
@@ -91,7 +89,7 @@ describe('CreateUserForm Component', () => {
 	})
 
 	const modalFooter = modal.get('.modal-card-foot')
-	it('Should has a modal Footer', () => {
+	it('Should has a modal Footer', async () => {
 		expect(modalFooter.exists()).toBeTruthy()
 
 		const cancelButton = modalFooter.get('button')
@@ -104,22 +102,24 @@ describe('CreateUserForm Component', () => {
 		expect(acceptButton.classes('button')).toBeTruthy()
 		expect(acceptButton.classes('is-success')).toBeTruthy()
 		expect(acceptButton.text()).toMatch('Accept')
-	})
 
-	it('Should have a Success Messages on Create Success Status', async () => {
-		wrapper.setData({ status: 201 })
-		await wrapper.vm.$nextTick()
-		const successMessage = wrapper.get('b-message-stub')
-		expect(successMessage.attributes().title).toMatch('Success')
-		expect(successMessage.attributes().icon).toMatch('check')
-	})
+		await wrapper.setData({ status: 200 })
+		const successIcon = modalFooter.get('#success-icon')
+		expect(successIcon.exists()).toBeTruthy()
+		expect(successIcon.attributes().title).toMatch('Success')
+		expect(successIcon.attributes().type).toMatch('is-success')
+		expect(successIcon.attributes().pack).toMatch('fas')
+		expect(successIcon.attributes().size).toMatch('is-large')
+		expect(successIcon.attributes().icon).toMatch('check')
 
-	it('Should have an Error Messages on Create Error Status', async () => {
-		wrapper.setData({ status: 401 })
-		await wrapper.vm.$nextTick()
-		const errorMessage = wrapper.get('b-message-stub')
-		expect(errorMessage.attributes().title).toMatch('Error')
-		expect(errorMessage.attributes().icon).toMatch('exclamation')
+		await wrapper.setData({ status: 401 })
+		const errorIcon = modalFooter.get('#error-icon')
+		expect(errorIcon.exists()).toBeTruthy()
+		expect(errorIcon.attributes().title).toMatch('Error')
+		expect(errorIcon.attributes().type).toMatch('is-danger')
+		expect(errorIcon.attributes().pack).toMatch('fas')
+		expect(errorIcon.attributes().size).toMatch('is-large')
+		expect(errorIcon.attributes().icon).toMatch('exclamation')
 	})
 
 	it('Should change title and change password label if ID is sent', async () => {
