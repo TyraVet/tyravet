@@ -18,7 +18,8 @@ exports.get_user = (req, res) => {
 		/* Success */
 		res.status(200).json({
 			msg: 'User Exists',
-			username: user.username
+			username: user.username,
+			type: user.type
 		})
 	})
 }
@@ -80,6 +81,29 @@ exports.post_signup = (req, res) => {
 	})
 }
 
+/* Update User */
+exports.post_update = (req, res) => {
+	bcryptjs.hash(req.body.password, 10, (err, hashedPassword) => {
+		if(err)
+			return res.status(406).json(err)
+
+		/* Success */
+		const type = new Type({ name: req.body.type })
+
+		User.findByIdAndUpdate(req.body.id, {
+			_id: req.body.id,
+			username: req.body.username,
+			password: hashedPassword,
+			type: type
+		}, err => {
+			if(err)
+				return res.status(406).json(err)
+
+			/* Success */
+			res.sendStatus(201)
+		})
+	})
+}
 /* Get all Users */
 exports.get_users = (req, res, next) => {
 	User.find()
