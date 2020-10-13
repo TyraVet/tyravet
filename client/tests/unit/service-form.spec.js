@@ -30,7 +30,7 @@ describe('ServiceForm Component', () => {
 		expect(data.title).toMatch('')
 		expect(data.labelButtonCancel).toMatch('Cancel')
 		expect(data.labelButtonAccept).toMatch('Accept')
-		expect(data.status).toBe(0)
+		expect(data.status).toBeNull()
 	})
 
 	const props = wrapper.props()
