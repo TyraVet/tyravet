@@ -34,7 +34,7 @@ form#service-form
 				pack='fas'
 				size='is-large'
 				icon='check'
-				v-if='status === 201 || status === 200'
+				v-if='status === OK || status === CREATED'
 			)
 			b-icon#error-icon(
 				title='Error'
@@ -42,13 +42,19 @@ form#service-form
 				pack='fas'
 				size='is-large'
 				icon='exclamation'
-				v-if='status === 401 || status === 403 || status === 404'
+				v-if='status === AUTH || status === NOT_FOUND || status === ERROR'
 			)
 </template>
 
 <script lang='js'>
 import axios from 'axios'
 import { EventBus } from '../eventBus.js'
+
+export const OK = 200
+export const CREATED = 201
+export const AUTH = 401
+export const NOT_FOUND = 404
+export const ERROR = 406
 
 export default {
 	name: 'ServiceForm',
@@ -61,12 +67,17 @@ export default {
 	},
 	data(){
 		return{
+			OK,
+			CREATED,
+			AUTH,
+			NOT_FOUND,
+			ERROR,
 			title: '',
 			serviceName: '',
 			servicePrice: 0,
 			labelButtonCancel: 'Cancel',
 			labelButtonAccept: 'Accept',
-			status: 0
+			status: null
 		}
 	},
 	computed: {
@@ -98,6 +109,7 @@ export default {
 		/* Set Success status to show check icon. */
 		setOnSuccess(response){
 			this.status = response.status
+			this.clearInputs()
 			EventBus.$emit('update-services')
 		},
 		/* Set Error status to show warning icon. */
@@ -106,8 +118,10 @@ export default {
 		},
 		/* Clear inputs on success request. */
 		clearInputs(){
-			this.serviceName = ''
-			this.servicePrice = 0
+			if(!this.serviceId){
+				this.serviceName = ''
+				this.servicePrice = 0
+			}
 		},
 		/* POST request to the API. Only executes on Create type. */
 		createService(){
@@ -120,7 +134,6 @@ export default {
 				}
 			}).then(response => {
 				this.setOnSuccess(response)
-				this.clearInputs()
 			}).catch(error => {
 				this.setOnError(error)
 			})
