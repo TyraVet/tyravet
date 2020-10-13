@@ -32,10 +32,10 @@ exports.update_service = (req, res) => {
 		price: req.body.price
 	}, (err) => {
 		if(err)
-			res.status(403).json(err)
+			return res.status(406).json(err)
 
 		/* Success */
-		res.sendStatus(200)
+		res.sendStatus(201)
 	})
 }
 
