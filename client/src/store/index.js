@@ -7,7 +7,7 @@ const store = new Vuex.Store({
 	state: {
 		user: null,
 		sideBarOpen: false,
-		today: new Date()
+		today: new Date(new Date().setHours(0, 0, 0, 0))
 	},
 	mutations: {
 		fillUser(state, user){
