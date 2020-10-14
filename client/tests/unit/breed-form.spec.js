@@ -10,13 +10,12 @@ localVue.use(Buefy)
 const wrapper = shallowMount(BreedForm, { store, localVue })
 
 describe('BreedForm Component', () => {
+	const data = BreedForm.data()
 	it('Set the correct default data', () => {
 		expect(typeof BreedForm.data).toBe('function')
-		const defaultData = BreedForm.data()
-		expect(defaultData.breedName).toMatch('')
-		expect(defaultData.status).toBeNull()
-		expect(defaultData.statusText).toMatch('')
-		expect(defaultData.error).toMatch('')
+		expect(data.title).toMatch('Create Breed')
+		expect(data.breedName).toMatch('')
+		expect(data.status).toBeNull()
 	})
 
 	it('Should have a Success Messages on Create Success Status', async () => {
