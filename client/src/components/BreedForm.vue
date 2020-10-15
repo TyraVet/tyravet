@@ -19,10 +19,10 @@ form#breed-form
 			button.button(
 				type='button'
 				@click='close()'
-			) Cancel
+			) {{ labelButtonCancel }}
 			b-button.button.is-success(
 				@click='send()'
-			) Accept
+			) {{ labelButtonAccept }}
 			b-message.message(
 				title='Success'
 				type='is-success'
@@ -62,13 +62,15 @@ export default {
 	data() {
 		return {
 			title: 'Create Breed',
+			labelButtonCancel: 'Cancel',
+			labelButtonAccept: 'Accept',
 			breedName: '',
 			status: null
 		}
 	},
 	methods: {
 		init(){
-			if(!this.breedId)
+			if(this.breedId)
 				this.title = 'Edit Breed'
 		},
 		clearInput(){
