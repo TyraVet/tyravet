@@ -14,7 +14,7 @@ exports.post_create_breed = (req, res) => {
 }
 
 /* Get all Breeds */
-exports.get_breeds = (req, res, next) => {
+exports.get_breeds = (req, res) => {
 	Breed.find()
 		 .populate('breed')
 		 .sort([['name', 'ascending']])
@@ -35,5 +35,19 @@ exports.get_breed = (req, res) => {
 
 		/* Success */
 		res.status(200).json(theBreed)
+	})
+}
+
+/* Edit Breed */
+exports.update = (req, res) => {
+	Breed.findByIdAndUpdate(req.body.id, {
+		_id: req.body.id,
+		name: req.body.name
+	}, err => {
+		if(err)
+			return res.status(406).json(err)
+
+		/* Success */
+		res.status(201)
 	})
 }
