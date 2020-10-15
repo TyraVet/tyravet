@@ -1,15 +1,15 @@
 const Breed = require('../models/breed.js')
 
 /* Create Breed */
-exports.post_create_breed = (req, res, next) => {
+exports.post_create_breed = (req, res) => {
 	const breed = new Breed({
 		name: req.body.name,
 	}).save(err => {
 		if(err)
-			return next(err)
+			return res.status(406).json(err)
 
 		/* Success */
-		res.sendStatus(201).json(breed)
+		res.status(201).json(breed)
 	})
 }
 
@@ -20,10 +20,10 @@ exports.get_breeds = (req, res, next) => {
 		 .sort([['name', 'ascending']])
 		 .exec((err, breeds) => {
 			 if(err)
-				 return res.sendStatus(403)
+				 return res.status(406).json(err)
 
 			 /* Success */
-			 res.json(breeds)
+			 res.status(200).json(breeds)
 		 })
 }
 
@@ -31,7 +31,7 @@ exports.get_breeds = (req, res, next) => {
 exports.get_breed = (req, res) => {
 	Breed.findById(req.query.id, (err, theBreed) => {
 		if(err)
-			return res.sendStatus(404)
+			return res.status(404).json(err)
 
 		/* Success */
 		res.status(200).json(theBreed)
