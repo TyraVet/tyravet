@@ -108,12 +108,20 @@ describe('BreedForm Component', () => {
 		expect(wrapper.vm.clearInput).toBeTruthy()
 	})
 
-	it('Should has a createService method', () => {
+	it('Should has a createBreed method', () => {
 		expect(wrapper.vm.createBreed).toBeTruthy()
+	})
+
+	it('Should has a getBreed method', () => {
+		expect(wrapper.vm.getBreed).toBeTruthy()
 	})
 
 	it('Should has a setOnSuccess method', () => {
 		expect(wrapper.vm.setOnSuccess).toBeTruthy()
+	})
+
+	it('Should has a fillOnSuccess method', () => {
+		expect(wrapper.vm.fillOnSuccess).toBeTruthy()
 	})
 
 	it('Should has a setOnError method', () => {
