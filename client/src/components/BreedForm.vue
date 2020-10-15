@@ -33,7 +33,7 @@ form#breed-form
 				has-icon
 				auto-close
 				v-if='status === 201 || status === 200'
-			) {{ statusText }}
+			)
 			b-message.message(
 				title='Error'
 				type='is-danger'
@@ -44,7 +44,7 @@ form#breed-form
 				has-icon
 				auto-close
 				v-if='status === 401 || status === 404'
-			) {{ error }}
+			)
 </template>
 
 <script lang='js'>
@@ -98,7 +98,7 @@ export default {
 			if(!this.breedId)
 				this.createBreed()
 			else
-				this.editBreed()
+				this.updateBreed()
 		},
 		createBreed(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_BREED, {
@@ -107,9 +107,9 @@ export default {
 				headers: {
 					Authorization: 'Bearer ' + this.$store.state.user.token
 				}
-			}).then((response) => {
+			}).then(response => {
 				this.setOnSuccess(response)
-			}).catch((error) => {
+			}).catch(error => {
 				this.setOnError(error)
 			})
 		},
@@ -127,7 +127,20 @@ export default {
 				this.setOnError(error)
 			})
 		},
-		editBreed(){}
+		updateBreed(){
+			axios.post(process.env.VUE_APP_TYRAWEB_UPDATE_BREED, {
+				id: this.breedId,
+				name: this.breedName
+			}, {
+				headers: {
+					Authorization: 'Bearer ' + this.$store.state.user.token
+				}
+			}).then(response => {
+				this.setOnSuccess(response)
+			}).catch(error => {
+				this.setOnError(error)
+			})
+		}
 	},
 	created(){
 		this.init()
