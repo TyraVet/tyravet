@@ -2,6 +2,8 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Buefy from 'buefy'
 import TableEditDelete from '@/components/TableEditDelete.vue'
 import ServiceForm from '@/components/ServiceForm.vue'
+import CreateUserForm from '@/components/CreateUserForm.vue'
+import BreedForm from '@/components/BreedForm.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -26,6 +28,7 @@ describe('TableEditDelete Component', () => {
 		expect(typeof TableEditDelete.data).toBe('function')
 		expect(data.isForServices).toBeFalsy()
 		expect(data.isForUsers).toBeFalsy()
+		expect(data.isForBreed).toBeFalsy()
 	})
 
 	const main = wrapper.get('#table-edit-delete')
@@ -78,11 +81,27 @@ describe('TableEditDelete Component', () => {
 		expect(wrapper.findComponent(ServiceForm)).toBeTruthy()
 	})
 
+	it('Should has imported a CreateUserForm Component', () => {
+		expect(wrapper.findComponent(CreateUserForm)).toBeTruthy()
+	})
+
+	it('Should has imported a BreedForm Component', () => {
+		expect(wrapper.findComponent(BreedForm)).toBeTruthy()
+	})
+
 	it('Should has a method to open ServiceForm', () => {
 		expect(wrapper.vm.launchServiceForm).toBeTruthy()
 	})
 
 	it('Should has a method to open CreateUserForm', () => {
 		expect(wrapper.vm.launchUserForm).toBeTruthy()
+	})
+
+	it('Should has a method to open BreedForm', () => {
+		expect(wrapper.vm.launchBreedForm).toBeTruthy()
+	})
+
+	it('Should has a method to open Delete Confirmation', () => {
+		expect(wrapper.vm.launchDeleteConfirmation).toBeTruthy()
 	})
 })

@@ -123,4 +123,12 @@ describe('Delete Confirmation Component', () => {
 	it('Should has a deleteService method', () => {
 		expect(wrapper.vm.deleteService).toBeTruthy()
 	})
+
+	it('Should has a deleteService method', () => {
+		expect(wrapper.vm.deleteUser).toBeTruthy()
+	})
+
+	it('Should has a deleteService method', () => {
+		expect(wrapper.vm.deleteBreed).toBeTruthy()
+	})
 })
