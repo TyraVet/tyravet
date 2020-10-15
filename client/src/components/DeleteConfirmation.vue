@@ -84,6 +84,8 @@ export default {
 				this.deleteService()
 			else if(this.type === 'user')
 				this.deleteUser()
+			else if(this.type === 'breed')
+				this.deleteBreed()
 		},
 		/* Set Success status to show check icon. */
 		setOnSuccess(response){
@@ -117,6 +119,20 @@ export default {
 				id: this.objectId,
 				type: this.userType
 			}, {
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				this.setOnSuccess(response)
+			}).catch(error => {
+				this.setOnError(error)
+			})
+		},
+		deleteBreed(){
+			axios.get(process.env.VUE_APP_TYRAWEB_DELETE_BREED, {
+				params: {
+					id: this.objectId
+				},
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
 				}
