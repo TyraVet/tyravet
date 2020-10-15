@@ -26,3 +26,14 @@ exports.get_breeds = (req, res, next) => {
 			 res.json(breeds)
 		 })
 }
+
+/* Get one Breed */
+exports.get_breed = (req, res) => {
+	Breed.findById(req.query.id, (err, theBreed) => {
+		if(err)
+			return res.sendStatus(404)
+
+		/* Success */
+		res.status(200).json(theBreed)
+	})
+}
