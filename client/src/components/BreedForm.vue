@@ -70,8 +70,10 @@ export default {
 	},
 	methods: {
 		init(){
-			if(this.breedId)
+			if(this.breedId){
 				this.title = 'Edit Breed'
+				this.getBreed()
+			}
 		},
 		clearInput(){
 			this.breedName = ''
@@ -81,6 +83,9 @@ export default {
 
 			if(!this.breedId)
 				this.clearInput()
+		},
+		fillOnSuccess(response){
+			this.breedName = response.data.name
 		},
 		setOnError(error){
 			if(error.response)
@@ -105,6 +110,20 @@ export default {
 			}).then((response) => {
 				this.setOnSuccess(response)
 			}).catch((error) => {
+				this.setOnError(error)
+			})
+		},
+		getBreed(){
+			axios.get(process.env.VUE_APP_TYRAWEB_FIND_BREED, {
+				params: {
+					id: this.breedId
+				},
+				headers: {
+					Authorization: 'Bearer ' + this.$store.state.user.token
+				}
+			}).then(response => {
+				this.fillOnSuccess(response)
+			}).catch(error => {
 				this.setOnError(error)
 			})
 		},
