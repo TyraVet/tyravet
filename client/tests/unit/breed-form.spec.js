@@ -116,6 +116,10 @@ describe('BreedForm Component', () => {
 		expect(wrapper.vm.getBreed).toBeTruthy()
 	})
 
+	it('Should has an updateBreed method', () => {
+		expect(wrapper.vm.updateBreed).toBeTruthy()
+	})
+
 	it('Should has a setOnSuccess method', () => {
 		expect(wrapper.vm.setOnSuccess).toBeTruthy()
 	})
