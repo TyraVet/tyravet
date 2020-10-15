@@ -2,7 +2,7 @@
 form#breed-form
 	div.modal-card( style='width: auto' )
 		header.modal-card-head
-			p.modal-card-title Create Breed
+			p.modal-card-title {{ title }}
 			button(
 				type='button'
 				class='delete'
@@ -52,37 +52,48 @@ import axios from 'axios'
 
 export default {
 	name: 'BreedForm',
+	props: {
+		breedId: {
+			type: String,
+			required: false,
+			default: null
+		}
+	},
 	data() {
 		return {
+			title: 'Create Breed',
 			breedName: '',
-			status: null,
-			statusText: '',
-			error: ''
+			status: null
 		}
 	},
 	methods: {
+		init(){
+			if(!this.breedId)
+				this.title = 'Edit Breed'
+		},
 		clearInput(){
 			this.breedName = ''
 		},
 		setOnSuccess(response){
 			this.status = response.status
-			this.statusText = response.statusText
-			this.clearInput()
+
+			if(!this.breedId)
+				this.clearInput()
 		},
 		setOnError(error){
-			if(error.response){
+			if(error.response)
 				this.status = error.response.status
-				this.error = error.response.statusText
-			}else if(error.request){
-				this.error = error.request
-			}else{
-				this.error = error.message
-			}
 		},
 		close(){
 			this.$emit('close')
 		},
 		send(){
+			if(!this.breedId)
+				this.createBreed()
+			else
+				this.editBreed()
+		},
+		createBreed(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_BREED, {
 				name: this.breedName
 			}, {
@@ -94,7 +105,11 @@ export default {
 			}).catch((error) => {
 				this.setOnError(error)
 			})
-		}
+		},
+		editBreed(){}
+	},
+	created(){
+		this.init()
 	}
 }
 </script>
