@@ -11,5 +11,6 @@ router.post('/create', authenticateToken, breed.post_create_breed)
 router.get('/', authenticateToken, breed.get_breeds)
 router.get('/find', authenticateToken, breed.get_breed)
 router.post('/update', authenticateToken, breed.update)
+router.get('/delete', authenticateToken, breed.delete)
 
 module.exports = router
