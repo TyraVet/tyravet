@@ -33,4 +33,32 @@ describe('BreedForm Component', () => {
 		expect(errorMessage.attributes().title).toMatch('Error')
 		expect(errorMessage.attributes().icon).toMatch('exclamation')
 	})
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.init).toBeTruthy()
+	})
+
+	it('Should has a close method', () => {
+		expect(wrapper.vm.close).toBeTruthy()
+	})
+
+	it('Should has a send method', () => {
+		expect(wrapper.vm.send).toBeTruthy()
+	})
+
+	it('Should has a clearInputs method', () => {
+		expect(wrapper.vm.clearInput).toBeTruthy()
+	})
+
+	it('Should has a createService method', () => {
+		expect(wrapper.vm.createBreed).toBeTruthy()
+	})
+
+	it('Should has a setOnSuccess method', () => {
+		expect(wrapper.vm.setOnSuccess).toBeTruthy()
+	})
+
+	it('Should has a setOnError method', () => {
+		expect(wrapper.vm.setOnError).toBeTruthy()
+	})
 })
