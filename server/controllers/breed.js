@@ -48,6 +48,17 @@ exports.update = (req, res) => {
 			return res.status(406).json(err)
 
 		/* Success */
-		res.status(201)
+		res.sendStatus(201)
+	})
+}
+
+/* Delete Breed */
+exports.delete = (req, res) => {
+	Breed.findByIdAndRemove(req.query.id, err => {
+		if(err)
+			return res.status(406).json(err)
+
+		/* Success */
+		res.sendStatus(200)
 	})
 }
