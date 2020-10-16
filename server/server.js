@@ -5,6 +5,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const serveStatic = require('serve-static')
+const fileUpload = require('express-fileupload')
 
 /* Defining port */
 const port = process.env.PORT || 3000
@@ -35,6 +36,9 @@ app.use(cors())
 
 /* Static Folder */
 app.use(serveStatic(__dirname + '../client/dist'))
+
+/* Upload Files */
+app.use(fileUpload({ createParentPath: true }))
 
 /* Using routes */
 app.use(process.env.TYRAWEB_ROUTE_USERS, userRouter)
