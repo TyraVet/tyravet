@@ -44,14 +44,20 @@ exports.post_add_owner = (req, res) => {
  *
  * Once we have that directory we process the image, change it's name
  * for the pet's id and then save it. */
-exports.upload_profile_picture = (req, res) => {
+exports.upload_profile_picture = async (req, res) => {
 	if(req.files){
-		let picture = req.files.picture
-		console.log(picture)
+		const picture = req.files.picture
 
-		let folder = checkPetPicturesFolder()
+		const folder = await checkPetPicturesFolder()
 		if(folder)
-			console.log('yes')
+			picture.mv('./uploads/pet-pictures/' + req.body.id + '.png',
+					   err => {
+				if(err)
+					return res.status(406).json(err)
+
+				/* Success */
+				res.sendStatus(201)
+			})
 	}else{
 		res.sendStatus(404)
 	}
