@@ -23,32 +23,32 @@ form#breed-form
 			b-button.button.is-success(
 				@click='send()'
 			) {{ labelButtonAccept }}
-			b-message.message(
+			b-icon#success-icon(
 				title='Success'
 				type='is-success'
-				aria-close-label='Close message'
-				icon-pack='fas'
-				icon-size='is-medium'
+				pack='fas'
+				size='is-large'
 				icon='check'
-				has-icon
-				auto-close
-				v-if='status === 201 || status === 200'
+				v-if='status === OK || status === CREATED'
 			)
-			b-message.message(
+			b-icon#error-icon(
 				title='Error'
 				type='is-danger'
-				aria-close-label='Close message'
-				icon-pack='fas'
-				icon-size='is-medium'
+				pack='fas'
+				size='is-large'
 				icon='exclamation'
-				has-icon
-				auto-close
-				v-if='status === 401 || status === 404'
+				v-if='status === AUTH || status === NOT_FOUND || status === ERROR'
 			)
 </template>
 
 <script lang='js'>
 import axios from 'axios'
+
+export const OK = 200
+export const CREATED = 201
+export const AUTH = 401
+export const NOT_FOUND = 404
+export const ERROR = 406
 
 export default {
 	name: 'BreedForm',
@@ -61,6 +61,11 @@ export default {
 	},
 	data() {
 		return {
+			OK,
+			CREATED,
+			AUTH,
+			NOT_FOUND,
+			ERROR,
 			title: 'Create Breed',
 			labelButtonCancel: 'Cancel',
 			labelButtonAccept: 'Accept',
