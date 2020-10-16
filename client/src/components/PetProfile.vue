@@ -6,6 +6,8 @@ div#pet-profile
 				:src='placeholder'
 			)
 			b-field.file.is-primary(
+				name='picture'
+				native
 				:class="{'has-name': !!file}"
 			)
 				b-upload.file-label( v-model='file' )
@@ -70,16 +72,12 @@ export default {
 		}
 	},
 	watch: {
+		/* We need a FormData object to send files over requests
+		 * so we append our image to that object to send it. */
 		file: function(){
-			axios.post(process.env.VUE_APP_TYRAWEB_PET_ADD_PICTURE, {
-				headers: {
-					Authorization: 'Bearer ' + this.user.token
-				}
-			}).then(response => {
-				console.log(response)
-			}).catch(error => {
-				console.error(error)
-			})
+			const formData = new FormData()
+			formData.append('picture', this.file, this.file.name)
+			this.sendPicture(formData)
 		}
 	},
 	methods: {
@@ -108,6 +106,16 @@ export default {
 				}
 			}).then(response => {
 				this.owner = response.data
+			}).catch(error => {
+				console.error(error)
+			})
+		},
+		sendPicture(picture){
+			axios.post(process.env.VUE_APP_TYRAWEB_PET_ADD_PICTURE, picture, {
+				headers: {
+					Authorization: 'Bearer ' + this.user.token,
+					'Content-Type': 'multipart/form-data'
+				}
 			}).catch(error => {
 				console.error(error)
 			})
