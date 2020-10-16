@@ -77,6 +77,7 @@ export default {
 		file: function(){
 			const formData = new FormData()
 			formData.append('picture', this.file, this.file.name)
+			formData.append('id', this.id)
 			this.sendPicture(formData)
 		}
 	},
@@ -110,12 +111,14 @@ export default {
 				console.error(error)
 			})
 		},
-		sendPicture(picture){
-			axios.post(process.env.VUE_APP_TYRAWEB_PET_ADD_PICTURE, picture, {
+		sendPicture(data){
+			axios.post(process.env.VUE_APP_TYRAWEB_PET_ADD_PICTURE, data, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token,
 					'Content-Type': 'multipart/form-data'
 				}
+			}).then(response => {
+				console.log(response)
 			}).catch(error => {
 				console.error(error)
 			})
