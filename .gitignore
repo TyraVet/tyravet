@@ -35,3 +35,6 @@ geckodriver.log
 
 # Log files
 npm-debug.log*
+
+# server created files
+uploads/

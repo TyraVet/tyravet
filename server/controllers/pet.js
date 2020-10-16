@@ -1,4 +1,5 @@
 const Pet = require('../models/pet.js')
+const fs = require('fs')
 
 /* Create Pet */
 /* When a client in created we first create it's pet. */
@@ -35,9 +36,44 @@ exports.post_add_owner = (req, res) => {
 	})
 }
 
-/* Upload Profile Picture */
-exports.post_upload_profile_picture = (req, res) => {
-	res.json({ error: 'Not implemented yet' })
+/* Upload Profile Picture
+ *
+ * So the user may want to upload a profile picture for a pet.
+ * What we need to do is before anything, create the uploads directory
+ * to save all the pet profile pictures inside that directory.
+ *
+ * Once we have that directory we process the image, change it's name
+ * for the pet's id and then save it. */
+exports.upload_profile_picture = async (req, res) => {
+	if(req.files){
+		const picture = req.files.picture
+
+		const folder = await checkPetPicturesFolder()
+		if(folder)
+			picture.mv('./uploads/pet-pictures/' + req.body.id + '.png',
+					   err => {
+				if(err)
+					return res.status(406).json(err)
+
+				/* Success */
+				res.sendStatus(201)
+			})
+	}else{
+		res.sendStatus(404)
+	}
+}
+
+function checkPetPicturesFolder(){
+	const pet_pictures_folder = 'uploads/pet-pictures'
+
+	try{
+		if(!fs.existsSync(pet_pictures_folder))
+			fs.mkdirSync(pet_pictures_folder)
+
+		return true
+	}catch(err){
+		console.error(err)
+	}
 }
 
 /* Get Pet */
