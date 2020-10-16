@@ -137,7 +137,7 @@ export default {
 			this.$router.push({ name: 'pet', params: { id } })
 		}
 	},
-	created() {
+	created(){
 		this.init()
 
 		/* Event Listeners */
