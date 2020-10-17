@@ -80,7 +80,7 @@ You need to create two ```.env``` files. One inside ```client/``` and the other
 inside ```server/``` and set the following Environment Variables:
 
 ### ```client/.env```
-#### Default port is 8080
+#### Default port is 3000
 | Name | Value |
 | ---- | ----- |
 | VUE_APP_TYRAWEB_USERS | host:port/users |
@@ -98,6 +98,7 @@ inside ```server/``` and set the following Environment Variables:
 | VUE_APP_TYRAWEB_PETS | host:port/pets/all |
 | VUE_APP_TYRAWEB_ADD_PET | host:port/pets/add-pet |
 | VUE_APP_TYRAWEB_PET_ADD_PICTURE | host:port/pets/upload-picture |
+| VUE_APP_TYRAWEB_PROFILE_PICTURE | host:port/pets/picture |
 | VUE_APP_TYRAWEB_CLIENTS | host:port/clients |
 | VUE_APP_TYRAWEB_CLIENT | host:port/clients/client |
 | VUE_APP_TYRAWEB_CREATE_CLIENT | host:port/clients/create |
@@ -113,7 +114,6 @@ inside ```server/``` and set the following Environment Variables:
 | VUE_APP_PLACEHOLDER | https://via.placeholder.com/500/?text=No+Profile+Picture |
 
 ### ```server/.env```
-#### Default port is 3000
 | Name | Value |
 | ---- | ----- |
 | MONGODB_TYRAWEB_TEST | mongodb://host:port/tyra-web-test |

@@ -36,6 +36,7 @@ app.use(cors())
 
 /* Static Folder */
 app.use(serveStatic(__dirname + '../client/dist'))
+app.use(express.static('uploads', { etag: false }))
 
 /* Upload Files */
 app.use(fileUpload({ createParentPath: true }))

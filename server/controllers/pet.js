@@ -76,6 +76,26 @@ function checkPetPicturesFolder(){
 	}
 }
 
+/* Get Profile Picture
+ *
+ * We need to check whether or not the file exists. */
+exports.get_profile_picture = (req, res) => {
+	const pet_picture = 'uploads/pet-pictures/' + req.query.id + '.png'
+	console.log(pet_picture)
+
+	try{
+		fs.access(pet_picture, err => {
+			if(err)
+				return res.status(406).json(err)
+
+			/* Success */
+			res.sendStatus(200)
+		})
+	}catch(err){
+		console.error(err)
+	}
+}
+
 /* Get Pet */
 /* Find Pet by Id. */
 exports.get_pet = (req, res) => {

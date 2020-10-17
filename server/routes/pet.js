@@ -10,5 +10,6 @@ var pet = require(path.join(__dirname, '../controllers/pet.js'))
 router.get('/', authenticateToken, pet.get_pet)
 router.get('/all', authenticateToken, pet.get_pets)
 router.post('/upload-picture', authenticateToken, pet.upload_profile_picture)
+router.get('/picture', authenticateToken, pet.get_profile_picture)
 
 module.exports = router

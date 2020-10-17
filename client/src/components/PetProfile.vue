@@ -3,7 +3,7 @@ div#pet-profile
 	section#pet-header
 		section#pet-profile-picture-container
 			img#pet-profile-picture(
-				:src='placeholder'
+				:src='picture'
 			)
 			b-field.file.is-primary(
 				name='picture'
@@ -39,6 +39,9 @@ import VaccinationRecord from './VaccinationRecord.vue'
 import MedicalRecord from './MedicalRecord.vue'
 import axios from 'axios'
 
+export const OK = 200
+export const CREATED = 201
+
 export default {
 	name: 'PetProfile',
 	components: { VaccinationRecord, MedicalRecord },
@@ -47,7 +50,9 @@ export default {
 	},
 	data(){
 		return{
-			placeholder: process.env.VUE_APP_PLACEHOLDER,
+			OK,
+			CREATED,
+			picture: process.env.VUE_APP_PLACEHOLDER,
 			file: null,
 			pet: {
 				name: '',
@@ -82,6 +87,12 @@ export default {
 		}
 	},
 	methods: {
+		init(){
+			this.getPet()
+		},
+		updateProfilePicture(){
+			this.picture = process.env.VUE_APP_TYRAWEB_PET_PROFILE_PICTURE + this.id + '.png'
+		},
 		getPet(){
 			axios.get(process.env.VUE_APP_TYRAWEB_PET, {
 				params: {
@@ -92,6 +103,7 @@ export default {
 				}
 			}).then(response => {
 				this.pet = response.data
+				this.isThereAProfilePicture()
 				this.getOwner()
 			}).catch(error => {
 				console.error(error)
@@ -118,14 +130,30 @@ export default {
 					'Content-Type': 'multipart/form-data'
 				}
 			}).then(response => {
-				console.log(response)
+				if(response.status === this.CREATED)
+					this.updateProfilePicture()
+			}).catch(error => {
+				console.error(error)
+			})
+		},
+		isThereAProfilePicture(){
+			axios.get(process.env.VUE_APP_TYRAWEB_PROFILE_PICTURE_EXISTS, {
+				params: {
+					id: this.id
+				},
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				if(response.status === this.OK)
+					this.updateProfilePicture()
 			}).catch(error => {
 				console.error(error)
 			})
 		}
 	},
 	created(){
-		this.getPet()
+		this.init()
 	}
 }
 </script>
