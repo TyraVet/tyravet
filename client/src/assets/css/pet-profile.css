@@ -13,6 +13,10 @@
 	margin: 0 1vw 0 1vw;
 }
 
+#pet-profile-picture {
+	object-fit: cover;
+}
+
 #pet-profile-picture-container {
 	display: flex;
 	flex-flow: column nowrap;
