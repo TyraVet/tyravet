@@ -160,9 +160,9 @@ export default {
 			canCancel: false,
 			fullwidth: true,
 			fullheight: true,
-			contribute: process.env.VUE_APP_CONTRIBUTE,
-			bug: process.env.VUE_APP_NEW_ISSUE,
-			mit: process.env.VUE_APP_MIT,
+			contribute: 'https://www.buymeacoffee.com/andrsrz',
+			bug: 'https://github.com/Andrsrz/tyra-web/issues/new',
+			mit: 'https://mit-license.org/',
 			isAdmin: false
 		}
 	},

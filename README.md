@@ -62,62 +62,68 @@ mongo
 > db.tyra.insert({ name: 'test' })
 ```
 ### Populate DB from your system
+#### Note: admin default password is inside the script
 ``` sh
 node server/populatedb.js
 ```
 
 ## App
-```client/```
+#### ```client/```
 Contains the Vue Application. In here we consume the API to display the
 information from the DataBase and also modify that information.
 
-```server/```
+#### ```server/```
 Constains the API.
 
 ### List of Environment Variables
 You need to create two ```.env``` files. One inside ```client/``` and the other
 inside ```server/``` and set the following Environment Variables:
 
-```client/.env```
-- VUE_APP_NEW_ISSUE
-- VUE_APP_MIT
-- VUE_APP_TYRAWEB_USERS
-- VUE_APP_TYRAWEB_FIND_USER
-- VUE_APP_TYRAWEB_LOGIN_USER
-- VUE_APP_TYRAWEB_CREATE_USER
-- VUE_APP_TYRAWEB_UPDATE_USER
-- VUE_APP_TYRAWEB_DELETE_USER
-- VUE_APP_TYRAWEB_BREEDS
-- VUE_APP_TYRAWEB_CREATE_BREED
-- VUE_APP_TYRAWEB_FIND_BREED
-- VUE_APP_TYRAWEB_UPDATE_BREED
-- VUE_APP_TYRAWEB_DELETE_BREED
-- VUE_APP_TYRAWEB_PET
-- VUE_APP_TYRAWEB_PETS
-- VUE_APP_TYRAWEB_CLIENTS
-- VUE_APP_TYRAWEB_CLIENT
-- VUE_APP_TYRAWEB_CREATE_CLIENT
-- VUE_APP_TYRAWEB_ADD_PET
-- VUE_APP_TYRAWEB_SERVICES
-- VUE_APP_TYRAWEB_CREATE_SERVICE
-- VUE_APP_TYRAWEB_SERVICE
-- VUE_APP_TYRAWEB_UPDATE_SERVICE
-- VUE_APP_TYRAWEB_DELETE_SERVICE
-- VUE_APP_TYRAWEB_DAY_SCHEDULES
-- VUE_APP_TYRAWEB_CREATE_DAY_SCHEDULE
-- VUE_APP_TYRAWEB_ADD_APPOINTMENT
-- VUE_APP_TYRAWEB_UPDATE_APPOINTMNETS
+### ```client/.env```
+#### Default port is 8080
+| Name | Value |
+| ---- | ----- |
+| VUE_APP_TYRAWEB_USERS | host:port/users |
+| VUE_APP_TYRAWEB_FIND_USER | host:port/users/find |
+| VUE_APP_TYRAWEB_LOGIN_USER | host:port/users/login |
+| VUE_APP_TYRAWEB_CREATE_USER | host:port/users/signup |
+| VUE_APP_TYRAWEB_UPDATE_USER | host:port/users/update |
+| VUE_APP_TYRAWEB_DELETE_USER | host:port/users/delete |
+| VUE_APP_TYRAWEB_BREEDS | host:port/breeds |
+| VUE_APP_TYRAWEB_CREATE_BREED | host:port/breeds/create |
+| VUE_APP_TYRAWEB_FIND_BREED | host:port/breeds/find |
+| VUE_APP_TYRAWEB_UPDATE_BREED | host:port/breeds/update |
+| VUE_APP_TYRAWEB_DELETE_BREED | host:port/breeds/delete |
+| VUE_APP_TYRAWEB_PET | host:port/pets |
+| VUE_APP_TYRAWEB_PETS | host:port/pets/all |
+| VUE_APP_TYRAWEB_ADD_PET | host:port/pets/add-pet |
+| VUE_APP_TYRAWEB_PET_ADD_PICTURE | host:port/pets/upload-picture |
+| VUE_APP_TYRAWEB_CLIENTS | host:port/clients |
+| VUE_APP_TYRAWEB_CLIENT | host:port/clients/client |
+| VUE_APP_TYRAWEB_CREATE_CLIENT | host:port/clients/create |
+| VUE_APP_TYRAWEB_SERVICES | host:port/services |
+| VUE_APP_TYRAWEB_CREATE_SERVICE | host:port/services/create |
+| VUE_APP_TYRAWEB_SERVICE | host:port/services/service |
+| VUE_APP_TYRAWEB_UPDATE_SERVICE | host:port/services/update |
+| VUE_APP_TYRAWEB_DELETE_SERVICE | host:port/services/delete |
+| VUE_APP_TYRAWEB_DAY_SCHEDULES | host:port/dayschedule |
+| VUE_APP_TYRAWEB_CREATE_DAY_SCHEDULE | host:port/dayschedule |
+| VUE_APP_TYRAWEB_ADD_APPOINTMENT | host:port/dayschedule/add-appointment |
+| VUE_APP_TYRAWEB_UPDATE_APPOINTMNETS | host:port/dayschedule/update-appointment |
+| VUE_APP_PLACEHOLDER | https://via.placeholder.com/500/?text=No+Profile+Picture |
 
-```server/.env```
-- MONGODB_TYRAWEB
-- MONGODB_TYRAWEB_TEST
-- ACCESS_TOKEN_SECRET
-- TYRAWEB_ROUTE_USERS
-- TYRAWEB_ROUTE_BREED
-- TYRAWEB_ROUTE_PETS
-- TYRAWEB_ROTUE_CLIENTS
-- TYRAWEB_ROUTE_SERVICES
-- TYRAWEB_ROUTE_DAY_SCHEDULES
+### ```server/.env```
+#### Default port is 3000
+| Name | Value |
+| ---- | ----- |
+| MONGODB_TYRAWEB_TEST | mongodb://host:port/tyra-web-test |
+| ACCESS_TOKEN_SECRET | random string |
+| TYRAWEB_ROUTE_USERS | /users |
+| TYRAWEB_ROUTE_BREED | /breeds |
+| TYRAWEB_ROUTE_PETS | /clients |
+| TYRAWEB_ROTUE_CLIENTS | /pets |
+| TYRAWEB_ROUTE_SERVICES | /services |
+| TYRAWEB_ROUTE_DAY_SCHEDULES | /dayschedule |
 
 ## Contributing
 If you find this project usefull for your professional life, consider
