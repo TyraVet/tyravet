@@ -43,8 +43,8 @@ section#delete-confirmation.modal-card( style: 'width: auto' )
 </template>
 
 <script lang='js'>
-import axios from 'axios'
 import { EventBus } from '../eventBus.js'
+import axios from 'axios'
 
 export default {
 	name: 'DeleteConfirmation',
@@ -95,6 +95,8 @@ export default {
 				EventBus.$emit('update-services')
 			else if(this.type === 'user')
 				EventBus.$emit('update-users')
+			else if(this.type === 'breed')
+				EventBus.$emit('update-breeds')
 		},
 		/* Set Error status to show warning icon. */
 		setOnError(error){
