@@ -42,6 +42,7 @@ form#breed-form
 </template>
 
 <script lang='js'>
+import { EventBus } from '../eventBus.js'
 import axios from 'axios'
 
 export const OK = 200
@@ -81,13 +82,13 @@ export default {
 			}
 		},
 		clearInput(){
-			this.breedName = ''
+			if(!this.breedId)
+				this.breedName = ''
 		},
 		setOnSuccess(response){
 			this.status = response.status
-
-			if(!this.breedId)
-				this.clearInput()
+			this.clearInput()
+			EventBus.$emit('update-breeds')
 		},
 		fillOnSuccess(response){
 			this.breedName = response.data.name

@@ -18,8 +18,9 @@ div#breed-list
 </template>
 
 <script lang='js'>
-import TableEditDelete from '@/components/TableEditDelete.vue'
 import axios from 'axios'
+import TableEditDelete from '@/components/TableEditDelete.vue'
+import { EventBus } from '../eventBus.js'
 
 export default {
 	name: 'BreedList',
@@ -52,6 +53,14 @@ export default {
 	},
 	created(){
 		this.init()
+
+		/* Event Listeners */
+
+		/* When a breed is created, updated or deleted, fetch
+		 * the breeds again to render to updated list. */
+		EventBus.$on('update-breeds', () => {
+			this.getBreeds()
+		})
 	}
 }
 </script>
