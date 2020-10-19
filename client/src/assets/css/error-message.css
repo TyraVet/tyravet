@@ -1,5 +1,5 @@
 #error-message {
-	width: max-content;
+	width: auto;
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
@@ -13,5 +13,6 @@
 }
 
 #message {
-	width: min-content;
+	width: auto;
+	padding-left: 5px;
 }
