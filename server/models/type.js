@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+const MONGOOSE = require('mongoose');
 
-var Schema = mongoose.Schema
+var Schema = MONGOOSE.Schema;
 
 var TypeSchema = new Schema({
 	name: { type: String, require: true }
-})
+});
 
-module.exports = mongoose.model('Type', TypeSchema)
+module.exports = MONGOOSE.model('Type', TypeSchema);
