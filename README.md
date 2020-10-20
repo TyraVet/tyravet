@@ -104,7 +104,7 @@ inside ```server/``` and set the following Environment Variables:
 | VUE_APP_TYRAWEB_CREATE_CLIENT | host:port/clients/create |
 | VUE_APP_TYRAWEB_SERVICES | host:port/services |
 | VUE_APP_TYRAWEB_CREATE_SERVICE | host:port/services/create |
-| VUE_APP_TYRAWEB_SERVICE | host:port/services/service |
+| VUE_APP_TYRAWEB_SERVICE | host:port/services/find |
 | VUE_APP_TYRAWEB_UPDATE_SERVICE | host:port/services/update |
 | VUE_APP_TYRAWEB_DELETE_SERVICE | host:port/services/delete |
 | VUE_APP_TYRAWEB_DAY_SCHEDULES | host:port/dayschedule |
