@@ -1,46 +1,45 @@
-const bcryptjs = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const User = require('../models/user.js')
-const Type = require('../models/type.js')
+const BCRYPTJS = require('bcryptjs');
+const JWT = require('jsonwebtoken');
+const USER = require('../models/user.js');
+const TYPE = require('../models/type.js');
 
-const medic = new Type({ name: 'medic' })
-const admin = new Type({ name: 'admin' })
+const MEDIC = new TYPE({ name: 'medic' });
+const ADMIN = new TYPE({ name: 'admin' });
 
-/* Find User by ID to keep it logged in */
-exports.get_user = (req, res) => {
-	User.findById(req.query.id).exec((err, user) => {
+/* Find USER by ID to keep it logged in */
+exports.getUser = (req, res) => {
+	USER.findById(req.query.id).exec((err, user) => {
 		if(err)
-			return res.status(401).json(err)
+			return res.status(401).json(err);
 
 		if(user == null)
-			return res.status(404).json({ error: 'User dont exists' })
+			return res.status(404).json({ error: "User doesn't exists" });
 
 		/* Success */
 		res.status(200).json({
 			msg: 'User Exists',
 			username: user.username,
 			type: user.type
-		})
-	})
-}
+		});
+	});
+};
 
 /* Find User to LogIn */
-exports.get_login = (req, res) => {
-	const username = req.query.username
-	const password = req.query.password
+exports.login = (req, res) => {
+	const USERNAME = req.query.username;
+	const PASSWORD = req.query.password;
 
-	User.findOne({ username }).then(user => {
+	USER.findOne({ USERNAME }).then(user => {
 		if(!user)
-			res.status(404).json({
-				msg: 'User does not exists'
-			}).send()
+			return res.status(404).json({ msg: "User does't exists" });
 
-		bcryptjs.compare(password, user.password, (err, data) => {
+		BCRYPTJS.compare(PASSWORD, user.password, (err, data) => {
 			if(err)
-				throw err
+				throw err;
 
 			if(data){
-				const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET)
+				const ACCESS_TOKEN = JWT.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET)
+
 				res.status(200).json({
 					msg: 'LogIn Success',
 					user: {
@@ -48,89 +47,84 @@ exports.get_login = (req, res) => {
 						username: user.username,
 						type: user.type
 					},
-					accessToken: accessToken
-				}).send()
+					accessToken: ACCESS_TOKEN
+				});
 			}else{
-				res.status(401).json({
-					msg: 'Invalid Credentials'
-				}).send()
+				res.status(401).json({ msg: 'Invalid Credentials' });
 			}
-		})
-	})
-}
+		});
+	});
+};
 
 /* Create User */
-exports.post_signup = (req, res) => {
-	bcryptjs.hash(req.body.password, 10, (err, hashedPassword) => {
+exports.signup = (req, res) => {
+	BCRYPTJS.hash(req.body.password, 10, (err, hashed_password) => {
 		if(err)
-			return res.status(406).json(err)
+			return res.status(406).json(err);
 
-		/* Success */
-		const type = new Type({ name: req.body.type })
+		const MY_TYPE = new TYPE({ name: req.body.type });
 
-		const user = new User({
+		const user = new USER({
 			username: req.body.username,
-			password: hashedPassword,
-			type: type
+			password: hashed_password,
+			type: MY_TYPE
 		}).save(err => {
 			if(err)
-				return res.status(406).json(err)
+				return res.status(406).json(err);
 
 			/* Success */
-			res.sendStatus(201)
-		})
-	})
-}
+			res.sendStatus(201);
+		});
+	});
+};
 
 /* Update User */
-exports.post_update = (req, res) => {
-	bcryptjs.hash(req.body.password, 10, (err, hashedPassword) => {
+exports.update = (req, res) => {
+	BCRYPTJS.hash(req.body.password, 10, (err, hashed_password) => {
 		if(err)
-			return res.status(406).json(err)
+			return res.status(406).json(err);
 
 		/* Success */
-		const type = new Type({ name: req.body.type })
+		const MY_TYPE = new TYPE({ name: req.body.type });
 
-		User.findByIdAndUpdate(req.body.id, {
+		USER.findByIdAndUpdate(req.body.id, {
 			_id: req.body.id,
 			username: req.body.username,
-			password: hashedPassword,
-			type: type
+			password: hashed_password,
+			type: MY_TYPE
 		}, err => {
 			if(err)
-				return res.status(406).json(err)
+				return res.status(406).json(err);
 
 			/* Success */
-			res.sendStatus(201)
-		})
-	})
-}
+			res.sendStatus(201);
+		});
+	});
+};
 
 /* Get all Users */
-exports.get_users = (req, res, next) => {
-	User.find()
+exports.getUsers = (req, res, next) => {
+	USER.find()
 		.populate('user')
 		.exec((err, users) => {
 			if(err)
-				return res.sendStatus(406)
+				return res.status(406).json(err);
 
 			/* Success */
-			res.status(200).json(users)
-		})
-}
+			res.status(200).json(users);
+		});
+};
 
 /* Delete User */
-exports.post_delete = (req, res) => {
+exports.delete = (req, res) => {
 	if(req.body.type === 'admin')
-		return res.status(406).json({
-			message: 'Can not remove admin user'
-		})
+		return res.status(406).json({ msg: "Can't remove admin user" });
 
-	User.findByIdAndRemove(req.body.id, (err) => {
+	USER.findByIdAndRemove(req.body.id, (err) => {
 		if(err)
-			return res.status(406).json(err)
+			return res.status(406).json(err);
 
 		/* Success */
-		res.sendStatus(200)
-	})
-}
+		res.sendStatus(200);
+	});
+};

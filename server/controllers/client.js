@@ -1,83 +1,92 @@
-const Client = require('../models/client.js')
-const Pet = require('../models/pet.js')
-const Address = require('../models/address.js')
+const CLIENT = require('../models/client.js');
+const PET = require('../models/pet.js');
+const ADDRESS = require('../models/address.js');
 
-/* Create Client */
-/* Here we get the pet previously created and use it to
+/* Create Client
+ *
+ * The user may want to create a client for the application.
+ *
+ * Here we get the pet previously created and use it to
  * populate that attribute of the client. */
-exports.post_create_client = (req, res, next) => {
-	const address = new Address({
+exports.createClient = (req, res, next) => {
+	const address = new ADDRESS({
 		street: req.body.street,
 		number: req.body.number,
-		intNumber: req.body.intNumber,
-		postalCode: req.body.postalCode
-	})
+		int_number: req.body.int_number,
+		postal_code: req.body.postal_code
+	});
 
-	var pets = []
-	pets.push(res.locals.pet._id)
+	var pets = [];
+	pets.push(res.locals.pet._id);
 
-	const client = new Client({
+	const client = new CLIENT({
 		name: req.body.name,
 		phone: req.body.phone,
 		pets: pets,
 		address: address
-	}).save((err, theClient) => {
+	}).save((err, client) => {
 		if(err)
-			return next(err)
+			return next(err);
 
 		/* Success */
-		res.locals.client = theClient
-		next()
-	})
-}
+		res.locals.client = client;
+		next();
+	});
+};
 
-/* Get all Clients */
-exports.get_clients = (req, res, next) => {
-	Client.find()
+/* Get all Clients
+ *
+ * The user may want to get the list of all available clients. */
+exports.getClients = (req, res) => {
+	CLIENT.find()
 		  .populate('client')
 		  .sort([['name', 'ascending']])
 		  .exec((err, clients) => {
 			  if(err)
-				  return res.sendStatus(403)
+				  return res.sendStatus(403);
 
 			  /* Success */
-			  res.json(clients)
-		  })
-}
+			  res.json(clients);
+		  });
+};
 
-/* Get one Client */
-exports.get_client = (req, res, next) => {
-	Client.findById(req.query.id, (err, client) => {
+/* Get one Client
+ *
+ * The user may want to see only one Client to Edit, Delete or See it. */
+exports.getClient = (req, res) => {
+	CLIENT.findById(req.query.id, (err, client) => {
 		if(err)
-			res.status(403).json()
+			res.status(403).json();
 
 		if(client)
 			/* Success */
-			res.status(200).json(client)
+			res.status(200).json(client);
 		else
-			res.status(404).json()
-	})
-}
+			res.status(404).json();
+	});
+};
 
-/* Add Pet to Client */
-exports.post_add_pet = (req, res, next) => {
-	Client.findById(req.body.id, (err, client) => {
+/* Add Pet to Client
+ *
+ * When our Client is created we add the main pet. */
+exports.addPetToClient = (req, res, next) => {
+	CLIENT.findById(req.body.id, (err, client) => {
 		if(err)
-			res.status(403).json(err)
+			res.status(403).json(err);
 
 		/* Success */
-		let pets = client.pets
-		pets.push(res.locals.pet)
+		let pets = client.pets;
+		pets.push(res.locals.pet);
 
-		Client.findByIdAndUpdate(req.body.id,
+		CLIENT.findByIdAndUpdate(req.body.id,
 								{ pets: pets },
-								(err, theClient) => {
+								(err, client) => {
 			if(err)
-				res.status(403).json(err)
+				res.status(403).json(err);
 
 			/* Success */
-			res.locals.client = theClient
-			next()
-		})
-	})
-}
+			res.locals.client = client;
+			next();
+		});
+	});
+};

@@ -1,24 +1,24 @@
-const express = require('express')
-const router = express.Router()
-const path = require('path')
-const authenticateToken = require('../middlewares/authenticateToken.js')
+const EXPRESS = require('express');
+const ROUTER = EXPRESS.Router();
+const PATH = require('path');
+const AUTH_TOKEN = require('../middlewares/authenticateToken.js');
 
 /* Require Controller Modules */
-var client = require(path.join(__dirname, '../controllers/client.js'))
-var pet = require(path.join(__dirname, '../controllers/pet.js'))
+const CLIENT = require(PATH.join(__dirname, '../controllers/client.js'));
+const PET = require(PATH.join(__dirname, '../controllers/pet.js'));
 
 /* Client Routes */
-router.post('/create',
-			authenticateToken,
-			pet.post_create_pet,
-			client.post_create_client,
-			pet.post_add_owner)
-router.get('/', authenticateToken, client.get_clients)
-router.get('/client', authenticateToken, client.get_client)
-router.post('/add-pet',
-			authenticateToken,
-			pet.post_create_pet,
-			client.post_add_pet,
-			pet.post_add_owner)
+ROUTER.post('/create',
+			AUTH_TOKEN,
+			PET.createPet,
+			CLIENT.createClient,
+			PET.addOwnerToPet);
+ROUTER.get('/', AUTH_TOKEN, CLIENT.getClients);
+ROUTER.get('/client', AUTH_TOKEN, CLIENT.getClient);
+ROUTER.post('/add-pet',
+			AUTH_TOKEN,
+			PET.createPet,
+			CLIENT.addPetToClient,
+			PET.addOwnerToPet);
 
-module.exports = router
+module.exports = ROUTER;

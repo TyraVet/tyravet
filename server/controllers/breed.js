@@ -1,64 +1,64 @@
-const Breed = require('../models/breed.js')
+const BREED = require('../models/breed.js');
 
 /* Create Breed */
-exports.post_create_breed = (req, res) => {
-	const breed = new Breed({
+exports.createBreed = (req, res) => {
+	const MY_BREED = new BREED({
 		name: req.body.name,
 	}).save(err => {
 		if(err)
-			return res.status(406).json(err)
+			return res.status(406).json(err);
 
 		/* Success */
-		res.status(201).json(breed)
-	})
-}
+		res.status(201).json(MY_BREED);
+	});
+};
 
-/* Get all Breeds */
-exports.get_breeds = (req, res) => {
-	Breed.find()
+/* Get all breeds */
+exports.getBreeds = (req, res) => {
+	BREED.find()
 		 .populate('breed')
 		 .sort([['name', 'ascending']])
 		 .exec((err, breeds) => {
 			 if(err)
-				 return res.status(406).json(err)
+				 return res.status(406).json(err);
 
 			 /* Success */
-			 res.status(200).json(breeds)
-		 })
-}
+			 res.status(200).json(breeds);
+		 });
+};
 
-/* Get one Breed */
-exports.get_breed = (req, res) => {
-	Breed.findById(req.query.id, (err, theBreed) => {
+/* Get a Breed */
+exports.getBreed = (req, res) => {
+	BREED.findById(req.query.id, (err, breed) => {
 		if(err)
-			return res.status(404).json(err)
+			return res.status(404).json(err);
 
 		/* Success */
-		res.status(200).json(theBreed)
-	})
-}
+		res.status(200).json(breed);
+	});
+};
 
-/* Edit Breed */
+/* Update Breed */
 exports.update = (req, res) => {
-	Breed.findByIdAndUpdate(req.body.id, {
+	BREED.findByIdAndUpdate(req.body.id, {
 		_id: req.body.id,
 		name: req.body.name
 	}, err => {
 		if(err)
-			return res.status(406).json(err)
+			return res.status(406).json(err);
 
 		/* Success */
-		res.sendStatus(201)
-	})
-}
+		res.sendStatus(201);
+	});
+};
 
 /* Delete Breed */
 exports.delete = (req, res) => {
-	Breed.findByIdAndRemove(req.query.id, err => {
+	BREED.findByIdAndRemove(req.query.id, err => {
 		if(err)
-			return res.status(406).json(err)
+			return res.status(406).json(err);
 
 		/* Success */
-		res.sendStatus(200)
-	})
-}
+		res.sendStatus(200);
+	});
+};

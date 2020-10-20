@@ -1,14 +1,14 @@
-const mongoose = require('mongoose')
-const Service = require('./schemas/service.js')
+const MONGOOSE = require('mongoose');
+const SERVICE = require('./schemas/service.js');
 
-var Schema = mongoose.Schema
+var Schema = MONGOOSE.Schema;
 
 const AppointmentSchema = new Schema({
-	service: { type: Service, required: true },
-	clientId: { type: String, required: true },
-	petId: { type: String, required: true },
+	service: { type: SERVICE, required: true },
+	client_id: { type: String, required: true },
+	pet_id: { type: String, required: true },
 	hour: { type: String, required: true },
 	done: { type: Boolean, default: false }
-})
+});
 
-module.exports = mongoose.model('Appointment', AppointmentSchema)
+module.exports = MONGOOSE.model('Appointment', AppointmentSchema);
