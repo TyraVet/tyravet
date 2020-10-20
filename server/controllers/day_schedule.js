@@ -1,78 +1,87 @@
-const moment = require('moment')
-const DaySchedule = require('../models/day_schedule.js')
-const Appointment = require('../models/appointment.js')
+const MOMENT = require('moment');
+const DAY_SCHEDULE = require('../models/day_schedule.js');
+const APPOINTMENT = require('../models/appointment.js');
 
-/* POST Find the current DaySchedule, if there are none, create new */
-exports.post_day_schedule = (req, res, next) => {
-	DaySchedule.findOne({ date: new Date(req.body.date) }, (err, daySchedule) => {
+/* Create Day Schedule or Get Day Schedule
+ *
+ * When the user enters the application it should return the current
+ * day schedule of the day. If the day schedule isn't in the database
+ * it should create one. */
+exports.daySchedule = (req, res) => {
+	DAY_SCHEDULE.findOne({ date: new Date(req.body.date) }, (err, MyDaySchedule) => {
 		if(err)
-			res.status(403).json(err)
+			res.status(406).json(err);
 
-		if(!daySchedule){
+		if(!MyDaySchedule){
 			/* The date has a very specific format, so to avoid any issues
 			 * we better create a temporal date, formatted and create a new
 			 * date as today and then compare. */
-			let tempDate = new Date()
-			tempDate = moment(tempDate).format('YYYY-MM-DD')
-			today = new Date(tempDate)
-			const requestDay = new Date(req.body.date)
+			let temp_date = new Date();
+			temp_date = MOMENT(temp_date).format('YYYY-MM-DD');
+			today = new Date(temp_date);
+			const REQUEST_DAY = new Date(req.body.date);
 
-			if(requestDay < today){
-				res.status(410).json()
+			if(REQUEST_DAY < today){
+				res.status(410).json();
 			}else{
-				const newDaySchedule = new DaySchedule({
+				const NewDaySchedule = new DaySchedule({
 					date: req.body.date,
 					appointments: []
-				}).save((err, theDaySchedule) => {
+				}).save((err, NewDaySchedule) => {
 					if(err)
-						res.status(403).json(err)
+						res.status(406).json(err);
 
 					/* Success */
-					res.status(201).json(theDaySchedule)
+					res.status(201).json(NewDaySchedule);
 				})
 			}
 		}else{
 			/* Success */
-			res.status(200).json(daySchedule)
+			res.status(200).json(MyDaySchedule);
 		}
-	})
-}
+	});
+};
 
-/* POST Add Appointment into the Schedule */
-exports.post_add_appointment = (req, res, next) => {
-	if(!req.body.service || !req.body.clientId || !req.body.petId)
-		return res.status(406).json({ error: 'No Service or Client send' })
+/* Add Appointment
+ *
+ * The user can add appointments to the day schedule. */
+exports.addAppointment = (req, res) => {
+	if(!req.body.service || !req.body.client_id || !req.body.pet_id)
+		return res.status(406).json({ error: 'No Service or Client send' });
 
-	const appointment = new Appointment({
+	const MY_APPOINTMENT = new APPOINTMENT({
 		service: req.body.service,
-		clientId: req.body.clientId,
-		petId: req.body.petId,
+		client_id: req.body.client_id,
+		pet_id: req.body.pet_id,
 		hour: req.body.hour
-	})
+	});
 
-	let appointments = req.body.appointments
-	appointments.push(appointment)
+	let appointments = req.body.appointments;
+	appointments.push(appointment);
 
-	DaySchedule.findByIdAndUpdate(req.body.id,
+	DAY_SCHEDULE.findByIdAndUpdate(req.body.id,
 								  { appointments: appointments },
 								  err => {
 		if(err)
-			res.status(403).json(err)
+			res.status(406).json(err);
 
 		/* Success */
-		res.status(201).json(appointments)
-	})
-}
+		res.status(201).json(appointments);
+	});
+};
 
-/* POST update Appointments when click on done */
-exports.post_update_appointments = (req, res, next) => {
-	DaySchedule.findByIdAndUpdate(req.body.id,
+/* Update Appointment
+ *
+ * The user can change the appointment state from un-done to done
+ * and from done to un-done. */
+exports.updateAppointment = (req, res, next) => {
+	DAY_SCHEDULE.findByIdAndUpdate(req.body.id,
 								  { appointments: req.body.appointments },
 								  (err, appointments) => {
 		if(err)
-			res.status(403).json(err)
+			res.status(406).json(err);
 
 		/* Success */
-		res.status(201).json(appointments)
-	})
-}
+		res.status(201).json(appointments);
+	});
+};

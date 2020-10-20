@@ -1,14 +1,14 @@
-const express = require('express')
-const router = express.Router()
-const path = require('path')
-const authenticateToken = require('../middlewares/authenticateToken.js')
+const EXPRESS = require('express');
+const ROUTER = EXPRESS.Router();
+const PATH = require('path');
+const AUTH_TOKEN = require('../middlewares/authenticateToken.js');
 
 /* Require DaySchedule Module */
-var daySchedule = require(path.join(__dirname, '../controllers/day_schedule.js'))
+const DAY_SCHEDULE = require(PATH.join(__dirname, '../controllers/day_schedule.js'));
 
 /* DaySchedule Routes */
-router.post('/', authenticateToken, daySchedule.post_day_schedule)
-router.post('/add-appointment', authenticateToken, daySchedule.post_add_appointment)
-router.post('/update-appointments', authenticateToken, daySchedule.post_update_appointments)
+ROUTER.post('/', AUTH_TOKEN, DAY_SCHEDULE.daySchedule);
+ROUTER.post('/add-appointment', AUTH_TOKEN, DAY_SCHEDULE.addAppointment);
+ROUTER.post('/update-appointments', AUTH_TOKEN, DAY_SCHEDULE.updateAppointment);
 
-module.exports = router
+module.exports = ROUTER;
