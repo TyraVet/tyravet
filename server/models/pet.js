@@ -9,6 +9,7 @@ var PetSchema = new Schema({
 	age: { type: Number },
 	weight: { type: Number },
 	breed: { type: BreedSchema },
+	female_or_male: { type: String },
 	owner: { type: mongoose.ObjectId, required: false },
 	vaccinationRecord: { type: Array, required: false, defaul: [] },
 	medialRecord: { type: Array, required: false, default: [] }
