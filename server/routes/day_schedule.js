@@ -4,7 +4,7 @@ const path = require('path')
 const authenticateToken = require('../middlewares/authenticateToken.js')
 
 /* Require DaySchedule Module */
-var daySchedule = require(path.join(__dirname, '../controllers/daySchedule.js'))
+var daySchedule = require(path.join(__dirname, '../controllers/day_schedule.js'))
 
 /* DaySchedule Routes */
 router.post('/', authenticateToken, daySchedule.post_day_schedule)

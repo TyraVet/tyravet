@@ -1,5 +1,5 @@
 const moment = require('moment')
-const DaySchedule = require('../models/daySchedule.js')
+const DaySchedule = require('../models/day_schedule.js')
 const Appointment = require('../models/appointment.js')
 
 /* POST Find the current DaySchedule, if there are none, create new */
