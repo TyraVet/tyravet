@@ -1,18 +1,18 @@
-const mongoose = require('mongoose')
-const BreedSchema = require('./schemas/breed.js')
+const MONGOOSE = require('mongoose');
+const BREED = require('./schemas/breed.js');
 
-var Schema = mongoose.Schema
+var Schema = MONGOOSE.Schema;
 
 var PetSchema = new Schema({
 	name: { type: String, required: true },
-	birthday: { type: Date },
+	birthdate: { type: Date },
 	age: { type: Number },
 	weight: { type: Number },
-	breed: { type: BreedSchema },
+	breed: { type: BREED },
 	female_or_male: { type: String },
-	owner: { type: mongoose.ObjectId, required: false },
-	vaccinationRecord: { type: Array, required: false, defaul: [] },
-	medialRecord: { type: Array, required: false, default: [] }
-})
+	owner: { type: MONGOOSE.ObjectId, required: false },
+	vaccination_record: { type: Array, required: false, defaul: [] },
+	medial_record: { type: Array, required: false, default: [] }
+});
 
-module.exports = mongoose.model('Pet', PetSchema)
+module.exports = MONGOOSE.model('Pet', PetSchema);
