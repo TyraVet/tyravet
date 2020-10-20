@@ -1,41 +1,46 @@
-const Pet = require('../models/pet.js')
-const fs = require('fs')
+const PET = require('../models/pet.js');
+const FS = require('fs');
 
-/* Create Pet */
-/* When a client in created we first create it's pet. */
-exports.post_create_pet = (req, res, next) => {
-	const pet = new Pet({
-		name: req.body.petName,
-		birthday: req.body.petBirthday,
-		age: req.body.petAge,
-		weight: req.body.petWeight,
-		breed: req.body.petBreed,
+/* Create Pet
+ *
+ * The user may want to create a pet to the application.
+ *
+ * When a client in created we first create it's pet. */
+exports.createPet = (req, res) => {
+	const pet = new PET({
+		name: req.body.pet_name,
+		birthdate: req.body.pet_birthdate,
+		age: req.body.pet_age,
+		weight: req.body.pet_weight,
+		breed: req.body.pet_breed,
 		female_or_male: req.body.pet_female_or_male,
-	}).save((err, thePet) => {
+	}).save((err, pet) => {
 		if(err)
-			return next(err)
+			return res.status(406).json(err);
 
-		/* Success */
-		/* Send Pet to next method */
-		res.locals.pet = thePet
-		next()
-	})
-}
+		/* Success
+		 *
+		 * Send Pet to createClient method in Client Controller. */
+		res.locals.pet = pet;
+		next();
+	});
+};
 
-/* Add Owner to Pet */
-/* Once the client is created we update the pet to
+/* Add Owner to Pet
+ *
+ * Once the client is created we update the pet to
  * set the owner attribute. */
-exports.post_add_owner = (req, res) => {
-	Pet.findByIdAndUpdate(res.locals.pet._id,
+exports.addOwnerToPet = (req, res) => {
+	PET.findByIdAndUpdate(res.locals.pet._id,
 						  { owner: res.locals.client._id },
-						  (err, thePet) => {
+						  err => {
 		if(err)
-			res.status(403).json(err)
+			res.status(403).json(err);
 
 		/* Success */
-		res.status(201).json()
-	})
-}
+		res.status(201).json();
+	});
+};
 
 /* Upload Profile Picture
  *
@@ -45,83 +50,87 @@ exports.post_add_owner = (req, res) => {
  *
  * Once we have that directory we process the image, change it's name
  * for the pet's id and then save it. */
-exports.upload_profile_picture = async (req, res) => {
+exports.uploadProfilePicture = async (req, res) => {
 	if(req.files){
-		const picture = req.files.picture
+		const PICTURE = req.files.picture;
 
-		const folder = await checkPetPicturesFolder()
-		if(folder)
-			picture.mv('./uploads/pet-pictures/' + req.body.id + '.png',
+		const FOLDER = await checkPETPicturesFolder();
+
+		if(FOLDER)
+			PICTURE.mv('./uploads/pet-pictures/' + req.body.id + '.png',
 					   err => {
 				if(err)
-					return res.status(406).json(err)
+					return res.status(406).json(err);
 
 				/* Success */
-				res.sendStatus(201)
-			})
+				res.sendStatus(201);
+			});
 	}else{
-		res.sendStatus(404)
+		res.sendStatus(404);
 	}
-}
+};
 
 function checkPetPicturesFolder(){
-	const pet_pictures_folder = 'uploads/pet-pictures'
+	const PET_PICTURES_FOLDER = 'uploads/pet-pictures';
 
 	try{
-		if(!fs.existsSync(pet_pictures_folder))
-			fs.mkdirSync(pet_pictures_folder)
+		if(!FS.existsSync(PET_PICTURES_FOLDER));
+			FS.mkdirSync(PET_PICTURES_FOLDER);
 
-		return true
+		return true;
 	}catch(err){
-		console.error(err)
+		console.error(err);
+		return false;
 	}
-}
+};
 
 /* Get Profile Picture
  *
  * We need to check whether or not the file exists. */
-exports.get_profile_picture = (req, res) => {
-	const pet_picture = 'uploads/pet-pictures/' + req.query.id + '.png'
-	console.log(pet_picture)
+exports.getProfilePicture = (req, res) => {
+	const PET_PICTURE = 'uploads/pet-pictures/' + req.query.id + '.png';
 
 	try{
-		fs.access(pet_picture, err => {
+		FS.access(PET_PICTURE, err => {
 			if(err)
-				return res.status(406).json(err)
+				return res.status(406).json(err);
 
 			/* Success */
-			res.sendStatus(200)
+			res.sendStatus(200);
 		})
 	}catch(err){
-		console.error(err)
+		return res.status(406).json(err);
 	}
-}
+};
 
-/* Get Pet */
-/* Find Pet by Id. */
-exports.get_pet = (req, res) => {
-	Pet.findById(req.query.id, (err, pet) => {
+/* Get Pet
+ *
+ * The user may want just one Pet to See, Edit or Delete it. */
+exports.getPet = (req, res) => {
+	PET.findById(req.query.id, (err, pet) => {
 		if(err)
-			res.status(403).json()
+			res.status(403).json(err);
 
 		if(pet)
 			/* Success */
-			res.status(200).json(pet)
+			res.status(200).json(pet);
 		else
-			res.status(404).json()
-	})
-}
+			res.sendStatus(404);
+	});
+};
 
-/* Get all Pets */
-exports.get_pets = (req, res) => {
-	Pet.find()
+/* Get all Pet
+ *
+ * The user may want to see a list of all the available pets. */
+exports.getPets = (req, res) => {
+	PET.find()
 		  .populate('client')
 		  .sort([['name', 'ascending']])
 		  .exec((err, pets) => {
 			  if(err)
-				  return res.sendStatus(403)
+				  return res.status(406).json(err);
 
 			  /* Success */
-			  res.json(pets)
-		  })
-}
+			  res.status(200).json(pets);
+		  });
+};

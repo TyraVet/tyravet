@@ -1,15 +1,15 @@
-const express = require('express')
-const router = express.Router()
-const path = require('path')
-const authenticateToken = require('../middlewares/authenticateToken.js')
+const EXPRESS = require('express');
+const ROUTER = EXPRESS.Router();
+const PATH = require('path');
+const AUTH_TOKEN = require('../middlewares/authenticateToken.js');
 
 /* Require Controller Modules */
-var pet = require(path.join(__dirname, '../controllers/pet.js'))
+const PET = require(PATH.join(__dirname, '../controllers/pet.js'));
 
 /* Pet Routes */
-router.get('/', authenticateToken, pet.get_pet)
-router.get('/all', authenticateToken, pet.get_pets)
-router.post('/upload-picture', authenticateToken, pet.upload_profile_picture)
-router.get('/picture', authenticateToken, pet.get_profile_picture)
+ROUTER.get('/', AUTH_TOKEN, PET.getPet);
+ROUTER.get('/all', AUTH_TOKEN, PET.getPets);
+ROUTER.post('/upload-picture', AUTH_TOKEN, PET.uploadProfilePicture);
+ROUTER.get('/picture', AUTH_TOKEN, PET.getProfilePicture);
 
-module.exports = router
+module.exports = ROUTER;
