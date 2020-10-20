@@ -1,13 +1,13 @@
-const mongoose = require('mongoose')
-const Address = require('./address.js')
+const MONGOOSE = require('mongoose');
+const ADDRESS = require('./address.js');
 
-var Schema = mongoose.Schema
+var Schema = MONGOOSE.Schema;
 
 var ClientSchema = new Schema({
 	name: { type: String, required: true },
 	phone: { type: Number, required: true },
-	pets: { type: [mongoose.ObjectId], required: true },
-	address: { type: Address, default: {} }
-})
+	pets: { type: [MONGOOSE.ObjectId], required: true },
+	address: { type: ADDRESS, default: {} }
+});
 
-module.exports = ClientSchema
+module.exports = ClientSchema;
