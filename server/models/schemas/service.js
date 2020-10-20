@@ -1,10 +1,10 @@
-const mongoose = require('mongoose')
+const MONGOOSE = require('mongoose');
 
-var Schema = mongoose.Schema
+var Schema = MONGOOSE.Schema;
 
 var ServiceSchema = new Schema({
 	name: { type: String, required: true },
 	price: { type: Number, required: true }
-})
+});
 
-module.exports = ServiceSchema
+module.exports = ServiceSchema;
