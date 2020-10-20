@@ -9,7 +9,8 @@ exports.post_create_pet = (req, res, next) => {
 		birthday: req.body.petBirthday,
 		age: req.body.petAge,
 		weight: req.body.petWeight,
-		breed: req.body.petBreed
+		breed: req.body.petBreed,
+		female_or_male: req.body.pet_female_or_male,
 	}).save((err, thePet) => {
 		if(err)
 			return next(err)
