@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+const MONGOOSE = require('mongoose');
 
-var Schema = mongoose.Schema
+var Schema = MONGOOSE.Schema;
 
 var BreedSchema = new Schema({
 	name: { type: String, required: true }
-})
+});
 
-module.exports = mongoose.model('Breed', BreedSchema)
+module.exports = MONGOOSE.model('Breed', BreedSchema);
