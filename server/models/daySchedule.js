@@ -1,11 +1,11 @@
-const mongoose = require('mongoose')
-const Appointment = require('./schemas/appointment.js')
+const MONGOOSE = require('mongoose');
+const APPOINTMENT = require('./schemas/appointment.js');
 
-var Schema = mongoose.Schema
+var Schema = MONGOOSE.Schema;
 
 const DayScheduleSchema = new Schema({
 	date: { type: Date, required: true },
-	appointments: { type: [Appointment], required: true }
-})
+	appointments: { type: [APPOINTMENT], required: true }
+});
 
-module.exports = mongoose.model('DaySchedule', DayScheduleSchema)
+module.exports = MONGOOSE.model('DaySchedule', DayScheduleSchema);
