@@ -1,16 +1,16 @@
-const express = require('express')
-const router = express.Router()
-const path = require('path')
-const authenticateToken = require('../middlewares/authenticateToken.js')
+const EXPRESS = require('express');
+const ROUTER = EXPRESS.Router();
+const PATH = require('path');
+const AUTH_TOKEN = require('../middlewares/authenticateToken.js');
 
 /* Require Controller Modules */
-var breed = require(path.join(__dirname, '../controllers/breed.js'))
+const BREED = require(PATH.join(__dirname, '../controllers/breed.js'));
 
 /* Breed Routes */
-router.post('/create', authenticateToken, breed.post_create_breed)
-router.get('/', authenticateToken, breed.get_breeds)
-router.get('/find', authenticateToken, breed.get_breed)
-router.post('/update', authenticateToken, breed.update)
-router.get('/delete', authenticateToken, breed.delete)
+ROUTER.post('/create', AUTH_TOKEN, BREED.createBreed);
+ROUTER.get('/', AUTH_TOKEN, BREED.getBreeds);
+ROUTER.get('/find', AUTH_TOKEN, BREED.getBreed);
+ROUTER.post('/update', AUTH_TOKEN, BREED.update);
+ROUTER.get('/delete', AUTH_TOKEN, BREED.delete);
 
-module.exports = router
+module.exports = ROUTER;
