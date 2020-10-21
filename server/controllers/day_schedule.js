@@ -24,7 +24,7 @@ exports.daySchedule = (req, res) => {
 			if(REQUEST_DAY < today){
 				res.status(410).json();
 			}else{
-				const NewDaySchedule = new DaySchedule({
+				const NewDaySchedule = new DAY_SCHEDULE({
 					date: req.body.date,
 					appointments: []
 				}).save((err, NewDaySchedule) => {
