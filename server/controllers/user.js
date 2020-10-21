@@ -29,7 +29,7 @@ exports.login = (req, res) => {
 	const USERNAME = req.query.username;
 	const PASSWORD = req.query.password;
 
-	USER.findOne({ USERNAME }).then(user => {
+	USER.findOne({ username: USERNAME }).then(user => {
 		if(!user)
 			return res.status(404).json({ msg: "User does't exists" });
 
