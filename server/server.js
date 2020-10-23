@@ -27,34 +27,34 @@ const SERVICE_ROUTER = require('./routes/service');
 const DAY_SCHEDULE_ROUTER = require('./routes/day_schedule');
 
 /* Defining app */
-const app = EXPRESS();
+const APP = EXPRESS();
 
 /* Defining middlewares */
-app.use(MORGAN('combined'));
-app.use(BODY_PARSER.json());
-app.use(BODY_PARSER.urlencoded({ extend: true }));
-app.use(CORS());
+APP.use(MORGAN('combined'));
+APP.use(BODY_PARSER.json());
+APP.use(BODY_PARSER.urlencoded({ extend: true }));
+APP.use(CORS());
 
 /* Static Folder */
-app.use(SERVE_STATIC(__dirname + '../client/dist'));
-app.use(EXPRESS.static('uploads', { etag: false }));
+APP.use(SERVE_STATIC(__dirname + '../client/dist'));
+APP.use(EXPRESS.static('uploads', { etag: false }));
 
 /* Upload Files */
-app.use(FILE_UPLOAD({ createParentPath: true }));
+APP.use(FILE_UPLOAD({ createParentPath: true }));
 
 /* Using routes */
-app.use(process.env.TYRAWEB_ROUTE_USERS, USER_ROUTER);
-app.use(process.env.TYRAWEB_ROUTE_BREED, BREED_ROUTER);
-app.use(process.env.TYRAWEB_ROUTE_CLIENTS, CLIENT_ROUTER);
-app.use(process.env.TYRAWEB_ROUTE_PETS, PET_ROUTER);
-app.use(process.env.TYRAWEB_ROUTE_SERVICES, SERVICE_ROUTER);
-app.use(process.env.TYRAWEB_ROUTE_DAY_SCHEDULES, DAY_SCHEDULE_ROUTER);
+APP.use(process.env.TYRAWEB_ROUTE_USERS, USER_ROUTER);
+APP.use(process.env.TYRAWEB_ROUTE_BREED, BREED_ROUTER);
+APP.use(process.env.TYRAWEB_ROUTE_CLIENTS, CLIENT_ROUTER);
+APP.use(process.env.TYRAWEB_ROUTE_PETS, PET_ROUTER);
+APP.use(process.env.TYRAWEB_ROUTE_SERVICES, SERVICE_ROUTER);
+APP.use(process.env.TYRAWEB_ROUTE_DAY_SCHEDULES, DAY_SCHEDULE_ROUTER);
 
-app.listen(PORT, error => {
+APP.listen(PORT, error => {
 	if(error)
-		return console.log(error);
+		return console.error(error);
 
 	return console.log('Server is listening on ' + PORT);
 })
 
-module.exports = app;
+module.exports = APP;
