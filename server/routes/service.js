@@ -7,10 +7,10 @@ const AUTH_TOKEN = require('../middlewares/authenticateToken.js');
 const SERVICE = require(PATH.join(__dirname, '../controllers/service.js'));
 
 /* Service Routes */
-ROUTER.get('/', AUTH_TOKEN, SERVICE.getServices);
-ROUTER.post('/create', AUTH_TOKEN, SERVICE.createService);
-ROUTER.get('/find', AUTH_TOKEN, SERVICE.getService);
-ROUTER.post('/update', AUTH_TOKEN, SERVICE.update);
-ROUTER.get('/delete', AUTH_TOKEN, SERVICE.delete);
+ROUTER.get('/', AUTH_TOKEN, SERVICE.GetServices);
+ROUTER.post('/create', AUTH_TOKEN, SERVICE.CreateService);
+ROUTER.get('/find', AUTH_TOKEN, SERVICE.GetService);
+ROUTER.post('/update', AUTH_TOKEN, SERVICE.Update);
+ROUTER.get('/delete', AUTH_TOKEN, SERVICE.Delete);
 
 module.exports = ROUTER;
