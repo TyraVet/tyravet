@@ -20,7 +20,7 @@ var users = [];
 var breeds = [];
 var services = [];
 
-function userCreate(username, password, callback){
+function UserCreate(username, password, callback){
 	userdetail = {
 		username : username,
 		password: password,
@@ -50,7 +50,7 @@ function userCreate(username, password, callback){
 	});
 };
 
-function breedCreate(name, callback){
+function BreedCreate(name, callback){
 	breed_detail = {
 		name: name
 	};
@@ -68,7 +68,7 @@ function breedCreate(name, callback){
 	});
 };
 
-function serviceCreate(name, price, callback){
+function ServiceCreate(name, price, callback){
 	service_detail = {
 		name: name,
 		price: price
@@ -87,193 +87,193 @@ function serviceCreate(name, price, callback){
 	});
 };
 
-function createUsers(callback){
+function CreateUsers(callback){
 	ASYNC.series([
 		function(callback) {
-			userCreate('admin', 'admin12', callback);
+			UserCreate('admin', 'admin12', callback);
 		}
 	], callback);
 };
 
-function createBreeds(callback){
+function CreateBreeds(callback){
 	ASYNC.series([
 		function(callback){
-			breedCreate('Schnauzer', callback);
+			BreedCreate('Schnauzer', callback);
 		},
 		function(callback){
-			breedCreate('Rottweiler', callback);
+			BreedCreate('Rottweiler', callback);
 		},
 		function(callback){
-			breedCreate('Akita', callback);
+			BreedCreate('Akita', callback);
 		},
 		function(callback){
-			breedCreate('Husky', callback);
+			BreedCreate('Husky', callback);
 		},
 		function(callback){
-			breedCreate('Malamute', callback);
+			BreedCreate('Malamute', callback);
 		},
 		function(callback){
-			breedCreate('Bulldog', callback);
+			BreedCreate('Bulldog', callback);
 		},
 		function(callback){
-			breedCreate('American Bully', callback);
+			BreedCreate('American Bully', callback);
 		},
 		function(callback){
-			breedCreate('Pit Bull', callback);
+			BreedCreate('Pit Bull', callback);
 		},
 		function(callback){
-			breedCreate('Basset Hound', callback);
+			BreedCreate('Basset Hound', callback);
 		},
 		function(callback){
-			breedCreate('Beagle', callback);
+			BreedCreate('Beagle', callback);
 		},
 		function(callback){
-			breedCreate('Bernese Mountain Dog', callback);
+			BreedCreate('Bernese Mountain Dog', callback);
 		},
 		function(callback){
-			breedCreate('Border Collie', callback);
+			BreedCreate('Border Collie', callback);
 		},
 		function(callback){
-			breedCreate('Boston Terrier', callback);
+			BreedCreate('Boston Terrier', callback);
 		},
 		function(callback){
-			breedCreate('Boxer', callback);
+			BreedCreate('Boxer', callback);
 		},
 		function(callback){
-			breedCreate('Chihuahua', callback);
+			BreedCreate('Chihuahua', callback);
 		},
 		function(callback){
-			breedCreate('Chow Chow', callback);
+			BreedCreate('Chow Chow', callback);
 		},
 		function(callback){
-			breedCreate('Dachshund', callback);
+			BreedCreate('Dachshund', callback);
 		},
 		function(callback){
-			breedCreate('Dalmatian', callback);
+			BreedCreate('Dalmatian', callback);
 		},
 		function(callback){
-			breedCreate('Dogo Argentino', callback);
+			BreedCreate('Dogo Argentino', callback);
 		},
 		function(callback){
-			breedCreate('Doberman', callback);
+			BreedCreate('Doberman', callback);
 		},
 		function(callback){
-			breedCreate('Springer Spaniel', callback);
+			BreedCreate('Springer Spaniel', callback);
 		},
 		function(callback){
-			breedCreate('French Bulldog', callback);
+			BreedCreate('French Bulldog', callback);
 		},
 		function(callback){
-			breedCreate('German Shepherd', callback);
+			BreedCreate('German Shepherd', callback);
 		},
 		function(callback){
-			breedCreate('Giant Schnauzer', callback);
+			BreedCreate('Giant Schnauzer', callback);
 		},
 		function(callback){
-			breedCreate('Great Dane', callback);
+			BreedCreate('Great Dane', callback);
 		},
 		function(callback){
-			breedCreate('Labrador Retriever', callback);
+			BreedCreate('Labrador Retriever', callback);
 		},
 		function(callback){
-			breedCreate('Miniature Schnauzer', callback);
+			BreedCreate('Miniature Schnauzer', callback);
 		},
 		function(callback){
-			breedCreate('Old English Sheepdog', callback);
+			BreedCreate('Old English Sheepdog', callback);
 		},
 		function(callback){
-			breedCreate('Pekingese', callback);
+			BreedCreate('Pekingese', callback);
 		},
 		function(callback){
-			breedCreate('Pomeranian', callback);
+			BreedCreate('Pomeranian', callback);
 		},
 		function(callback){
-			breedCreate('Pug', callback);
+			BreedCreate('Pug', callback);
 		},
 		function(callback){
-			breedCreate('Shiba Inu', callback);
+			BreedCreate('Shiba Inu', callback);
 		},
 		function(callback){
-			breedCreate('Shih Tzu', callback);
+			BreedCreate('Shih Tzu', callback);
 		},
 		function(callback){
-			breedCreate('Terrier', callback);
+			BreedCreate('Terrier', callback);
 		}
 	], callback);
 };
 
-function createServices(callback){
+function CreateServices(callback){
 	ASYNC.series([
 		function(callback){
-			serviceCreate('Bath Mini', 120, callback);
+			ServiceCreate('Bath Mini', 120, callback);
 		},
 		function(callback){
-			serviceCreate('Bath Small', 150, callback);
+			ServiceCreate('Bath Small', 150, callback);
 		},
 		function(callback){
-			serviceCreate('Bath Medium', 200, callback);
+			ServiceCreate('Bath Medium', 200, callback);
 		},
 		function(callback){
-			serviceCreate('Bath Large', 350, callback);
+			ServiceCreate('Bath Large', 350, callback);
 		},
 		function(callback){
-			serviceCreate('Bath Extra Large', 500, callback);
+			ServiceCreate('Bath Extra Large', 500, callback);
 		},
 		function(callback){
-			serviceCreate('Bath Long Hair Mini', 150, callback);
+			ServiceCreate('Bath Long Hair Mini', 150, callback);
 		},
 		function(callback){
-			serviceCreate('Bath Long Hair Small', 180, callback);
+			ServiceCreate('Bath Long Hair Small', 180, callback);
 		},
 		function(callback){
-			serviceCreate('Bath Long Hair Medium', 250, callback);
+			ServiceCreate('Bath Long Hair Medium', 250, callback);
 		},
 		function(callback){
-			serviceCreate('Bath Long Hair Large', 450, callback);
+			ServiceCreate('Bath Long Hair Large', 450, callback);
 		},
 		function(callback){
-			serviceCreate('Bath Long Hair Extra Large', 600, callback);
+			ServiceCreate('Bath Long Hair Extra Large', 600, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut Without Knots Mini', 180, callback);
+			ServiceCreate('Haircut Without Knots Mini', 180, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut Without Knots Small', 200, callback);
+			ServiceCreate('Haircut Without Knots Small', 200, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut Without Knots Medium', 350, callback);
+			ServiceCreate('Haircut Without Knots Medium', 350, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut Without Knots Large', 550, callback);
+			ServiceCreate('Haircut Without Knots Large', 550, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut Without Knots Extra Large', 700, callback);
+			ServiceCreate('Haircut Without Knots Extra Large', 700, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut With Knots Mini', 200, callback);
+			ServiceCreate('Haircut With Knots Mini', 200, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut With Knots Small', 250, callback);
+			ServiceCreate('Haircut With Knots Small', 250, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut With Knots Medium', 450, callback);
+			ServiceCreate('Haircut With Knots Medium', 450, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut With Knots Large', 650, callback);
+			ServiceCreate('Haircut With Knots Large', 650, callback);
 		},
 		function(callback){
-			serviceCreate('Haircut With Knots Extra Large', 800, callback);
+			ServiceCreate('Haircut With Knots Extra Large', 800, callback);
 		},
 		function(callback){
-			serviceCreate('Extra Bug', 50, callback);
+			ServiceCreate('Extra Bug', 50, callback);
 		}
 	], callback);
 };
 
 ASYNC.series([
-	createUsers,
-	createBreeds,
-	createServices,
+	CreateUsers,
+	CreateBreeds,
+	CreateServices,
 ], function(err, results){
 	if (err) {
 		console.log('FINAL ERR: ' + err);
