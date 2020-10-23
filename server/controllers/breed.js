@@ -1,7 +1,7 @@
 const BREED = require('../models/breed.js');
 
 /* Create Breed */
-exports.createBreed = (req, res) => {
+exports.CreateBreed = (req, res) => {
 	const MY_BREED = new BREED({
 		name: req.body.name,
 	}).save(err => {
@@ -14,7 +14,7 @@ exports.createBreed = (req, res) => {
 };
 
 /* Get all breeds */
-exports.getBreeds = (req, res) => {
+exports.GetBreeds = (req, res) => {
 	BREED.find()
 		 .populate('breed')
 		 .sort([['name', 'ascending']])
@@ -28,7 +28,7 @@ exports.getBreeds = (req, res) => {
 };
 
 /* Get a Breed */
-exports.getBreed = (req, res) => {
+exports.GetBreed = (req, res) => {
 	BREED.findById(req.query.id, (err, breed) => {
 		if(err)
 			return res.status(404).json(err);
@@ -39,7 +39,7 @@ exports.getBreed = (req, res) => {
 };
 
 /* Update Breed */
-exports.update = (req, res) => {
+exports.Update = (req, res) => {
 	BREED.findByIdAndUpdate(req.body.id, {
 		_id: req.body.id,
 		name: req.body.name
@@ -53,7 +53,7 @@ exports.update = (req, res) => {
 };
 
 /* Delete Breed */
-exports.delete = (req, res) => {
+exports.Delete = (req, res) => {
 	BREED.findByIdAndRemove(req.query.id, err => {
 		if(err)
 			return res.status(406).json(err);
