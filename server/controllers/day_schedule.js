@@ -7,7 +7,7 @@ const APPOINTMENT = require('../models/appointment.js');
  * When the user enters the application it should return the current
  * day schedule of the day. If the day schedule isn't in the database
  * it should create one. */
-exports.daySchedule = (req, res) => {
+exports.DaySchedule = (req, res) => {
 	DAY_SCHEDULE.findOne({ date: new Date(req.body.date) }, (err, MyDaySchedule) => {
 		if(err)
 			res.status(406).json(err);
@@ -45,7 +45,7 @@ exports.daySchedule = (req, res) => {
 /* Add Appointment
  *
  * The user can add appointments to the day schedule. */
-exports.addAppointment = (req, res) => {
+exports.AddAppointment = (req, res) => {
 	if(!req.body.service || !req.body.client_id || !req.body.pet_id)
 		return res.status(406).json({ error: 'No Service or Client send' });
 
@@ -74,7 +74,7 @@ exports.addAppointment = (req, res) => {
  *
  * The user can change the appointment state from un-done to done
  * and from done to un-done. */
-exports.updateAppointment = (req, res, next) => {
+exports.UpdateAppointment = (req, res, next) => {
 	DAY_SCHEDULE.findByIdAndUpdate(req.body.id,
 								  { appointments: req.body.appointments },
 								  (err, appointments) => {
