@@ -7,9 +7,9 @@ const AUTH_TOKEN = require('../middlewares/authenticateToken.js');
 const PET = require(PATH.join(__dirname, '../controllers/pet.js'));
 
 /* Pet Routes */
-ROUTER.get('/', AUTH_TOKEN, PET.getPet);
-ROUTER.get('/all', AUTH_TOKEN, PET.getPets);
-ROUTER.post('/upload-picture', AUTH_TOKEN, PET.uploadProfilePicture);
-ROUTER.get('/picture', AUTH_TOKEN, PET.getProfilePicture);
+ROUTER.get('/', AUTH_TOKEN, PET.GetPet);
+ROUTER.get('/all', AUTH_TOKEN, PET.GetPets);
+ROUTER.post('/upload-picture', AUTH_TOKEN, PET.UploadProfilePicture);
+ROUTER.get('/picture', AUTH_TOKEN, PET.GetProfilePicture);
 
 module.exports = ROUTER;

@@ -8,12 +8,12 @@ const ADDRESS = require('../models/address.js');
  *
  * Here we get the pet previously created and use it to
  * populate that attribute of the client. */
-exports.createClient = (req, res, next) => {
+exports.CreateClient = (req, res, next) => {
 	const address = new ADDRESS({
 		street: req.body.street,
 		number: req.body.number,
-		int_number: req.body.int_number,
-		postal_code: req.body.postal_code
+		intNumber: req.body.intNumber,
+		postalCode: req.body.postalCode
 	});
 
 	var pets = [];
@@ -37,13 +37,13 @@ exports.createClient = (req, res, next) => {
 /* Get all Clients
  *
  * The user may want to get the list of all available clients. */
-exports.getClients = (req, res) => {
+exports.GetClients = (req, res) => {
 	CLIENT.find()
 		  .populate('client')
 		  .sort([['name', 'ascending']])
 		  .exec((err, clients) => {
 			  if(err)
-				  return res.sendStatus(403);
+				  return res.sendStatus(406);
 
 			  /* Success */
 			  res.json(clients);
@@ -53,10 +53,10 @@ exports.getClients = (req, res) => {
 /* Get one Client
  *
  * The user may want to see only one Client to Edit, Delete or See it. */
-exports.getClient = (req, res) => {
+exports.GetClient = (req, res) => {
 	CLIENT.findById(req.query.id, (err, client) => {
 		if(err)
-			res.status(403).json();
+			res.status(406).json();
 
 		if(client)
 			/* Success */
@@ -69,10 +69,10 @@ exports.getClient = (req, res) => {
 /* Add Pet to Client
  *
  * When our Client is created we add the main pet. */
-exports.addPetToClient = (req, res, next) => {
+exports.AddPetToClient = (req, res, next) => {
 	CLIENT.findById(req.body.id, (err, client) => {
 		if(err)
-			res.status(403).json(err);
+			res.status(406).json(err);
 
 		/* Success */
 		let pets = client.pets;
@@ -82,7 +82,7 @@ exports.addPetToClient = (req, res, next) => {
 								{ pets: pets },
 								(err, client) => {
 			if(err)
-				res.status(403).json(err);
+				res.status(406).json(err);
 
 			/* Success */
 			res.locals.client = client;

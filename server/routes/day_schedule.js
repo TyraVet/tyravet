@@ -7,8 +7,8 @@ const AUTH_TOKEN = require('../middlewares/authenticateToken.js');
 const DAY_SCHEDULE = require(PATH.join(__dirname, '../controllers/day_schedule.js'));
 
 /* DaySchedule Routes */
-ROUTER.post('/', AUTH_TOKEN, DAY_SCHEDULE.daySchedule);
-ROUTER.post('/add-appointment', AUTH_TOKEN, DAY_SCHEDULE.addAppointment);
-ROUTER.post('/update-appointments', AUTH_TOKEN, DAY_SCHEDULE.updateAppointment);
+ROUTER.post('/', AUTH_TOKEN, DAY_SCHEDULE.DaySchedule);
+ROUTER.post('/add-appointment', AUTH_TOKEN, DAY_SCHEDULE.AddAppointment);
+ROUTER.post('/update-appointments', AUTH_TOKEN, DAY_SCHEDULE.UpdateAppointment);
 
 module.exports = ROUTER;

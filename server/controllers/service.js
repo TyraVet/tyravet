@@ -3,7 +3,7 @@ const SERVICE = require('../models/service.js');
 /* Get all Services
  *
  * The user may want to see a list of all available services. */
-exports.getServices = (req, res) => {
+exports.GetServices = (req, res) => {
 	SERVICE.find()
 		   .populate('service')
 		   .exec((err, services) => {
@@ -18,7 +18,7 @@ exports.getServices = (req, res) => {
 /* Get one Service
  *
  * The user may want to get just one Servie to See, Edit or Delete it. */
-exports.getService = (req, res) => {
+exports.GetService = (req, res) => {
 	SERVICE.findById(req.query.id, (err, service) => {
 		if(err)
 			return res.status(404).json(err);
@@ -31,7 +31,7 @@ exports.getService = (req, res) => {
 /* Update Service
  *
  * The user can update any service. */
-exports.update = (req, res) => {
+exports.Update = (req, res) => {
 	SERVICE.findByIdAndUpdate(req.body.id, {
 		_id: req.body.id,
 		name: req.body.name,
@@ -48,7 +48,7 @@ exports.update = (req, res) => {
 /* Create Service
  *
  * The user can create services. */
-exports.createService = (req, res) => {
+exports.CreateService = (req, res) => {
 	const Service = new SERVICE({
 		name: req.body.name,
 		price: req.body.price
@@ -64,7 +64,7 @@ exports.createService = (req, res) => {
 /* Delete Service
  *
  * The user can delete any service. */
-exports.delete = (req, res) => {
+exports.Delete = (req, res) => {
 	SERVICE.findByIdAndRemove(req.query.id, (err) => {
 		if(err)
 			res.status(406).json(err);

@@ -10,15 +10,15 @@ const PET = require(PATH.join(__dirname, '../controllers/pet.js'));
 /* Client Routes */
 ROUTER.post('/create',
 			AUTH_TOKEN,
-			PET.createPet,
-			CLIENT.createClient,
-			PET.addOwnerToPet);
-ROUTER.get('/', AUTH_TOKEN, CLIENT.getClients);
-ROUTER.get('/client', AUTH_TOKEN, CLIENT.getClient);
+			PET.CreatePet,
+			CLIENT.CreateClient,
+			PET.AddOwnerToPet);
+ROUTER.get('/', AUTH_TOKEN, CLIENT.GetClients);
+ROUTER.get('/client', AUTH_TOKEN, CLIENT.GetClient);
 ROUTER.post('/add-pet',
 			AUTH_TOKEN,
-			PET.createPet,
-			CLIENT.addPetToClient,
-			PET.addOwnerToPet);
+			PET.CreatePet,
+			CLIENT.AddPetToClient,
+			PET.AddOwnerToPet);
 
 module.exports = ROUTER;

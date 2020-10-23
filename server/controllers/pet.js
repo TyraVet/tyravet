@@ -6,14 +6,14 @@ const FS = require('fs');
  * The user may want to create a pet to the application.
  *
  * When a client in created we first create it's pet. */
-exports.createPet = (req, res) => {
+exports.CreatePet = (req, res, next) => {
 	const pet = new PET({
-		name: req.body.pet_name,
-		birthdate: req.body.pet_birthdate,
-		age: req.body.pet_age,
-		weight: req.body.pet_weight,
-		breed: req.body.pet_breed,
-		female_or_male: req.body.pet_female_or_male,
+		name: req.body.petName,
+		birthdate: req.body.petBirthdate,
+		age: req.body.petAge,
+		weight: req.body.petWeight,
+		breed: req.body.petBreed,
+		femaleOrMale: req.body.petFemaleOrMale,
 	}).save((err, pet) => {
 		if(err)
 			return res.status(406).json(err);
@@ -30,12 +30,12 @@ exports.createPet = (req, res) => {
  *
  * Once the client is created we update the pet to
  * set the owner attribute. */
-exports.addOwnerToPet = (req, res) => {
+exports.AddOwnerToPet = (req, res) => {
 	PET.findByIdAndUpdate(res.locals.pet._id,
 						  { owner: res.locals.client._id },
 						  err => {
 		if(err)
-			res.status(403).json(err);
+			res.status(406).json(err);
 
 		/* Success */
 		res.status(201).json();
@@ -50,11 +50,11 @@ exports.addOwnerToPet = (req, res) => {
  *
  * Once we have that directory we process the image, change it's name
  * for the pet's id and then save it. */
-exports.uploadProfilePicture = async (req, res) => {
+exports.UploadProfilePicture = async (req, res) => {
 	if(req.files){
 		const PICTURE = req.files.picture;
 
-		const FOLDER = await checkPETPicturesFolder();
+		const FOLDER = await CheckPetPicturesFolder();
 
 		if(FOLDER)
 			PICTURE.mv('./uploads/pet-pictures/' + req.body.id + '.png',
@@ -70,7 +70,7 @@ exports.uploadProfilePicture = async (req, res) => {
 	}
 };
 
-function checkPetPicturesFolder(){
+function CheckPetPicturesFolder(){
 	const PET_PICTURES_FOLDER = 'uploads/pet-pictures';
 
 	try{
@@ -87,7 +87,7 @@ function checkPetPicturesFolder(){
 /* Get Profile Picture
  *
  * We need to check whether or not the file exists. */
-exports.getProfilePicture = (req, res) => {
+exports.GetProfilePicture = (req, res) => {
 	const PET_PICTURE = 'uploads/pet-pictures/' + req.query.id + '.png';
 
 	try{
@@ -106,7 +106,7 @@ exports.getProfilePicture = (req, res) => {
 /* Get Pet
  *
  * The user may want just one Pet to See, Edit or Delete it. */
-exports.getPet = (req, res) => {
+exports.GetPet = (req, res) => {
 	PET.findById(req.query.id, (err, pet) => {
 		if(err)
 			res.status(403).json(err);
@@ -122,7 +122,7 @@ exports.getPet = (req, res) => {
 /* Get all Pet
  *
  * The user may want to see a list of all the available pets. */
-exports.getPets = (req, res) => {
+exports.GetPets = (req, res) => {
 	PET.find()
 		  .populate('client')
 		  .sort([['name', 'ascending']])

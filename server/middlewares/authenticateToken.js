@@ -1,6 +1,6 @@
 const JWT = require('jsonwebtoken');
 
-function authenticateToken(req, res, next) {
+function AuthenticateToken(req, res, next) {
 	const AUTH_HEADER = req.headers['authorization'];
 	const TOKEN = AUTH_HEADER && AUTH_HEADER.split(' ')[1];
 
@@ -18,4 +18,4 @@ function authenticateToken(req, res, next) {
 	});
 };
 
-module.exports = authenticateToken;
+module.exports = AuthenticateToken;

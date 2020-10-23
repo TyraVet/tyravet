@@ -7,7 +7,7 @@ const MEDIC = new TYPE({ name: 'medic' });
 const ADMIN = new TYPE({ name: 'admin' });
 
 /* Find USER by ID to keep it logged in */
-exports.getUser = (req, res) => {
+exports.GetUser = (req, res) => {
 	USER.findById(req.query.id).exec((err, user) => {
 		if(err)
 			return res.status(401).json(err);
@@ -25,7 +25,7 @@ exports.getUser = (req, res) => {
 };
 
 /* Find User to LogIn */
-exports.login = (req, res) => {
+exports.Login = (req, res) => {
 	const USERNAME = req.query.username;
 	const PASSWORD = req.query.password;
 
@@ -57,7 +57,7 @@ exports.login = (req, res) => {
 };
 
 /* Create User */
-exports.signup = (req, res) => {
+exports.Signup = (req, res) => {
 	BCRYPTJS.hash(req.body.password, 10, (err, hashed_password) => {
 		if(err)
 			return res.status(406).json(err);
@@ -79,7 +79,7 @@ exports.signup = (req, res) => {
 };
 
 /* Update User */
-exports.update = (req, res) => {
+exports.Update = (req, res) => {
 	BCRYPTJS.hash(req.body.password, 10, (err, hashed_password) => {
 		if(err)
 			return res.status(406).json(err);
@@ -103,7 +103,7 @@ exports.update = (req, res) => {
 };
 
 /* Get all Users */
-exports.getUsers = (req, res, next) => {
+exports.GetUsers = (req, res, next) => {
 	USER.find()
 		.populate('user')
 		.exec((err, users) => {
@@ -116,7 +116,7 @@ exports.getUsers = (req, res, next) => {
 };
 
 /* Delete User */
-exports.delete = (req, res) => {
+exports.Delete = (req, res) => {
 	if(req.body.type === 'admin')
 		return res.status(406).json({ msg: "Can't remove admin user" });
 
