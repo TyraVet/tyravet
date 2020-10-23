@@ -22,6 +22,6 @@ describe('Breed', () => {
 		return REQUEST(SERVER)
 			.post('/breeds/create')
 			.send({ name: 'Rottweiler' })
-			.expect(404);
+			.expect(401); /* Need auth */
 	});
 });
