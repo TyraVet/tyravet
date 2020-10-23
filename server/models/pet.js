@@ -9,10 +9,10 @@ var PetSchema = new Schema({
 	age: { type: Number },
 	weight: { type: Number },
 	breed: { type: BREED },
-	female_or_male: { type: String },
+	femaleOrMale: { type: String },
 	owner: { type: MONGOOSE.ObjectId, required: false },
-	vaccination_record: { type: Array, required: false, defaul: [] },
-	medial_record: { type: Array, required: false, default: [] }
+	vaccinationRecord: { type: Array, required: false, defaul: [] },
+	medialRecord: { type: Array, required: false, default: [] }
 });
 
 module.exports = MONGOOSE.model('Pet', PetSchema);
