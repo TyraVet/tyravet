@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const EXPRESS = require('express');
 const FILE_UPLOAD = require('express-fileupload');
 
@@ -17,12 +15,12 @@ const APP = EXPRESS();
 /* Upload Files */
 APP.use(FILE_UPLOAD({ createParentPath: true }));
 
-/* Using routes */
-APP.use(process.env.TYRAWEB_ROUTE_USERS, USER_ROUTER);
-APP.use(process.env.TYRAWEB_ROUTE_BREED, BREED_ROUTER);
-APP.use(process.env.TYRAWEB_ROUTE_CLIENTS, CLIENT_ROUTER);
-APP.use(process.env.TYRAWEB_ROUTE_PETS, PET_ROUTER);
-APP.use(process.env.TYRAWEB_ROUTE_SERVICES, SERVICE_ROUTER);
-APP.use(process.env.TYRAWEB_ROUTE_DAY_SCHEDULES, DAY_SCHEDULE_ROUTER);
+/* Using routes from the default env variables. */
+APP.use('/users', USER_ROUTER);
+APP.use('/breeds', BREED_ROUTER);
+APP.use('/clients', CLIENT_ROUTER);
+APP.use('/pets', PET_ROUTER);
+APP.use('/services', SERVICE_ROUTER);
+APP.use('/dayschedule', DAY_SCHEDULE_ROUTER);
 
 module.exports = APP;
