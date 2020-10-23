@@ -6,14 +6,14 @@ const FS = require('fs');
  * The user may want to create a pet to the application.
  *
  * When a client in created we first create it's pet. */
-exports.CreatePet = (req, res) => {
+exports.CreatePet = (req, res, next) => {
 	const pet = new PET({
-		name: req.body.pet_name,
-		birthdate: req.body.pet_birthdate,
-		age: req.body.pet_age,
-		weight: req.body.pet_weight,
-		breed: req.body.pet_breed,
-		femaleOrMale: req.body.pet_femaleOrMale,
+		name: req.body.petName,
+		birthdate: req.body.petBirthdate,
+		age: req.body.petAge,
+		weight: req.body.petWeight,
+		breed: req.body.petBreed,
+		femaleOrMale: req.body.petFemaleOrMale,
 	}).save((err, pet) => {
 		if(err)
 			return res.status(406).json(err);
