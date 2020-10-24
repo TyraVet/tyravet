@@ -21,7 +21,7 @@ module.exports.Connect = async () => {
 module.exports.CloseDatabase = async () => {
 	await MONGOOSE.connection.dropDatabase();
 	await MONGOOSE.connection.close();
-	await MONGOOSE.connection.stop();
+	await MONGOD.stop();
 };
 
 /* Remove all the data for all db collections. */
