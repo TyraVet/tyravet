@@ -14,14 +14,39 @@ beforeAll(async () => await DB_HANDLER.Connect());
 afterEach(async () => await DB_HANDLER.ClearDatabase());
 
 /* Remove and close the db and server. */
-// afterAll(async () => await DB_HANDLER.CloseDatabase());
+afterAll(async () => await DB_HANDLER.CloseDatabase());
 
 /* Breed Test Sutie. */
 describe('Breed', () => {
-	it('Can create a breed correctly', async () => {
+	it("Shouldn't create a breed without a Token", async () => {
 		return REQUEST(SERVER)
 			.post('/breeds/create')
 			.send({ name: 'Rottweiler' })
-			.expect(401); /* Need auth */
+			.expect(401);
+	});
+
+	it("Shouldn't send breed without a Token", async () => {
+		return REQUEST(SERVER)
+			.get('/breeds/find')
+			.expect(401);
+	});
+
+	it("Shouldn't send breeds without a Token", async () => {
+		return REQUEST(SERVER)
+			.get('/breeds')
+			.expect(401);
+	});
+
+	it("Shouldn't update breed without a Token", async () => {
+		return REQUEST(SERVER)
+			.post('/breeds/update')
+			.send({ _id: '01234', name: 'Rottweiler' })
+			.expect(401);
+	});
+
+	it("Shouldn't delete breed without a Token", async () => {
+		return REQUEST(SERVER)
+			.get('/breeds/delete')
+			.expect(401);
 	});
 });
