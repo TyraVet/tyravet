@@ -4,8 +4,8 @@ const SERVER = require('../mock_server');
 const MONGOOSE = require('mongoose');
 
 const DB_HANDLER = require('./db_handler');
-const USER_MODEL = require('../models/user');
-const USER_CONTROLLER = require('../controllers/user');
+const SERVICE_MODEL = require('../models/service');
+const SERVICE_CONTROLLER = require('../controllers/service');
 
 /* Connect to a new in-memory database before running tests. */
 beforeAll(async () => await DB_HANDLER.Connect());
@@ -16,38 +16,37 @@ afterEach(async () => await DB_HANDLER.ClearDatabase());
 /* Remove and close the db and server. */
 afterAll(async () => await DB_HANDLER.CloseDatabase());
 
-/* User Test Sutie. */
-describe('User', () => {
-	it("Shouldn't get user without a Token", async () => {
+/* Service Test Sutie. */
+describe('Service', () => {
+	it("Shouldn't create a service without a Token", async () => {
 		return REQUEST(SERVER)
-			.get('/users/find')
+			.post('/services/create')
+			.send({ name: 'Bath Mini' })
 			.expect(401);
 	});
 
-	it("Shouldn't signup user without a Token", async () => {
+	it("Shouldn't send service without a Token", async () => {
 		return REQUEST(SERVER)
-			.post('/users/signup')
-			.send({})
+			.get('/services/find')
 			.expect(401);
 	});
 
-	it("Shouldn't update user without a Token", async () => {
+	it("Shouldn't send services without a Token", async () => {
 		return REQUEST(SERVER)
-			.post('/users/update')
-			.send({})
+			.get('/services')
 			.expect(401);
 	});
 
-	it("Shouldn't delete user without a Token", async () => {
+	it("Shouldn't update service without a Token", async () => {
 		return REQUEST(SERVER)
-			.post('/users/delete')
-			.send({})
+			.post('/services/update')
+			.send({ _id: '01234', name: 'Bath Mini' })
 			.expect(401);
 	});
 
-	it("Shouldn't get users without a Token", async () => {
+	it("Shouldn't delete service without a Token", async () => {
 		return REQUEST(SERVER)
-			.get('/users')
+			.get('/services/delete')
 			.expect(401);
 	});
 });

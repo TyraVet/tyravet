@@ -4,8 +4,8 @@ const SERVER = require('../mock_server');
 const MONGOOSE = require('mongoose');
 
 const DB_HANDLER = require('./db_handler');
-const CLIENT_MODEL = require('../models/client');
-const CLIENT_CONTROLLER = require('../controllers/client');
+const DAY_SCHEDULE_MODEL = require('../models/day_schedule');
+const DAY_SCHEDULE_CONTROLLER = require('../controllers/day_schedule');
 
 /* Connect to a new in-memory database before running tests. */
 beforeAll(async () => await DB_HANDLER.Connect());
@@ -16,31 +16,26 @@ afterEach(async () => await DB_HANDLER.ClearDatabase());
 /* Remove and close the db and server. */
 afterAll(async () => await DB_HANDLER.CloseDatabase());
 
-/* Client Test Sutie. */
-describe('Client', () => {
-	it("Shouldn't create client/pet without a Token", async () => {
+/* Day Schedule Test Sutie. */
+describe('Day Schedule', () => {
+	it("Shouldn't create a day schedule without a Token", async () => {
 		return REQUEST(SERVER)
-			.post('/clients/create')
-			.send({})
+			.post('/dayschedules')
+			.send({ date: new Date() })
 			.expect(401);
 	});
 
-	it("Shouldn't get client without a Token", async () => {
+	it("Shouldn't add appointment without a Token", async () => {
 		return REQUEST(SERVER)
-			.get('/clients/client')
+			.post('/dayschedules/add-appointment')
+			.send()
 			.expect(401);
 	});
 
-	it("Shouldn't get clients without a Token", async () => {
+	it("Shouldn't update appointment without a Token", async () => {
 		return REQUEST(SERVER)
-			.get('/clients')
-			.expect(401);
-	});
-
-	it("Shouldn't add a pet to client Token", async () => {
-		return REQUEST(SERVER)
-			.post('/clients/add-pet')
-			.send({})
+			.post('/dayschedules/update-appointments')
+			.send()
 			.expect(401);
 	});
 });

@@ -108,9 +108,9 @@ inside ```server/``` and set the following Environment Variables:
 | VUE_APP_TYRAWEB_UPDATE_SERVICE | host:port/services/update |
 | VUE_APP_TYRAWEB_DELETE_SERVICE | host:port/services/delete |
 | VUE_APP_TYRAWEB_DAY_SCHEDULES | host:port/dayschedule |
-| VUE_APP_TYRAWEB_CREATE_DAY_SCHEDULE | host:port/dayschedule |
-| VUE_APP_TYRAWEB_ADD_APPOINTMENT | host:port/dayschedule/add-appointment |
-| VUE_APP_TYRAWEB_UPDATE_APPOINTMNETS | host:port/dayschedule/update-appointment |
+| VUE_APP_TYRAWEB_CREATE_DAY_SCHEDULE | host:port/dayschedules |
+| VUE_APP_TYRAWEB_ADD_APPOINTMENT | host:port/dayschedules/add-appointment |
+| VUE_APP_TYRAWEB_UPDATE_APPOINTMNETS | host:port/dayschedules/update-appointment |
 | VUE_APP_PLACEHOLDER | https://via.placeholder.com/500/?text=No+Profile+Picture |
 
 ### ```server/.env```
@@ -123,7 +123,7 @@ inside ```server/``` and set the following Environment Variables:
 | TYRAWEB_ROUTE_PETS | /clients |
 | TYRAWEB_ROTUE_CLIENTS | /pets |
 | TYRAWEB_ROUTE_SERVICES | /services |
-| TYRAWEB_ROUTE_DAY_SCHEDULES | /dayschedule |
+| TYRAWEB_ROUTE_DAY_SCHEDULES | /dayschedules |
 
 ## Contributing
 If you find this project usefull for your professional life, consider

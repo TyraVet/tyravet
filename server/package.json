@@ -2,11 +2,11 @@
   "name": "tyra-web-api",
   "version": "0.0.1",
   "description": "Veterinary management",
-  "main": "dist/app.js",
+  "main": "server.js",
   "scripts": {
-    "devStart": "nodemon server.js",
+    "dev:start": "nodemon server.js",
     "start": "node server.js",
-    "test:unit": "jest --verbose"
+    "test:unit": "jest --verbose --runInBand --detectOpenHandles"
   },
   "author": "Andres Ruiz",
   "license": "MIT",
@@ -15,6 +15,7 @@
     "eslint": "^7.6.0",
     "jest": "^26.4.0",
     "mockingoose": "^2.13.2",
+    "mongodb-memory-server": "^6.9.2",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
   },
