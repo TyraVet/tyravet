@@ -21,6 +21,6 @@ APP.use('/breeds', BREED_ROUTER);
 APP.use('/clients', CLIENT_ROUTER);
 APP.use('/pets', PET_ROUTER);
 APP.use('/services', SERVICE_ROUTER);
-APP.use('/dayschedule', DAY_SCHEDULE_ROUTER);
+APP.use('/dayschedules', DAY_SCHEDULE_ROUTER);
 
 module.exports = APP;
