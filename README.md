@@ -67,6 +67,8 @@ mongo
 node server/populatedb.js
 ```
 
+Create MongoDB [backups](https://www.tutorialspoint.com/mongodb/mongodb_create_backup.htm).
+
 ## App
 #### ```client/```
 Contains the Vue Application. In here we consume the API to display the
