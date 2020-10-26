@@ -8,7 +8,7 @@ form#client-form
 				@click='close()'
 			)
 		section.modal-card-body
-			b-field( label='Client' )
+			b-field#client( label='Client' )
 				b-select(
 					v-model='client'
 					required
@@ -18,7 +18,7 @@ form#client-form
 						:key='index'
 						:value='pet'
 					) {{ pet.name }}, ({{ pet.breed }}). {{ pet.clientName }}
-			b-field( label='Service' )
+			b-field#service( label='Service' )
 				b-select(
 					v-model='service'
 					required
@@ -28,21 +28,27 @@ form#client-form
 						:key='index'
 						:value='service'
 					) {{ service.name }}
-			b-field( label='Hour' )
+			b-field#hour( label='Hour' )
 				b-input(
 					type='text'
 					v-model='hour.hour'
 					required
 					disabled
 				)
+			b-field#notes( label='Notes' )
+				b-input(
+					type='textarea'
+					maxlength='500'
+					v-model='notes'
+				)
 		footer.modal-card-foot
 			button.button(
 				type='button'
 				@click='close()'
-			) Cancel
+			) {{ labelButtonCancel }}
 			b-button.button.is-success(
 				@click='send()'
-			) Accept
+			) {{ labelButtonAccept }}
 </template>
 
 <script lang='js'>
@@ -61,11 +67,14 @@ export default {
 		return {
 			OK,
 			title: 'New Appointment',
+			labelButtonCancel: 'Cancel',
+			labelButtonAccept: 'Accept',
 			services: [],
 			clients: [],
 			pets: [],
 			service: null,
-			client: null
+			client: null,
+			notes: ''
 		}
 	},
 	computed: {
