@@ -156,7 +156,8 @@ export default {
 				clientId: this.client.clientId,
 				petId: this.client.petId,
 				hour: this.hour.hour,
-				appointments: this.schedule.appointments
+				appointments: this.schedule.appointments,
+				notes: this.notes
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
