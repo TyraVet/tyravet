@@ -46,19 +46,19 @@ exports.DaySchedule = (req, res) => {
  *
  * The user can add appointments to the day schedule. */
 exports.AddAppointment = (req, res) => {
-	if(!req.body.service || !req.body.client_id || !req.body.pet_id)
+	if(!req.body.service || !req.body.clientId || !req.body.petId)
 		return res.status(406).json({ error: 'No Service or Client send' });
 
 	const MY_APPOINTMENT = new APPOINTMENT({
 		service: req.body.service,
-		client_id: req.body.client_id,
-		pet_id: req.body.pet_id,
+		clientId: req.body.clientId,
+		petId: req.body.petId,
 		hour: req.body.hour,
 		notes: req.body.notes
 	});
 
 	let appointments = req.body.appointments;
-	appointments.push(appointment);
+	appointments.push(MY_APPOINTMENT);
 
 	DAY_SCHEDULE.findByIdAndUpdate(req.body.id,
 								  { appointments: appointments },
