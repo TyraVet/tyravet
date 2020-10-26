@@ -1,20 +1,37 @@
 <template lang='pug'>
-div.appointment
-	section( title='Appointment' )
-		div.field
+div#appointment-main
+	section#appointment-section(
+		title='Appointment'
+	)
 		b-checkbox(
 			type='is-success'
 			v-model='isDone'
 		)
-			div.appointment-container(
+		div
+			div#appointment-container(
 				:class='{ done: isDone }'
 			)
-				h3.is-size-5.has-text-primary
+				h3#service.is-size-5.has-text-primary
 					| {{ appointment.service.name }}
-				h3.is-size-5.has-text-dark
+				h3#pet.is-size-5.has-text-dark
 					| | {{ pet.name }}, ({{ pet.breed.name }}) -
-				h3.is-size-5.has-text-grey-darker
+				h3#client.is-size-5.has-text-grey-darker
 					| {{ client.name }}, {{ client.phone }}
+			div#notes-container(
+				v-if='appointment.notes'
+				:class='{ done: isDone }'
+			)
+				span#notes-title-container
+					b-icon#notes-icon(
+						type='is-icon'
+						pack='far'
+						icon='sticky-note'
+						size='is-small'
+					)
+					h3#notes-title.is-size-6.has-text-danger
+						| {{ titleNotes }} :
+				h3#notes.is-size-6.has-text-dark
+					| - {{ appointment.notes }}
 </template>
 
 <script lang='js'>
@@ -28,6 +45,7 @@ export default {
 	},
 	data(){
 		return{
+			titleNotes: 'Notes',
 			isDone: this.appointment.done,
 			client: { name: '', phone: '' },
 			pet: { name: '', breed: { name: '' } }
