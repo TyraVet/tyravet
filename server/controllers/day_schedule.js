@@ -54,7 +54,7 @@ exports.AddAppointment = (req, res) => {
 		clientId: req.body.clientId,
 		petId: req.body.petId,
 		hour: req.body.hour,
-		notes: req.body.notes
+		notes: req.body.notes ? req.body.notes : null
 	});
 
 	let appointments = req.body.appointments;

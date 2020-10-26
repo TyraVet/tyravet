@@ -157,7 +157,7 @@ export default {
 				petId: this.client.petId,
 				hour: this.hour.hour,
 				appointments: this.schedule.appointments,
-				notes: this.notes
+				notes: this.notes ? this.notes : null
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
