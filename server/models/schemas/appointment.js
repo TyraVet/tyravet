@@ -9,7 +9,7 @@ const AppointmentSchema = new Schema({
 	petId: { type: String, required: true },
 	hour: { type: String, required: true },
 	done: { type: Boolean, default: false },
-	notes: { type: String, default: '' }
+	notes: { type: String, default: null }
 });
 
 module.exports = AppointmentSchema;
