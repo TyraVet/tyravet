@@ -53,7 +53,8 @@ exports.AddAppointment = (req, res) => {
 		service: req.body.service,
 		client_id: req.body.client_id,
 		pet_id: req.body.pet_id,
-		hour: req.body.hour
+		hour: req.body.hour,
+		notes: req.body.notes
 	});
 
 	let appointments = req.body.appointments;
