@@ -20,6 +20,11 @@ div#service-list
 			label='Price'
 			v-slot='props'
 		) $ {{ props.row.price }}.00
+		b-table-column#type-column(
+			field='type'
+			label='Type'
+			v-slot='props'
+		) {{ props.row.type }}
 </template>
 
 <script lang='js'>
