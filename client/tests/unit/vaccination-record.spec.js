@@ -4,7 +4,10 @@ import VaccinationTitle from '@/components/VaccinationTitle.vue'
 import VaccinationList from '@/components/VaccinationList.vue'
 
 const localVue = createLocalVue()
-const wrapper = shallowMount(VaccinationRecord, { localVue })
+const wrapper = shallowMount(VaccinationRecord, {
+	propsData: { records : [] },
+	localVue
+})
 
 describe('Vaccination Record Component', () => {
 	it('Should has components', () => {
