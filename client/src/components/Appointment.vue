@@ -13,8 +13,13 @@ div#appointment-main
 			)
 				h3#service.is-size-5.has-text-primary
 					| {{ appointment.service.name }}
-				h3#pet.is-size-5.has-text-dark
-					| | {{ pet.name }}, ({{ pet.breed.name }}) -
+				b-button#pet(
+					title='Go Pet Profile'
+					type='is-primary-light'
+					@click='goPetProfile(pet._id)'
+				)
+					h3#pet-text.is-size-5.has-text-dark
+						| {{ pet.name }}, ({{ pet.breed.name }})
 				h3#client.is-size-5.has-text-grey-darker
 					| {{ client.name }}, {{ client.phone }}
 			div#notes-container(
@@ -65,6 +70,9 @@ export default {
 		init(){
 			this.getClient()
 			this.getPet()
+		},
+		goPetProfile(id){
+			this.$router.push({ name: 'pet', params: { id } })
 		},
 		/* Emit event to update the specific appointment */
 		send(){
