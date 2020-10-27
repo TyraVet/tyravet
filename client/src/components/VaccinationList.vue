@@ -46,6 +46,14 @@ export default {
 			errorMessage: 'There are no Vaccination/Deworming Records for this pet. Add one!',
 			noRecords: true
 		}
+	},
+	watch: {
+		records: function(){
+			if(this.records.length <= 0)
+				this.noRecords = true
+			else
+				this.noRecords = false
+		}
 	}
 }
 </script>
