@@ -24,7 +24,7 @@ describe('Vaccination List Component', () => {
 		expect(main.exists()).toBeTruthy();
 	});
 
-	it('Shoudl have a table with four columns', async () => {
+	it('Should have a table with four columns', async () => {
 		await wrapper.setData({ noRecords: false });
 		const table = main.get('b-table-stub');
 
