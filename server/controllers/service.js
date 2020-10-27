@@ -35,7 +35,8 @@ exports.Update = (req, res) => {
 	SERVICE.findByIdAndUpdate(req.body.id, {
 		_id: req.body.id,
 		name: req.body.name,
-		price: req.body.price
+		price: req.body.price,
+		type: req.body.type
 	}, (err) => {
 		if(err)
 			return res.status(406).json(err);
@@ -51,7 +52,8 @@ exports.Update = (req, res) => {
 exports.CreateService = (req, res) => {
 	const Service = new SERVICE({
 		name: req.body.name,
-		price: req.body.price
+		price: req.body.price,
+		type: req.body.type
 	}).save(err => {
 		if(err)
 			return res.status(406).json(err);
