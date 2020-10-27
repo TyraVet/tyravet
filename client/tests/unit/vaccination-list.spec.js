@@ -13,7 +13,6 @@ describe('Vaccination List Component', () => {
 	it('Should set the correct default data', () => {
 		expect(typeof VaccinationList.data).toBe('function')
 		const data = VaccinationList.data()
-		expect(data.records).toEqual(expect.arrayContaining([]))
 		expect(data.errorMessage).toMatch('There are no Vaccination/Deworming Records for this pet. Add one!')
 		expect(data.noRecords).toBeTruthy()
 	})
