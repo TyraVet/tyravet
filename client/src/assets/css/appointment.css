@@ -6,6 +6,7 @@
 #appointment-container {
 	display: flex;
 	flex-flow: row wrap;
+	align-items: center;
 }
 
 #appointment-container > h3 {
