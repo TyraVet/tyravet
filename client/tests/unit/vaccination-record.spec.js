@@ -5,7 +5,7 @@ import VaccinationList from '@/components/VaccinationList.vue'
 
 const localVue = createLocalVue()
 const wrapper = shallowMount(VaccinationRecord, {
-	propsData: { records : [] },
+	propsData: { records: [] },
 	localVue
 })
 
