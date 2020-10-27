@@ -80,8 +80,13 @@ describe('Appointment Component', () => {
 
 		const pet = appointment.get('#pet');
 		expect(pet.exists()).toBeTruthy();
-		expect(pet.classes()).toContain('is-size-5');
-		expect(pet.classes()).toContain('has-text-dark');
+		expect(pet.attributes('title')).toMatch('Go Pet Profile');
+		expect(pet.attributes('type')).toMatch('is-primary-light');
+
+		const petText = pet.get('#pet-text');
+		expect(petText.exists()).toBeTruthy();
+		expect(petText.classes()).toContain('is-size-5');
+		expect(petText.classes()).toContain('has-text-dark');
 
 		const client = appointment.get('#client');
 		expect(client.exists()).toBeTruthy();
@@ -121,5 +126,25 @@ describe('Appointment Component', () => {
 		expect(notes.exists()).toBeTruthy();
 		expect(notes.classes()).toContain('is-size-6');
 		expect(notes.classes()).toContain('has-text-dark');
+	});
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.init).toBeTruthy();
+	});
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.goPetProfile).toBeTruthy();
+	});
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.send).toBeTruthy();
+	});
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.getClient).toBeTruthy();
+	});
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.getPet).toBeTruthy();
 	});
 });
