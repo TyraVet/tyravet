@@ -68,10 +68,11 @@ function BreedCreate(name, callback){
 	});
 };
 
-function ServiceCreate(name, price, callback){
+function ServiceCreate(name, price, type, callback){
 	service_detail = {
 		name: name,
-		price: price
+		price: price,
+		type: type
 	};
 
 	var myService = new Service(service_detail);
@@ -90,7 +91,7 @@ function ServiceCreate(name, price, callback){
 function CreateUsers(callback){
 	ASYNC.series([
 		function(callback) {
-			UserCreate('admin', 'admin12', callback);
+			UserCreate('admin', 'admin123', callback);
 		}
 	], callback);
 };
@@ -205,69 +206,69 @@ function CreateBreeds(callback){
 function CreateServices(callback){
 	ASYNC.series([
 		function(callback){
-			ServiceCreate('Bath Mini', 120, callback);
+			ServiceCreate('Bath Mini', 120, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Small', 150, callback);
+			ServiceCreate('Bath Small', 150, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Medium', 200, callback);
+			ServiceCreate('Bath Medium', 200, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Large', 350, callback);
+			ServiceCreate('Bath Large', 350, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Extra Large', 500, callback);
+			ServiceCreate('Bath Extra Large', 500, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Mini', 150, callback);
+			ServiceCreate('Bath Long Hair Mini', 150, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Small', 180, callback);
+			ServiceCreate('Bath Long Hair Small', 180, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Medium', 250, callback);
+			ServiceCreate('Bath Long Hair Medium', 250, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Large', 450, callback);
+			ServiceCreate('Bath Long Hair Large', 450, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Extra Large', 600, callback);
+			ServiceCreate('Bath Long Hair Extra Large', 600, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Mini', 180, callback);
+			ServiceCreate('Haircut Without Knots Mini', 180, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Small', 200, callback);
+			ServiceCreate('Haircut Without Knots Small', 200, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Medium', 350, callback);
+			ServiceCreate('Haircut Without Knots Medium', 350, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Large', 550, callback);
+			ServiceCreate('Haircut Without Knots Large', 550, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Extra Large', 700, callback);
+			ServiceCreate('Haircut Without Knots Extra Large', 700, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Mini', 200, callback);
+			ServiceCreate('Haircut With Knots Mini', 200, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Small', 250, callback);
+			ServiceCreate('Haircut With Knots Small', 250, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Medium', 450, callback);
+			ServiceCreate('Haircut With Knots Medium', 450, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Large', 650, callback);
+			ServiceCreate('Haircut With Knots Large', 650, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Extra Large', 800, callback);
+			ServiceCreate('Haircut With Knots Extra Large', 800, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Extra Bug', 50, callback);
+			ServiceCreate('Extra Bug', 50, 'grooming', callback);
 		}
-	], callback);
+	], 'grooming', callback);
 };
 
 ASYNC.series([
