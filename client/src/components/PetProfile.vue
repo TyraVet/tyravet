@@ -38,6 +38,7 @@ div#pet-profile
 import VaccinationRecord from './VaccinationRecord.vue'
 import MedicalRecord from './MedicalRecord.vue'
 import axios from 'axios'
+import moment from 'moment'
 
 export const OK = 200
 export const CREATED = 201
@@ -103,6 +104,7 @@ export default {
 				}
 			}).then(response => {
 				this.pet = response.data
+				this.formatDates()
 				this.isThereAProfilePicture()
 				this.getOwner()
 			}).catch(error => {
@@ -149,6 +151,12 @@ export default {
 					this.updateProfilePicture()
 			}).catch(error => {
 				console.error(error)
+			})
+		},
+		async formatDates(){
+			await this.pet.vaccinationRecord.forEach(record => {
+				record.applicationDate = moment(record.applicationDate).format('YYYY-MM-DD')
+				record.nextApplicationDate = moment(record.nextApplicationDate).format('YYYY-MM-DD')
 			})
 		}
 	},
