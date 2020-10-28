@@ -28,6 +28,23 @@ exports.GetService = (req, res) => {
 	});
 };
 
+/* Get all vaccination services
+ *
+ * When the user want to create a new vaccination record, it's going
+ * to need the available shots in the database. */
+exports.GetShots = (req, res) => {
+	SERVICE.find({ type: 'vaccination' })
+		   .populate('service')
+		   .sort([['name', 'ascending']])
+		   .exec((err, shots) => {
+			   if(err)
+				   return res.status(406).json(err);
+
+			   /* Success */
+			   res.status(200).json(shots);
+		   });
+};
+
 /* Update Service
  *
  * The user can update any service. */
