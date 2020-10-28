@@ -7,15 +7,11 @@ form#vaccination-form
 				type='button'
 			)
 		section.modal-card-body
-			b-field#vaccination-label-application-date(
+			b-field#vaccination-label-application-date-title(
 				label='Application Date'
 			)
-			b-datepicker#vaccination-datepicker-application-date(
-				inline
-				required
-				v-model='recordApplicationDate'
-				:min-date='recordApplicationDate'
-				:max-date='recordApplicationDate'
+			b-field#vaccination-label-application-date(
+				:label='recordApplicationDate'
 			)
 			b-field#vaccination-label-shot( label='Shot' )
 			b-select#vaccination-select-shot(
@@ -27,12 +23,14 @@ form#vaccination-form
 					:key='index'
 					:value='shot'
 				) {{ service.name }}
-			b-field#vaccination-label-next-date( label='Next Date' )
+			b-field#vaccination-label-next-date(
+				label='Next Application Date'
+			)
 			b-datepicker#vaccination-datepicker-next-date(
 				inline
 				required
 				v-model='recordNextDate'
-				:min-date='recordApplicationDate'
+				:min-date='minDate'
 			)
 		footer.modal-card-foot
 			button.button(
@@ -56,6 +54,8 @@ form#vaccination-form
 </template>
 
 <script lang='js'>
+import moment from 'moment'
+
 export default {
 	name: 'VaccinationForm',
 	props: {
@@ -69,7 +69,8 @@ export default {
 			title: 'Add Record',
 			labelButtonCancel: 'Cancel',
 			labelButtonAccept: 'Accept',
-			recordApplicationDate: new Date(),
+			minDate: new Date(),
+			recordApplicationDate: moment(this.minDate).format('YYYY-MM-DD'),
 			recordShot: '',
 			recordMedic: '',
 			recordNextDate: new Date(),
