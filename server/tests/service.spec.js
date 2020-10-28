@@ -31,6 +31,12 @@ describe('Service', () => {
 			.expect(401);
 	});
 
+	it("Shouldn't send shots without a Token", async () => {
+		return REQUEST(SERVER)
+			.get('/services/shots')
+			.expect(401);
+	});
+
 	it("Shouldn't send services without a Token", async () => {
 		return REQUEST(SERVER)
 			.get('/services')
