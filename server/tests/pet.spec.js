@@ -31,6 +31,13 @@ describe('Pet', () => {
 			.expect(401);
 	});
 
+	it("Shouldn't add a vaccination record without a Token", async () => {
+		return REQUEST(SERVER)
+			.post('/pets/add-vaccination-record')
+			.send({})
+			.expect(401);
+	});
+
 	it("Shouldn't upload picture without a Token", async () => {
 		return REQUEST(SERVER)
 			.post('/pets/upload-picture')
