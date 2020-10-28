@@ -1,5 +1,6 @@
 const PET = require('../models/pet.js');
-const FS = require('fs');
+const VACCINATION_RECORD = require('../models/schemas/vaccination-record.js');
+const fs = require('fs');
 
 /* Create Pet
  *
@@ -74,8 +75,8 @@ function CheckPetPicturesFolder(){
 	const PET_PICTURES_FOLDER = 'uploads/pet-pictures';
 
 	try{
-		if(!FS.existsSync(PET_PICTURES_FOLDER));
-			FS.mkdirSync(PET_PICTURES_FOLDER);
+		if(!fs.existsSync(PET_PICTURES_FOLDER));
+			fs.mkdirSync(PET_PICTURES_FOLDER);
 
 		return true;
 	}catch(err){
@@ -91,7 +92,7 @@ exports.GetProfilePicture = (req, res) => {
 	const PET_PICTURE = 'uploads/pet-pictures/' + req.query.id + '.png';
 
 	try{
-		FS.access(PET_PICTURE, err => {
+		fs.access(PET_PICTURE, err => {
 			if(err)
 				return res.status(406).json(err);
 
@@ -133,4 +134,32 @@ exports.GetPets = (req, res) => {
 			  /* Success */
 			  res.status(200).json(pets);
 		  });
+};
+
+/* Add Vaccination Record
+ *
+ * The user may want to update the pet's vaccination record.
+ * So we create a new vaccination record object and push it to the vaccination
+ * records's array of the pet. The we update in the database. */
+exports.AddVaccinationRecord = (req, res) => {
+	const APPLICATION_DATE = new Date(req.body.applicationDate);
+	const NEXT_APPLICATION_DATE = new Date(req.body.nextApplicationDate);
+
+	const RECORD = new VACCINATION_RECORD({
+		applicationDate: APPLICATION_DATE,
+		shot: req.body.shot,
+		medic: req.body.medic,
+		nextApplicationDate: NEXT_APPLICATION_DATE
+	});
+
+	var records = req.body.vaccinationRecords;
+	records.push(RECORD);
+
+	PET.findByIdAndUpdate(req.body.id, { vaccinationRecords: records }, err => {
+		if(err)
+			return res.status(406).json(err);
+
+		/* Success */
+		res.sendStatus(201);
+	});
 };
