@@ -30,7 +30,7 @@ div#pet-profile
 					| {{ owner.address.number }}
 					br
 					| P.C. {{ owner.address.postalCode }}
-	VaccinationRecord( :records='pet.vaccinationRecord' )
+	VaccinationRecord( :petId='pet._id' :records='pet.vaccinationRecord' )
 	MedicalRecord
 </template>
 
