@@ -98,6 +98,7 @@ inside ```server/``` and set the following Environment Variables:
 | VUE_APP_TYRAWEB_DELETE_BREED | host:port/breeds/delete |
 | VUE_APP_TYRAWEB_PET | host:port/pets |
 | VUE_APP_TYRAWEB_PETS | host:port/pets/all |
+| VUE_APP_TYRAWEB_PET_ADD_VACCINATION_RECORD | host:port/pets/add-vaccination-record |
 | VUE_APP_TYRAWEB_ADD_PET | host:port/pets/add-pet |
 | VUE_APP_TYRAWEB_PET_ADD_PICTURE | host:port/pets/upload-picture |
 | VUE_APP_TYRAWEB_PROFILE_PICTURE | host:port/pets/picture |
