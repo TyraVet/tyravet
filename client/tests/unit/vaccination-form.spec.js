@@ -117,4 +117,16 @@ describe('Vaccination Form', () => {
 		expect(errorIcon.attributes().size).toMatch('is-large');
 		expect(errorIcon.attributes().icon).toMatch('exclamation');
 	});
+
+	it('Should has an init method', () => {
+		expect(wrapper.vm.init).toBeTruthy();
+	});
+
+	it('Should has a close method', () => {
+		expect(wrapper.vm.close).toBeTruthy();
+	});
+
+	it('Should has a send method', () => {
+		expect(wrapper.vm.send).toBeTruthy();
+	});
 });
