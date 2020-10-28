@@ -129,4 +129,8 @@ describe('Vaccination Form', () => {
 	it('Should has a send method', () => {
 		expect(wrapper.vm.send).toBeTruthy();
 	});
+
+	it('Should has a getShots method', () => {
+		expect(wrapper.vm.getShots).toBeTruthy();
+	});
 });
