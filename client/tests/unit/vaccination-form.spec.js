@@ -29,7 +29,8 @@ describe('Vaccination Form', () => {
 	const data = VaccinationForm.data();
 	it('Should set the default data', () => {
 		expect(typeof VaccinationForm.data).toBe('function');
-		expect(typeof data.recordApplicationDate).toBe('object');
+		expect(typeof data.minDate).toBe('object');
+		expect(typeof data.recordApplicationDate).toBe('string');
 		expect(data.recordShot).toMatch('');
 		expect(data.recordMedic).toMatch('');
 		expect(typeof data.recordNextDate).toBe('object');
@@ -63,14 +64,12 @@ describe('Vaccination Form', () => {
 	it('Should has a modal body with inputs', () => {
 		expect(modalBody.exists()).toBeTruthy();
 
+		const labelApplicationDateTitle = modalBody.get('#vaccination-label-application-date-title');
+		expect(labelApplicationDateTitle.exists()).toBeTruthy();
+		expect(labelApplicationDateTitle.attributes().label).toMatch('Application Date');
+
 		const labelApplicationDate = modalBody.get('#vaccination-label-application-date');
 		expect(labelApplicationDate.exists()).toBeTruthy();
-		expect(labelApplicationDate.attributes().label).toMatch('Application Date');
-
-		const datepickerApplicationDate = modalBody.get('#vaccination-datepicker-application-date');
-		expect(datepickerApplicationDate.exists()).toBeTruthy();
-		expect(datepickerApplicationDate.attributes().inline).toBeTruthy();
-		expect(datepickerApplicationDate.attributes().required).toBeTruthy();
 
 		const labelShot = modalBody.get('#vaccination-label-shot');
 		expect(labelShot.exists()).toBeTruthy();
@@ -82,7 +81,7 @@ describe('Vaccination Form', () => {
 
 		const labelNextDate = modalBody.get('#vaccination-label-next-date');
 		expect(labelNextDate.exists()).toBeTruthy();
-		expect(labelNextDate.attributes().label).toMatch('Next Date');
+		expect(labelNextDate.attributes().label).toMatch('Next Application Date');
 
 		const datepickerNextDate = modalBody.get('#vaccination-datepicker-next-date');
 		expect(datepickerNextDate.exists()).toBeTruthy();
