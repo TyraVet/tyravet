@@ -1,5 +1,5 @@
 const PET = require('../models/pet.js');
-const VACCINATION_RECORD = require('../models/schemas/vaccination-record.js');
+const VACCINATION_RECORD = require('../models/vaccination-record.js');
 const fs = require('fs');
 
 /* Create Pet
@@ -142,20 +142,17 @@ exports.GetPets = (req, res) => {
  * So we create a new vaccination record object and push it to the vaccination
  * records's array of the pet. The we update in the database. */
 exports.AddVaccinationRecord = (req, res) => {
-	const APPLICATION_DATE = new Date(req.body.applicationDate);
-	const NEXT_APPLICATION_DATE = new Date(req.body.nextApplicationDate);
-
 	const RECORD = new VACCINATION_RECORD({
-		applicationDate: APPLICATION_DATE,
+		applicationDate: new Date(req.body.applicationDate),
 		shot: req.body.shot,
 		medic: req.body.medic,
-		nextApplicationDate: NEXT_APPLICATION_DATE
+		nextApplicationDate: new Date(req.body.nextApplicationDate)
 	});
 
 	var records = req.body.vaccinationRecords;
 	records.push(RECORD);
 
-	PET.findByIdAndUpdate(req.body.id, { vaccinationRecords: records }, err => {
+	PET.findByIdAndUpdate(req.body.id, { vaccinationRecord: records }, err => {
 		if(err)
 			return res.status(406).json(err);
 
