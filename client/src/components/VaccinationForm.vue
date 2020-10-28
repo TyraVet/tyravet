@@ -5,6 +5,7 @@ form#vaccination-form
 			p.modal-card-title {{ title }}
 			button.delete(
 				type='button'
+				@click='close()'
 			)
 		section.modal-card-body
 			b-field#vaccination-label-application-date-title(
@@ -35,8 +36,11 @@ form#vaccination-form
 		footer.modal-card-foot
 			button.button(
 				type='button'
+				@click='close()'
 			) {{ labelButtonCancel }}
-			b-button.button.is-success() {{ labelButtonAccept }}
+			b-button.button.is-success(
+				@click='send()'
+			) {{ labelButtonAccept }}
 			b-icon#success-icon(
 				title='Success'
 				type='is-success'
@@ -76,6 +80,14 @@ export default {
 			recordNextDate: new Date(),
 			services: null
 		}
+	},
+	methods: {
+		init(){},
+		close(){ this.$emit('close') },
+		send(){}
+	},
+	created(){
+		this.init()
 	}
 }
 </script>
