@@ -6,6 +6,7 @@ section#vaccination-list
 		:data='records'
 		:bordered='isBordered'
 		:mobile-cards='hasMobileCards'
+		style='margin-top: 5px'
 	)
 		b-table-column#application-date(
 			field='applicationDate'
@@ -24,9 +25,9 @@ section#vaccination-list
 		) {{ props.row.medic }}
 		b-table-column#next-date(
 			field='nextDate'
-			label='Next Date'
+			label='Next Application Date'
 			v-slot='props'
-		) {{ props.row.nextDate }}
+		) {{ props.row.nextApplicationDate }}
 </template>
 
 <script lang='js'>
