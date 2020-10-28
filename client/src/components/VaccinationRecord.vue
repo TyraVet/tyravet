@@ -1,6 +1,6 @@
 <template lang='pug'>
 section#vaccination-record
-	VaccinationTitle( :petId='petId' )
+	VaccinationTitle( :petId='petId' :records='records' )
 	VaccinationList( :records='records' )
 </template>
 

@@ -27,6 +27,10 @@ export default {
 		petId: {
 			type: String,
 			required: true
+		},
+		records: {
+			type: String,
+			required: true
 		}
 	},
 	data(){
@@ -43,7 +47,8 @@ export default {
 				hasModalCard: true,
 				trapFocus: true,
 				props: {
-					petId: this.petId
+					petId: this.petId,
+					records: this.records
 				}
 			})
 		}
