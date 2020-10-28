@@ -1,6 +1,6 @@
 <template lang='pug'>
 section#vaccination-record
-	VaccinationTitle
+	VaccinationTitle( :petId='petId' )
 	VaccinationList( :records='records' )
 </template>
 
@@ -12,6 +12,10 @@ export default {
 	name: 'VaccinationRecord',
 	components: { VaccinationTitle, VaccinationList },
 	props: {
+		petId: {
+			type: String,
+			required: true
+		},
 		records: {
 			type: Array,
 			required: true
