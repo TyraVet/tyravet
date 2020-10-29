@@ -29,7 +29,6 @@ describe('Vaccination Form', () => {
 	const data = VaccinationForm.data();
 	it('Should set the default data', () => {
 		expect(typeof VaccinationForm.data).toBe('function');
-		expect(typeof data.minDate).toBe('object');
 		expect(typeof data.recordApplicationDate).toBe('string');
 		expect(data.recordShot).toMatch('');
 		expect(typeof data.recordNextDate).toBe('object');
@@ -125,6 +124,18 @@ describe('Vaccination Form', () => {
 
 	it('Should has a close method', () => {
 		expect(wrapper.vm.close).toBeTruthy();
+	});
+
+	it('Should has a close method', () => {
+		expect(wrapper.vm.clearInputs).toBeTruthy();
+	});
+
+	it('Should has a close method', () => {
+		expect(wrapper.vm.setOnSuccess).toBeTruthy();
+	});
+
+	it('Should has a close method', () => {
+		expect(wrapper.vm.setOnError).toBeTruthy();
 	});
 
 	it('Should has a send method', () => {
