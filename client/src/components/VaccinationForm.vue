@@ -62,6 +62,7 @@ form#vaccination-form
 <script lang='js'>
 import moment from 'moment'
 import axios from 'axios'
+import { EventBus } from '../eventBus.js'
 
 export const CREATED = 201
 export const AUTH = 401
@@ -113,6 +114,7 @@ export default {
 		setOnSuccess(response){
 			this.status = response.status
 			this.clearInputs()
+			EventBus.$emit('update-vaccination-records')
 		},
 		/* Set Error status to show warning icon. */
 		setOnError(error){
