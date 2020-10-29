@@ -31,7 +31,7 @@ form#vaccination-form
 				inline
 				required
 				v-model='recordNextDate'
-				:min-date='minDate'
+				:min-date='today'
 			)
 		footer.modal-card-foot
 			button.button(
@@ -80,6 +80,9 @@ export default {
 			required: true
 		}
 	},
+	computed: {
+		today(){ return this.$store.state.today }
+	},
 	data(){
 		return{
 			CREATED,
@@ -89,10 +92,9 @@ export default {
 			title: 'Add Record',
 			labelButtonCancel: 'Cancel',
 			labelButtonAccept: 'Accept',
-			minDate: new Date(),
-			recordApplicationDate: moment(this.minDate).format('YYYY-MM-DD'),
+			recordApplicationDate: moment(this.today).format('YYYY-MM-DD'),
 			recordShot: '',
-			recordNextDate: new Date(),
+			recordNextDate: null,
 			services: null,
 			status: null
 		}
