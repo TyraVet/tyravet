@@ -6,7 +6,7 @@ const localVue = createLocalVue();
 localVue.use(Buefy);
 
 const wrapper = shallowMount(VaccinationTitle, {
-	propsData: { petId: '' },
+	propsData: { petId: '', records: [] },
 	localVue
 });
 

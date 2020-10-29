@@ -15,7 +15,7 @@ store.state.user = {
 };
 
 const wrapper = shallowMount(VaccinationForm, {
-	propsData: { petId: '' },
+	propsData: { petId: '', records: [] },
 	store,
 	localVue
 });
@@ -89,7 +89,7 @@ describe('Vaccination Form', () => {
 	});
 
 	const modalFooter = modal.get('.modal-card-foot');
-	it('Should has a modal footer with two buttons', () => {
+	it('Should has a modal footer with two buttons', async () => {
 		expect(modalFooter.exists()).toBeTruthy();
 
 		const cancelButton = modalFooter.get('button');
@@ -100,6 +100,7 @@ describe('Vaccination Form', () => {
 		expect(acceptButton.exists()).toBeTruthy();
 		expect(acceptButton.text()).toMatch(data.labelButtonAccept);
 
+		await wrapper.setData({ status: 201 });
 		const successIcon = modalFooter.get('#success-icon');
 		expect(successIcon.exists()).toBeTruthy();
 		expect(successIcon.attributes().title).toMatch('Success');
@@ -108,6 +109,7 @@ describe('Vaccination Form', () => {
 		expect(successIcon.attributes().size).toMatch('is-large');
 		expect(successIcon.attributes().icon).toMatch('check');
 
+		await wrapper.setData({ status: 401 });
 		const errorIcon = modalFooter.get('#error-icon');
 		expect(errorIcon.exists()).toBeTruthy();
 		expect(errorIcon.attributes().title).toMatch('Error');
