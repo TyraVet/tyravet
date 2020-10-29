@@ -14,7 +14,7 @@ exports.DaySchedule = (req, res) => {
 
 		if(!MyDaySchedule){
 			/* The date has a very specific format, so to avoid any issues
-			 * we better create a temporal date, formatted and create a new
+			 * we better create a temporal date, format it and create a ne
 			 * date as today and then compare. */
 			let temp_date = new Date();
 			temp_date = MOMENT(temp_date).format('YYYY-MM-DD');
