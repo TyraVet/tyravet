@@ -306,5 +306,5 @@ ASYNC.series([
 		console.log('Services: ' + services);
 	}
 	// All done, disconnect from database
-	MedianoONGOOSE.connection.close();
+	MONGOOSE.connection.close();
 });
