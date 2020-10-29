@@ -266,8 +266,26 @@ function CreateServices(callback){
 			ServiceCreate('Haircut With Knots Extra Large', 800, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Extra Bug', 50, 'grooming', callback);
-		}
+			ServiceCreate('Rabies', 150, 'vaccination', callback);
+		},
+		function(callback){
+			ServiceCreate('Bordetella', 250, 'vaccination', callback);
+		},
+		function(callback){
+			ServiceCreate('Deworming Mini', 100, 'vaccination', callback);
+		},
+		function(callback){
+			ServiceCreate('Deworming Small', 180, 'vaccination', callback);
+		},
+		function(callback){
+			ServiceCreate('Deworming Medium', 200, 'vaccination', callback);
+		},
+		function(callback){
+			ServiceCreate('Deworming Large', 250, 'vaccination', callback);
+		},
+		function(callback){
+			ServiceCreate('Deworming Extra Large', 350, 'vaccination', callback);
+		},
 	], 'grooming', callback);
 };
 
