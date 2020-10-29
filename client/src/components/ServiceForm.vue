@@ -8,18 +8,27 @@ form#service-form
 				@click='close()'
 			)
 		section.modal-card-body
-			b-field( label='Name' )
-			b-input(
+			b-field#service-label-name( label='Name' )
+			b-input#service-input-name(
 				type='text'
 				v-model='serviceName',
 				required
 			)
-			b-field( label='Price' )
-			b-input(
+			b-field#service-label-price( label='Price' )
+			b-input#service-input-price(
 				type='phonenumber'
 				v-model='servicePrice',
 				required
 			)
+			b-field#service-label-type( label='Type' )
+			b-select#service-select-type(
+				v-model='serviceType'
+				required
+			)
+				option(
+					v-for='(type, index) in TYPES'
+					:key='index'
+					:value='type') {{ type }}
 		footer.modal-card-foot
 			button.button(
 				type='button'
@@ -55,6 +64,7 @@ export const CREATED = 201
 export const AUTH = 401
 export const NOT_FOUND = 404
 export const ERROR = 406
+export const TYPES = ['grooming', 'vaccination']
 
 export default {
 	name: 'ServiceForm',
@@ -72,9 +82,11 @@ export default {
 			AUTH,
 			NOT_FOUND,
 			ERROR,
+			TYPES,
 			title: '',
 			serviceName: '',
 			servicePrice: 0,
+			serviceType: '',
 			labelButtonCancel: 'Cancel',
 			labelButtonAccept: 'Accept',
 			status: null
@@ -127,7 +139,8 @@ export default {
 		createService(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_SERVICE, {
 				name: this.serviceName,
-				price: this.servicePrice
+				price: this.servicePrice,
+				type: this.serviceType
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
@@ -159,7 +172,8 @@ export default {
 			axios.post(process.env.VUE_APP_TYRAWEB_UPDATE_SERVICE, {
 				id: this.serviceId,
 				name: this.serviceName,
-				price: this.servicePrice
+				price: this.servicePrice,
+				type: this.serviceType
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token

@@ -14,16 +14,43 @@ section#vaccination-title
 		has-icon
 		icon-pack='fas'
 		icon-left='plus'
+		@click='launchVaccinationForm()'
 	) {{ labelButton }}
 </template>
 
 <script lang='js'>
+import VaccinationForm from '@/components/VaccinationForm.vue'
+
 export default {
 	name: 'VaccinationTitle',
+	props: {
+		petId: {
+			type: String,
+			required: true
+		},
+		records: {
+			type: String,
+			required: true
+		}
+	},
 	data(){
 		return{
 			title: 'Vaccination and Deworming Record',
 			labelButton: 'Add'
+		}
+	},
+	methods: {
+		launchVaccinationForm(){
+			this.$buefy.modal.open({
+				parent: this,
+				component: VaccinationForm,
+				hasModalCard: true,
+				trapFocus: true,
+				props: {
+					petId: this.petId,
+					records: this.records
+				}
+			})
 		}
 	}
 }

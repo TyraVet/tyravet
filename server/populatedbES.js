@@ -206,87 +206,90 @@ function CreateBreeds(callback){
 function CreateServices(callback){
 	ASYNC.series([
 		function(callback){
-			ServiceCreate('Bath Mini', 120, 'grooming', callback);
+			ServiceCreate('Baño Mini', 120, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Small', 150, 'grooming', callback);
+			ServiceCreate('Baño Chico', 150, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Medium', 200, 'grooming', callback);
+			ServiceCreate('Baño Mediano', 200, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Large', 350, 'grooming', callback);
+			ServiceCreate('Baño Grande', 350, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Extra Large', 500, 'grooming', callback);
+			ServiceCreate('Baño Extra Grande', 500, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Mini', 150, 'grooming', callback);
+			ServiceCreate('Baño Pelo Largo Mini', 150, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Small', 180, 'grooming', callback);
+			ServiceCreate('Baño Pelo Largo Chico', 180, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Medium', 250, 'grooming', callback);
+			ServiceCreate('Baño Pelo Largo Mediano', 250, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Large', 450, 'grooming', callback);
+			ServiceCreate('Baño Pelo Largo Grande', 450, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Bath Long Hair Extra Large', 600, 'grooming', callback);
+			ServiceCreate('Baño Pelo Largo Extra Grande', 600, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Mini', 180, 'grooming', callback);
+			ServiceCreate('Estetica sin nudos Mini', 180, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Small', 200, 'grooming', callback);
+			ServiceCreate('Estetica sin nudos Chico', 200, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Medium', 350, 'grooming', callback);
+			ServiceCreate('Estetica sin nudos Mediano', 350, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Large', 550, 'grooming', callback);
+			ServiceCreate('Estetica sin nudos Grande', 550, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut Without Knots Extra Large', 700, 'grooming', callback);
+			ServiceCreate('Estetica sin nudos Extra Grande', 700, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Mini', 200, 'grooming', callback);
+			ServiceCreate('Estetica con nudos Medianoini', 200, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Small', 250, 'grooming', callback);
+			ServiceCreate('Estetica con nudos Chico', 250, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Medium', 450, 'grooming', callback);
+			ServiceCreate('Estetica con nudos Mediano', 450, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Large', 650, 'grooming', callback);
+			ServiceCreate('Estetica con nudos Grande', 650, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Haircut With Knots Extra Large', 800, 'grooming', callback);
+			ServiceCreate('Estetica con nudos Extra Grande', 800, 'grooming', callback);
 		},
 		function(callback){
-			ServiceCreate('Rabies', 150, 'vaccination', callback);
+			ServiceCreate('Rabia', 150, 'vaccination', callback);
+		},
+		function(callback){
+			ServiceCreate('Multiple', 330, 'vaccination', callback);
 		},
 		function(callback){
 			ServiceCreate('Bordetella', 250, 'vaccination', callback);
 		},
 		function(callback){
-			ServiceCreate('Deworming Mini', 100, 'vaccination', callback);
+			ServiceCreate('Desparasitacion Mini', 100, 'vaccination', callback);
 		},
 		function(callback){
-			ServiceCreate('Deworming Small', 180, 'vaccination', callback);
+			ServiceCreate('Desparasitacion Chico', 180, 'vaccination', callback);
 		},
 		function(callback){
-			ServiceCreate('Deworming Medium', 200, 'vaccination', callback);
+			ServiceCreate('Desparasitacion Mediano', 200, 'vaccination', callback);
 		},
 		function(callback){
-			ServiceCreate('Deworming Large', 250, 'vaccination', callback);
+			ServiceCreate('Desparasitacion Grande', 250, 'vaccination', callback);
 		},
 		function(callback){
-			ServiceCreate('Deworming Extra Large', 350, 'vaccination', callback);
+			ServiceCreate('Desparasitacion Extra Grande', 350, 'vaccination', callback);
 		},
-	], 'grooming', callback);
+	], callback);
 };
 
 ASYNC.series([
@@ -303,5 +306,5 @@ ASYNC.series([
 		console.log('Services: ' + services);
 	}
 	// All done, disconnect from database
-	MONGOOSE.connection.close();
+	MedianoONGOOSE.connection.close();
 });

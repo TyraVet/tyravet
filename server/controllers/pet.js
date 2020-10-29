@@ -1,5 +1,7 @@
 const PET = require('../models/pet.js');
-const FS = require('fs');
+const VACCINATION_RECORD = require('../models/vaccination-record.js');
+const fs = require('fs');
+const moment = require('moment');
 
 /* Create Pet
  *
@@ -74,8 +76,8 @@ function CheckPetPicturesFolder(){
 	const PET_PICTURES_FOLDER = 'uploads/pet-pictures';
 
 	try{
-		if(!FS.existsSync(PET_PICTURES_FOLDER));
-			FS.mkdirSync(PET_PICTURES_FOLDER);
+		if(!fs.existsSync(PET_PICTURES_FOLDER));
+			fs.mkdirSync(PET_PICTURES_FOLDER);
 
 		return true;
 	}catch(err){
@@ -91,7 +93,7 @@ exports.GetProfilePicture = (req, res) => {
 	const PET_PICTURE = 'uploads/pet-pictures/' + req.query.id + '.png';
 
 	try{
-		FS.access(PET_PICTURE, err => {
+		fs.access(PET_PICTURE, err => {
 			if(err)
 				return res.status(406).json(err);
 
@@ -133,4 +135,39 @@ exports.GetPets = (req, res) => {
 			  /* Success */
 			  res.status(200).json(pets);
 		  });
+};
+
+/* Add Vaccination Record
+ *
+ * The user may want to update the pet's vaccination record.
+ * So we create a new vaccination record object and push it to the vaccination
+ * records's array of the pet. The we update in the database. */
+exports.AddVaccinationRecord = (req, res) => {
+	/* Again, some weird shit with the dates. I don't know why this happens
+	 * but when I create the nextApplicationDate date object it gets me
+	 * the day before that the one I wanted.
+	 *
+	 * So to avoid that I discovered this method with moment,
+	 * tell it to add 0 days to the date and then create my date object
+	 * and it works as intented. */
+	const actualDate = moment(req.body.nextApplicationDate).add(0, 'days');
+	let nextApplicationDate = new Date(actualDate);
+
+	const RECORD = new VACCINATION_RECORD({
+		applicationDate: new Date(req.body.applicationDate),
+		shot: req.body.shot,
+		medic: req.body.medic,
+		nextApplicationDate: nextApplicationDate
+	});
+
+	var records = req.body.vaccinationRecords;
+	records.push(RECORD);
+
+	PET.findByIdAndUpdate(req.body.id, { vaccinationRecord: records }, err => {
+		if(err)
+			return res.status(406).json(err);
+
+		/* Success */
+		res.sendStatus(201);
+	});
 };
