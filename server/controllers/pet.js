@@ -163,7 +163,7 @@ exports.AddVaccinationRecord = (req, res) => {
 	var records = req.body.vaccinationRecords;
 	records.push(RECORD);
 
-	PET.findByIdAndUpdate(req.body.id, { vaccinationRecord: [] }, err => {
+	PET.findByIdAndUpdate(req.body.id, { vaccinationRecord: records }, err => {
 		if(err)
 			return res.status(406).json(err);
 
