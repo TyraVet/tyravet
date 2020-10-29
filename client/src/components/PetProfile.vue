@@ -39,6 +39,7 @@ import VaccinationRecord from './VaccinationRecord.vue'
 import MedicalRecord from './MedicalRecord.vue'
 import axios from 'axios'
 import moment from 'moment'
+import { EventBus } from '../eventBus.js'
 
 export const OK = 200
 export const CREATED = 201
@@ -162,6 +163,13 @@ export default {
 	},
 	created(){
 		this.init()
+
+		/* Event Listeners */
+
+		/* When a record is stored in the data base update the view. */
+		EventBus.$on('update-vaccination-records', () => {
+			this.getPet()
+		})
 	}
 }
 </script>
