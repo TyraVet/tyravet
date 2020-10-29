@@ -104,6 +104,20 @@ export default {
 		init(){ this.getShots() },
 		/* Close the modal through emitting the event. */
 		close(){ this.$emit('close') },
+		/* Set the data back to default. */
+		clearInputs(){
+			this.recordShot = ''
+			this.recordNextDate = null
+		},
+		/* Set Success status to show check icon and clear inputs */
+		setOnSuccess(response){
+			this.status = response.status
+			this.clearInputs()
+		},
+		/* Set Error status to show warning icon. */
+		setOnError(error){
+			this.status = error.response.status
+		},
 		/* POST request to store the vaccination record in the pet. */
 		send(){
 			axios.post(process.env.VUE_APP_TYRAWEB_PET_ADD_VACCINATION_RECORD, {
@@ -118,9 +132,9 @@ export default {
 					Authorization: 'Bearer ' + this.$store.state.user.token
 				}
 			}).then(response => {
-				console.log(response)
+				this.setOnSuccess(response)
 			}).catch(error => {
-				console.error(error)
+				this.setOnError(error)
 			})
 		},
 		/* GET request to get the vaccination services (shots). */
@@ -132,7 +146,7 @@ export default {
 			}).then(response => {
 				this.services = response.data
 			}).catch(error => {
-				console.error(error)
+				this.setOnError(error)
 			})
 		}
 	},
