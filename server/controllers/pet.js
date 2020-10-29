@@ -1,6 +1,7 @@
 const PET = require('../models/pet.js');
 const VACCINATION_RECORD = require('../models/vaccination-record.js');
 const fs = require('fs');
+const moment = require('moment');
 
 /* Create Pet
  *
@@ -142,17 +143,27 @@ exports.GetPets = (req, res) => {
  * So we create a new vaccination record object and push it to the vaccination
  * records's array of the pet. The we update in the database. */
 exports.AddVaccinationRecord = (req, res) => {
+	/* Again, some weird shit with the dates. I don't know why this happens
+	 * but when I create the nextApplicationDate date object it gets me
+	 * the day before that the one I wanted.
+	 *
+	 * So to avoid that I discovered this method with moment,
+	 * tell it to add 0 days to the date and then create my date object
+	 * and it works as intented. */
+	const actualDate = moment(req.body.nextApplicationDate).add(0, 'days');
+	let nextApplicationDate = new Date(actualDate);
+
 	const RECORD = new VACCINATION_RECORD({
 		applicationDate: new Date(req.body.applicationDate),
 		shot: req.body.shot,
 		medic: req.body.medic,
-		nextApplicationDate: new Date(req.body.nextApplicationDate)
+		nextApplicationDate: nextApplicationDate
 	});
 
 	var records = req.body.vaccinationRecords;
 	records.push(RECORD);
 
-	PET.findByIdAndUpdate(req.body.id, { vaccinationRecord: records }, err => {
+	PET.findByIdAndUpdate(req.body.id, { vaccinationRecord: [] }, err => {
 		if(err)
 			return res.status(406).json(err);
 
