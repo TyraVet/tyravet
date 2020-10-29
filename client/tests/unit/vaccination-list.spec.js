@@ -49,7 +49,7 @@ describe('Vaccination List Component', () => {
 		const nextDate = table.get('#next-date');
 		expect(nextDate.exists()).toBeTruthy();
 		expect(nextDate.attributes().field).toMatch('nextDate');
-		expect(nextDate.attributes().label).toMatch('Next Date');
+		expect(nextDate.attributes().label).toMatch('Next Application Date');
 	});
 
 	it('Should has an error message if there are no records', async () => {

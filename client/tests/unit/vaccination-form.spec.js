@@ -32,7 +32,6 @@ describe('Vaccination Form', () => {
 		expect(typeof data.minDate).toBe('object');
 		expect(typeof data.recordApplicationDate).toBe('string');
 		expect(data.recordShot).toMatch('');
-		expect(data.recordMedic).toMatch('');
 		expect(typeof data.recordNextDate).toBe('object');
 	});
 
