@@ -1,9 +1,0 @@
-.navbar {
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: space-between;
-}
-
-.navbar > * {
-	margin: 10px 25px 0 10px;
-}
