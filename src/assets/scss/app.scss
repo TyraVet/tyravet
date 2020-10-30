@@ -1,0 +1,55 @@
+@import "../../../node_modules/bulma/sass/utilities/_all";
+
+$primary: #3f72af;
+$primary-invert: findColorInvert($primary);
+$primary-dark: #112d4e;
+$primary-dark-invert: findColorInvert($primary-dark);
+$primary-white: #f9f7f7;
+$primary-white-invert: findColorInvert($primary-white);
+$primary-light: #dbe2ef;
+$primary-light-invert: findColorInvert($primary-light);
+$danger: #BC243C;
+$danger-invert: findColorInvert($danger);
+$danger-alpha: rgba(#BC243C, 0.1);
+$danger-alpha-invert: findColorInvert($danger-alpha);
+$icon: #E94560;
+$icon-invert: findColorInvert($icon);
+
+$colors: (
+	"white": ($white, $black),
+	"black": ($black, $white),
+	"light": ($light, $light-invert),
+	"dark": ($dark, $dark-invert),
+	"primary": ($primary, $primary-invert),
+	"primary-dark": ($primary-dark, $primary-dark-invert),
+	"primary-white": ($primary-white, $primary-white-invert),
+	"primary-light": ($primary-light, $primary-light-invert),
+	"info": ($info, $info-invert),
+	"success": ($success, $success-invert),
+	"warning": ($warning, $warning-invert),
+	"danger": ($danger, $danger-invert),
+	"danger-alpha": ($danger-alpha, $danger-alpha-invert),
+	"icon": ($icon, $icon-invert)
+);
+
+/* Links */
+$link: $primary-light;
+$link-invert: $primary-light-invert;
+$link-hover: $primary-light;
+
+/* Bulma Variables */
+/* Footer */
+$footer-background-color: $primary-dark;
+$footer-background-color-invert: $primary-dark-invert;
+$footer-padding: 1rem .5rem 2rem;
+/* Inputs */
+$input-focus-border-color: $primary;
+$input-arrow: $primary-dark;
+$datepicker-item-selected-color: $primary-invert;
+$datepicker-item-selected-background-color: $primary;
+$datepicker-today-border: solid 1px rgba($primary, 0.5);
+/* Menus */
+$menu-item-active-background-color: $primary;
+
+@import "../../../node_modules/bulma/bulma.sass";
+@import "../../../node_modules/buefy/src/scss/buefy";

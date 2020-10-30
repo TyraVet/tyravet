@@ -15,7 +15,8 @@
 </p>
 
 # Tyra Web
-Fullstack MEVN Veterinary management application.
+VueJS Application
+
 - [x] Calendar.
 - [x] Clients and Pets.
 - [ ] Medical Records.
@@ -35,53 +36,33 @@ Fullstack MEVN Veterinary management application.
 </p>
 
 ## Dependencies
-See ```package.json``` inside ```client/``` and ```server/```.
+See ```package.json```
 
 ## Getting Started
-You need to have a [MongoDB](https://www.mongodb.com/) in your system. I suggest
-that you get it as a [Docker](https://www.docker.com/) image. The following
-steps are to setup your database:
+Please first get the api running before.
 
-### Pull MongoDB Image
-``` sh
-sudo docker pull mongo
+### Project setup
 ```
-### Create Directory in you system to have persistent data
-``` sh
-sudo mkdir -p /mongodata
-```
-### Start the Docker Container and Enter the Bash Shell
-``` sh
-sudo docker run -it -v /mongodata:/data/db -p 27017:27017 --name mongodb -d mongo
-sudo docker exec -it mongodb bash
-```
-### Create DataBase and Collection
-``` sh
-mongo
-> use tyra-web
-> db.tyra.insert({ name: 'test' })
-```
-### Populate DB from your system
-#### Note: admin default password is inside the script
-``` sh
-node server/populatedb.js
+npm install
 ```
 
-Create MongoDB [backups](https://www.tutorialspoint.com/mongodb/mongodb_create_backup.htm).
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-## App
-#### ```client/```
-Contains the Vue Application. In here we consume the API to display the
-information from the DataBase and also modify that information.
+### Compiles and minifies for production
+```
+npm run build
+```
 
-#### ```server/```
-Constains the API.
+### Run your unit tests
+```
+npm run test:unit
+```
 
 ### List of Environment Variables
-You need to create two ```.env``` files. One inside ```client/``` and the other
-inside ```server/``` and set the following Environment Variables:
-
-### ```client/.env```
+### ```.env```
 #### Default port is 3000
 | Name | Value |
 | ---- | ----- |
@@ -117,23 +98,11 @@ inside ```server/``` and set the following Environment Variables:
 | VUE_APP_TYRAWEB_UPDATE_APPOINTMNETS | host:port/dayschedules/update-appointment |
 | VUE_APP_PLACEHOLDER | https://via.placeholder.com/500/?text=No+Profile+Picture |
 
-### ```server/.env```
-| Name | Value |
-| ---- | ----- |
-| MONGODB_TYRAWEB_TEST | mongodb://host:port/tyra-web-test |
-| ACCESS_TOKEN_SECRET | random string |
-| TYRAWEB_ROUTE_USERS | /users |
-| TYRAWEB_ROUTE_BREED | /breeds |
-| TYRAWEB_ROUTE_PETS | /clients |
-| TYRAWEB_ROTUE_CLIENTS | /pets |
-| TYRAWEB_ROUTE_SERVICES | /services |
-| TYRAWEB_ROUTE_DAY_SCHEDULES | /dayschedules |
-
 ## Contributing
 If you find this project usefull for your professional life, consider
 making a donation.
 
-For code contributions, please go to our [Contribution File](https://github.com/Andrsrz/tyra-web/blob/master/.github/CONTRIBUTING.md)
+For code contributions, please go to our [Contribution File](https://github.com/tyra-web/tyra-web/blob/master/.github/CONTRIBUTING.md)
 
 ## License
 [MIT](https://mit-license.org/)

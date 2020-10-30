@@ -1,0 +1,16 @@
+#vaccination-title {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	margin-top: 2vh;
+	padding-bottom: 1vh;
+	border-bottom: 1px groove;
+}
+
+#vaccination-title > * {
+	margin: 0 1vw 0 0;
+}
+
+#vaccination-list > #no-records {
+	margin: 2vh;
+}
