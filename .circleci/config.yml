@@ -7,14 +7,8 @@ jobs:
       - NODE_ENV: development
     steps:
       - checkout # check out the code in the project directory
-      - run: # Go into client directory and install packages
+      - run: # install packages and run tests
           command: |
-            cd 'client/'
-            npm install
-            npm run test:unit
-      - run: # Go into server directory and install packages
-          command: |
-            cd 'server/'
             npm install
             npm run test:unit
 

@@ -10,12 +10,6 @@
 # Ignore cache org files
 *.org~
 
-# Ignore object files
-*.o
-
-# Ignore serialized objects
-*.dat
-
 # Inore txt files
 *.txt
 
@@ -35,6 +29,3 @@ geckodriver.log
 
 # Log files
 npm-debug.log*
-
-# server created files
-uploads/
