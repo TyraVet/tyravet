@@ -39,7 +39,7 @@ VueJS Application
 See ```package.json```
 
 ## Getting Started
-Please first get the api running before.
+Please first get the [API](https://github.com/tyra-web/tyra-web-api) running before.
 
 ### Project setup
 ```
