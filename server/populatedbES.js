@@ -117,7 +117,7 @@ function CreateBreeds(callback){
 			BreedCreate('Bulldog', callback);
 		},
 		function(callback){
-			BreedCreate('American Bully', callback);
+			BreedCreate('Bully Americano', callback);
 		},
 		function(callback){
 			BreedCreate('Pit Bull', callback);
@@ -129,7 +129,7 @@ function CreateBreeds(callback){
 			BreedCreate('Beagle', callback);
 		},
 		function(callback){
-			BreedCreate('Bernese Mountain Dog', callback);
+			BreedCreate('Bernese de la Montaña', callback);
 		},
 		function(callback){
 			BreedCreate('Border Collie', callback);
@@ -150,7 +150,7 @@ function CreateBreeds(callback){
 			BreedCreate('Dachshund', callback);
 		},
 		function(callback){
-			BreedCreate('Dalmatian', callback);
+			BreedCreate('Dalmata', callback);
 		},
 		function(callback){
 			BreedCreate('Dogo Argentino', callback);
@@ -162,31 +162,31 @@ function CreateBreeds(callback){
 			BreedCreate('Springer Spaniel', callback);
 		},
 		function(callback){
-			BreedCreate('French Bulldog', callback);
+			BreedCreate('Bulldog Frances', callback);
 		},
 		function(callback){
-			BreedCreate('German Shepherd', callback);
+			BreedCreate('Pastor Aleman', callback);
 		},
 		function(callback){
-			BreedCreate('Giant Schnauzer', callback);
+			BreedCreate('Schnauzer Gigante', callback);
 		},
 		function(callback){
-			BreedCreate('Great Dane', callback);
+			BreedCreate('Gran Danes', callback);
 		},
 		function(callback){
 			BreedCreate('Labrador Retriever', callback);
 		},
 		function(callback){
-			BreedCreate('Miniature Schnauzer', callback);
+			BreedCreate('Schnauzer Miniatura', callback);
 		},
 		function(callback){
-			BreedCreate('Old English Sheepdog', callback);
+			BreedCreate('Viejo Pastor Ingles', callback);
 		},
 		function(callback){
 			BreedCreate('Pekingese', callback);
 		},
 		function(callback){
-			BreedCreate('Pomeranian', callback);
+			BreedCreate('Pomerania', callback);
 		},
 		function(callback){
 			BreedCreate('Pug', callback);
