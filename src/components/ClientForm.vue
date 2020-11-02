@@ -99,6 +99,18 @@ form#client-form
 						:key=index
 						:value='breed'
 					) {{ breed.name }}
+				b-field( label='Female or Male' )
+				div.block
+					b-radio(
+						type='is-primary'
+						v-model='femaleOrMale'
+						:native-value='FEMALE'
+					) {{ FEMALE }}
+					b-radio(
+						type='is-primary'
+						v-model='femaleOrMale'
+						:native-value='MALE'
+					) {{ MALE }}
 		footer.modal-card-foot
 			button.button(
 				type='button'
@@ -136,16 +148,18 @@ import axios from 'axios'
 import { EventBus } from '../eventBus.js'
 
 export const OK = 201
+export const FEMALE = 'Female'
+export const MALE = 'Male'
 
 export default {
 	name: 'ClientForm',
 	data() {
 		return {
 			OK,
+			FEMALE,
+			MALE,
 			title: 'Create Client',
 			status: null,
-			statusText: '',
-			error: '',
 			clientName: '',
 			clientAddressStreet: '',
 			clientAddressNumber: null,
@@ -157,6 +171,7 @@ export default {
 			clientPetWeight: null,
 			clientPetBirthday: null,
 			clientPetBreed: '',
+			femaleOrMale: false,
 			maxDate: new Date(),
 			breeds: []
 		}
@@ -188,6 +203,7 @@ export default {
 			this.clientPetWeight = null
 			this.clientPetBirthday = null
 			this.clientPetBreed = ''
+			this.femaleOrMale = false
 		},
 		/* Render Success Message on Modal and send event to
 		 * re-render the Clients List. */
@@ -232,7 +248,8 @@ export default {
 				petBirthday: this.clientPetBirthday,
 				petAge: this.clientPetAge,
 				petWeight: this.clientPetWeight,
-				petBreed: this.clientPetBreed
+				petBreed: this.clientPetBreed,
+				petFemaleOrMale: this.femaleOrMale
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token

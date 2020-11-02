@@ -48,6 +48,18 @@ form#pet-form
 						v-for='(breed, index) in breeds'
 						:key='index'
 						:value='breed') {{ breed.name }}
+				b-field( label='Female or Male' )
+				div.block
+					b-radio(
+						type='is-primary'
+						v-model='femaleOrMale'
+						:native-value='FEMALE'
+					) {{ FEMALE }}
+					b-radio(
+						type='is-primary'
+						v-model='femaleOrMale'
+						:native-value='MALE'
+					) {{ MALE }}
 		footer.modal-card-foot
 			button.button(
 				type='button'
@@ -81,6 +93,8 @@ import { EventBus } from '../eventBus.js'
 export const OK = 201
 export const ERROR = 403
 export const SERVER_ERROR = 500
+export const FEMALE = 'Female'
+export const MALE = 'Male'
 
 export default {
 	name: 'PetForm',
@@ -92,6 +106,8 @@ export default {
 			OK,
 			ERROR,
 			SERVER_ERROR,
+			FEMALE,
+			MALE,
 			title: 'Add Pet',
 			status: null,
 			statusText: '',
@@ -102,6 +118,7 @@ export default {
 			petWeight: null,
 			petBirthday: null,
 			petBreed: '',
+			femaleOrMale: false,
 			maxDate: new Date()
 		}
 	},
@@ -174,7 +191,8 @@ export default {
 				petBirthday: this.petBirthday,
 				petAge: this.petAge,
 				petWeight: this.petWeight,
-				petBreed: this.petBreed
+				petBreed: this.petBreed,
+				petFemaleOrMale: this.femaleOrMale
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
