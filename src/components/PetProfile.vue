@@ -19,6 +19,7 @@ div#pet-profile
 		section#pet-info
 			h1.is-size-2 {{ pet.name }}
 			h3.is-size-4 {{ pet.breed.name }}
+			p.is-size-5 {{ pet.femaleOrMale }}
 			hr
 			section#owner-info
 				h4.is-size-5
