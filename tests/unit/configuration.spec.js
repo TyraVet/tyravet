@@ -1,10 +1,20 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
+import store from '@/store';
 import Configuration from '@/components/Configuration.vue';
 import Buefy from 'buefy';
 
 const localVue = createLocalVue();
 localVue.use(Buefy);
-const wrapper = shallowMount(Configuration, { localVue });
+
+/* Dummy User */
+store.state.user = {
+	_id: '',
+	username: '',
+	type: {},
+	token: ''
+}
+
+const wrapper = shallowMount(Configuration, { store, localVue });
 
 describe('Configuration Component', () => {
 	const data = Configuration.data();
@@ -153,7 +163,19 @@ describe('Configuration Component', () => {
 		expect(buttonAccept.text()).toMatch(data.labelButtonAccept);
 	});
 
+	it('Should has an init method', () => {
+		expect(wrapper.vm.init).toBeTruthy();
+	});
+
+	it('Should has a getSetup method', () => {
+		expect(wrapper.vm.getSetup).toBeTruthy();
+	});
+
 	it('Should has a send method', () => {
 		expect(wrapper.vm.send).toBeTruthy();
+	});
+
+	it('Should has a setOnSuccess method', () => {
+		expect(wrapper.vm.setOnSuccess).toBeTruthy();
 	});
 });
