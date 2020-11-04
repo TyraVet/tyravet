@@ -140,7 +140,7 @@ export default {
 			}).then(response => {
 				this.setOnSuccess(response)
 			}).catch(error => {
-				console.error(error)
+				this.setOnError(error)
 			})
 		},
 		send(){
@@ -160,9 +160,9 @@ export default {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
-				console.log(response)
+				this.status = response.status
 			}).catch(error => {
-				console.error(error)
+				this.setOnError(error)
 			})
 		},
 		setOnSuccess(response){
@@ -179,6 +179,12 @@ export default {
 			this.vetLogo = data.vetLogo
 			this.name = data.vetHeadOfMedics.name
 			this.code = data.vetHeadOfMedics.code
+		},
+		setOnError(error){
+			if(error.response)
+				this.status = error.response.status
+
+			console.error(error)
 		}
 	},
 	created(){
