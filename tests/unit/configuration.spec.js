@@ -27,6 +27,7 @@ describe('Configuration Component', () => {
 		expect(data.ERROR).toBe(406);
 		expect(data.title).toMatch('Configuration');
 		expect(data.labelButtonAccept).toMatch('Accept');
+		expect(data.status).toBeNull();
 		expect(data.vetName).toMatch('');
 		expect(data.street).toMatch('');
 		expect(data.number).toBe(0);
@@ -161,7 +162,10 @@ describe('Configuration Component', () => {
 		expect(inputCode.attributes().type).toMatch('text');
 		expect(inputCode.attributes().maxlength).toMatch('30');
 
-		const buttonAccept = form.get('b-button-stub');
+		const buttonContainer = form.get('#button-container');
+		expect(buttonContainer.exists()).toBeTruthy();
+
+		const buttonAccept = buttonContainer.get('b-button-stub');
 		expect(buttonAccept.exists()).toBeTruthy();
 		expect(buttonAccept.classes()).toContain('button');
 		expect(buttonAccept.classes()).toContain('is-success');
