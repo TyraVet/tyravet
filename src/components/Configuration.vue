@@ -96,7 +96,24 @@ export default {
 			code: ''
 		}
 	},
+	computed: {
+		user(){
+			return this.$store.state.user
+		}
+	},
 	methods: {
+		init(){ this.getSetup() },
+		getSetup(){
+			axios.get(process.env.VUE_APP_TYRAWEB_GET_CONFIG, {
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				this.setOnSuccess(response.data)
+			}).catch(error => {
+				console.error(error)
+			})
+		},
 		send(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CONFIG, {
 				vetName: this.vetName,
@@ -111,14 +128,29 @@ export default {
 				code: this.code
 			}, {
 				headers: {
-					Authorization: 'Bearer ' + this.$store.state.user.token
+					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
 				console.log(response)
 			}).catch(error => {
 				console.error(error)
 			})
+		},
+		setOnSuccess(data){
+			this.vetName = data.vetName
+			this.street = data.vetAddress.street
+			this.number = data.vetAddress.number
+			this.intNumber = data.vetAddress.intNumber
+			this.zipCode = data.vetAddress.zipCode
+			this.stateOrProvince = data.vetAddress.stateOrProvince
+			this.country = data.vetAddress.country
+			this.vetLogo = data.vetLogo
+			this.name = data.vetHeadOfMedics.name
+			this.code = data.vetHeadOfMedics.code
 		}
+	},
+	created(){
+		this.init()
 	}
 }
 </script>
