@@ -76,6 +76,8 @@ section#configuration
 </template>
 
 <script lang='js'>
+import axios from 'axios'
+
 export default {
 	name: 'Configuration',
 	data(){
@@ -95,7 +97,28 @@ export default {
 		}
 	},
 	methods: {
-		send(){}
+		send(){
+			axios.post(process.env.VUE_APP_TYRAWEB_CONFIG, {
+				vetName: this.vetName,
+				street: this.street,
+				number: this.number,
+				intNumber: this.intNumber,
+				zipCode: this.zipCode,
+				stateOfProvince: this.stateOrProvince,
+				country: this.country,
+				vetLogo: this.vetLogo,
+				name: this.name,
+				code: this.code
+			}, {
+				headers: {
+					Authorization: 'Bearer ' + this.$store.state.user.token
+				}
+			}).then(response => {
+				console.log(response)
+			}).catch(error => {
+				console.error(error)
+			})
+		}
 	}
 }
 </script>
