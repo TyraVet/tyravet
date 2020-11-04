@@ -67,6 +67,7 @@ npm run test:unit
 | Name | Value |
 | ---- | ----- |
 | VUE_APP_TYRAWEB_CONFIG | host:port/config |
+| VUE_APP_TYRAWEB_GET_CONFIG | host:port/config/setup |
 | VUE_APP_TYRAWEB_USERS | host:port/users |
 | VUE_APP_TYRAWEB_FIND_USER | host:port/users/find |
 | VUE_APP_TYRAWEB_LOGIN_USER | host:port/users/login |
