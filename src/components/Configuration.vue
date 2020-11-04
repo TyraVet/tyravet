@@ -70,9 +70,26 @@ section#configuration
 				type='text'
 				maxlength='30'
 			)
-		b-button.button.is-success(
-			@click='send()'
-		) {{ labelButtonAccept }}
+		span#button-container
+			b-button.button.is-success(
+				@click='send()'
+			) {{ labelButtonAccept }}
+			b-icon#success-icon(
+				title='Success'
+				type='is-success'
+				pack='fas'
+				size='is-large'
+				icon='check'
+				v-if='status === OK || status === CREATED'
+			)
+			b-icon#error-icon(
+				title='Error'
+				type='is-danger'
+				pack='fas'
+				size='is-large'
+				icon='exclamation'
+				v-if='status === AUTH || status === NOT_FOUND || status === ERROR'
+			)
 </template>
 
 <script lang='js'>
@@ -95,6 +112,7 @@ export default {
 			ERROR,
 			title: 'Configuration',
 			labelButtonAccept: 'Accept',
+			status: null,
 			vetName: '',
 			street: '',
 			number: 0,
@@ -120,7 +138,7 @@ export default {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
-				this.setOnSuccess(response.data)
+				this.setOnSuccess(response)
 			}).catch(error => {
 				console.error(error)
 			})
@@ -147,7 +165,10 @@ export default {
 				console.error(error)
 			})
 		},
-		setOnSuccess(data){
+		setOnSuccess(response){
+			const data = response.data
+			this.status = response.status
+
 			this.vetName = data.vetName
 			this.street = data.vetAddress.street
 			this.number = data.vetAddress.number
