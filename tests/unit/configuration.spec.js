@@ -152,4 +152,8 @@ describe('Configuration Component', () => {
 		expect(buttonAccept.classes()).toContain('is-success');
 		expect(buttonAccept.text()).toMatch(data.labelButtonAccept);
 	});
+
+	it('Should has a send method', () => {
+		expect(wrapper.vm.send).toBeTruthy();
+	});
 });
