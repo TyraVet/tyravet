@@ -78,10 +78,21 @@ section#configuration
 <script lang='js'>
 import axios from 'axios'
 
+export const OK = 200
+export const CREATED = 201
+export const AUTH = 401
+export const NOT_FOUND = 404
+export const ERROR = 406
+
 export default {
 	name: 'Configuration',
 	data(){
 		return{
+			OK,
+			CREATED,
+			AUTH,
+			NOT_FOUND,
+			ERROR,
 			title: 'Configuration',
 			labelButtonAccept: 'Accept',
 			vetName: '',
