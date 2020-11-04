@@ -59,7 +59,7 @@ describe('Configuration Component', () => {
 	});
 
 	const form = main.get('form');
-	it('Should has a form', () => {
+	it('Should has a form', async () => {
 		expect(form.exists()).toBeTruthy();
 		expect(form.attributes().id).toMatch('configuration-form');
 
@@ -170,6 +170,24 @@ describe('Configuration Component', () => {
 		expect(buttonAccept.classes()).toContain('button');
 		expect(buttonAccept.classes()).toContain('is-success');
 		expect(buttonAccept.text()).toMatch(data.labelButtonAccept);
+
+		await wrapper.setData({ status: 200 })
+		const successIcon = buttonContainer.get('#success-icon')
+		expect(successIcon.exists()).toBeTruthy()
+		expect(successIcon.attributes().title).toMatch('Success')
+		expect(successIcon.attributes().type).toMatch('is-success')
+		expect(successIcon.attributes().pack).toMatch('fas')
+		expect(successIcon.attributes().size).toMatch('is-large')
+		expect(successIcon.attributes().icon).toMatch('check')
+
+		await wrapper.setData({ status: 401 })
+		const errorIcon = buttonContainer.get('#error-icon')
+		expect(errorIcon.exists()).toBeTruthy()
+		expect(errorIcon.attributes().title).toMatch('Error')
+		expect(errorIcon.attributes().type).toMatch('is-danger')
+		expect(errorIcon.attributes().pack).toMatch('fas')
+		expect(errorIcon.attributes().size).toMatch('is-large')
+		expect(errorIcon.attributes().icon).toMatch('exclamation')
 	});
 
 	it('Should has an init method', () => {
@@ -186,5 +204,9 @@ describe('Configuration Component', () => {
 
 	it('Should has a setOnSuccess method', () => {
 		expect(wrapper.vm.setOnSuccess).toBeTruthy();
+	});
+
+	it('Should has a setOnError method', () => {
+		expect(wrapper.vm.setOnError).toBeTruthy();
 	});
 });
