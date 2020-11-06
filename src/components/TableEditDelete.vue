@@ -17,6 +17,7 @@ section#table-edit-delete
 			icon-left='trash-alt'
 			class='has-text-white'
 			@click='launchDeleteConfirmation()'
+			v-if="userType !== 'admin'"
 		)
 </template>
 
