@@ -83,7 +83,7 @@ export default {
 	watch: {
 		/* When user is logged in redirect to Home */
 		user: function(){
-			this.$router.push('/')
+			this.$router.replace('/')
 		}
 	},
 	methods: {
