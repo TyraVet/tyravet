@@ -13,7 +13,7 @@ form#create-user-form
 					type='text'
 					minlength='4'
 					v-model='username'
-					required
+					required='true'
 				)
 			b-field#change-password(
 				label='Change Password'
@@ -24,7 +24,7 @@ form#create-user-form
 					type='password'
 					minlength='8'
 					v-model='password'
-					required
+					required='true'
 				)
 			b-field#confirm-password( label='Confirm Password' )
 				b-input(
@@ -32,7 +32,7 @@ form#create-user-form
 					minlength='8'
 					:validation-message='validationMessageConfirmPassword'
 					v-model='confirmPassword'
-					required
+					required='true'
 				)
 		footer.modal-card-foot
 			button.button(

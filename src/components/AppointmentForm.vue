@@ -11,7 +11,7 @@ form#client-form
 			b-field#client( label='Client' )
 				b-select(
 					v-model='client'
-					required
+					required='true'
 				)
 					option(
 						v-for='(pet, index) in pets'
@@ -21,7 +21,7 @@ form#client-form
 			b-field#service( label='Service' )
 				b-select(
 					v-model='service'
-					required
+					required='true'
 				)
 					option(
 						v-for='(service, index) in services'
@@ -32,8 +32,8 @@ form#client-form
 				b-input(
 					type='text'
 					v-model='hour.hour'
-					required
-					disabled
+					required='true'
+					disabled='true'
 				)
 			b-field#notes( label='Notes' )
 				b-input(
