@@ -100,7 +100,7 @@ describe('TableEditDelete Component', () => {
 	});
 
 	it('Should has a method to open BreedForm', () => {
-		expect(wrapper.vm.launchBreedForm).toBeTruthy();
+		expect(wrapper.vm.goToBreedForm).toBeTruthy();
 	});
 
 	it('Should has a method to open Delete Confirmation', () => {

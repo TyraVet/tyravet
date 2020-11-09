@@ -24,7 +24,6 @@ section#table-edit-delete
 <script lang='js'>
 import ServiceForm from '@/components/ServiceForm.vue'
 import CreateUserForm from '@/components/CreateUserForm.vue'
-import BreedForm from '@/components/BreedForm.vue'
 import DeleteConfirmation from '@/components/DeleteConfirmation.vue'
 
 export default {
@@ -70,7 +69,7 @@ export default {
 			else if(this.isForUsers)
 				this.launchUserForm()
 			else if(this.isForBreed)
-				this.launchBreedForm()
+				this.goToBreedForm()
 		},
 		launchDeleteConfirmation(){
 			this.$buefy.modal.open({
@@ -107,16 +106,8 @@ export default {
 				}
 			})
 		},
-		launchBreedForm(){
-			this.$buefy.modal.open({
-				parent: this,
-				component: BreedForm,
-				hasModalCard: true,
-				trapFocus: true,
-				props: {
-					breedId: this.id
-				}
-			})
+		goToBreedForm(){
+			this.$router.push({ path: `/panel/breeds/${this.id}` })
 		}
 	},
 	created(){
