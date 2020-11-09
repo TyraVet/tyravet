@@ -1,0 +1,10 @@
+#app {
+	height: 100%;
+	display: flex;
+	overflow-y: hidden;
+}
+
+#router {
+	width: 100%;
+	overflow-y: auto;
+}

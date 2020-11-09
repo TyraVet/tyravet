@@ -1,27 +1,30 @@
 <template lang='pug'>
 div#app
-	NavBar
+	SideBar( v-if='user' )
 	router-view#router
 </template>
 
 <script lang='js'>
 import axios from 'axios'
-import NavBar from '@/components/NavBar.vue'
+import SideBar from '@/components/SideBar.vue'
 
 export default {
 	name: 'app',
-	components: { NavBar },
+	components: { SideBar },
 	data() {
 		return {
 			status: '',
 			error: ''
 		}
 	},
+	computed: {
+		user(){ return this.$store.state.user }
+	},
 	methods: {
 		/* Redirect to LogIn page if there is no user stored */
 		init(){
 			if(!this.$cookies.get('user'))
-				this.$router.push({ name: 'log-in' }).catch(() => {})
+				this.$router.replace({ name: 'log-in' }).catch(() => {})
 			else
 				this.fillUserFromCookies()
 		},
@@ -43,7 +46,7 @@ export default {
 			console.error(this.error)
 
 			/* Redirect to LogIn if any error occurs */
-			this.$router.push({ name: 'log-in' }).catch(() => {})
+			this.$router.replace({ name: 'log-in' }).catch(() => {})
 		},
 		fillUserFromCookies(){
 			const user = {
@@ -79,8 +82,6 @@ export default {
 }
 </script>
 
-<style lang='css' scoped>
-#app {
-  height: 100%;
-}
+<style lang='css'>
+@import 'assets/css/app.css';
 </style>
