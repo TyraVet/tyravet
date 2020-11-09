@@ -5,13 +5,11 @@ section#breed-header.title-container
 		type='is-primary'
 		icon-pack='fas'
 		icon-left='plus'
-		@click='launchModal()'
+		@click='launchForm()'
 	) {{ labelButton }}
 </template>
 
 <script lang='js'>
-import BreedForm from '@/components/BreedForm.vue'
-
 export default {
 	name: 'BreedHeader',
 	data(){
@@ -21,13 +19,8 @@ export default {
 		}
 	},
 	methods: {
-		launchModal(){
-			this.$buefy.modal.open({
-				parent: this,
-				component: BreedForm,
-				hasModalCard: true,
-				trapFocus: true
-			})
+		launchForm(){
+			this.$router.push({ path: '/panel/breeds/create' })
 		}
 	}
 }
