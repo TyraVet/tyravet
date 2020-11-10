@@ -13,6 +13,23 @@ store.state.user = {
 	type: {},
 	token: ''
 }
+/* Dummy config */
+store.state.config = {
+	vetName: '',
+	vetAddress: {
+		street: '',
+		number: 0,
+		intNumber: 0,
+		zipCode: 0,
+		stateOrProvince: '',
+		country: ''
+	},
+	vetLogo: '',
+	vetHeadOfMedics: {
+		name: '',
+		code: ''
+	}
+};
 
 const wrapper = shallowMount(Configuration, { store, localVue });
 
@@ -20,11 +37,6 @@ describe('Configuration Component', () => {
 	const data = Configuration.data();
 	it('Sets the correct default data', () => {
 		expect(typeof Configuration.data).toBe('function');
-		expect(data.OK).toBe(200);
-		expect(data.CREATED).toBe(201);
-		expect(data.AUTH).toBe(401);
-		expect(data.NOT_FOUND).toBe(404);
-		expect(data.ERROR).toBe(406);
 		expect(data.title).toMatch('Configuration');
 		expect(data.labelButtonAccept).toMatch('Accept');
 		expect(data.status).toBeNull();
@@ -195,7 +207,7 @@ describe('Configuration Component', () => {
 	});
 
 	it('Should has a getSetup method', () => {
-		expect(wrapper.vm.getSetup).toBeTruthy();
+		expect(wrapper.vm.setConfigFromStore).toBeTruthy();
 	});
 
 	it('Should has a send method', () => {
@@ -203,7 +215,7 @@ describe('Configuration Component', () => {
 	});
 
 	it('Should has a setOnSuccess method', () => {
-		expect(wrapper.vm.setOnSuccess).toBeTruthy();
+		expect(wrapper.vm.setConfigOnSuccess).toBeTruthy();
 	});
 
 	it('Should has a setOnError method', () => {
