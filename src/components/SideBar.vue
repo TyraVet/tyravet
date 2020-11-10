@@ -158,19 +158,14 @@ export default {
 		}
 	},
 	computed: {
-		user(){
-			return this.$store.state.user
-		},
-		open(){
-			return this.$store.state.sideBarOpen
-		}
+		user(){ return this.$store.state.user },
+		open(){ return this.$store.state.sideBarOpen },
+		config(){ return this.$store.state.config }
 	},
 	methods: {
 		init(){
-			if(this.user.type.name === 'admin')
-				this.isAdmin = true
-			else
-				this.isAdmin = false
+			this.user.type.name === 'admin' ? this.isAdmin = true : this.isAdmin = false
+			this.title = this.config.vetName
 		},
 		changeSideBarState(){
 			if(this.mobile)
