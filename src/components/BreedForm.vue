@@ -1,11 +1,11 @@
 <template lang='pug'>
-Modal#breed-form( :title='title' )
+Modal#breed-form( :title='title' type='breed' )
 	template( v-slot:main )
 		b-field( label='Name' )
 		b-input(
 			type='text'
 			v-model='breedName'
-			required
+			required='true'
 		)
 </template>
 
@@ -24,9 +24,9 @@ export default {
 			default: null
 		}
 	},
-	data() {
+	data(){
 		return {
-			title: 'Create Breed',
+			title: this.id ? 'Edit Breed' : 'Create Breed',
 			breedName: '',
 			status: null
 		}
@@ -34,7 +34,6 @@ export default {
 	methods: {
 		init(){
 			if(this.id){
-				this.title = 'Edit Breed'
 				this.getBreed()
 			}
 		},
@@ -42,9 +41,16 @@ export default {
 			if(!this.id)
 				this.breedName = ''
 		},
+		send(){
+			if(!this.id)
+				this.createBreed()
+			else if(this.id)
+				this.updateBreed()
+		},
 		setOnSuccess(response){
 			this.status = response.status
 			this.clearInput()
+			EventBus.$emit('status', this.status)
 			EventBus.$emit('update-breeds')
 		},
 		fillOnSuccess(response){
@@ -98,6 +104,13 @@ export default {
 	},
 	created(){
 		this.init()
+
+		/* Event Listeners
+		 *
+		 * Here we listen when the user click both buttons of the
+		 * modal. */
+		EventBus.$on('request-breed', () => { this.send() })
+		EventBus.$on('close-modal', () => { this.$emit('close') })
 	}
 }
 </script>

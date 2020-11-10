@@ -10,6 +10,8 @@ section#breed-header.title-container
 </template>
 
 <script lang='js'>
+import BreedForm from '@/components/BreedForm.vue'
+
 export default {
 	name: 'BreedHeader',
 	data(){
@@ -20,7 +22,12 @@ export default {
 	},
 	methods: {
 		launchForm(){
-			this.$router.push({ path: '/panel/breeds/create' })
+			this.$buefy.modal.open({
+				parent: this,
+				component: BreedForm,
+				hasModalCard: true,
+				trapFocus: true
+			})
 		}
 	}
 }

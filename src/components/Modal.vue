@@ -2,11 +2,6 @@
 div.modal-card( style='width: auto' )
 	header.modal-card-head
 		p.modal-card-title {{ title }}
-		button(
-			type='button'
-			class='delete'
-			@click='close()'
-		)
 	main.modal-card-body
 		slot( name='main' )
 	footer.modal-card-foot
@@ -23,7 +18,7 @@ div.modal-card( style='width: auto' )
 			pack='fas'
 			size='is-large'
 			icon='check'
-			v-if='status === OK || status === CREATED'
+			v-if='status === statuses.OK || status === statuses.CREATED'
 		)
 		b-icon#error-icon(
 			title='Error'
@@ -31,7 +26,7 @@ div.modal-card( style='width: auto' )
 			pack='fas'
 			size='is-large'
 			icon='exclamation'
-			v-if='status === AUTH || status === NOT_FOUND || status === ERROR'
+			v-if='status === statuses.AUTH || status === statuses.NOT_FOUND || status === statuses.ERROR'
 		)
 </template>
 
@@ -44,19 +39,40 @@ export default {
 		title: {
 			type: String,
 			required: true
+		},
+		type: {
+			type: String,
+			required: true
 		}
 	},
 	data(){
 		return{
 			labelButtonCancel: 'Cancel',
-			labelButtonAccept: 'Accept'
+			labelButtonAccept: 'Accept',
+			status: null
 		}
 	},
+	computed: {
+		statuses(){ return this.$store.state.statuses }
+	},
 	methods: {
-		close(){
-			this.$emit('close')
-		},
-		send(){ EventBus.$emit('api-request-breed') }
+		/* So that this is not the actual 'modal' that is launched,
+		 * we need to tell the actual 'modal' that it's need to be closed. */
+		close(){ EventBus.$emit('close-modal') },
+		/* Depending on the type of the modal, we emit the event
+		 * so that the actual 'modal' can do the corresponding requests
+		 * to the API. */
+		send(){
+			if(this.type === 'breed')
+				EventBus.$emit('request-breed')
+		}
+	},
+	created(){
+		/* Event Listeners
+		 *
+		 * When the request is done, we listen to get the status code
+		 * and set the corresponding icon. */
+		EventBus.$on('status', status => { this.status = status })
 	}
 }
 </script>
