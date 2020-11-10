@@ -8,7 +8,7 @@ const store = new Vuex.Store({
 		user: null,
 		sideBarOpen: true,
 		today: new Date(new Date().setHours(0, 0, 0, 0)),
-		status: {
+		statuses: {
 			OK: 200,
 			CREATED: 201,
 			AUTH: 401,
