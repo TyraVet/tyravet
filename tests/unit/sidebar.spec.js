@@ -16,6 +16,23 @@ store.state.user = {
 	type: { name: '' },
 	token: ''
 };
+/* Dummy config */
+store.state.config = {
+	vetName: '',
+	vetAddress: {
+		street: '',
+		number: 0,
+		intNumber: 0,
+		zipCode: 0,
+		stateOrProvince: '',
+		country: ''
+	},
+	vetLogo: '',
+	vetHeadOfMedics: {
+		name: '',
+		code: ''
+	}
+};
 
 const wrapper = shallowMount(SideBar, { store, localVue });
 

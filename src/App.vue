@@ -18,7 +18,9 @@ export default {
 		}
 	},
 	computed: {
-		user(){ return this.$store.state.user }
+		user(){ return this.$store.state.user },
+		statuses(){ return this.$store.state.statuses },
+		config(){ return this.$store.state.config }
 	},
 	methods: {
 		/* Redirect to LogIn page if there is no user stored */
@@ -28,11 +30,19 @@ export default {
 			else
 				this.fillUserFromCookies()
 		},
-		setOnSuccess(response, user){
+		setUserOnSuccess(response, user){
 			this.status = response.status
 
-			if(this.status === 200)
+			if(this.status === this.statuses.OK){
 				this.$store.commit('fillUser', user)
+				this.getSetup()
+			}
+		},
+		setConfigOnSuccess(response){
+			this.status = response.status
+
+			if(this.status === this.statuses.OK)
+				this.$store.commit('fillConfig', response.data)
 		},
 		setOnError(error){
 			if(error.response){
@@ -70,8 +80,19 @@ export default {
 					Authorization: 'Bearer ' + user.token
 				}
 			}).then((response) => {
-				this.setOnSuccess(response, user)
+				this.setUserOnSuccess(response, user)
 			}).catch((error) => {
+				this.setOnError(error)
+			})
+		},
+		getSetup(){
+			axios.get(process.env.VUE_APP_TYRAWEB_GET_CONFIG, {
+				headers: {
+					Authorization: 'Bearer ' + this.user.token
+				}
+			}).then(response => {
+				this.setConfigOnSuccess(response)
+			}).catch(error => {
 				this.setOnError(error)
 			})
 		}

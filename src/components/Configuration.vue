@@ -80,7 +80,7 @@ section#configuration
 				pack='fas'
 				size='is-large'
 				icon='check'
-				v-if='status === OK || status === CREATED'
+				v-if='status === statuses.OK || status === statuses.CREATED'
 			)
 			b-icon#error-icon(
 				title='Error'
@@ -88,28 +88,17 @@ section#configuration
 				pack='fas'
 				size='is-large'
 				icon='exclamation'
-				v-if='status === AUTH || status === NOT_FOUND || status === ERROR'
+				v-if='status === statuses.AUTH || status === statuses.NOT_FOUND || status === statuses.ERROR'
 			)
 </template>
 
 <script lang='js'>
 import axios from 'axios'
 
-export const OK = 200
-export const CREATED = 201
-export const AUTH = 401
-export const NOT_FOUND = 404
-export const ERROR = 406
-
 export default {
 	name: 'Configuration',
 	data(){
 		return{
-			OK,
-			CREATED,
-			AUTH,
-			NOT_FOUND,
-			ERROR,
 			title: 'Configuration',
 			labelButtonAccept: 'Accept',
 			status: null,
@@ -126,22 +115,23 @@ export default {
 		}
 	},
 	computed: {
-		user(){
-			return this.$store.state.user
-		}
+		user(){ return this.$store.state.user },
+		config(){ return this.$store.state.config },
+		statuses(){ return this.$store.state.statuses }
 	},
 	methods: {
-		init(){ this.getSetup() },
-		getSetup(){
-			axios.get(process.env.VUE_APP_TYRAWEB_GET_CONFIG, {
-				headers: {
-					Authorization: 'Bearer ' + this.user.token
-				}
-			}).then(response => {
-				this.setOnSuccess(response)
-			}).catch(error => {
-				this.setOnError(error)
-			})
+		init(){ this.setConfigFromStore() },
+		setConfigFromStore(){
+			this.vetName = this.config.vetName
+			this.street = this.config.vetAddress.street
+			this.number = this.config.vetAddress.number
+			this.intNumber = this.config.vetAddress.intNumber
+			this.zipCode = this.config.vetAddress.zipCode
+			this.stateOrProvince = this.config.vetAddress.stateOfProvince
+			this.country = this.config.vetAddress.country
+			this.vetLogo = this.config.vetLogo
+			this.name = this.config.vetHeadOfMedics.name
+			this.code = this.config.vetHeadOfMedics.code
 		},
 		send(){
 			axios.post(process.env.VUE_APP_TYRAWEB_CONFIG, {
@@ -160,25 +150,16 @@ export default {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
-				this.status = response.status
+				this.setConfigOnSuccess(response)
 			}).catch(error => {
 				this.setOnError(error)
 			})
 		},
-		setOnSuccess(response){
-			const data = response.data
+		setConfigOnSuccess(response){
 			this.status = response.status
 
-			this.vetName = data.vetName
-			this.street = data.vetAddress.street
-			this.number = data.vetAddress.number
-			this.intNumber = data.vetAddress.intNumber
-			this.zipCode = data.vetAddress.zipCode
-			this.stateOrProvince = data.vetAddress.stateOrProvince
-			this.country = data.vetAddress.country
-			this.vetLogo = data.vetLogo
-			this.name = data.vetHeadOfMedics.name
-			this.code = data.vetHeadOfMedics.code
+			if(this.status === this.statuses.OK)
+				this.$store.commit('fillConfig', response.data)
 		},
 		setOnError(error){
 			if(error.response)
@@ -187,7 +168,7 @@ export default {
 			console.error(error)
 		}
 	},
-	created(){
+	mounted(){
 		this.init()
 	}
 }
