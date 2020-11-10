@@ -12,18 +12,18 @@ form#service-form
 			b-input#service-input-name(
 				type='text'
 				v-model='serviceName',
-				required
+				required='true'
 			)
 			b-field#service-label-price( label='Price' )
 			b-input#service-input-price(
 				type='phonenumber'
 				v-model='servicePrice',
-				required
+				required='true'
 			)
 			b-field#service-label-type( label='Type' )
 			b-select#service-select-type(
 				v-model='serviceType'
-				required
+				required='true'
 			)
 				option(
 					v-for='(type, index) in TYPES'

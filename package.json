@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit --verbose",
-    "test:unit:watch": "vue-cli-service test:unit --watchAll --verbose",
+    "test:unit": "vue-cli-service test:unit --verbose -w 1",
+    "test:unit:watch": "vue-cli-service test:unit --watchAll --verbose -w 1",
     "test:unit:debugger": "node --inspect-brk ./node_modules/jest/bin/jest.js --no-cache --runInBand",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
@@ -21,6 +21,7 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-e2e-nightwatch": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
@@ -30,6 +31,7 @@
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
     "chromedriver": "^84.0.1",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
@@ -38,6 +40,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
     "geckodriver": "^1.20.0",
+    "jest-transform-stub": "^2.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.3.1",
     "vue-cli-plugin-buefy": "~0.3.7",

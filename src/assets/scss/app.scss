@@ -50,6 +50,8 @@ $datepicker-item-selected-background-color: $primary;
 $datepicker-today-border: solid 1px rgba($primary, 0.5);
 /* Menus */
 $menu-item-active-background-color: $primary;
+/* Side Bar */
+$sidebar-box-shadow: 0px 0px 0px 0px rgba($black, 0.1);
 
 @import "../../../node_modules/bulma/bulma.sass";
 @import "../../../node_modules/buefy/src/scss/buefy";

@@ -16,7 +16,7 @@ form#vaccination-form
 			)
 			b-field#vaccination-label-shot( label='Shot' )
 			b-select#vaccination-select-shot(
-				required
+				required='true'
 				v-model='recordShot'
 			)
 				option(
@@ -29,7 +29,7 @@ form#vaccination-form
 			)
 			b-datepicker#vaccination-datepicker-next-date(
 				inline
-				required
+				required='true'
 				v-model='recordNextDate'
 				:min-date='today'
 			)

@@ -22,9 +22,9 @@ section#table-edit-delete
 </template>
 
 <script lang='js'>
+import BreedForm from '@/components/BreedForm.vue'
 import ServiceForm from '@/components/ServiceForm.vue'
 import CreateUserForm from '@/components/CreateUserForm.vue'
-import BreedForm from '@/components/BreedForm.vue'
 import DeleteConfirmation from '@/components/DeleteConfirmation.vue'
 
 export default {
@@ -114,7 +114,7 @@ export default {
 				hasModalCard: true,
 				trapFocus: true,
 				props: {
-					breedId: this.id
+					id: this.id
 				}
 			})
 		}

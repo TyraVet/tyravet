@@ -5,7 +5,7 @@ section#breed-header.title-container
 		type='is-primary'
 		icon-pack='fas'
 		icon-left='plus'
-		@click='launchModal()'
+		@click='launchForm()'
 	) {{ labelButton }}
 </template>
 
@@ -21,7 +21,7 @@ export default {
 		}
 	},
 	methods: {
-		launchModal(){
+		launchForm(){
 			this.$buefy.modal.open({
 				parent: this,
 				component: BreedForm,
