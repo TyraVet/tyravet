@@ -10,6 +10,13 @@ import BreedList from '@/components/BreedList.vue'
 
 export default {
 	name: 'Breeds',
-	components: { BreedHeader, BreedList }
+	components: { BreedHeader, BreedList },
+	computed: {
+		user(){ return this.$store.state.user }
+	},
+	created(){
+		if(!this.user)
+			this.$router.replace({ name: 'log-in' }).catch(() => {})
+	}
 }
 </script>

@@ -10,6 +10,13 @@ import PetProfile from '@/components/PetProfile.vue'
 
 export default {
 	name: 'Pet',
-	components: { PetProfile }
+	components: { PetProfile },
+	computed: {
+		user(){ return this.$store.state.user }
+	},
+	created(){
+		if(!this.user)
+			this.$router.replace({ name: 'log-in' }).catch(() => {})
+	}
 }
 </script>

@@ -22,6 +22,13 @@ export default {
 		goBack(){
 			this.$router.go(-1)
 		}
+	},
+	computed: {
+		user(){ return this.$store.state.user }
+	},
+	created(){
+		if(!this.user)
+			this.$router.replace({ name: 'log-in' }).catch(() => {})
 	}
 }
 </script>

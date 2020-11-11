@@ -24,6 +24,9 @@ export default {
 			labelButton: 'Add'
 		}
 	},
+	computed: {
+		user(){ return this.$store.state.user }
+	},
 	methods: {
 		launchModal(){
 			this.$buefy.modal.open({
@@ -33,6 +36,10 @@ export default {
 				trapFocus: true
 			})
 		}
+	},
+	created(){
+		if(!this.user)
+			this.$router.replace({ name: 'log-in' }).catch(() => {})
 	}
 }
 </script>

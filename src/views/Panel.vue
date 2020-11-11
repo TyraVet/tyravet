@@ -16,6 +16,13 @@ export default {
 		UsersHeader,
 		UsersList,
 		Configuration
+	},
+	computed: {
+		user(){ return this.$store.state.user }
+	},
+	created(){
+		if(!this.user)
+			this.$router.replace({ name: 'log-in' }).catch(() => {})
 	}
 }
 </script>
