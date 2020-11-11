@@ -1,11 +1,21 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
+import store from '@/store';
 import Panel from '@/views/Panel.vue';
 import UsersHeader from '@/components/UsersHeader.vue';
 import UsersList from '@/components/UsersList.vue';
 import Configuration from '@/components/Configuration.vue';
 
 const localVue = createLocalVue();
-const wrapper = shallowMount(Panel, { localVue });
+
+/* Dummy User */
+store.state.user = {
+	_id: '',
+	username: '',
+	type: {},
+	token: ''
+}
+
+const wrapper = shallowMount(Panel, { store, localVue });
 
 describe('Panel Component', () => {
 	it('Should has a UsersHeader Component', () => {
