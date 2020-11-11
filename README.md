@@ -63,7 +63,7 @@ npm run test:unit
 
 ### List of Environment Variables
 ### ```.env```
-#### Default port is 3000
+#### ```host``` and ```port``` are from where you are serving your API.
 | Name | Value |
 | ---- | ----- |
 | VUE_APP_TYRAWEB_CONFIG | host:port/config |
