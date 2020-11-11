@@ -1,31 +1,40 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
-import VueRouter from 'vue-router'
-import Pet from '@/views/Pet.vue'
-import PetProfile from '@/components/PetProfile.vue'
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import store from '@/store';
+import VueRouter from 'vue-router';
+import Pet from '@/views/Pet.vue';
+import PetProfile from '@/components/PetProfile.vue';
 
-const localVue = createLocalVue()
+const localVue = createLocalVue();
 
-localVue.use(VueRouter)
+localVue.use(VueRouter);
 const routes = [
 	{
 		path: '/clients/:id',
 		component: Pet
 	}
-]
+];
 
 const router = new VueRouter({
 	routes
-})
+});
 
-const wrapper = shallowMount(Pet, { localVue, router })
+/* Dummy User */
+store.state.user = {
+	_id: '',
+	username: '',
+	type: {},
+	token: ''
+}
+
+const wrapper = shallowMount(Pet, { store, localVue, router });
 
 describe('Pet Component', () => {
 	it('Renders a main div container', () => {
-		expect(wrapper.get('#pet')).toBeTruthy()
-	})
+		expect(wrapper.get('#pet')).toBeTruthy();
+	});
 
 	it('Should have a PetProfile child', () => {
-		const petProfile = wrapper.findComponent(PetProfile)
-		expect(petProfile.exists()).toBeTruthy()
-	})
-})
+		const petProfile = wrapper.findComponent(PetProfile);
+		expect(petProfile.exists()).toBeTruthy();
+	});
+});
