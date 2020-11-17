@@ -145,6 +145,8 @@ section#side-bar
 </template>
 
 <script lang='js'>
+import { EventBus } from '@/eventBus.js'
+
 export default {
 	name: 'SideBar',
 	data() {
@@ -180,6 +182,14 @@ export default {
 	},
 	created(){
 		this.init()
+
+		/* Event Listeners
+		 *
+		 * Listens when the config object is updated. Then
+		 * it updates the app title. */
+		EventBus.$on('update-config', () => {
+			this.title = this.config.vetName
+		})
 	}
 }
 </script>
