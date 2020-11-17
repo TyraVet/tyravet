@@ -6,6 +6,7 @@ div#app
 
 <script lang='js'>
 import axios from 'axios'
+import { EventBus } from '@/eventBus.js'
 import SideBar from '@/components/SideBar.vue'
 
 export default {
@@ -13,7 +14,7 @@ export default {
 	components: { SideBar },
 	data() {
 		return {
-			status: '',
+			status: 0,
 			error: ''
 		}
 	},
@@ -41,8 +42,13 @@ export default {
 		setConfigOnSuccess(response){
 			this.status = response.status
 
-			if(this.status === this.statuses.OK)
+			/* Once we get our config object we emit an event
+			 * to tell our SideBar component that it needs to change
+			 * the app title. */
+			if(this.status === this.statuses.OK){
 				this.$store.commit('fillConfig', response.data)
+				EventBus.$emit('update-config')
+			}
 		},
 		setOnError(error){
 			if(error.response){
@@ -71,7 +77,7 @@ export default {
 		/* POST request to our API
 		 * To check if the User from the cookies exists in the
 		 * database. */
-		async validateUser(user){
+		validateUser(user){
 			axios.get(process.env.VUE_APP_TYRAWEB_FIND_USER, {
 				params: {
 					id: user._id

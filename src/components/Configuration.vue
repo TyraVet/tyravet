@@ -94,6 +94,7 @@ section#configuration
 
 <script lang='js'>
 import axios from 'axios'
+import { EventBus } from '@/eventBus.js'
 
 export default {
 	name: 'Configuration',
@@ -158,8 +159,13 @@ export default {
 		setConfigOnSuccess(response){
 			this.status = response.status
 
-			if(this.status === this.statuses.OK)
+			/* Once we get our config object we emit an event
+			 * to tell our SideBar component that it needs to change
+			 * the app title. */
+			if(this.status === this.statuses.OK){
 				this.$store.commit('fillConfig', response.data)
+				EventBus.$emit('update-config')
+			}
 		},
 		setOnError(error){
 			if(error.response)
