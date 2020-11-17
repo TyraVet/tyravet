@@ -15,7 +15,8 @@ const store = new Vuex.Store({
 			AUTH: 401,
 			NOT_FOUND: 404,
 			ERROR: 406
-		}
+		},
+		winWidth: window.innerWidth
 	},
 	mutations: {
 		fillUser(state, user){

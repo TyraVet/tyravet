@@ -2,7 +2,9 @@
 section#side-bar
 	b-sidebar(
 		type='is-primary-light'
-		position='static'
+		:position='position'
+		:fullwidth='fullwidth'
+		:fullheight='fullheight'
 		:open.sync='open'
 	)
 		div#menu-container
@@ -142,6 +144,14 @@ section#side-bar
 						:href='mit'
 						target='_blank'
 					)
+				br
+				b-button(
+					type='is-primary'
+					icon-pack='fas'
+					icon-left='times'
+					@click='changeSideBarState()'
+					v-if='isMobile'
+				) {{ labelButtonClose }}
 </template>
 
 <script lang='js'>
@@ -149,14 +159,23 @@ import { EventBus } from '@/eventBus.js'
 
 export default {
 	name: 'SideBar',
-	data() {
+	props: {
+		isMobile: {
+			type: Boolean,
+			default: false
+		}
+	},
+	data(){
 		return {
 			title: 'TyraWeb',
+			labelButtonClose: 'Close',
 			contribute: 'https://www.buymeacoffee.com/andrsrz',
 			bug: 'https://github.com/Andrsrz/tyra-web/issues/new',
 			mit: 'https://mit-license.org/',
 			isAdmin: false,
-			mobile: false
+			position: 'static',
+			fullwidth: false,
+			fullheight: true
 		}
 	},
 	computed: {
@@ -167,10 +186,17 @@ export default {
 	methods: {
 		init(){
 			this.user.type.name === 'admin' ? this.isAdmin = true : this.isAdmin = false
-			this.title = this.config.vetName
+
+			if(this.isMobile){
+				this.position = 'fixed'
+				this.fullwidth = true
+				this.changeSideBarState()
+			}
+
+			if(this.config) this.title = this.config.vetName
 		},
 		changeSideBarState(){
-			if(this.mobile)
+			if(this.isMobile)
 				this.$store.commit('changeSideBarState')
 		},
 		logOut(){
@@ -181,16 +207,14 @@ export default {
 		}
 	},
 	created(){
-		this.init()
-
-		/* Event Listeners
-		 *
-		 * Listens when the config object is updated. Then
+		/* Event Listeners */
+		/* Listens when the config object is updated. Then
 		 * it updates the app title. */
 		EventBus.$on('update-config', () => {
 			this.title = this.config.vetName
 		})
-	}
+	},
+	mounted(){ this.init() }
 }
 </script>
 

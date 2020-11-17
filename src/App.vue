@@ -1,19 +1,23 @@
 <template lang='pug'>
 div#app
-	SideBar( v-if='user' )
+	NavBar( v-if='user && navbar' )#nav-bar
+	SideBar( v-if='user && sidebar' )#side-bar
 	router-view#router
 </template>
 
 <script lang='js'>
 import axios from 'axios'
 import { EventBus } from '@/eventBus.js'
+import NavBar from '@/components/NavBar.vue'
 import SideBar from '@/components/SideBar.vue'
 
 export default {
 	name: 'app',
-	components: { SideBar },
+	components: { NavBar, SideBar },
 	data() {
 		return {
+			navbar: false,
+			sidebar: false,
 			status: 0,
 			error: ''
 		}
@@ -21,7 +25,8 @@ export default {
 	computed: {
 		user(){ return this.$store.state.user },
 		statuses(){ return this.$store.state.statuses },
-		config(){ return this.$store.state.config }
+		config(){ return this.$store.state.config },
+		winWidth(){ return this.$store.state.winWidth }
 	},
 	methods: {
 		/* Redirect to LogIn page if there is no user stored */
@@ -30,6 +35,11 @@ export default {
 				this.$router.replace({ name: 'log-in' }).catch(() => {})
 			else
 				this.fillUserFromCookies()
+
+			if(this.winWidth >= 900)
+				this.sidebar = true
+			else
+				this.navbar = true
 		},
 		setUserOnSuccess(response, user){
 			this.status = response.status
