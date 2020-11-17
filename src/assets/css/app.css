@@ -4,7 +4,17 @@
 	overflow-y: hidden;
 }
 
+#nav-bar {
+	display: flex;
+}
+
 #router {
 	width: 100%;
 	overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+	#app {
+		flex-flow: column nowrap;
+	}
 }
