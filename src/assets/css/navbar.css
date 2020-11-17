@@ -1,9 +1,12 @@
 .navbar {
-	display: flex;
-	flex-flow: row nowrap;
+	flex-flow: row;
 	justify-content: space-between;
 }
 
-.navbar > * {
-	margin: 10px 25px 0 10px;
+.navbar > button {
+	margin: 5px 0 0 10px;
+}
+
+.navbar > h1 {
+	margin-left: 10px;
 }
