@@ -194,15 +194,8 @@ export default {
 		},
 		clearInput(){
 			this.clientName = ''
-			this.clientAddressStreet = ''
-			this.clientAddressNumber = null
-			this.clientAddressIntNumber = null
-			this.clientAddressPostalCode = null
 			this.clientPhoneNumber = null
 			this.clientPetName = ''
-			this.clientPetAge = null
-			this.clientPetWeight = null
-			this.clientPetBirthday = null
 			this.clientPetBreed = ''
 			this.femaleOrMale = false
 		},
@@ -239,16 +232,8 @@ export default {
 				/* Client */
 				name: this.clientName,
 				phone: this.clientPhoneNumber,
-				/* Address */
-				street: this.clientAddressStreet,
-				number: this.clientAddressNumber,
-				intNumber: this.clientAddressIntNumber,
-				postalCode: this.clientAddressPostalCode,
 				/* Pet */
 				petName: this.clientPetName,
-				petBirthday: this.clientPetBirthday,
-				petAge: this.clientPetAge,
-				petWeight: this.clientPetWeight,
 				petBreed: this.clientPetBreed,
 				petFemaleOrMale: this.femaleOrMale
 			}, {
