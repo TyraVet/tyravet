@@ -19,12 +19,12 @@ form#client-form
 				grouped
 				group-multiline
 				position='is-centered'
+				v-if='edit'
 			)
 				b-field( label='Street' )
 				b-input(
 					type='text'
 					v-model='clientAddressStreet'
-					required
 				)
 				b-field( label='Number' )
 				b-input(
@@ -32,7 +32,6 @@ form#client-form
 					v-model='clientAddressNumber'
 					min='0'
 					maxlength='4'
-					required
 				)
 				b-field( label='Int Number' )
 				b-input(
@@ -47,7 +46,6 @@ form#client-form
 					v-model='clientAddressPostalCode'
 					min='0'
 					maxlength='5'
-					required
 				)
 			b-field( label='Phone Number' )
 			b-input(
@@ -64,53 +62,53 @@ form#client-form
 				position='is-centered'
 			)
 				b-field( label='Name' )
-				b-input(
-					type='text'
-					v-model='clientPetName'
-					required
-				)
-				b-field( label='Birthday' )
-				b-datepicker(
-					v-model='clientPetBirthday'
-					inline
-					:max-date='maxDate'
-				)
-				b-field( label='Age' )
-				b-input(
-					type='tel'
-					v-model='clientPetAge'
-					min='0'
-					maxlength='2'
-				)
-				b-field( label='Weighht' )
-				b-input(
-					type='number'
-					v-model='clientPetWeight'
-					min='0'
-					maxlength='4'
-				)
+					b-input(
+						type='text'
+						v-model='clientPetName'
+						required
+					)
+				b-field( label='Birthday' v-if='edit' )
+					b-datepicker(
+						v-model='clientPetBirthday'
+						inline
+						:max-date='maxDate'
+					)
+				b-field( label='Age' v-if='edit' )
+					b-input(
+						type='tel'
+						v-model='clientPetAge'
+						min='0'
+						maxlength='2'
+					)
+				b-field( label='Weighht' v-if='edit' )
+					b-input(
+						type='number'
+						v-model='clientPetWeight'
+						min='0'
+						maxlength='4'
+					)
 				b-field( label='Breed' )
-				b-select(
-					v-model='clientPetBreed'
-					required
-				)
-					option(
-						v-for='(breed, index) in breeds'
-						:key=index
-						:value='breed'
-					) {{ breed.name }}
+					b-select(
+						v-model='clientPetBreed'
+						required
+					)
+						option(
+							v-for='(breed, index) in breeds'
+							:key=index
+							:value='breed'
+						) {{ breed.name }}
 				b-field( label='Female or Male' )
-				div.block
-					b-radio(
-						type='is-primary'
-						v-model='femaleOrMale'
-						:native-value='FEMALE'
-					) {{ FEMALE }}
-					b-radio(
-						type='is-primary'
-						v-model='femaleOrMale'
-						:native-value='MALE'
-					) {{ MALE }}
+					div.block
+						b-radio(
+							type='is-primary'
+							v-model='femaleOrMale'
+							:native-value='FEMALE'
+						) {{ FEMALE }}
+						b-radio(
+							type='is-primary'
+							v-model='femaleOrMale'
+							:native-value='MALE'
+						) {{ MALE }}
 		footer.modal-card-foot
 			button.button(
 				type='button'
@@ -153,6 +151,9 @@ export const MALE = 'Male'
 
 export default {
 	name: 'ClientForm',
+	props: {
+		edit: { type: Boolean, default: false, required: false }
+	},
 	data() {
 		return {
 			OK,
@@ -193,15 +194,8 @@ export default {
 		},
 		clearInput(){
 			this.clientName = ''
-			this.clientAddressStreet = ''
-			this.clientAddressNumber = null
-			this.clientAddressIntNumber = null
-			this.clientAddressPostalCode = null
 			this.clientPhoneNumber = null
 			this.clientPetName = ''
-			this.clientPetAge = null
-			this.clientPetWeight = null
-			this.clientPetBirthday = null
 			this.clientPetBreed = ''
 			this.femaleOrMale = false
 		},
@@ -238,16 +232,8 @@ export default {
 				/* Client */
 				name: this.clientName,
 				phone: this.clientPhoneNumber,
-				/* Address */
-				street: this.clientAddressStreet,
-				number: this.clientAddressNumber,
-				intNumber: this.clientAddressIntNumber,
-				postalCode: this.clientAddressPostalCode,
 				/* Pet */
 				petName: this.clientPetName,
-				petBirthday: this.clientPetBirthday,
-				petAge: this.clientPetAge,
-				petWeight: this.clientPetWeight,
 				petBreed: this.clientPetBreed,
 				petFemaleOrMale: this.femaleOrMale
 			}, {
