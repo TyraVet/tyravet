@@ -13,7 +13,7 @@ form#create-user-form
 					type='text'
 					minlength='4'
 					v-model='username'
-					required='true'
+					required
 				)
 			b-field#change-password(
 				label='Change Password'
@@ -24,7 +24,7 @@ form#create-user-form
 					type='password'
 					minlength='8'
 					v-model='password'
-					required='true'
+					required
 				)
 			b-field#confirm-password( label='Confirm Password' )
 				b-input(
@@ -32,8 +32,22 @@ form#create-user-form
 					minlength='8'
 					:validation-message='validationMessageConfirmPassword'
 					v-model='confirmPassword'
-					required='true'
+					required
 				)
+			b-field#fullname( label='Full Name' )
+				b-input(
+					type='text'
+					v-model='fullName'
+				)
+			b-field#branch-office( label='Branch Office' )
+				b-select(
+					v-model='branchOffice'
+				)
+					option(
+						v-for='(branch, index) in branchOffices'
+						:key='index'
+						:value='branch'
+					) {{ branch.name }}
 		footer.modal-card-foot
 			button.button(
 				type='button'
@@ -88,6 +102,8 @@ export default {
 			username: '',
 			password: '',
 			confirmPassword: '',
+			fullName: '',
+			branchOffice: '',
 			validationMessageConfirmPassword: '',
 			status: null,
 			type: 'medic'
@@ -149,7 +165,9 @@ export default {
 			axios.post(process.env.VUE_APP_TYRAWEB_CREATE_USER, {
 				username: this.username,
 				password: this.password,
-				type: this.type
+				type: this.type,
+				fullName: this.fullName,
+				branchOffice: this.branchOffice
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
@@ -170,8 +188,11 @@ export default {
 					Authorization: 'Bearer ' + this.user.token
 				}
 			}).then(response => {
+				console.log(response.data)
 				this.username = response.data.username
 				this.type = response.data.type.name
+				this.fullName = response.data.fullName
+				this.branchOffice = response.data.branchOffice.name
 			}).catch(error => {
 				this.setOnError(error)
 			})
@@ -182,7 +203,9 @@ export default {
 				id: this.userId,
 				username: this.username,
 				password: this.password,
-				type: this.type
+				type: this.type,
+				fullName: this.fullName,
+				branchOffice: this.branchOffice
 			}, {
 				headers: {
 					Authorization: 'Bearer ' + this.user.token
