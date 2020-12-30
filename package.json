@@ -15,7 +15,7 @@
     "buefy": "^0.9.4",
     "core-js": "^3.6.5",
     "moment": "^2.27.0",
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "vue-cookies": "^1.7.3",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.0"
@@ -45,6 +45,6 @@
     "sass-loader": "^10.1.0",
     "vue-cli-plugin-buefy": "~0.3.7",
     "vue-cli-plugin-pug": "~1.0.7",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   }
 }
