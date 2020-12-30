@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "buefy": "^0.9.4",
-    "core-js": "^3.6.5",
+    "core-js": "^3.8.1",
     "moment": "^2.27.0",
     "vue": "^2.6.12",
     "vue-cookies": "^1.7.3",
