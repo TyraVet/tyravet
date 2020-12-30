@@ -102,7 +102,7 @@ npm run test:unit
 
 ## Production
 If you want to start using this software in a production environment go to our
-[Production Guide]().
+[Production Guide]()
 
 ## Contributing
 If you find this project usefull for your professional life, consider
