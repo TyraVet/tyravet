@@ -44,7 +44,7 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^10.1.0",
     "vue-cli-plugin-buefy": "~0.3.7",
-    "vue-cli-plugin-pug": "~1.0.7",
+    "vue-cli-plugin-pug": "~2.0.0",
     "vue-template-compiler": "^2.6.12"
   }
 }
