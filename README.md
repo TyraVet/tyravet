@@ -13,6 +13,7 @@
         </a>
     </span>
 </p>
+<a href=""><img src="https://raw.githubusercontent.com/TyraVet/tyravet-logo/master/tyravet.svg" height="200" align="right"></a>
 
 # Tyra Web
 VueJS Application
